@@ -8,6 +8,7 @@
     "browser": true,
     "es6": true
   },
+  "plugins": ["prettier"],
   "rules": {
     "comma-dangle": "warn",
     "quotes": ["error", "single"],
@@ -23,6 +24,7 @@
       {
         "allow": ["_id"]
       }
-    ]
+    ],
+    "prettier/prettier": "error"
   }
 }
