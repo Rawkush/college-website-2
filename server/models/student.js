@@ -37,18 +37,16 @@ const StudentSchema = new mongoose.Schema({
     trim: true,
     minlength: 1,
   },
-  tokens: [
-    {
-      access: {
-        type: String,
-        required: true,
-      },
-      token: {
-        type: String,
-        required: true,
-      },
+  tokens: [{
+    access: {
+      type: String,
+      required: true,
     },
-  ],
+    token: {
+      type: String,
+      required: false,
+    },
+  }, ],
 });
 
 module.exports = {
