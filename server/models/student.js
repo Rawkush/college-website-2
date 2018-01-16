@@ -207,8 +207,6 @@ StudentSchema.methods.removetoken = function(token){
 }
 
 
-
-
 var Student = mongoose.model('Student', StudentSchema);
 
 module.exports = {
