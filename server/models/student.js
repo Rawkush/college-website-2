@@ -21,7 +21,7 @@ const StudentSchema = new mongoose.Schema({
     maxlength: 11,
     unique: true,
   },
-  address: {
+  location: {
     type: String,
     // required: true,
     minlength: 10, // random number
@@ -49,10 +49,9 @@ const StudentSchema = new mongoose.Schema({
       message: '{VALUE} is not a valid email',
     },
   },
-  password: {
+  photo: {
     type: String,
     required: true,
-    minlength: 6,
   },
   addmittedIn: {
     type: String,
@@ -70,7 +69,6 @@ const StudentSchema = new mongoose.Schema({
     minlength: 35,
   },
   authId: {
-    required: true,
     google: {
       type: String,
     },
@@ -155,7 +153,7 @@ StudentSchema.methods.generateAuthToken = function generateAuthToken() {
         _id: user._id.toHexString(),
         access,
       },
-      'abc123'
+      'process.Env'
     )
     .toString();
   user.tokens = user.tokens.concat([{ access, token }]);
@@ -165,7 +163,7 @@ StudentSchema.statics.findByToken = function findByToken(token) {
   const User = this;
   let decoded;
   try {
-    decoded = jwt.verify(token, 'abc123');
+    decoded = jwt.verify(token, 'process.Env');
   } catch (e) {
     return Promise.reject();
   }
