@@ -70,13 +70,16 @@ const StudentSchema = new mongoose.Schema({
   },
   authId: {
     google: {
-      type: String,
+      id: String,
+      url: String,
     },
     github: {
-      type: String,
+      id: String,
+      url: String,
     },
     linkedin: {
-      type: String,
+      id: String,
+      url: String,
     },
   },
   secondary: {
