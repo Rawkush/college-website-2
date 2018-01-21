@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const methods = require('./models-methods');
 
 const StudentSecondrySchema = new mongoose.Schema({
   resume: {
@@ -15,7 +14,6 @@ const StudentSecondrySchema = new mongoose.Schema({
       },
       description: {
         type: String,
-        // required: true,
         trim: true,
         minlength: 25,
       },
@@ -43,6 +41,10 @@ const StudentSecondrySchema = new mongoose.Schema({
       },
     },
   ],
+  creater: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
 });
 const StudentSecondry = mongoose.model(
   'StudentSecondry',
