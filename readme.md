@@ -15,7 +15,7 @@ Follow the code style by using these tools -
 1. ESLint
 2. Prettier
 
-To setup, you only have to do few this because every package and cofiguration is included in repository.
+To setup, you only have to do few this because every package and configuration is included in repository.
 
 Set Up ESLint -
 
@@ -46,4 +46,4 @@ Set Up Prettier -
    * Integrate ESlint with Prettier.
      * `"prettier.eslintIntegration": true`
 
-If you run into any problem while setting up or in the function of the app, open the issue in this repository. I will try to get back to isssue ASAP.
+If you run into any problem while setting up or in the function of the app, open the issue in this repository. I will try to get back to issue ASAP.
