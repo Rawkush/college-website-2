@@ -1,3 +1,6 @@
 node_modules/
 .env
 .vscode/
+server/dev-server.js
+server/playground/play.js
+wallaby.js
