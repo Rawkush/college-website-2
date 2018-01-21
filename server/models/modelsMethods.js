@@ -37,7 +37,7 @@ const findByToken = function findByToken(token) {
     'tokens.access': 'auth',
   });
 };
-const pre = function pre(next) {
+const checkPassword = function checkPassword(next) {
   const user = this;
   if (user.isModified('password')) {
     bcrypt.genSalt(10, (err, salt) => {
@@ -83,6 +83,6 @@ module.exports = {
   generateAuthToken,
   findByToken,
   findByCredentials,
-  pre,
+  checkPassword,
   removetoken,
 };

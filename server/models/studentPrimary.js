@@ -6,7 +6,7 @@ const {
   generateAuthToken,
   findByToken,
   findByCredentials,
-  pre,
+  checkPassword,
   removetoken,
 } = require('./modelsMethods');
 
@@ -97,8 +97,7 @@ StudentPrimarySchema.methods.generateAuthToken = generateAuthToken;
 StudentPrimarySchema.statics.findByToken = findByToken;
 StudentPrimarySchema.statics.findByCredentials = findByCredentials;
 StudentPrimarySchema.methods.removetoken = removetoken;
-StudentPrimarySchema.pre = pre;
-
+StudentPrimarySchema.checkPassword('save', checkPassword);
 const StudentPrimary = mongoose.model('StudentPrimary', StudentPrimarySchema);
 
 module.exports = {
