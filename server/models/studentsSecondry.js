@@ -41,7 +41,7 @@ const StudentSecondrySchema = new mongoose.Schema({
       },
     },
   ],
-  creater: {
+  _creater: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },

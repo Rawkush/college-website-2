@@ -17,7 +17,7 @@ const generateAuthToken = function generateAuthToken() {
         _id: user._id.toHexString(),
         access,
       },
-      'process.Env'
+      process.env.JWT_SECRET
     )
     .toString();
   user.tokens = user.tokens.concat([{ access, token }]);
@@ -27,7 +27,7 @@ const findByToken = function findByToken(token) {
   const User = this;
   let decoded;
   try {
-    decoded = jwt.verify(token, 'process.Env');
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
   } catch (e) {
     return Promise.reject();
   }
@@ -37,6 +37,16 @@ const findByToken = function findByToken(token) {
     'tokens.access': 'auth',
   });
 };
+const decodeProviderAndId = function decodeProviderAndId(token) {
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET_2);
+  } catch (e) {
+    return Promise.reject();
+  }
+  return decoded;
+};
+
 const checkPassword = function checkPassword(next) {
   const user = this;
   if (user.isModified('password')) {
@@ -82,6 +92,7 @@ module.exports = {
   toJSON,
   generateAuthToken,
   findByToken,
+  decodeProviderAndId,
   findByCredentials,
   checkPassword,
   removetoken,
