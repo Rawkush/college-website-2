@@ -5,6 +5,7 @@ const {
   toJSON,
   generateAuthToken,
   findByToken,
+  decodeProviderAndId,
   findByCredentials,
   checkPassword,
   removetoken,
@@ -95,6 +96,7 @@ const StudentPrimarySchema = new mongoose.Schema({
 StudentPrimarySchema.methods.toJSON = toJSON;
 StudentPrimarySchema.methods.generateAuthToken = generateAuthToken;
 StudentPrimarySchema.statics.findByToken = findByToken;
+StudentPrimarySchema.methods.decodeProviderAndId = decodeProviderAndId;
 StudentPrimarySchema.statics.findByCredentials = findByCredentials;
 StudentPrimarySchema.methods.removetoken = removetoken;
 StudentPrimarySchema.checkPassword('save', checkPassword);
