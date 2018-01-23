@@ -4,6 +4,7 @@ const GoogleStrategy = require('passport-google-oauth20');
 const _ = require('lodash');
 const GitHubStrategy = require('passport-github2').Strategy;
 const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+const jwt = require('jsonwebtoken');
 
 if (process.env.NODE_ENV === 'test') {
   require('dotenv').config({ path: '.env.test' }); // eslint-disable-line
@@ -36,18 +37,22 @@ const callbackFunction = (req, accessToken, refreshToken, profile, done) => {
     // eslint-disable-line
     'provider',
     'id',
+    'profileUrl',
     'displayName',
+    'gender',
     'name',
     'emails',
     'photos',
-    'profileUrl',
-    'gender',
     '_json.bio',
     '_json.url',
     '_json.headline',
     '_json.location',
     '_json.publicProfileUrl',
   ]);
+
+  const payload = _.pick(profile, ['provider', 'id']);
+
+  const token = jwt.sign(payload, process.env.JWT_SECRET_2).toString();
 
   const giveLocation = (object) => {
     // eslint-disable-next-line
@@ -59,22 +64,23 @@ const callbackFunction = (req, accessToken, refreshToken, profile, done) => {
     return null;
   };
 
-  const modifiedProfile = {
+  const userData = {
     name: body.displayName,
     email: body.emails[0].value,
     gender: body.gender,
     photo: body.photos[0] ? body.photos[0].value : null,
     bio: body._json.bio || body._json.headline, // eslint-disable-line
     location: giveLocation(body),
-    authId: {
-      [body.provider]: {
-        id: body.id,
+    linkedProfiles: [
+      {
+        provider: body.provider,
+        linkedId: body.id,
         url: body.profileUrl || body._json.url || body._json.publicProfileUrl, // eslint-disable-line
       },
-    },
+    ],
   };
 
-  done(null, modifiedProfile);
+  done(null, { userData, token });
 };
 
 const googleConfig = new GoogleStrategy(googleOptions, callbackFunction);

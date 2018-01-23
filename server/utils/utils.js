@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 //  Minimal Functions
 const pickBody = (req) => {
-  const body = _.pick(req.body, [
+  const body = _.pick(req.body.userData, [
     'name',
     'rollNo',
     'location',
@@ -13,7 +13,7 @@ const pickBody = (req) => {
     'addmittedIn',
     'bio',
     'photo',
-    'authId',
+    'linkedProfiles',
   ]);
   return body;
 };
@@ -36,8 +36,31 @@ const pickSpecialisations = (req) => {
   return { ...specialisations };
 };
 
-const saveMinimal = (Model) => async (body) => {
-  const newUser = new Model(body);
+const generateAuthToken = async (student) => {
+  try {
+    const token = await student.generateAuthToken();
+    return token;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const saveMinimal = (Model) => async (body, providedToken) => {
+  let decoded;
+  try {
+    decoded = Model.decodeProviderAndId(providedToken);
+  } catch (e) {
+    throw new Error(e);
+  }
+  const { id, provider } = decoded;
+  const newBody = {
+    ...body,
+    auth: {
+      provider,
+      providerId: id,
+    },
+  };
+  const newUser = new Model(newBody);
 
   try {
     const user = await newUser.save();
@@ -71,7 +94,7 @@ const updateMinimal = (Model, runValidators, upsert) => async (
   }
 };
 
-const authTokenMinimal = async (Model, token) => {
+const authTokenMinimal = (Model) => async (token) => {
   try {
     const student = await Model.findByToken(token);
     return student;
@@ -89,6 +112,34 @@ const deleteStudentMinimal = async (Model, id) => {
   }
 };
 
+const checkUserMinimal = (Model) => async (token) => {
+  try {
+    const student = await Model.findByProviderAndId(token);
+    if (student) {
+      return student;
+    }
+    return false;
+  } catch (error) {
+    return false;
+  }
+};
+
+const removeTokenMinimal = async (user, token) => {
+  try {
+    await user.removeToken(token);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const deleteSecondaryMinimal = (Model) => async (_id) => {
+  try {
+    await Model.findOneAndRemove({ _creator: _id });
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 module.exports = {
   pickBody,
   pickAccomplishments,
@@ -98,4 +149,8 @@ module.exports = {
   updateMinimal,
   authTokenMinimal,
   deleteStudentMinimal,
+  checkUserMinimal,
+  generateAuthToken,
+  removeTokenMinimal,
+  deleteSecondaryMinimal,
 };
