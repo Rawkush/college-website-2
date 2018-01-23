@@ -47,10 +47,12 @@ const StudentPrimarySchema = new mongoose.Schema({
     trim: true,
     minlength: 1,
     unique: true,
-    validate: {
-      validator: validator.isEmail,
-      message: '{VALUE} is not a valid email',
-    },
+    validate: [
+      {
+        validator: (value) => validator.isEmail(value),
+        message: '{VALUE} is not a valid email',
+      },
+    ],
   },
   photo: {
     type: String,
@@ -100,6 +102,7 @@ StudentPrimarySchema.methods.decodeProviderAndId = decodeProviderAndId;
 StudentPrimarySchema.statics.findByCredentials = findByCredentials;
 StudentPrimarySchema.methods.removetoken = removetoken;
 StudentPrimarySchema.checkPassword('save', checkPassword);
+
 const StudentPrimary = mongoose.model('StudentPrimary', StudentPrimarySchema);
 
 module.exports = {
