@@ -2,13 +2,13 @@ const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
-const toJSON = function toJSON() {
+function toJSON() {
   const user = this;
   const userObject = user.toObject();
   return _.pick(userObject, ['_id', 'email']);
-};
+}
 
-const generateAuthToken = function generateAuthToken() {
+function generateAuthToken() {
   const user = this;
   const access = 'auth';
   const token = jwt
@@ -22,8 +22,9 @@ const generateAuthToken = function generateAuthToken() {
     .toString();
   user.tokens = user.tokens.concat([{ access, token }]);
   return user.save().then(() => token);
-};
-const findByToken = function findByToken(token) {
+}
+
+function findByToken(token) {
   const User = this;
   let decoded;
   try {
@@ -36,8 +37,9 @@ const findByToken = function findByToken(token) {
     'tokens.token': token,
     'tokens.access': 'auth',
   });
-};
-const decodeProviderAndId = function decodeProviderAndId(token) {
+}
+
+function decodeProviderAndId(token) {
   let decoded;
   try {
     decoded = jwt.verify(token, process.env.JWT_SECRET_2);
@@ -45,9 +47,9 @@ const decodeProviderAndId = function decodeProviderAndId(token) {
     return Promise.reject();
   }
   return decoded;
-};
+}
 
-const checkPassword = function checkPassword(next) {
+function checkPassword(next) {
   const user = this;
   if (user.isModified('password')) {
     bcrypt.genSalt(10, (err, salt) => {
@@ -59,9 +61,9 @@ const checkPassword = function checkPassword(next) {
   } else {
     next();
   }
-};
+}
 
-const findByCredentials = function findByCredentials(email, password) {
+function findByCredentials(email, password) {
   const User = this;
   return User.findOne({ email }).then((user) => {
     if (!user) {
@@ -78,16 +80,33 @@ const findByCredentials = function findByCredentials(email, password) {
       });
     });
   });
-};
+}
 
-const removetoken = function removetoken(token) {
+function removeToken(token) {
   const user = this;
   return user.update({
     $pull: {
       tokens: { token },
     },
   });
-};
+}
+
+function findByProviderAndId(token) {
+  const User = this;
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET_2);
+  } catch (e) {
+    return Promise.reject();
+  }
+  const { provider, id } = decoded;
+
+  return User.findOne({
+    'auth.provider': provider,
+    'auth.providerId': id,
+  });
+}
+
 module.exports = {
   toJSON,
   generateAuthToken,
@@ -95,5 +114,6 @@ module.exports = {
   decodeProviderAndId,
   findByCredentials,
   checkPassword,
-  removetoken,
+  removeToken,
+  findByProviderAndId,
 };

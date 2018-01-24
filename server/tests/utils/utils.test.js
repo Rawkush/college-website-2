@@ -31,15 +31,15 @@ describe('Utility Functions - ', () => {
   describe('pickBody -', () => {
     it('should run correctly.', () => {
       const result = pickBody(studentData[0]);
-      expect(result).to.deep.equal(studentData[0].body);
+      expect(result).to.deep.equal(studentData[0].body.userData);
     });
     it('should exclude unnecessary data.', () => {
       const result = pickBody(studentData[1]);
-      expect(result).to.deep.equal(studentData[0].body);
+      expect(result).to.deep.equal(studentData[0].body.userData);
     });
     it('should not add unnecessary data.', () => {
       const result = pickBody(studentData[2]);
-      expect(result).to.deep.equal(studentData[2].body);
+      expect(result).to.deep.equal(studentData[2].body.userData);
     });
   });
   describe('pickAccomplishments - ', () => {
@@ -104,11 +104,14 @@ describe('Utility Functions - ', () => {
   });
   describe('saveMinimal -', () => {
     const body = { name: 'sample', age: 20 };
+    const providedToken = 'kjsdkfjkjs876df7a676df7a5657f';
+    const decoded = { _id: 'jkhasjfhd', provider: 'Google' };
     const Model = sinon.stub();
     Model.prototype.save = sinon.stub().returns(body);
+    Model.decodedProviderAndId = sinon.stub().returns(decoded);
     Model.prototype.generateAuthToken = sinon.stub().returns('token');
     const saveUserMinimal = saveMinimal(Model);
-    const res = saveUserMinimal(body);
+    const res = saveUserMinimal(body, providedToken);
     it('should call the Model with new keyword.', () => {
       expect(Model.calledWithNew()).to.be.true;
     });
@@ -141,7 +144,8 @@ describe('Utility Functions - ', () => {
       expect(Model.findOneAndUpdate.called).to.be.true;
     });
     it('should call the findOneAndUpdate method w/ correct args.', () => {
-      expect( // eslint-disable-line
+      expect(
+        // eslint-disable-line
         Model.findOneAndUpdate.calledWithExactly(condition, body, {
           new: true,
           runValidators,

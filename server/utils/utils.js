@@ -18,6 +18,24 @@ const pickBody = (req) => {
   return body;
 };
 
+const pickTeacher = (req) => {
+  const body = _.pick(req.body, [
+    'name',
+    'email',
+    'password',
+    'dateOfBirth',
+    'gender',
+    'currentPosition',
+    'photo',
+  ]);
+  return body;
+};
+
+const pickNotifications = (req) => {
+  const body = _.pick(req.body, ['title', 'description', 'link']);
+  return body;
+};
+
 const pickAccomplishments = (req) => {
   const accomplishments = _.pick(req.body, ['title', 'description']);
   return { accomplishments };
@@ -34,6 +52,27 @@ const pickSpecialisations = (req) => {
     return null;
   }
   return { ...specialisations };
+};
+
+const pickWork = (req) => {
+  const work = _.pick(req.body, ['title', 'description']);
+  return { work };
+};
+
+const pickEducation = (req) => {
+  const education = _.pick(req.body, ['education']);
+  if (!Array.isArray(education.education)) {
+    return null;
+  }
+  return { ...education };
+};
+
+const pickTechnicalSkills = (req) => {
+  const technicalSkills = _.pick(req.body, ['technicalSkills']);
+  if (!Array.isArray(technicalSkills.technicalSkills)) {
+    return null;
+  }
+  return { ...technicalSkills };
 };
 
 const generateAuthToken = async (student) => {
@@ -74,6 +113,16 @@ const saveMinimal = (Model) => async (body, providedToken) => {
   }
 };
 
+const saveMinimal2 = (Model) => async (body) => {
+  const newUser = new Model(body);
+  try {
+    const user = await newUser.save();
+    return user;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const updateMinimal = (Model, runValidators, upsert) => async (
   condition,
   body
@@ -90,7 +139,7 @@ const updateMinimal = (Model, runValidators, upsert) => async (
     );
     return data;
   } catch (error) {
-    throw new Error('Cannot Update:', error);
+    throw new Error(`Cannot Update: ${error}`);
   }
 };
 
@@ -103,10 +152,10 @@ const authTokenMinimal = (Model) => async (token) => {
   }
 };
 
-const deleteStudentMinimal = async (Model, id) => {
+const deleteMinimal = (Model) => async (id) => {
   try {
-    const deletedStudent = await Model.findByIdAndRemove(id);
-    return deletedStudent;
+    const deletedUser = await Model.findByIdAndRemove(id);
+    return deletedUser;
   } catch (error) {
     throw new Error(error);
   }
@@ -140,17 +189,34 @@ const deleteSecondaryMinimal = (Model) => async (_id) => {
   }
 };
 
+const loginLocal = (Model) => async (email, password) => {
+  try {
+    const user = await Model.findByCredentials(email, password);
+    const token = await user.generateAuthToken();
+    return { user: user.toJSON(), token };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 module.exports = {
   pickBody,
+  pickTeacher,
+  pickNotifications,
   pickAccomplishments,
   pickProjects,
   pickSpecialisations,
+  pickWork,
+  pickEducation,
+  pickTechnicalSkills,
   saveMinimal,
+  saveMinimal2,
   updateMinimal,
   authTokenMinimal,
-  deleteStudentMinimal,
+  deleteMinimal,
   checkUserMinimal,
   generateAuthToken,
   removeTokenMinimal,
   deleteSecondaryMinimal,
+  loginLocal,
 };
