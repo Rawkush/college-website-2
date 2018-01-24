@@ -15,12 +15,12 @@ Follow the code style by using these tools -
 1. ESLint
 2. Prettier
 
-To setup, you only have to do few this because every package and cofiguration is included in repository.
+To setup, you only have to do few this because every package and configuration is included in repository.
 
 Set Up ESLint -
 
 1. Download plugin of ESlint for your code editor.
-   * [Dowload ESlint for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
+   * [Download ESlint for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 2. Change some settings to these.(I will teach only for VSCode. You have to go in settings and search for the following things.) -
 
    * Set up tab spacing to 2.
@@ -41,9 +41,9 @@ Set Up Prettier -
      * `"prettier.singleQuote": true`
    * Turn on auto format on saving the file.
      * `"editor.formatOnSave": true`
-   * Default formating of the editor should be off.
+   * Default formatting of the editor should be off.
      * `"javascript.format.enable": false`
    * Integrate ESlint with Prettier.
      * `"prettier.eslintIntegration": true`
 
-If you run into any problem while setting up or in the function of the app, open the issue in this repository. I will try to get back to isssue ASAP.
+If you run into any problem while setting up or in the function of the app, open the issue in this repository. I will try to get back to issue ASAP.
