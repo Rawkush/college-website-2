@@ -75,31 +75,27 @@ const pickTechnicalSkills = (req) => {
   return { ...technicalSkills };
 };
 
-const generateAuthToken = async (student) => {
+const generateAuthToken = async (user) => {
   try {
-    const token = await student.generateAuthToken();
+    const token = await user.generateAuthToken();
     return token;
   } catch (error) {
     throw new Error(error);
   }
 };
 
-const saveMinimal = (Model) => async (body, providedToken) => {
+const decodeAuthTokenMinimal = (Model) => async (providedToken) => {
   let decoded;
   try {
-    decoded = Model.decodeProviderAndId(providedToken);
+    decoded = await Model.decodeProviderAndId(providedToken);
+    return decoded;
   } catch (e) {
     throw new Error(e);
   }
-  const { id, provider } = decoded;
-  const newBody = {
-    ...body,
-    auth: {
-      provider,
-      providerId: id,
-    },
-  };
-  const newUser = new Model(newBody);
+};
+
+const saveMinimal = (Model) => async (body) => {
+  const newUser = new Model(body);
 
   try {
     const user = await newUser.save();
@@ -209,6 +205,7 @@ module.exports = {
   pickWork,
   pickEducation,
   pickTechnicalSkills,
+  decodeAuthTokenMinimal,
   saveMinimal,
   saveMinimal2,
   updateMinimal,
