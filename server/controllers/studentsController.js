@@ -10,6 +10,7 @@ const {
   pickSpecialisations,
   pickAccomplishments,
   pickProjects,
+  decodeAuthTokenMinimal,
   saveMinimal,
   updateMinimal,
   deleteMinimal,
@@ -27,6 +28,7 @@ const saveStudentMinimal = saveMinimal(StudentPrimary);
 const checkStudentMinimal = checkUserMinimal(StudentPrimary);
 const authStudentMinimal = authTokenMinimal(StudentPrimary);
 const deleteStudentMinimal = deleteMinimal(StudentPrimary);
+const decodeStudentAuthToken = decodeAuthTokenMinimal(StudentPrimary);
 
 const updateSecondaryMinimal = updateMinimal(StudentSecondry, false, true);
 const deleteSecondary = deleteSecondaryMinimal(StudentSecondry);
@@ -57,8 +59,26 @@ const studentLinkedInAuthentication = passport.authenticate('linkedin', {
 const studentRegistration = async (req, res) => {
   const body = pickBody(req);
   const { token } = req.body;
+  let decodedToken;
+
   try {
-    const data = await saveStudentMinimal(body, token);
+    decodedToken = await decodeStudentAuthToken(token);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+
+  const { provider, id } = decodedToken;
+
+  const newBody = {
+    ...body,
+    auth: {
+      provider,
+      providerId: id,
+    },
+  };
+
+  try {
+    const data = await saveStudentMinimal(newBody);
     res.header('x-auth', data.token).send(data.user);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -199,7 +219,7 @@ const checkStudent = async (req, res, next) => {
         expires: new Date(Date.now() + 30000),
         httpOnly: true,
       });
-      res.redirect('/login');
+      res.redirect('/student/login');
       return;
     }
   } catch (error) {
