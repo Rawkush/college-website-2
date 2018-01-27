@@ -13,14 +13,14 @@ if (process.env.NODE_ENV === 'test') {
 const googleOptions = {
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: '/auth/google/callback',
+  callbackURL: '/student/auth/google/callback',
   passReqToCallback: true,
 };
 
 const linkedInOptions = {
   clientID: process.env.LINKEDIN_CLIENT_ID,
   clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
-  callbackURL: '/auth/linkedin/callback',
+  callbackURL: '/student/auth/linkedin/callback',
   scope: ['r_emailaddress', 'r_basicprofile'],
   passReqToCallback: true,
 };
@@ -28,7 +28,7 @@ const linkedInOptions = {
 const gitHubOptions = {
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: '/auth/github/callback',
+  callbackURL: '/student/auth/github/callback',
   passReqToCallback: true,
 };
 

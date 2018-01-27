@@ -2,17 +2,18 @@
 const passport = require('../config/passportConfig');
 
 //  Defined Modules Import
-const { Student } = require('../models/student');
-const { Secondary } = require('./../models/secondary');
+const { StudentPrimary } = require('../models/studentPrimary');
+const { StudentSecondry } = require('./../models/studentsSecondry');
 
 const {
   pickBody,
   pickSpecialisations,
   pickAccomplishments,
   pickProjects,
+  decodeAuthTokenMinimal,
   saveMinimal,
   updateMinimal,
-  deleteStudentMinimal,
+  deleteMinimal,
   authTokenMinimal,
   checkUserMinimal,
   generateAuthToken,
@@ -22,13 +23,15 @@ const {
 
 // Initializing Model Specific Functions
 
-const updateStudentMinimal = updateMinimal(Student, true, false);
-const updateSecondaryMinimal = updateMinimal(Secondary, false, true);
-const saveStudentMinimal = saveMinimal(Student);
-const checkStudentMinimal = checkUserMinimal(Student);
-const authStudentMinimal = authTokenMinimal(Student);
+const updateStudentMinimal = updateMinimal(StudentPrimary, true, false);
+const saveStudentMinimal = saveMinimal(StudentPrimary);
+const checkStudentMinimal = checkUserMinimal(StudentPrimary);
+const authStudentMinimal = authTokenMinimal(StudentPrimary);
+const deleteStudentMinimal = deleteMinimal(StudentPrimary);
+const decodeStudentAuthToken = decodeAuthTokenMinimal(StudentPrimary);
 
-const deleteSecondary = deleteSecondaryMinimal(Secondary);
+const updateSecondaryMinimal = updateMinimal(StudentSecondry, false, true);
+const deleteSecondary = deleteSecondaryMinimal(StudentSecondry);
 
 //  Controllers
 
@@ -56,11 +59,29 @@ const studentLinkedInAuthentication = passport.authenticate('linkedin', {
 const studentRegistration = async (req, res) => {
   const body = pickBody(req);
   const { token } = req.body;
+  let decodedToken;
+
   try {
-    const data = await saveStudentMinimal(body, token);
+    decodedToken = await decodeStudentAuthToken(token);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+
+  const { provider, id } = decodedToken;
+
+  const newBody = {
+    ...body,
+    auth: {
+      provider,
+      providerId: id,
+    },
+  };
+
+  try {
+    const data = await saveStudentMinimal(newBody);
     res.header('x-auth', data.token).send(data.user);
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send(`Some error happened: ${error}`);
   }
 };
 
@@ -75,7 +96,7 @@ const tokenAuthenticate = async (req, res, next) => {
       next();
     }
   } catch (error) {
-    res.status(401).send('Access Denied!');
+    res.status(401).send(`Access Denied! ${error}`);
   }
 };
 
@@ -94,20 +115,20 @@ const updateStudent = async (req, res) => {
         $set: { ...body },
       }
     );
-    res.send(updatedStudent);
+    res.header('x-auth', req.header('x-auth')).send(updatedStudent);
   } catch (error) {
-    res.sendStatus(400).send('Something went wrong');
+    res.status(400).send(`Some error happened: ${error}`);
   }
 };
 
 // Delelte Account
 const deleteStudent = async (req, res) => {
   try {
-    const deletedStudent = await deleteStudentMinimal(Student, req.student._id);
+    const deletedStudent = await deleteStudentMinimal(req.student._id);
     await deleteSecondary(req.student._id);
     res.send(`student has been deleted, ${deletedStudent}`);
   } catch (error) {
-    res.sendStatus(400).send('Something went wrong');
+    res.status(400).send(`Some error happened: ${error}`);
   }
 };
 
@@ -123,7 +144,22 @@ const addAccomplishment = async (req, res) => {
     );
     return res.send(updatedSecondary);
   } catch (error) {
-    return res.sendStatus(400).send('Something went wrong');
+    return res.status(400).send(`Something went wrong: ${error}`);
+  }
+};
+
+const removeAccomplishment = async (req, res) => {
+  const { _id } = req.body;
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      { _creator: req.student._id },
+      {
+        $pull: { accomplishments: { _id } },
+      }
+    );
+    return res.header('x-auth', req.header('x-auth')).send(updatedSecondary);
+  } catch (error) {
+    return res.status(400).send(`Something went wrong: ${error}`);
   }
 };
 
@@ -138,6 +174,22 @@ const addProjects = async (req, res) => {
       }
     );
     return res.send(updatedSecondary);
+  } catch (error) {
+    return res.status(400).send(`Something went wrong: ${error}`);
+  }
+};
+
+const removeProject = async (req, res) => {
+  const { _id } = req.body;
+
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      { _creator: req.student._id },
+      {
+        $pull: { projects: { _id } },
+      }
+    );
+    return res.header('x-auth', req.header('x-auth')).send(updatedSecondary);
   } catch (error) {
     return res.sendStatus(400).send('Something went wrong');
   }
@@ -154,20 +206,24 @@ const addSpecialisations = async (req, res) => {
     );
     return res.send(updatedSecondary);
   } catch (error) {
-    return res.sendStatus(400).send('Something went wrong');
+    return res.status(400).send(`Something went wrong: ${error}`);
   }
 };
 
 const checkStudent = async (req, res, next) => {
-  const { token } = req.body;
-  const exists = await checkStudentMinimal(token);
-  if (exists) {
-    res.cookie('token', token, {
-      expires: new Date(Date.now() + 30000),
-      httpOnly: true,
-    });
-    res.redirect('/login');
-    return;
+  const { token } = req.user ? req.user : req.body;
+  try {
+    const exists = await checkStudentMinimal(token);
+    if (exists) {
+      res.cookie('token', token, {
+        expires: new Date(Date.now() + 30000),
+        httpOnly: true,
+      });
+      res.redirect('/student/login');
+      return;
+    }
+  } catch (error) {
+    res.status(400).send(`Something went wrong: ${error}`);
   }
   next();
 };
@@ -201,14 +257,16 @@ module.exports = {
   studentGitHubAuthenticate,
   studentLinkedInAuthentication,
   studentRegistration,
+  login,
+  logout,
   tokenAuthenticate,
   updateStudent,
   deleteStudent,
   addAccomplishment,
   addProjects,
-  getAllNotifications,
   addSpecialisations,
+  removeAccomplishment,
+  removeProject,
+  getAllNotifications,
   checkStudent,
-  login,
-  logout,
 };

@@ -10,7 +10,7 @@ Run the following command opening terminal in the directory root directory of th
 
 `npm install`
 
-Follow the code style by using these tools -
+## Follow the code style by using these tools -
 
 1. ESLint
 2. Prettier
@@ -19,8 +19,8 @@ To setup, you only have to do few this because every package and configuration i
 
 Set Up ESLint -
 
-1. Download plugin of ESlint for your code editor.
-   * [Download ESlint for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
+1. Download plugin of ES lint for your code editor.
+   * [Download ES lint for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 2. Change some settings to these.(I will teach only for VSCode. You have to go in settings and search for the following things.) -
 
    * Set up tab spacing to 2.
@@ -43,7 +43,26 @@ Set Up Prettier -
      * `"editor.formatOnSave": true`
    * Default formatting of the editor should be off.
      * `"javascript.format.enable": false`
-   * Integrate ESlint with Prettier.
+   * Integrate ES lint with Prettier.
      * `"prettier.eslintIntegration": true`
 
 If you run into any problem while setting up or in the function of the app, open the issue in this repository. I will try to get back to issue ASAP.
+
+## Set up the environment variables -
+
+You need to set up the environment variables for the OAuth and Mongo DB to work.
+
+1. Create a file in root directory and name it `.env` .
+   * Which should look like this.
+     ```
+     DATABASE=yourdatabaselink
+     GITHUB_CLIENT_ID=githubclientid
+     GITHUB_CLIENT_SECRET=githubclientsecret
+     GOOGLE_CLIENT_ID=googleclientid
+     GOOGLE_CLIENT_SECRET=googleclientsecret
+     LINKEDIN_CLIENT_ID=linkedinclientid
+     LINKEDIN_CLIENT_SECRET=linkedinclientsecret
+     JWT_SECRET=jwtsecret
+     JWT_SECRET_2=anotherjwtsecret
+     ```
+2. Make another file in root directory and name it `.env.test` . And and put the same variables and make it test related.

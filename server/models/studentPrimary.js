@@ -8,7 +8,8 @@ const {
   decodeProviderAndId,
   findByCredentials,
   checkPassword,
-  removetoken,
+  removeToken,
+  findByProviderAndId,
 } = require('./modelsMethods');
 
 const StudentPrimarySchema = new mongoose.Schema({
@@ -56,7 +57,6 @@ const StudentPrimarySchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    required: true,
   },
   addmittedIn: {
     type: String,
@@ -68,20 +68,32 @@ const StudentPrimarySchema = new mongoose.Schema({
     trim: true,
     minlength: 35,
   },
-  authId: {
-    google: {
-      id: String,
-      url: String,
+  auth: {
+    provider: {
+      type: String,
+      required: true,
     },
-    github: {
-      id: String,
-      url: String,
-    },
-    linkedin: {
-      id: String,
-      url: String,
+    providerId: {
+      type: String,
+      required: true,
     },
   },
+  linkedProfiles: [
+    {
+      provider: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
+      linkedId: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   tokens: [
     {
       access: {
@@ -95,13 +107,14 @@ const StudentPrimarySchema = new mongoose.Schema({
     },
   ],
 });
+StudentPrimarySchema.pre('save', checkPassword);
 StudentPrimarySchema.methods.toJSON = toJSON;
 StudentPrimarySchema.methods.generateAuthToken = generateAuthToken;
+StudentPrimarySchema.methods.removeToken = removeToken;
+StudentPrimarySchema.statics.decodeProviderAndId = decodeProviderAndId;
 StudentPrimarySchema.statics.findByToken = findByToken;
-StudentPrimarySchema.methods.decodeProviderAndId = decodeProviderAndId;
 StudentPrimarySchema.statics.findByCredentials = findByCredentials;
-StudentPrimarySchema.methods.removetoken = removetoken;
-StudentPrimarySchema.checkPassword('save', checkPassword);
+StudentPrimarySchema.statics.findByProviderAndId = findByProviderAndId;
 
 const StudentPrimary = mongoose.model('StudentPrimary', StudentPrimarySchema);
 

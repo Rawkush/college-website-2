@@ -14,13 +14,13 @@ const TeacherSecondrySchema = new mongoose.Schema({
       },
     },
   ],
-  eduction: [
+  education: [
     {
       type: String,
       required: true,
     },
   ],
-  specialisations: [
+  specialisation: [
     {
       type: String,
       trim: true,
@@ -32,7 +32,7 @@ const TeacherSecondrySchema = new mongoose.Schema({
       trim: true,
     },
   ],
-  _creater: {
+  _creator: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },

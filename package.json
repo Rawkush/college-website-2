@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha **/*.test.js",
     "start": "node server/server.js",
     "start-watch": "nodemon server/server.js",
     "test":

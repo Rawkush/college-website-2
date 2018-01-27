@@ -4,10 +4,9 @@ const {
   toJSON,
   generateAuthToken,
   findByToken,
-  decodeProviderAndId,
   findByCredentials,
   checkPassword,
-  removetoken,
+  removeToken,
 } = require('./modelsMethods');
 
 const TeacherPrimarySchema = new mongoose.Schema(
@@ -70,10 +69,9 @@ const TeacherPrimarySchema = new mongoose.Schema(
 TeacherPrimarySchema.methods.toJSON = toJSON;
 TeacherPrimarySchema.methods.generateAuthToken = generateAuthToken;
 TeacherPrimarySchema.statics.findByToken = findByToken;
-TeacherPrimarySchema.methods.decodeProviderAndId = decodeProviderAndId;
 TeacherPrimarySchema.statics.findByCredentials = findByCredentials;
-TeacherPrimarySchema.methods.removetoken = removetoken;
-TeacherPrimarySchema.checkPassword('save', checkPassword);
+TeacherPrimarySchema.methods.removeToken = removeToken;
+TeacherPrimarySchema.pre('save', checkPassword);
 
 const TeacherPrimary = mongoose.model('Teacher', TeacherPrimarySchema);
 

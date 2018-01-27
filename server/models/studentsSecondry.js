@@ -4,7 +4,7 @@ const StudentSecondrySchema = new mongoose.Schema({
   resume: {
     type: String,
   },
-  accomplistments: [
+  accomplishments: [
     {
       title: {
         type: String,
@@ -19,7 +19,7 @@ const StudentSecondrySchema = new mongoose.Schema({
       },
     },
   ],
-  specialisations: [
+  specialisation: [
     {
       type: String,
       trim: true,
@@ -41,7 +41,7 @@ const StudentSecondrySchema = new mongoose.Schema({
       },
     },
   ],
-  _creater: {
+  _creator: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
