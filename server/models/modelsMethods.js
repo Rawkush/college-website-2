@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
+const slugify = require('slugify');
 
 function toJSON() {
   const user = this;
@@ -106,7 +107,13 @@ function findByProviderAndId(token) {
     'auth.providerId': id,
   });
 }
-
+function slugGen(text) {
+  slugify(text, {
+    replacement: '-',
+    remove: /[^\\-]+/g, // Remove all non-word chars;
+    lower: true,
+  });
+}
 module.exports = {
   toJSON,
   generateAuthToken,
@@ -116,4 +123,5 @@ module.exports = {
   checkPassword,
   removeToken,
   findByProviderAndId,
+  slugGen,
 };
