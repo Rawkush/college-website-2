@@ -7,6 +7,7 @@ const {
   findByCredentials,
   checkPassword,
   removeToken,
+  slugify,
 } = require('./modelsMethods');
 
 const TeacherPrimarySchema = new mongoose.Schema(
@@ -36,8 +37,22 @@ const TeacherPrimarySchema = new mongoose.Schema(
       minlength: 6,
     },
     dateOfBirth: {
-      type: Number,
-      // TODO dob either sanitized or date format is defined using validation or rEgex
+      type: Date,
+      validate: [
+        {
+          validator: (value) => {
+            const a = new Date().getFullYear - 60;
+            const b = new Date().getFullYear - 20;
+            const maxDate = new Date();
+            const minDate = new Date();
+            maxDate.setFullYear(a, 0, 31);
+            minDate.setFullYear(b, 0, 31);
+            validator.isAfter(value[maxDate]);
+            validator.isBefore(value[minDate]);
+          },
+          message: '{VALUE} is not a valid date',
+        },
+      ],
       required: true,
     },
     gender: {
@@ -72,6 +87,7 @@ TeacherPrimarySchema.statics.findByToken = findByToken;
 TeacherPrimarySchema.statics.findByCredentials = findByCredentials;
 TeacherPrimarySchema.methods.removeToken = removeToken;
 TeacherPrimarySchema.pre('save', checkPassword);
+TeacherPrimarySchema.pre('save', slugify);
 
 const TeacherPrimary = mongoose.model('Teacher', TeacherPrimarySchema);
 

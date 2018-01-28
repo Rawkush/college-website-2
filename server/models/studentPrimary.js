@@ -10,6 +10,7 @@ const {
   checkPassword,
   removeToken,
   findByProviderAndId,
+  slugify,
 } = require('./modelsMethods');
 
 const StudentPrimarySchema = new mongoose.Schema({
@@ -33,8 +34,33 @@ const StudentPrimarySchema = new mongoose.Schema({
     trim: true,
   },
   dateOfBirth: {
-    type: Number,
-    // TODO dob either sanitized or date format is defined using validation or rEgex
+    type: Date,
+    validate: [
+      {
+        validator: (value) => {
+          // const dateFormat = /^[0-9]{2}/[0-9]{2}/[0-9]{4}$/;
+          // if (val.value.match(dateFormat)) {
+          //   const date = new date(val);
+          //   const d = new Date().getFullYear() - 25; // presnt year
+          //   const a = new Date().getFullYear() - 16; // present year -4
+          //   if (d <= date.getFullYear() && date.getFullYear() <= a) {
+          //     return true;
+          //   }
+          //   return false;
+          // }
+          // return false;
+          const a = new Date().getFullYear - 23;
+          const b = new Date().getFullYear - 16;
+          const maxDate = new Date();
+          const minDate = new Date();
+          maxDate.setFullYear(a, 0, 31);
+          minDate.setFullYear(b, 0, 31);
+          validator.isAfter(value[maxDate]);
+          validator.isBefore(value[minDate]);
+        },
+        message: '{VALUE} is not a valid date',
+      },
+    ],
     required: true,
   },
   gender: {
@@ -59,9 +85,19 @@ const StudentPrimarySchema = new mongoose.Schema({
     type: String,
   },
   addmittedIn: {
-    type: String,
+    type: Date,
     required: true,
-    // TODO  it should be validate that time is after 2007
+    validate: [
+      {
+        validator: (value) => {
+          const a = new Date().getFullYear - 4;
+          const date = new Date();
+          date.setFullYear(a, 7, 10);
+          validator.isAfter(value[date]);
+        },
+        message: '{VALUE} is not a valid admitted date',
+      },
+    ],
   },
   bio: {
     type: String,
@@ -108,6 +144,7 @@ const StudentPrimarySchema = new mongoose.Schema({
   ],
 });
 StudentPrimarySchema.pre('save', checkPassword);
+StudentPrimarySchema.pre('save', slugify);
 StudentPrimarySchema.methods.toJSON = toJSON;
 StudentPrimarySchema.methods.generateAuthToken = generateAuthToken;
 StudentPrimarySchema.methods.removeToken = removeToken;
