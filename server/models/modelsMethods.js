@@ -107,12 +107,15 @@ function findByProviderAndId(token) {
     'auth.providerId': id,
   });
 }
-function slugGen(text) {
-  slugify(text, {
-    replacement: '-',
-    remove: /[^\\-]+/g, // Remove all non-word chars;
-    lower: true,
-  });
+function slugGen(next) {
+  const user = this;
+  if (user.isModified('name')) {
+    const slug = slugify(user.name);
+    user.slug = slug;
+    next();
+  } else {
+    next();
+  }
 }
 module.exports = {
   toJSON,

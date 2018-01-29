@@ -1,7 +1,7 @@
 // Defined Module Imports
 const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { TeacherSecondry } = require('./../models/teacherSecondary');
-const { notificationsSecondry } = require('./../models/notificationsSecondary');
+const { teachersNotificaton } = require('./../models/teacherNotifications');
 const {
   pickTeacher,
   pickWork,
@@ -27,7 +27,7 @@ const deleteTeacherMinimal = deleteMinimal(TeacherPrimary);
 const updateSecondaryMinimal = updateMinimal(TeacherSecondry, false, true);
 const deleteSecondary = deleteSecondaryMinimal(TeacherSecondry);
 
-const saveNotificationsMinimal = saveMinimal2(notificationsSecondry);
+const saveNotificationsMinimal = saveMinimal2(teachersNotificaton);
 
 // Controllers
 const teacherLogin = async (req, res) => {

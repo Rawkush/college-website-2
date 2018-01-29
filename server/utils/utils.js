@@ -32,7 +32,7 @@ const pickTeacher = (req) => {
 };
 
 const pickNotifications = (req) => {
-  const body = _.pick(req.body, ['title', 'description', 'link']);
+  const body = _.pick(req.body, ['title', 'description', 'link', 'tags']);
   return body;
 };
 
@@ -195,6 +195,36 @@ const loginLocal = (Model) => async (email, password) => {
   }
 };
 
+const pickEvent = (req) => {
+  const body = _.pick(req.body, [
+    'name',
+    'photo',
+    'time',
+    'place',
+    'description',
+  ]);
+  return body;
+};
+
+const pickSyllabus = (req) => {
+  const body = _.pick(req.body, [
+    'branch',
+    'semester',
+    'subjectType',
+    'l',
+    'TP',
+    'credits',
+    'status',
+    'period',
+  ]);
+  return body;
+};
+
+const pickTT = (req) => {
+  const body = _.pick(req.body, ['branch', 'semester', 'wef', 'file']);
+  return body;
+};
+
 module.exports = {
   pickBody,
   pickTeacher,
@@ -216,4 +246,7 @@ module.exports = {
   removeTokenMinimal,
   deleteSecondaryMinimal,
   loginLocal,
+  pickEvent,
+  pickSyllabus,
+  pickTT,
 };

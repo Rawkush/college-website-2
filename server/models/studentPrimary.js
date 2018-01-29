@@ -10,7 +10,7 @@ const {
   checkPassword,
   removeToken,
   findByProviderAndId,
-  slugify,
+  slugGen,
 } = require('./modelsMethods');
 
 const StudentPrimarySchema = new mongoose.Schema({
@@ -144,7 +144,7 @@ const StudentPrimarySchema = new mongoose.Schema({
   ],
 });
 StudentPrimarySchema.pre('save', checkPassword);
-StudentPrimarySchema.pre('save', slugify);
+StudentPrimarySchema.pre('save', slugGen);
 StudentPrimarySchema.methods.toJSON = toJSON;
 StudentPrimarySchema.methods.generateAuthToken = generateAuthToken;
 StudentPrimarySchema.methods.removeToken = removeToken;

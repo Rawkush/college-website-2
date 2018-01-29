@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const notificationsSecondarySchema = new mongoose.Schema({
+const notificationsSchema = new mongoose.Schema({
   title: {
     type: String,
   },
@@ -11,16 +11,12 @@ const notificationsSecondarySchema = new mongoose.Schema({
   link: {
     type: String,
   },
-  _creator: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-  },
 });
-const notificationsSecondry = mongoose.model(
+const Notifications = mongoose.model(
   'notificatoinsSecondary',
-  notificationsSecondarySchema
+  notificationsSchema
 );
 
 module.exports = {
-  notificationsSecondry,
+  Notifications,
 };

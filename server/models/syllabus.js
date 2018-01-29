@@ -1,24 +1,14 @@
 const mongoose = require('mongoose');
 
 const SyllabusSchema = new mongoose.Schema({
-  oldSyllabus: {
-    branch: String,
-    semester: String,
-    subjectType: String,
-    l: Number,
-    TP: Number,
-    credits: Number,
-    status: String,
-  },
-  newSyllabus: {
-    branch: String,
-    semester: String,
-    subjectType: String,
-    l: Number,
-    TP: Number,
-    credits: Number,
-    status: String,
-  },
+  branch: String,
+  semester: String,
+  subjectType: String,
+  l: Number,
+  TP: Number,
+  credits: Number,
+  status: String,
+  period: String,
 });
 const Syllabus = mongoose.model('Syllabus', SyllabusSchema);
 
