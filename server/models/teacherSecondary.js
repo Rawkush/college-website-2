@@ -32,6 +32,13 @@ const TeacherSecondrySchema = new mongoose.Schema({
       trim: true,
     },
   ],
+  committes: [
+    {
+      committeName: String,
+      nameAndDesignation: String,
+      statusInCommitte: String,
+    },
+  ],
   _creator: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
