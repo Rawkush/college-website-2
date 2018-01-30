@@ -4,4 +4,6 @@ node_modules/
 .vscode/
 server/dev-server.js
 server/playground/play.js
-wallaby.js
+wallaby.js,
+playground
+playground/check.js
