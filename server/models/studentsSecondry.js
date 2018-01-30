@@ -47,7 +47,7 @@ const StudentSecondrySchema = new mongoose.Schema({
   },
 });
 const StudentSecondry = mongoose.model(
-  'StudentSecondry',
+  'StudentSecondary',
   StudentSecondrySchema
 );
 

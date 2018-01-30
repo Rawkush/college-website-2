@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const SyllabusSchema = new mongoose.Schema({
-  oldSyllabus: {
+const SyllabusSchema = new mongoose.Schema(
+  {
     branch: String,
     semester: String,
     subjectType: String,
@@ -9,17 +9,12 @@ const SyllabusSchema = new mongoose.Schema({
     TP: Number,
     credits: Number,
     status: String,
+    period: String,
   },
-  newSyllabus: {
-    branch: String,
-    semester: String,
-    subjectType: String,
-    l: Number,
-    TP: Number,
-    credits: Number,
-    status: String,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 const Syllabus = mongoose.model('Syllabus', SyllabusSchema);
 
 module.exports = {

@@ -17,7 +17,10 @@ const {
   addTeacherSpecialications,
   deleteTeacher,
   addNotification,
+  teacherRegister,
 } = require('./../controllers/teacherController');
+
+teacherRoutes.post('/teacherRegister', teacherRegister);
 
 teacherRoutes.post('/teacherLogin', teacherLogin);
 

@@ -1,7 +1,7 @@
 // Defined Module Imports
 const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { TeacherSecondry } = require('./../models/teacherSecondary');
-const { notificationsSecondry } = require('./../models/notificationsSecondary');
+const { teachersNotificaton } = require('./../models/teacherNotifications');
 const {
   pickTeacher,
   pickWork,
@@ -19,6 +19,7 @@ const {
 } = require('./../utils/utils');
 
 // Initializing the function for the Model
+const saveTeacherMinimal = saveMinimal2(TeacherPrimary);
 const login = loginLocal(TeacherPrimary);
 const authTeacherMinimal = authTokenMinimal(TeacherPrimary);
 const updateTeacherMinimal = updateMinimal(TeacherPrimary, true, false);
@@ -27,9 +28,19 @@ const deleteTeacherMinimal = deleteMinimal(TeacherPrimary);
 const updateSecondaryMinimal = updateMinimal(TeacherSecondry, false, true);
 const deleteSecondary = deleteSecondaryMinimal(TeacherSecondry);
 
-const saveNotificationsMinimal = saveMinimal2(notificationsSecondry);
+const saveNotificationsMinimal = saveMinimal2(teachersNotificaton);
 
 // Controllers
+const teacherRegister = async (req, res) => {
+  const body = pickTeacher(req);
+  try {
+    const teacher = await saveTeacherMinimal(body);
+    res.send(teacher);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
 const teacherLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -193,4 +204,5 @@ module.exports = {
   addTechnicalSkills,
   deleteTeacher,
   addNotification,
+  teacherRegister,
 };
