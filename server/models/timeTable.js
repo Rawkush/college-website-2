@@ -5,7 +5,10 @@ const TimeTableSchema = new mongoose.Schema(
     branch: String,
     semester: String,
     wef: Date,
-    file: String,
+    file: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

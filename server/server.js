@@ -24,6 +24,9 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(express.static(publicPath));
 
+// For uploaded files
+// app.use('/uploads/', express.static(path.join(__dirname, '..', 'uploads')));
+
 //  Routing
 app.get('/', (req, res) => res.render('index'));
 app.use('/admin/', adminRoutes);

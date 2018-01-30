@@ -19,6 +19,7 @@ const {
 } = require('./../utils/utils');
 
 // Initializing the function for the Model
+const saveTeacherMinimal = saveMinimal2(TeacherPrimary);
 const login = loginLocal(TeacherPrimary);
 const authTeacherMinimal = authTokenMinimal(TeacherPrimary);
 const updateTeacherMinimal = updateMinimal(TeacherPrimary, true, false);
@@ -30,6 +31,16 @@ const deleteSecondary = deleteSecondaryMinimal(TeacherSecondry);
 const saveNotificationsMinimal = saveMinimal2(teachersNotificaton);
 
 // Controllers
+const teacherRegister = async (req, res) => {
+  const body = pickTeacher(req);
+  try {
+    const teacher = await saveTeacherMinimal(body);
+    res.send(teacher);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
 const teacherLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -193,4 +204,5 @@ module.exports = {
   addTechnicalSkills,
   deleteTeacher,
   addNotification,
+  teacherRegister,
 };

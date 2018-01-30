@@ -5,21 +5,25 @@ const { Notifications } = require('./../models/notification');
 const { Syllabus } = require('./../models/syllabus');
 const { TimeTable } = require('./../models/timeTable');
 const {
-  pickTeacher,
   saveMinimal2,
   pickNotifications,
   pickEvent,
   pickSyllabus,
   pickTT,
   deleteMinimal,
+  updateMinimal,
 } = require('./../utils/utils');
 
 // Initializing the functions
-const saveTeacherMinimal = saveMinimal2(TeacherPrimary);
 const saveNotificaitonsMinimal = saveMinimal2(Notifications);
 const saveEventsMinimal = saveMinimal2(Event);
 const saveSyllabusMinimal = saveMinimal2(Syllabus);
 const saveTimeTableMinimal = saveMinimal2(TimeTable);
+
+const updateNotifications = updateMinimal(Notifications, true, false);
+const updateSyllabus = updateMinimal(Syllabus, true, false);
+const updateEvents = updateMinimal(Event, true, false);
+const updateTimeTable = updateMinimal(TimeTable, true, false);
 
 const deleteTeacherMinimal = deleteMinimal(TeacherPrimary);
 const deleteNotificaitonsMinimal = deleteMinimal(Notifications);
@@ -28,16 +32,6 @@ const deleteSyllabusMinimal = deleteMinimal(Syllabus);
 const deleteTimeTableMinimal = deleteMinimal(TimeTable);
 
 // Controllers
-const teacherRegister = async (req, res) => {
-  const body = pickTeacher(req);
-  try {
-    const teacher = await saveTeacherMinimal(body);
-    res.send(teacher);
-  } catch (error) {
-    console.log(error);
-    res.status(400).send(`Some error happened: ${error}`);
-  }
-};
 
 const deleteTeacher = async (req, res) => {
   const { id } = req.body;
@@ -54,6 +48,17 @@ const addNotifications = async (req, res) => {
   try {
     const notification = await saveNotificaitonsMinimal(body);
     res.send(notification);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
+const editNotifications = async (req, res) => {
+  const { id } = req.body;
+  const body = pickNotifications(req);
+  try {
+    const notifications = await updateNotifications({ _id: id }, { ...body });
+    res.send(notifications);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
   }
@@ -79,6 +84,17 @@ const addEvents = async (req, res) => {
   }
 };
 
+const editEvent = async (req, res) => {
+  const { id } = req.body;
+  const body = pickEvent(req);
+  try {
+    const event = await updateEvents({ _id: id }, { ...body });
+    res.send(event);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
 const deleteEvents = async (req, res) => {
   const { id } = req.body;
   try {
@@ -93,6 +109,17 @@ const addSyllabus = async (req, res) => {
   const body = pickSyllabus(req);
   try {
     const syllabus = await saveSyllabusMinimal(body);
+    res.send(syllabus);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
+const editSyllabus = async (req, res) => {
+  const { id } = req.body;
+  const body = pickNotifications(req);
+  try {
+    const syllabus = await updateSyllabus({ _id: id }, { ...body });
     res.send(syllabus);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -119,6 +146,17 @@ const addTimeTable = async (req, res) => {
   }
 };
 
+const editTimeTable = async (req, res) => {
+  const { id } = req.body;
+  const body = pickTT(req);
+  try {
+    const timeTable = await updateTimeTable({ _id: id }, { ...body });
+    res.send(timeTable);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
 const deleteTimeTable = async (req, res) => {
   const { id } = req.body;
   try {
@@ -130,14 +168,17 @@ const deleteTimeTable = async (req, res) => {
 };
 
 module.exports = {
-  teacherRegister,
   addNotifications,
+  editNotifications,
   deleteNotifications,
   addEvents,
+  editEvent,
   deleteEvents,
   addSyllabus,
+  editSyllabus,
   deleteSyllabus,
   addTimeTable,
+  editTimeTable,
   deleteTimeTable,
   deleteTeacher,
 };

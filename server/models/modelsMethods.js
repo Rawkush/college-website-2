@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
-const slugify = require('slugify');
+const slug = require('slug');
 
 function toJSON() {
   const user = this;
@@ -110,12 +110,16 @@ function findByProviderAndId(token) {
 function slugGen(next) {
   const user = this;
   if (user.isModified('name')) {
-    const slug = slugify(user.name);
-    user.slug = slug;
+    const slugg = slug(user.name);
+    user.slugg = slugg;
     next();
   } else {
     next();
   }
+}
+function findBySlug(slugg) {
+  const User = this;
+  return User.findOne({ slugg });
 }
 module.exports = {
   toJSON,
@@ -127,4 +131,5 @@ module.exports = {
   removeToken,
   findByProviderAndId,
   slugGen,
+  findBySlug,
 };
