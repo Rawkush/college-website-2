@@ -4,12 +4,6 @@ node_modules/
 .vscode/
 server/dev-server.js
 server/playground/play.js
-<<<<<<< HEAD
-wallaby.js,
-playground
-playground/check.js
-=======
 wallaby.js
 uploads
 public/dist
->>>>>>> 2cd1bb57b101bf3d09f2c5ef68c2710452585c2e
