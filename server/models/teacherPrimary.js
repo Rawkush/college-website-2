@@ -7,7 +7,8 @@ const {
   findByCredentials,
   checkPassword,
   removeToken,
-  slugify,
+  slugGen,
+  findBySlug,
 } = require('./modelsMethods');
 
 const TeacherPrimarySchema = new mongoose.Schema(
@@ -38,22 +39,10 @@ const TeacherPrimarySchema = new mongoose.Schema(
     },
     dateOfBirth: {
       type: Date,
-      validate: [
-        {
-          validator: (value) => {
-            const a = new Date().getFullYear - 60;
-            const b = new Date().getFullYear - 20;
-            const maxDate = new Date();
-            const minDate = new Date();
-            maxDate.setFullYear(a, 0, 31);
-            minDate.setFullYear(b, 0, 31);
-            validator.isAfter(value[maxDate]);
-            validator.isBefore(value[minDate]);
-          },
-          message: '{VALUE} is not a valid date',
-        },
-      ],
       required: true,
+    },
+    slugg: {
+      type: String,
     },
     gender: {
       type: String,
@@ -64,6 +53,11 @@ const TeacherPrimarySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: Boolean,
+      required: true,
+    },
+    photo: String,
     tokens: [
       {
         access: {
@@ -78,18 +72,19 @@ const TeacherPrimarySchema = new mongoose.Schema(
     ],
   },
   {
-    usePushEach: true,
+    timestamps: true,
   }
 );
 TeacherPrimarySchema.methods.toJSON = toJSON;
 TeacherPrimarySchema.methods.generateAuthToken = generateAuthToken;
+TeacherPrimarySchema.methods.removeToken = removeToken;
 TeacherPrimarySchema.statics.findByToken = findByToken;
 TeacherPrimarySchema.statics.findByCredentials = findByCredentials;
-TeacherPrimarySchema.methods.removeToken = removeToken;
+TeacherPrimarySchema.statics.findBySlug = findBySlug;
 TeacherPrimarySchema.pre('save', checkPassword);
-TeacherPrimarySchema.pre('save', slugify);
+TeacherPrimarySchema.pre('save', slugGen);
 
-const TeacherPrimary = mongoose.model('Teacher', TeacherPrimarySchema);
+const TeacherPrimary = mongoose.model('TeacherPrimary', TeacherPrimarySchema);
 
 module.exports = {
   TeacherPrimary,

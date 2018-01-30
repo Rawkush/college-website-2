@@ -1,26 +1,25 @@
 const mongoose = require('mongoose');
 
-const notificationsSecondarySchema = new mongoose.Schema({
-  title: {
-    type: String,
+const notificationsSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    file: String,
+    tags: [{ type: String }],
+    link: {
+      type: String,
+    },
   },
-  description: {
-    type: String,
-  },
-  tags: [{ type: String }],
-  link: {
-    type: String,
-  },
-  _creator: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-  },
-});
-const notificationsSecondry = mongoose.model(
-  'notificatoinsSecondary',
-  notificationsSecondarySchema
+  {
+    timestamps: true,
+  }
 );
+const Notifications = mongoose.model('Notifications', notificationsSchema);
 
 module.exports = {
-  notificationsSecondry,
+  Notifications,
 };
