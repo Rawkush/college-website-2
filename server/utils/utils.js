@@ -32,8 +32,13 @@ const pickTeacher = (req) => {
 };
 
 const pickNotifications = (req) => {
-  const body = _.pick(req.body, ['title', 'description', 'link']);
-  return body;
+  const body = _.pick(req.body, ['title', 'description', 'link', 'tags']);
+  const file = req.file ? req.file.path : null;
+  const newBody = {
+    ...body,
+    file,
+  };
+  return newBody;
 };
 
 const pickAccomplishments = (req) => {
@@ -195,6 +200,81 @@ const loginLocal = (Model) => async (email, password) => {
   }
 };
 
+const pickEvent = (req) => {
+  const body = _.pick(req.body, [
+    'name',
+    'photo',
+    'time',
+    'place',
+    'description',
+  ]);
+  const file = req.file ? req.file.path : null;
+  const newBody = {
+    ...body,
+    file,
+  };
+  return newBody;
+};
+
+const pickSyllabus = (req) => {
+  const body = _.pick(req.body, [
+    'branch',
+    'semester',
+    'subjectType',
+    'l',
+    'TP',
+    'credits',
+    'status',
+    'period',
+  ]);
+  const file = req.file ? req.file.path : null;
+  const newBody = {
+    ...body,
+    file,
+  };
+  return newBody;
+};
+
+const pickTT = (req) => {
+  const body = _.pick(req.body, ['branch', 'semester', 'wef']);
+  const file = req.file ? req.file.path : null;
+  const newBody = {
+    ...body,
+    file,
+  };
+  return newBody;
+};
+
+const giveLatestThreeItem = (Model) => async () => {
+  try {
+    const thing = await Model.find({})
+      .sort({ date: -1 })
+      .limit(3)
+      .exec();
+    return thing;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const giveAll = (Model) => async () => {
+  try {
+    const things = await Model.find({}).sort({ date: -1 });
+    return things;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const giveUser = (Model) => async (slug) => {
+  try {
+    const user = await Model.findBySlug(slug);
+    return user;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 module.exports = {
   pickBody,
   pickTeacher,
@@ -216,4 +296,10 @@ module.exports = {
   removeTokenMinimal,
   deleteSecondaryMinimal,
   loginLocal,
+  pickEvent,
+  pickSyllabus,
+  pickTT,
+  giveLatestThreeItem,
+  giveUser,
+  giveAll,
 };
