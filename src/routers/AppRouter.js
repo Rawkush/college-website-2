@@ -1,24 +1,37 @@
 import React from 'react';
-import { Router, Route, Switch, Link, NavLink } from 'react-router-dom';
+import {
+  Router,
+  Route,
+  Switch,
+  Link,
+  NavLink,
+  BrowserRouter,
+} from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import DashboardPage from '../components/DashboardPage';
-import NotFoundPage from '../components/NotFoundPage';
-import LoginPage from '../components/LoginPage';
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+
+import Syllabus from './../components/syllabus/SyllabusContainer';
+import Header from './../components/header/Header';
+import NotFound from './../components/notFound/NotFound';
+import HomePage from './../pages/HomePage';
+import FormikStudentRegistration from './../components/registration/studentRegistrationForm';
 
 export const history = createHistory();
 
 const AppRouter = () => (
-  <Router history={history}>
+  <BrowserRouter>
     <div>
+      <Header />
       <Switch>
-        <PublicRoute path="/" component={LoginPage} exact={true} />
-        <PrivateRoute path="/dashboard" component={DashboardPage} />
-        <Route component={NotFoundPage} />
+        <Route path="/" component={HomePage} exact />
+        <Route path="/syllabus/:sub" component={Syllabus} />
+        <Route
+          path="/student/registration"
+          component={FormikStudentRegistration}
+        />
+        <Route component={NotFound} />
       </Switch>
     </div>
-  </Router>
+  </BrowserRouter>
 );
 
 export default AppRouter;

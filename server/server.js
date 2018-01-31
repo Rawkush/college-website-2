@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const cors = require('cors');
 
 //  Generated Imports
 const { adminRoutes } = require('./routes/adminRoutes');
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(express.static(publicPath));
+app.use(cors());
 
 // For uploaded files
 // app.use('/uploads/', express.static(path.join(__dirname, '..', 'uploads')));

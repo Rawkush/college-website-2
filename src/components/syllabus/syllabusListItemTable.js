@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SyllabusItemTableItem from './syllabusItemTableItem';
+import SyllabusItemTableItem from './SyllabusItemTableItem';
 
 const SyllabusItemTable = ({ syllabus }) => (
   <div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SyllabusListItemTable from './syllabusListItemTable';
+import SyllabusListItemTable from './SyllabusListItemTable';
 
 const SyllabusListItem = ({ syllabus }) => {
   const thoerySyllabus = syllabus.filter((item) => item.type === 'theory');

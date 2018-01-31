@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Notification from './components/notification';
+import AppRouter from './routers/AppRouter';
 
-ReactDOM.render(<Notification />, document.getElementById('app'));
+ReactDOM.render(<AppRouter />, document.getElementById('app'));

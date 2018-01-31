@@ -1,10 +1,10 @@
 import React from 'react';
 
-import SyllabusListItem from './syllabusListItem';
+import SyllabusListItem from './SyllabusListItem';
 
 const syllabusArray = [
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 1,
     subject: 'Applied Mathematics',
@@ -17,7 +17,7 @@ const syllabusArray = [
     file: 'http://google.co.in',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 1,
     subject: 'Applied Mathematics',
@@ -29,7 +29,7 @@ const syllabusArray = [
     type: 'practical',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 2,
     subject: 'Applied Mathematics',
@@ -41,7 +41,7 @@ const syllabusArray = [
     type: 'theory',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 2,
     subject: 'Applied Mathematics',
@@ -53,7 +53,7 @@ const syllabusArray = [
     type: 'practical',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 3,
     subject: 'Applied Mathematics',
@@ -65,7 +65,7 @@ const syllabusArray = [
     type: 'theory',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 3,
     subject: 'Applied Mathematics',
@@ -77,7 +77,7 @@ const syllabusArray = [
     type: 'practical',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 4,
     subject: 'Applied Mathematics',
@@ -89,7 +89,7 @@ const syllabusArray = [
     type: 'theory',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 4,
     subject: 'Applied Mathematics',
@@ -101,7 +101,7 @@ const syllabusArray = [
     type: 'practical',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 5,
     subject: 'Applied Mathematics',
@@ -113,7 +113,7 @@ const syllabusArray = [
     type: 'theory',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 5,
     subject: 'Applied Mathematics',
@@ -125,7 +125,7 @@ const syllabusArray = [
     type: 'practical',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 6,
     subject: 'Applied Mathematics',
@@ -137,7 +137,7 @@ const syllabusArray = [
     type: 'theory',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 6,
     subject: 'Applied Mathematics',
@@ -149,7 +149,7 @@ const syllabusArray = [
     type: 'practical',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 7,
     subject: 'Applied Mathematics',
@@ -161,7 +161,7 @@ const syllabusArray = [
     type: 'theory',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 7,
     subject: 'Applied Mathematics',
@@ -173,7 +173,7 @@ const syllabusArray = [
     type: 'practical',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 8,
     subject: 'Applied Mathematics',
@@ -185,7 +185,7 @@ const syllabusArray = [
     type: 'theory',
   },
   {
-    branch: 'I.T.',
+    branch: 'it',
     codeNo: 'ETMA-201',
     semester: 8,
     subject: 'Applied Mathematics',
@@ -198,15 +198,32 @@ const syllabusArray = [
   },
 ];
 
-const Syllabus = () => {
-  const syllSem1 = syllabusArray.filter((item) => item.semester === 1);
-  const syllSem2 = syllabusArray.filter((item) => item.semester === 2);
-  const syllSem3 = syllabusArray.filter((item) => item.semester === 3);
-  const syllSem4 = syllabusArray.filter((item) => item.semester === 4);
-  const syllSem5 = syllabusArray.filter((item) => item.semester === 5);
-  const syllSem6 = syllabusArray.filter((item) => item.semester === 6);
-  const syllSem7 = syllabusArray.filter((item) => item.semester === 7);
-  const syllSem8 = syllabusArray.filter((item) => item.semester === 8);
+const Syllabus = (props) => {
+  const { sub } = props.match.params;
+  const syllSem1 = syllabusArray.filter(
+    (item) => item.semester === 1 && item.branch === sub
+  );
+  const syllSem2 = syllabusArray.filter(
+    (item) => item.semester === 2 && item.branch === sub
+  );
+  const syllSem3 = syllabusArray.filter(
+    (item) => item.semester === 3 && item.branch === sub
+  );
+  const syllSem4 = syllabusArray.filter(
+    (item) => item.semester === 4 && item.branch === sub
+  );
+  const syllSem5 = syllabusArray.filter(
+    (item) => item.semester === 5 && item.branch === sub
+  );
+  const syllSem6 = syllabusArray.filter(
+    (item) => item.semester === 6 && item.branch === sub
+  );
+  const syllSem7 = syllabusArray.filter(
+    (item) => item.semester === 7 && item.branch === sub
+  );
+  const syllSem8 = syllabusArray.filter(
+    (item) => item.semester === 8 && item.branch === sub
+  );
   return (
     <div>
       <hr />
