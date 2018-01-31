@@ -3,10 +3,12 @@ const mongoose = require('mongoose');
 const SyllabusSchema = new mongoose.Schema(
   {
     branch: String,
+    codeNo: String,
     semester: String,
-    subjectType: String,
+    subject: String,
+    type: String,
     l: Number,
-    TP: Number,
+    tp: Number,
     credits: Number,
     status: String,
     period: String,
