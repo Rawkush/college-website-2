@@ -4,6 +4,7 @@ const { Event } = require('./../models/events');
 const { Notifications } = require('./../models/notification');
 const { Syllabus } = require('./../models/syllabus');
 const { TimeTable } = require('./../models/timeTable');
+const { Admin } = require('./../models/admin');
 const {
   saveMinimal2,
   pickNotifications,
@@ -12,6 +13,8 @@ const {
   pickTT,
   deleteMinimal,
   updateMinimal,
+  pickAdmin,
+  loginAdmin,
 } = require('./../utils/utils');
 
 // Initializing the functions
@@ -19,6 +22,8 @@ const saveNotificaitonsMinimal = saveMinimal2(Notifications);
 const saveEventsMinimal = saveMinimal2(Event);
 const saveSyllabusMinimal = saveMinimal2(Syllabus);
 const saveTimeTableMinimal = saveMinimal2(TimeTable);
+const saveAdminMinimal = saveMinimal2(Admin);
+const login = loginAdmin(Admin);
 
 const updateNotifications = updateMinimal(Notifications, true, false);
 const updateSyllabus = updateMinimal(Syllabus, true, false);
@@ -167,6 +172,26 @@ const deleteTimeTable = async (req, res) => {
   }
 };
 
+const adminRegister = async (req, res) => {
+  const body = pickAdmin(req);
+  try {
+    const admin = await saveAdminMinimal(body);
+    res.send(admin);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
+const adminLogin = async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const data = await login(username, password);
+    res.send(data);
+  } catch (error) {
+    res.status(400).send(`Some went wrong: ${error}`);
+  }
+};
+
 module.exports = {
   addNotifications,
   editNotifications,
@@ -181,4 +206,6 @@ module.exports = {
   editTimeTable,
   deleteTimeTable,
   deleteTeacher,
+  adminRegister,
+  adminLogin,
 };

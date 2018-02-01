@@ -200,6 +200,16 @@ const loginLocal = (Model) => async (email, password) => {
   }
 };
 
+const loginAdmin = (Model) => async (username, password) => {
+  try {
+    const user = await Model.findAdmin(username, password);
+    const token = await user.generateAuthToken();
+    return { user: user.toJSON(), token };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const pickEvent = (req) => {
   const body = _.pick(req.body, [
     'name',
@@ -275,6 +285,11 @@ const giveUser = (Model) => async (slug) => {
   }
 };
 
+const pickAdmin = (req) => {
+  const body = _.pick(req.body, ['username', 'password', 'email']);
+  return body;
+};
+
 module.exports = {
   pickBody,
   pickTeacher,
@@ -302,4 +317,6 @@ module.exports = {
   giveLatestThreeItem,
   giveUser,
   giveAll,
+  pickAdmin,
+  loginAdmin,
 };

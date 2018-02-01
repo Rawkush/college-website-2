@@ -24,6 +24,8 @@ const {
   editTimeTable,
   editSyllabus,
   editEvent,
+  adminRegister,
+  adminLogin,
 } = require('./../controllers/adminController');
 
 // Initializing the Router
@@ -64,6 +66,10 @@ adminRoutes.post('/addtt', uploadTimeTable.single('file'), addTimeTable);
 adminRoutes.post('/edittt', uploadTimeTable.single('file'), editTimeTable);
 
 adminRoutes.delete('/deletett', deleteTimeTable);
+
+adminRoutes.post('/register', adminRegister);
+
+adminRoutes.post('/login', adminLogin);
 
 module.exports = {
   adminRoutes,

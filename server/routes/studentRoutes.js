@@ -13,6 +13,7 @@ const {
   studentGitHubAuthenticate,
   studentLinkedInAuthentication,
   studentRegistration,
+  fillRegistration,
   checkStudent,
   login,
   logout,
@@ -33,9 +34,7 @@ studentRoutes.get(
   '/auth/google/callback',
   studentGoogleAuthenticate,
   checkStudent,
-  (req, res) => {
-    res.send(req.user);
-  }
+  fillRegistration
 );
 
 studentRoutes.get('/auth/github', studentGitHubLogin);
@@ -44,9 +43,7 @@ studentRoutes.get(
   '/auth/github/callback',
   studentGitHubAuthenticate,
   checkStudent,
-  (req, res) => {
-    res.send(req.user);
-  }
+  fillRegistration
 );
 
 studentRoutes.get('/auth/linkedin', studentLinkedInLogin);
@@ -55,9 +52,7 @@ studentRoutes.get(
   '/auth/linkedin/callback',
   studentLinkedInAuthentication,
   checkStudent,
-  (req, res) => {
-    res.send(req.user);
-  }
+  fillRegistration
 );
 
 studentRoutes.post('/register', checkStudent, studentRegistration);

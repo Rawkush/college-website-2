@@ -31,10 +31,10 @@ app.use(cors());
 
 //  Routing
 app.get('/', (req, res) => res.render('index'));
-app.use('/admin/', adminRoutes);
-app.use('/teacher/', teacherRoutes);
-app.use('/student/', studentRoutes);
-app.use('/visitor/', visitorRoutes);
+app.use('/s/admin/', adminRoutes);
+app.use('/s/teacher/', teacherRoutes);
+app.use('/s/student/', studentRoutes);
+app.use('/s/visitor/', visitorRoutes);
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });

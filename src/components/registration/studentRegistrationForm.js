@@ -45,8 +45,9 @@ const StudentRegistration = ({ values, errors, touched, isSubmitting }) => (
 );
 
 const FormikStudentRegistration = withFormik({
-  mapPropsToValues({ email, location, dateOfBirth, gender, bio }) {
+  mapPropsToValues({ name, email, location, dateOfBirth, gender, bio }) {
     return {
+      name: name || '',
       email: email || '',
       location: location || '',
       dateOfBirth: dateOfBirth || '',
