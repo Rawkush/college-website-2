@@ -38,6 +38,8 @@
     "arrow-parens": ["error", "always"],
     "mocha/no-exclusive-tests": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "object-curly-newline": 0,
+    "function-paren-newline": 0
   }
 }

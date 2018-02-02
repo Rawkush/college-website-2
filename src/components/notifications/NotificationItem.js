@@ -1,13 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-const NotificationItem = ({ text, tags, date, url, key }) => (
+const NotificationItem = ({
+  title,
+  tags,
+  createdAt,
+  link,
+  file,
+  _id,
+  location,
+  auth,
+}) => (
   <div>
-    <a href={url}>
-      <p>{text}</p>
+    <a href={link}>
+      <p>{title}</p>
       {tags.map((tag) => <p key={tag}>{tag}</p>)}
-      <p>{moment(date).format('DD MMM, YYYY')}</p>
+      <p>{moment(createdAt).format('DD MMM, YYYY')}</p>
     </a>
+    <a href={file} target="_blank">
+      Download File
+    </a>
+    {location === '/admin/notifications' &&
+      auth && <Link to={`/admin/notifications/edit/${_id}`}>Edit</Link>}
     <hr />
   </div>
 );

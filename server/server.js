@@ -23,6 +23,7 @@ const publicPath = path.join(__dirname, '..', 'public');
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(passport.initialize());
+app.use('/uploads', express.static('uploads'));
 app.use(express.static(publicPath));
 app.use(cors());
 

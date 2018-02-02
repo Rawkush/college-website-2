@@ -1,13 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
 
-import { history } from './../../routers/AppRouter';
-
 const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
   <Form>
-    {errors.auth && <p>{errors.auth}</p>}
+    {errors.error && <p>{errors.error}</p>}
     <label htmlFor="username">
       Username:
       {touched.username && errors.username && <p>{errors.username}</p>}
@@ -15,6 +12,7 @@ const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
         type="text"
         name="username"
         placeholder="Enter the username name here..."
+        autoFocus
       />
     </label>
     <label htmlFor="password">
@@ -37,20 +35,16 @@ const FormikAdminLoginForm = withFormik({
     username: Yup.string().required('Username is required.'),
     password: Yup.string().required('Password is required.'),
   }),
-  handleSubmit(val, { resetForm, setErrors, setSubmitting }) {
-    axios
-      .post('http://localhost:3000/s/admin/login', {
-        username: val.username,
-        password: val.password,
-      })
-      .then((res) => {
-        localStorage.setItem('adminToken', res.data.token);
+  handleSubmit(val, { props, resetForm, setErrors, setSubmitting }) {
+    props
+      .startLogin(val)
+      .then(() => {
         setSubmitting(false);
-        history.push('/admin/dashboard');
+        props.history.push('/admin/dashboard');
       })
-      .catch((err) => {
+      .catch(() => {
         resetForm();
-        setErrors({ auth: 'Entered Credentials are wrong. Try again.' });
+        setErrors({ error: 'Credential were wrong or the server is down' });
         setSubmitting(false);
       });
   },

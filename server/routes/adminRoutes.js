@@ -41,13 +41,13 @@ adminRoutes.post(
   addNotifications
 );
 
-adminRoutes.post(
-  '/editnotifications',
+adminRoutes.patch(
+  '/editnotification',
   uploadNotifications.single('file'),
   editNotifications
 );
 
-adminRoutes.delete('/deletenotifications', deleteNotifications);
+adminRoutes.delete('/deletenotification', deleteNotifications);
 
 adminRoutes.post('/addevents', uploadEvents.single('file'), addEvents);
 

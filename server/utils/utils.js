@@ -258,7 +258,7 @@ const pickTT = (req) => {
 const giveLatestThreeItem = (Model) => async () => {
   try {
     const thing = await Model.find({})
-      .sort({ date: -1 })
+      .sort({ createdAt: -1 })
       .limit(3)
       .exec();
     return thing;

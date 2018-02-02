@@ -1,7 +1,7 @@
 import React from 'react';
 import jwt from 'jsonwebtoken';
 
-import FormikStudentRegistrationForm from './../components/registration/studentRegistrationForm';
+import FormikStudentRegistrationForm from './../../components/registration/studentRegistrationForm';
 
 const StudentRegistrationPage = () => {
   function getCookieValue(cname) {

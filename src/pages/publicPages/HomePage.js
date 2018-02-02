@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Defined components import
-import Notification from './../components/notifications/Notification';
+import Notification from './../../components/notifications/Notification';
 
 class HomePage extends Component {
   render() {

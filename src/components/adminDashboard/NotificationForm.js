@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
 
@@ -12,6 +11,10 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
     Description:
     {touched.description && errors.description && <p>{errors.description}</p>}
     <Field type="text" name="description" placeholder="Description" />
+    Link:
+    {touched.link && errors.link && <p>{errors.link}</p>}
+    <Field type="text" name="link" placeholder="URL (If any.)" />
+    <hr />
     <label htmlFor="teacher">
       Teacher:
       {touched.teacher && errors.teacher && <p>{errors.teacher}</p>}
@@ -22,6 +25,7 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
       {touched.student && errors.student && <p>{errors.student}</p>}
       <Field type="checkbox" name="student" checked={values.student} />
     </label>
+    <hr />
     <label htmlFor="googleForm">
       Google Form:
       {touched.googleForm && errors.googleForm && <p>{errors.googleForm}</p>}
@@ -37,6 +41,7 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
       {touched.external && errors.external && <p>{errors.external}</p>}
       <Field type="checkbox" name="external" checked={values.external} />
     </label>
+    <hr />
     <label htmlFor="iyear">
       First Year:
       {touched.iyear && errors.iyear && <p>{errors.iyear}</p>}
@@ -57,6 +62,7 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
       {touched.ivyear && errors.ivyear && <p>{errors.ivyear}</p>}
       <Field type="checkbox" name="ivyear" checked={values.ivyear} />
     </label>
+    <hr />
     <label htmlFor="it">
       I.T.:
       {touched.it && errors.it && <p>{errors.it}</p>}
@@ -72,6 +78,7 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
       {touched.env && errors.env && <p>{errors.env}</p>}
       <Field type="checkbox" name="env" checked={values.env} />
     </label>
+    <hr />
     <label htmlFor="file">
       File:
       <input
@@ -83,42 +90,34 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
         }}
       />
     </label>
-    <button disabled={!!isSubmitting}> Submit </button>
+    <button disabled={!!isSubmitting} type="submit">
+      Submit
+    </button>
+    {values.title && <button>Remove</button>}
   </Form>
 );
 
 const FormikNotificationForm = withFormik({
-  mapPropsToValues({
-    title = '',
-    description = '',
-    student = '',
-    teacher = '',
-    iyear = '',
-    iiyear = '',
-    iiiyear = '',
-    ivyear = '',
-    googleForm = '',
-    pdf = '',
-    external = '',
-    civil = '',
-    it = '',
-    env = '',
-  }) {
+  mapPropsToValues(props) {
     return {
-      title,
-      description,
-      student,
-      teacher,
-      iyear,
-      iiyear,
-      iiiyear,
-      ivyear,
-      googleForm,
-      pdf,
-      external,
-      civil,
-      it,
-      env,
+      title: props.title || '',
+      description: props.description || '',
+      link: props.link || '',
+      file: props.file || '',
+      student: props.tags ? props.tags.includes('student') : '',
+      teacher: props.tags ? props.tags.includes('teacher') : '',
+      iyear: props.tags ? props.tags.includes('iyear') : '',
+      iiyear: props.tags ? props.tags.includes('iiyear') : '',
+      iiiyear: props.tags ? props.tags.includes('iiiyear') : '',
+      ivyear: props.tags ? props.tags.includes('ivyear') : '',
+      googleForm: props.tags ? props.tags.includes('googleForm') : '',
+      pdf: props.tags ? props.tags.includes('pdf') : '',
+      external: props.tags ? props.tags.includes('external') : '',
+      civil: props.tags ? props.tags.includes('civil') : '',
+      it: props.tags ? props.tags.includes('it') : '',
+      env: props.tags ? props.tags.includes('env') : '',
+      deleteNotification: props.deleteNotification,
+      history: props.history,
     };
   },
   validationSchema: Yup.object().shape({
@@ -137,44 +136,16 @@ const FormikNotificationForm = withFormik({
     it: Yup.boolean(),
     env: Yup.boolean(),
   }),
-  handleSubmit(val, { resetForm, setErrors, setSubmitting }) {
-    const formdata = new FormData();
-    formdata.append('title', val.title);
-    formdata.append('description', val.description);
-    const tags = [
-      val.student ? 'student' : null,
-      val.teacher ? 'teacher' : '',
-      val.iyear ? 'iyear' : '',
-      val.iiyear ? 'iiyear' : '',
-      val.iiiyear ? 'iiiyear' : '',
-      val.ivyear ? 'ivyear' : '',
-      val.googleForm ? 'googleform' : '',
-      val.pdf ? 'pdf' : '',
-      val.external ? 'external' : '',
-      val.civil ? 'civil' : '',
-      val.it ? 'it' : '',
-      val.env ? 'env' : '',
-    ];
-    formdata.append('tags[]', tags);
-    formdata.append('title', val.title);
-    formdata.append('description', val.description);
-    formdata.append('file', val.file);
-    axios({
-      method: 'post',
-      url: 'http://localhost:3000/s/admin/addnotification',
-      data: formdata,
-      config: { headers: { 'Content-Type': 'multipart/form-data' } },
-    })
+  handleSubmit(val, { props, resetForm, setErrors, setSubmitting }) {
+    props
+      .onSubmit(val, props._id)
       .then(() => {
         resetForm();
-        console.log('success');
         setSubmitting(false);
+        props.history.push('/admin/notifications');
       })
-      .catch((err) => {
-        console.log(err);
-        resetForm();
-        setErrors({ error: 'Something Went Wrong! Maybe file was too large.' });
-        setSubmitting(false);
+      .catch(() => {
+        setErrors({ error: 'Something Went Wrong!' });
       });
   },
 })(NotificationForm);

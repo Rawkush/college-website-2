@@ -59,10 +59,10 @@ const addNotifications = async (req, res) => {
 };
 
 const editNotifications = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   const body = pickNotifications(req);
   try {
-    const notifications = await updateNotifications({ _id: id }, { ...body });
+    const notifications = await updateNotifications({ _id }, { ...body });
     res.send(notifications);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);

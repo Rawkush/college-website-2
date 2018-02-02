@@ -2,15 +2,20 @@ import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
+import AdminRoute from './AdminRoute';
+
 import Header from './../components/header/Header';
 import Footer from './../components/Footer/Footer';
 
 import Syllabus from './../components/syllabus/SyllabusContainer';
 import NotFound from './../components/notFound/NotFound';
-import HomePage from './../pages/HomePage';
-import StudentRegistrationPage from './../pages/StudentRegistrationPage';
-import AdminLoginPage from '../pages/AdminLoginPage';
-import AdminDashboardPage from './../pages/AdminDashboardPage';
+import HomePage from './../pages/publicPages/HomePage';
+import StudentRegistrationPage from './../pages/publicPages/StudentRegistrationPage';
+import AdminLoginPage from '../pages/publicPages/AdminLoginPage';
+import AdminDashboardPage from './../pages/adminPages/AdminDashboardPage';
+import EditNotificationPage from '../pages/adminPages/EditNotificaitonPage';
+import AdminNotifications from './../pages/adminPages/AdminNotifications';
+import AddNotificationPage from './../pages/adminPages/AddNotificationPage';
 
 export const history = createHistory();
 
@@ -23,7 +28,26 @@ const AppRouter = () => (
         <Route path="/syllabus/:sub" component={Syllabus} />
         <Route path="/student/register" component={StudentRegistrationPage} />
         <Route path="/admin/login" component={AdminLoginPage} exact />
-        <Route path="/admin/dashboard" component={AdminDashboardPage} exact />
+        <AdminRoute
+          path="/admin/dashboard"
+          component={AdminDashboardPage}
+          exact
+        />
+        <AdminRoute
+          path="/admin/notifications/edit/:_id"
+          component={EditNotificationPage}
+          exact
+        />
+        <AdminRoute
+          path="/admin/notifications"
+          component={AdminNotifications}
+          exact
+        />
+        <AdminRoute
+          path="/admin/notifications/add"
+          component={AddNotificationPage}
+          exact
+        />
         <Route component={NotFound} />
       </Switch>
       <Footer />
