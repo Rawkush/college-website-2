@@ -16,7 +16,7 @@ export default (state = notificationsDefaultState, action) => {
         }
         return notification;
       });
-    case 'REMOVE_EXPENSE':
+    case 'REMOVE_NOTIFICATION':
       return state.filter(
         (notification) => notification._id !== action.notification._id
       );

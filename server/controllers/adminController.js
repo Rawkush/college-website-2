@@ -70,9 +70,9 @@ const editNotifications = async (req, res) => {
 };
 
 const deleteNotifications = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   try {
-    const notification = await deleteNotificaitonsMinimal(id);
+    const notification = await deleteNotificaitonsMinimal(_id);
     res.send(notification);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);

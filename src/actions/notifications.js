@@ -136,10 +136,25 @@ const removeNotification = (notification) => ({
 });
 
 export const startRemoveNotification = (_id) => (dispatch) =>
-  axios
-    .delete('http://localhost:3000/s/admin/deletenotification', {
+  // axios
+  //   .delete('http://localhost:3000/s/admin/deletenotification', {
+  //     _id,
+  //   })
+  //   .then((res) => {
+  //     dispatch(removeNotification(res.data));
+  //     return Promise.resolve();
+  //   })
+  //   .catch((err) => Promise.reject(err));
+  axios({
+    method: 'delete',
+    url: 'http://localhost:3000/s/admin/deletenotification',
+    data: {
       _id,
-    })
+    },
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
     .then((res) => {
       dispatch(removeNotification(res.data));
       return Promise.resolve();

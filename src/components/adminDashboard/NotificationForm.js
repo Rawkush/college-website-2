@@ -93,7 +93,18 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-    {values.title && <button>Remove</button>}
+    {values.title && (
+      <button
+        type="button"
+        onClick={() => {
+          values
+            .deleteNotification(values._id)
+            .then(() => values.history.push('/admin/notifications'));
+        }}
+      >
+        Remove
+      </button>
+    )}
   </Form>
 );
 
@@ -118,6 +129,7 @@ const FormikNotificationForm = withFormik({
       env: props.tags ? props.tags.includes('env') : '',
       deleteNotification: props.deleteNotification,
       history: props.history,
+      _id: props._id,
     };
   },
   validationSchema: Yup.object().shape({
