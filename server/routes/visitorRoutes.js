@@ -7,6 +7,7 @@ const {
   getLatestNotifications,
   getTeacher,
   getStudent,
+  getSyllabus,
 } = require('./../controllers/visitorControllers');
 
 // Initializing the Router
@@ -16,6 +17,8 @@ const visitorRoutes = express.Router();
 visitorRoutes.get('/getnotifications', getLatestNotifications);
 
 visitorRoutes.get('/getevents', getLatestEvents);
+
+visitorRoutes.get('/getsyll', getSyllabus);
 
 visitorRoutes.post('/getteacher', getTeacher);
 

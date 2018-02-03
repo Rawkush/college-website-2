@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'test') {
 const googleOptions = {
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: '/student/auth/google/callback',
+  callbackURL: '/s/student/auth/google/callback',
   passReqToCallback: true,
 };
 

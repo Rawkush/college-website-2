@@ -3,14 +3,16 @@ const { Event } = require('./../models//events');
 const { Notifications } = require('./../models/notification');
 const { StudentPrimary } = require('./../models/studentPrimary');
 const { TeacherPrimary } = require('./../models/teacherPrimary');
+const { Syllabus } = require('./../models/syllabus');
 
-const { giveLatestThreeItem, giveUser } = require('./../utils/utils');
+const { giveLatestThreeItem, giveUser, giveAll } = require('./../utils/utils');
 
 // Initializing the Instances of Model
 const giveLatestThreeNotifications = giveLatestThreeItem(Notifications);
 const giveLatestThreeEvents = giveLatestThreeItem(Event);
 const giveStudent = giveUser(StudentPrimary);
 const giveTeacher = giveUser(TeacherPrimary);
+const giveAllSyllabus = giveAll(Syllabus);
 
 const getLatestNotifications = async (req, res) => {
   try {
@@ -50,9 +52,19 @@ const getTeacher = async (req, res) => {
   }
 };
 
+const getSyllabus = async (req, res) => {
+  try {
+    const syllabus = await giveAllSyllabus();
+    res.send(syllabus);
+  } catch (error) {
+    res.send(404).send(`Something Went Wrong: ${error}`);
+  }
+};
+
 module.exports = {
   getLatestNotifications,
   getLatestEvents,
   getStudent,
   getTeacher,
+  getSyllabus,
 };

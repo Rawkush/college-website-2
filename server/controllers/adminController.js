@@ -4,6 +4,7 @@ const { Event } = require('./../models/events');
 const { Notifications } = require('./../models/notification');
 const { Syllabus } = require('./../models/syllabus');
 const { TimeTable } = require('./../models/timeTable');
+const { Admin } = require('./../models/admin');
 const {
   saveMinimal2,
   pickNotifications,
@@ -12,6 +13,8 @@ const {
   pickTT,
   deleteMinimal,
   updateMinimal,
+  pickAdmin,
+  loginAdmin,
 } = require('./../utils/utils');
 
 // Initializing the functions
@@ -19,6 +22,8 @@ const saveNotificaitonsMinimal = saveMinimal2(Notifications);
 const saveEventsMinimal = saveMinimal2(Event);
 const saveSyllabusMinimal = saveMinimal2(Syllabus);
 const saveTimeTableMinimal = saveMinimal2(TimeTable);
+const saveAdminMinimal = saveMinimal2(Admin);
+const login = loginAdmin(Admin);
 
 const updateNotifications = updateMinimal(Notifications, true, false);
 const updateSyllabus = updateMinimal(Syllabus, true, false);
@@ -54,10 +59,16 @@ const addNotifications = async (req, res) => {
 };
 
 const editNotifications = async (req, res) => {
-  const { id } = req.body;
+  const { _id, removeFile } = req.body;
   const body = pickNotifications(req);
+  if (body.file === null) {
+    delete body.file;
+  }
+  if (removeFile === true) {
+    body.file = null;
+  }
   try {
-    const notifications = await updateNotifications({ _id: id }, { ...body });
+    const notifications = await updateNotifications({ _id }, { ...body });
     res.send(notifications);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -65,9 +76,9 @@ const editNotifications = async (req, res) => {
 };
 
 const deleteNotifications = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   try {
-    const notification = await deleteNotificaitonsMinimal(id);
+    const notification = await deleteNotificaitonsMinimal(_id);
     res.send(notification);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -116,10 +127,14 @@ const addSyllabus = async (req, res) => {
 };
 
 const editSyllabus = async (req, res) => {
-  const { id } = req.body;
-  const body = pickNotifications(req);
+  const { _id } = req.body;
+  const body = pickSyllabus(req);
+  if (body.file === null) {
+    delete body.file;
+  }
+
   try {
-    const syllabus = await updateSyllabus({ _id: id }, { ...body });
+    const syllabus = await updateSyllabus({ _id }, { ...body });
     res.send(syllabus);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -127,9 +142,9 @@ const editSyllabus = async (req, res) => {
 };
 
 const deleteSyllabus = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   try {
-    const syllabus = await deleteSyllabusMinimal(id);
+    const syllabus = await deleteSyllabusMinimal(_id);
     res.send(syllabus);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -167,6 +182,26 @@ const deleteTimeTable = async (req, res) => {
   }
 };
 
+const adminRegister = async (req, res) => {
+  const body = pickAdmin(req);
+  try {
+    const admin = await saveAdminMinimal(body);
+    res.send(admin);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
+const adminLogin = async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const data = await login(username, password);
+    res.send(data);
+  } catch (error) {
+    res.status(400).send(`Some went wrong: ${error}`);
+  }
+};
+
 module.exports = {
   addNotifications,
   editNotifications,
@@ -181,4 +216,6 @@ module.exports = {
   editTimeTable,
   deleteTimeTable,
   deleteTeacher,
+  adminRegister,
+  adminLogin,
 };

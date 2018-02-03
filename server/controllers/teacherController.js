@@ -44,8 +44,8 @@ const teacherRegister = async (req, res) => {
 const teacherLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const { user, token } = await login(email, password);
-    res.header('x-auth', token).send(user);
+    const data = await login(email, password);
+    res.send(data);
   } catch (error) {
     res.status(400).send(`Some went wrong: ${error}`);
   }

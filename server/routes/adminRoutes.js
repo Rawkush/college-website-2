@@ -24,6 +24,8 @@ const {
   editTimeTable,
   editSyllabus,
   editEvent,
+  adminRegister,
+  adminLogin,
 } = require('./../controllers/adminController');
 
 // Initializing the Router
@@ -39,13 +41,13 @@ adminRoutes.post(
   addNotifications
 );
 
-adminRoutes.post(
-  '/editnotifications',
+adminRoutes.patch(
+  '/editnotification',
   uploadNotifications.single('file'),
   editNotifications
 );
 
-adminRoutes.delete('/deletenotifications', deleteNotifications);
+adminRoutes.delete('/deletenotification', deleteNotifications);
 
 adminRoutes.post('/addevents', uploadEvents.single('file'), addEvents);
 
@@ -55,7 +57,7 @@ adminRoutes.delete('/deleteevents', deleteEvents);
 
 adminRoutes.post('/addsyll', uploadSyllabus.single('file'), addSyllabus);
 
-adminRoutes.post('/editsyll', uploadSyllabus.single('file'), editSyllabus);
+adminRoutes.patch('/editsyll', uploadSyllabus.single('file'), editSyllabus);
 
 adminRoutes.delete('/deletesyll', deleteSyllabus);
 
@@ -64,6 +66,10 @@ adminRoutes.post('/addtt', uploadTimeTable.single('file'), addTimeTable);
 adminRoutes.post('/edittt', uploadTimeTable.single('file'), editTimeTable);
 
 adminRoutes.delete('/deletett', deleteTimeTable);
+
+adminRoutes.post('/register', adminRegister);
+
+adminRoutes.post('/login', adminLogin);
 
 module.exports = {
   adminRoutes,

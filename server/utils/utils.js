@@ -200,6 +200,16 @@ const loginLocal = (Model) => async (email, password) => {
   }
 };
 
+const loginAdmin = (Model) => async (username, password) => {
+  try {
+    const user = await Model.findAdmin(username, password);
+    const token = await user.generateAuthToken();
+    return { user: user.toJSON(), token };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const pickEvent = (req) => {
   const body = _.pick(req.body, [
     'name',
@@ -220,12 +230,15 @@ const pickSyllabus = (req) => {
   const body = _.pick(req.body, [
     'branch',
     'semester',
-    'subjectType',
+    'codeNo',
+    'subject',
     'l',
-    'TP',
+    'tp',
     'credits',
     'status',
     'period',
+    'file',
+    'type',
   ]);
   const file = req.file ? req.file.path : null;
   const newBody = {
@@ -248,7 +261,7 @@ const pickTT = (req) => {
 const giveLatestThreeItem = (Model) => async () => {
   try {
     const thing = await Model.find({})
-      .sort({ date: -1 })
+      .sort({ createdAt: -1 })
       .limit(3)
       .exec();
     return thing;
@@ -259,7 +272,7 @@ const giveLatestThreeItem = (Model) => async () => {
 
 const giveAll = (Model) => async () => {
   try {
-    const things = await Model.find({}).sort({ date: -1 });
+    const things = await Model.find({}).sort({ createdAt: -1 });
     return things;
   } catch (error) {
     throw new Error(error);
@@ -273,6 +286,11 @@ const giveUser = (Model) => async (slug) => {
   } catch (error) {
     throw new Error(error);
   }
+};
+
+const pickAdmin = (req) => {
+  const body = _.pick(req.body, ['username', 'password', 'email']);
+  return body;
 };
 
 module.exports = {
@@ -302,4 +320,6 @@ module.exports = {
   giveLatestThreeItem,
   giveUser,
   giveAll,
+  pickAdmin,
+  loginAdmin,
 };
