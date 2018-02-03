@@ -180,6 +180,3 @@ const FormikNotificationForm = withFormik({
 })(NotificationForm);
 
 export default FormikNotificationForm;
-function newFunction() {
-  return null;
-}

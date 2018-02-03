@@ -127,10 +127,14 @@ const addSyllabus = async (req, res) => {
 };
 
 const editSyllabus = async (req, res) => {
-  const { id } = req.body;
-  const body = pickNotifications(req);
+  const { _id } = req.body;
+  const body = pickSyllabus(req);
+  if (body.file === null) {
+    delete body.file;
+  }
+
   try {
-    const syllabus = await updateSyllabus({ _id: id }, { ...body });
+    const syllabus = await updateSyllabus({ _id }, { ...body });
     res.send(syllabus);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -138,9 +142,9 @@ const editSyllabus = async (req, res) => {
 };
 
 const deleteSyllabus = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   try {
-    const syllabus = await deleteSyllabusMinimal(id);
+    const syllabus = await deleteSyllabusMinimal(_id);
     res.send(syllabus);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);

@@ -233,7 +233,7 @@ const pickSyllabus = (req) => {
     'codeNo',
     'subject',
     'l',
-    'TP',
+    'tp',
     'credits',
     'status',
     'period',

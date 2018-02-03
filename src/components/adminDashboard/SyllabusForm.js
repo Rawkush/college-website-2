@@ -116,17 +116,6 @@ const SyllabusForm = ({
     </label>
     <hr />
     {values.file && (
-      <label htmlFor="removeFile">
-        Remove File:
-        <Field
-          type="checkbox"
-          name="removeFile"
-          id="removeFile"
-          checked={values.removeFile}
-        />
-      </label>
-    )}
-    {values.file && (
       <a href={values.file} target="_blank">
         Preview already uploaded file.
       </a>
@@ -150,8 +139,8 @@ const SyllabusForm = ({
         type="button"
         onClick={() => {
           values
-            .deleteNotification(values._id)
-            .then(() => values.history.push('/admin/notifications'));
+            .deleteSyllabus(values._id)
+            .then(() => values.history.push('/admin/syllabus'));
         }}
       >
         Remove
@@ -162,6 +151,7 @@ const SyllabusForm = ({
 
 const FormikSyllabusForm = withFormik({
   mapPropsToValues({
+    _id = '',
     branch = '',
     codeNo = '',
     semester = '',
@@ -173,8 +163,11 @@ const FormikSyllabusForm = withFormik({
     period = '',
     type = '',
     file = '',
+    deleteSyllabus = '',
+    history = '',
   }) {
     return {
+      _id,
       branch,
       codeNo,
       semester,
@@ -186,6 +179,8 @@ const FormikSyllabusForm = withFormik({
       period,
       type,
       file,
+      deleteSyllabus,
+      history,
     };
   },
   validationSchema: Yup.object().shape({
@@ -202,18 +197,20 @@ const FormikSyllabusForm = withFormik({
   }),
   handleSubmit(val, { props, resetForm, setErrors, setSubmitting }) {
     if (!val.file) {
-      setErrors({ file: 'File is required ' });
+      setErrors({ error: 'File is required ' });
+      setSubmitting(false);
+    } else {
+      props
+        .onSubmit(val, props._id)
+        .then(() => {
+          resetForm();
+          setSubmitting(false);
+          props.history.push('/admin/syllabus');
+        })
+        .catch(() => {
+          setErrors({ error: 'Something Went Wrong!' });
+        });
     }
-    props
-      .onSubmit(val, props._id)
-      .then(() => {
-        resetForm();
-        setSubmitting(false);
-        props.history.push('/admin/syllabus');
-      })
-      .catch(() => {
-        setErrors({ error: 'Something Went Wrong!' });
-      });
   },
 })(SyllabusForm);
 

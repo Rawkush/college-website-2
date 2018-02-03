@@ -57,7 +57,7 @@ adminRoutes.delete('/deleteevents', deleteEvents);
 
 adminRoutes.post('/addsyll', uploadSyllabus.single('file'), addSyllabus);
 
-adminRoutes.post('/editsyll', uploadSyllabus.single('file'), editSyllabus);
+adminRoutes.patch('/editsyll', uploadSyllabus.single('file'), editSyllabus);
 
 adminRoutes.delete('/deletesyll', deleteSyllabus);
 
