@@ -1,205 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+// Components
 import SyllabusListItem from './SyllabusListItem';
 
-const syllabusArray = [
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 1,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'theory',
-    file: 'http://google.co.in',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 1,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'practical',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 2,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'theory',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 2,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'practical',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 3,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'theory',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 3,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'practical',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 4,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'theory',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 4,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'practical',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 5,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'theory',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 5,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'practical',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 6,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'theory',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 6,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'practical',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 7,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'theory',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 7,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'practical',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 8,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'theory',
-  },
-  {
-    branch: 'it',
-    codeNo: 'ETMA-201',
-    semester: 8,
-    subject: 'Applied Mathematics',
-    l: 2,
-    tp: 4,
-    credits: 3,
-    status: 'M',
-    period: 'new',
-    type: 'practical',
-  },
-];
-
-const Syllabus = (props) => {
-  const { sub } = props.match.params;
+const Syllabus = ({ syllabusArray, match, auth }) => {
+  const { sub } = match.params;
   const syllSem1 = syllabusArray.filter(
     (item) => item.semester === 1 && item.branch === sub
   );
@@ -228,30 +34,35 @@ const Syllabus = (props) => {
     <div>
       <hr />
       <h2> Semester I</h2>
-      <SyllabusListItem syllabus={syllSem1} />
+      <SyllabusListItem syllabus={syllSem1} auth={auth} />
       <hr />
       <h2> Semester II</h2>
-      <SyllabusListItem syllabus={syllSem2} />
+      <SyllabusListItem syllabus={syllSem2} auth={auth} />
       <hr />
       <h2> Semester III</h2>
-      <SyllabusListItem syllabus={syllSem3} />
+      <SyllabusListItem syllabus={syllSem3} auth={auth} />
       <hr />
       <h2> Semester VI</h2>
-      <SyllabusListItem syllabus={syllSem4} />
+      <SyllabusListItem syllabus={syllSem4} auth={auth} />
       <hr />
       <h2> Semester V</h2>
-      <SyllabusListItem syllabus={syllSem5} />
+      <SyllabusListItem syllabus={syllSem5} auth={auth} />
       <hr />
       <h2> Semester VI</h2>
-      <SyllabusListItem syllabus={syllSem6} />
+      <SyllabusListItem syllabus={syllSem6} auth={auth} />
       <hr />
       <h2> Semester VII</h2>
-      <SyllabusListItem syllabus={syllSem7} />
+      <SyllabusListItem syllabus={syllSem7} auth={auth} />
       <hr />
       <h2> Semester VIII</h2>
-      <SyllabusListItem syllabus={syllSem8} />
+      <SyllabusListItem syllabus={syllSem8} auth={auth} />
     </div>
   );
 };
 
-export default Syllabus;
+const mapStateToProps = (state) => ({
+  syllabusArray: state.syllabus,
+  auth: state.admin.auth,
+});
+
+export default connect(mapStateToProps)(Syllabus);

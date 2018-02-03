@@ -55,7 +55,7 @@ studentRoutes.get(
   fillRegistration
 );
 
-studentRoutes.post('/register', checkStudent, studentRegistration);
+studentRoutes.post('/registeration', checkStudent, studentRegistration);
 
 studentRoutes.patch('/updateProfile', tokenAuthenticate, updateStudent);
 

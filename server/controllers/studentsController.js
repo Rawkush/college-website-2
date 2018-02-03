@@ -61,7 +61,9 @@ const studentRegistration = async (req, res) => {
   const body = pickBody(req);
   const { token } = req.body;
   let decodedToken;
-
+  console.log('====================================');
+  console.log(body);
+  console.log('====================================');
   try {
     decodedToken = await decodeStudentAuthToken(token);
   } catch (error) {

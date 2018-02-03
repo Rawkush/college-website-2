@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SyllabusItemTableItem = ({
   codeNo,
@@ -8,6 +9,8 @@ const SyllabusItemTableItem = ({
   tp,
   credits,
   status,
+  _id,
+  auth,
 }) => (
   <tr>
     <td>{codeNo}</td>
@@ -20,6 +23,11 @@ const SyllabusItemTableItem = ({
     <td>{tp}</td>
     <td>{credits}</td>
     <td>{status}</td>
+    {!!auth && (
+      <td>
+        <Link to={`/admin/syllabus/edit/${_id}`}>Edit</Link>
+      </td>
+    )}
   </tr>
 );
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 import SyllabusItemTableItem from './SyllabusItemTableItem';
 
-const SyllabusItemTable = ({ syllabus }) => (
+const SyllabusItemTable = ({ syllabus, auth }) => (
   <div>
     <table>
       <tbody>
@@ -17,7 +17,7 @@ const SyllabusItemTable = ({ syllabus }) => (
       </tbody>
       <tbody>
         {syllabus.map((item) => (
-          <SyllabusItemTableItem key={item.codeNo} {...item} />
+          <SyllabusItemTableItem key={item.codeNo} {...item} auth={auth} />
         ))}
       </tbody>
     </table>

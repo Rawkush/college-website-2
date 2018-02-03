@@ -4,7 +4,7 @@ const SyllabusSchema = new mongoose.Schema(
   {
     branch: String,
     codeNo: String,
-    semester: String,
+    semester: Number,
     subject: String,
     type: String,
     l: Number,
@@ -12,6 +12,7 @@ const SyllabusSchema = new mongoose.Schema(
     credits: Number,
     status: String,
     period: String,
+    file: String,
   },
   {
     timestamps: true,

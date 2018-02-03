@@ -11,9 +11,9 @@ const LoginModal = (props) => (
     ariaHideApp={false}
   >
     <h3>Login or Regiter using ...</h3>
-    <a href="http://localhost:3000/student/auth/google">Google</a>
-    <a href="http://localhost:3000/student/auth/github">GitHub</a>
-    <a href="http://localhost:3000/student/auth/linkedin">LinkedIn</a>
+    <a href="http://localhost:3000/s/student/auth/google">Google</a>
+    <a href="http://localhost:3000/s/student/auth/github">GitHub</a>
+    <a href="http://localhost:3000/s/student/auth/linkedin">LinkedIn</a>
     <button onClick={props.closeLoginModal}>Close</button>
   </Modal>
 );

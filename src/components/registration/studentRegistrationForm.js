@@ -1,10 +1,13 @@
 import React from 'react';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
 
 const StudentRegistration = ({ values, errors, touched, isSubmitting }) => (
   <Form>
+    {errors.error && <p>{errors.error}</p>}
     <label htmlFor="name">
       Name:
       {touched.name && errors.name && <p>{errors.name}</p>}
@@ -45,14 +48,23 @@ const StudentRegistration = ({ values, errors, touched, isSubmitting }) => (
 );
 
 const FormikStudentRegistration = withFormik({
-  mapPropsToValues({ name, email, location, dateOfBirth, gender, bio }) {
+  mapPropsToValues({
+    name = '',
+    rollNo = '',
+    email = '',
+    location = '',
+    dateOfBirth = '',
+    gender = '',
+    bio = '',
+  }) {
     return {
-      name: name || '',
-      email: email || '',
-      location: location || '',
-      dateOfBirth: dateOfBirth || '',
-      gender: gender || '',
-      bio: bio || '',
+      name,
+      rollNo,
+      email,
+      location,
+      dateOfBirth,
+      gender,
+      bio,
     };
   },
   validationSchema: Yup.object().shape({
@@ -66,11 +78,29 @@ const FormikStudentRegistration = withFormik({
     location: Yup.string(),
     dateOfBirth: Yup.date(),
   }),
-  handleSubmit(val, { resetForm, setErrors, setSubmitting }) {
-    setTimeout(() => {
-      console.log(val);
-      setSubmitting(false);
-    }, 2000);
+  handleSubmit(val, { props, setErrors, setSubmitting }) {
+    const data = {
+      ...props,
+      ...val,
+    };
+    axios({
+      method: 'post',
+      url: 'http://localhost:3000/s/student/registeration',
+      data: {
+        name: 'Aman',
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => {
+        setSubmitting(false);
+        return <Redirect to="\login" />;
+      })
+      .catch((err) => {
+        setErrors({ error: `Something went wrong: ${err}` });
+        setSubmitting(false);
+      });
   },
 })(StudentRegistration);
 

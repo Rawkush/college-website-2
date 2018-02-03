@@ -4,18 +4,22 @@ import createHistory from 'history/createBrowserHistory';
 
 import AdminRoute from './AdminRoute';
 
+// Components
 import Header from './../components/header/Header';
 import Footer from './../components/Footer/Footer';
-
+import AdminNotifications from './../pages/adminPages/AdminNotifications';
 import Syllabus from './../components/syllabus/SyllabusContainer';
 import NotFound from './../components/notFound/NotFound';
+
+// Pages
 import HomePage from './../pages/publicPages/HomePage';
+import AddSyllabusPage from './../pages/adminPages/AddSyllabusPage';
 import StudentRegistrationPage from './../pages/publicPages/StudentRegistrationPage';
 import AdminLoginPage from '../pages/publicPages/AdminLoginPage';
 import AdminDashboardPage from './../pages/adminPages/AdminDashboardPage';
 import EditNotificationPage from '../pages/adminPages/EditNotificaitonPage';
-import AdminNotifications from './../pages/adminPages/AdminNotifications';
 import AddNotificationPage from './../pages/adminPages/AddNotificationPage';
+import AdminSyllabusPage from './../pages/adminPages/AdminSyllabusPage';
 
 export const history = createHistory();
 
@@ -48,6 +52,8 @@ const AppRouter = () => (
           component={AddNotificationPage}
           exact
         />
+        <Route path="/admin/syllabus" component={AdminSyllabusPage} exact />
+        <Route path="/admin/syllabus/add" component={AddSyllabusPage} exact />
         <Route component={NotFound} />
       </Switch>
       <Footer />

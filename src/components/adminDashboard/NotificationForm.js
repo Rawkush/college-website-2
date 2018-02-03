@@ -79,6 +79,22 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
       <Field type="checkbox" name="env" checked={values.env} />
     </label>
     <hr />
+    {values.file && (
+      <label htmlFor="removeFile">
+        Remove File:
+        <Field
+          type="checkbox"
+          name="removeFile"
+          id="removeFile"
+          checked={values.removeFile}
+        />
+      </label>
+    )}
+    {values.file && (
+      <a href={values.file} target="_blank">
+        Preview already uploaded file.
+      </a>
+    )}
     <label htmlFor="file">
       File:
       <input
@@ -130,6 +146,7 @@ const FormikNotificationForm = withFormik({
       deleteNotification: props.deleteNotification,
       history: props.history,
       _id: props._id,
+      removeFile: false,
     };
   },
   validationSchema: Yup.object().shape({
@@ -163,3 +180,6 @@ const FormikNotificationForm = withFormik({
 })(NotificationForm);
 
 export default FormikNotificationForm;
+function newFunction() {
+  return null;
+}

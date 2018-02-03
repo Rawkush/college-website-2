@@ -230,12 +230,15 @@ const pickSyllabus = (req) => {
   const body = _.pick(req.body, [
     'branch',
     'semester',
-    'subjectType',
+    'codeNo',
+    'subject',
     'l',
     'TP',
     'credits',
     'status',
     'period',
+    'file',
+    'type',
   ]);
   const file = req.file ? req.file.path : null;
   const newBody = {
@@ -269,7 +272,7 @@ const giveLatestThreeItem = (Model) => async () => {
 
 const giveAll = (Model) => async () => {
   try {
-    const things = await Model.find({}).sort({ date: -1 });
+    const things = await Model.find({}).sort({ createdAt: -1 });
     return things;
   } catch (error) {
     throw new Error(error);
