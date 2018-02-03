@@ -249,7 +249,7 @@ const pickSyllabus = (req) => {
 };
 
 const pickTT = (req) => {
-  const body = _.pick(req.body, ['branch', 'semester', 'wef']);
+  const body = _.pick(req.body, ['branch', 'semester', 'wef', 'title']);
   const file = req.file ? req.file.path : null;
   const newBody = {
     ...body,

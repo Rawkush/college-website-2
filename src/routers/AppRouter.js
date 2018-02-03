@@ -21,6 +21,8 @@ import EditNotificationPage from '../pages/adminPages/EditNotificaitonPage';
 import AddNotificationPage from './../pages/adminPages/AddNotificationPage';
 import AdminSyllabusPage from './../pages/adminPages/AdminSyllabusPage';
 import EditSyllabusPage from './../pages/adminPages/EditSyllabusPage';
+import AdminTimeTablePage from './../pages/adminPages/AdminTimeTablePage';
+import AddTimeTablePage from './../pages/adminPages/AddTimeTablePage';
 
 export const history = createHistory();
 
@@ -53,11 +55,29 @@ const AppRouter = () => (
           component={AddNotificationPage}
           exact
         />
-        <Route path="/admin/syllabus" component={AdminSyllabusPage} exact />
-        <Route path="/admin/syllabus/add" component={AddSyllabusPage} exact />
-        <Route
+        <AdminRoute
+          path="/admin/syllabus"
+          component={AdminSyllabusPage}
+          exact
+        />
+        <AdminRoute
+          path="/admin/syllabus/add"
+          component={AddSyllabusPage}
+          exact
+        />
+        <AdminRoute
           path="/admin/syllabus/edit/:_id"
           component={EditSyllabusPage}
+          exact
+        />
+        <AdminRoute
+          path="/admin/timetable"
+          component={AdminTimeTablePage}
+          exact
+        />
+        <AdminRoute
+          path="/admin/timetable/add"
+          component={AddTimeTablePage}
           exact
         />
         <Route component={NotFound} />
