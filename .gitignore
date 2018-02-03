@@ -8,3 +8,4 @@ playground/server.js
 wallaby.js
 uploads
 public/dist
+package-lock.json

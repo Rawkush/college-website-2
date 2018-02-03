@@ -1,5 +1,6 @@
 //  Global Modules Import
 const passport = require('../config/passportConfig');
+const jwt = require('jsonwebtoken');
 
 //  Defined Modules Import
 const { StudentPrimary } = require('../models/studentPrimary');
@@ -60,7 +61,9 @@ const studentRegistration = async (req, res) => {
   const body = pickBody(req);
   const { token } = req.body;
   let decodedToken;
-
+  console.log('====================================');
+  console.log(body);
+  console.log('====================================');
   try {
     decodedToken = await decodeStudentAuthToken(token);
   } catch (error) {
@@ -249,6 +252,15 @@ const logout = async (req, res) => {
   }
 };
 
+const fillRegistration = (req, res) => {
+  const token2 = jwt.sign(req.user, process.env.JWT_SECRET_2);
+  res.cookie('token', token2, {
+    expires: new Date(Date.now() + 300000),
+    httpOnly: false,
+  });
+  res.redirect('/student/register');
+};
+
 module.exports = {
   studentGoogleLogin,
   studentGitHubLogin,
@@ -257,6 +269,7 @@ module.exports = {
   studentGitHubAuthenticate,
   studentLinkedInAuthentication,
   studentRegistration,
+  fillRegistration,
   login,
   logout,
   tokenAuthenticate,

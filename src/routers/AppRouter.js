@@ -1,24 +1,70 @@
 import React from 'react';
-import { Router, Route, Switch, Link, NavLink } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import DashboardPage from '../components/DashboardPage';
-import NotFoundPage from '../components/NotFoundPage';
-import LoginPage from '../components/LoginPage';
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+
+import AdminRoute from './AdminRoute';
+
+// Components
+import Header from './../components/header/Header';
+import Footer from './../components/Footer/Footer';
+import AdminNotifications from './../pages/adminPages/AdminNotifications';
+import Syllabus from './../components/syllabus/SyllabusContainer';
+import NotFound from './../components/notFound/NotFound';
+
+// Pages
+import HomePage from './../pages/publicPages/HomePage';
+import AddSyllabusPage from './../pages/adminPages/AddSyllabusPage';
+import StudentRegistrationPage from './../pages/publicPages/StudentRegistrationPage';
+import AdminLoginPage from '../pages/publicPages/AdminLoginPage';
+import AdminDashboardPage from './../pages/adminPages/AdminDashboardPage';
+import EditNotificationPage from '../pages/adminPages/EditNotificaitonPage';
+import AddNotificationPage from './../pages/adminPages/AddNotificationPage';
+import AdminSyllabusPage from './../pages/adminPages/AdminSyllabusPage';
+import EditSyllabusPage from './../pages/adminPages/EditSyllabusPage';
 
 export const history = createHistory();
 
 const AppRouter = () => (
-  <Router history={history}>
+  <BrowserRouter>
     <div>
+      <Header />
       <Switch>
-        <PublicRoute path="/" component={LoginPage} exact={true} />
-        <PrivateRoute path="/dashboard" component={DashboardPage} />
-        <Route component={NotFoundPage} />
+        <Route path="/" component={HomePage} exact />
+        <Route path="/syllabus/:sub" component={Syllabus} />
+        <Route path="/student/register" component={StudentRegistrationPage} />
+        <Route path="/admin/login" component={AdminLoginPage} exact />
+        <AdminRoute
+          path="/admin/dashboard"
+          component={AdminDashboardPage}
+          exact
+        />
+        <AdminRoute
+          path="/admin/notifications/edit/:_id"
+          component={EditNotificationPage}
+          exact
+        />
+        <AdminRoute
+          path="/admin/notifications"
+          component={AdminNotifications}
+          exact
+        />
+        <AdminRoute
+          path="/admin/notifications/add"
+          component={AddNotificationPage}
+          exact
+        />
+        <Route path="/admin/syllabus" component={AdminSyllabusPage} exact />
+        <Route path="/admin/syllabus/add" component={AddSyllabusPage} exact />
+        <Route
+          path="/admin/syllabus/edit/:_id"
+          component={EditSyllabusPage}
+          exact
+        />
+        <Route component={NotFound} />
       </Switch>
+      <Footer />
     </div>
-  </Router>
+  </BrowserRouter>
 );
 
 export default AppRouter;
