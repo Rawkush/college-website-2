@@ -4,6 +4,7 @@ const { Notifications } = require('./../models/notification');
 const { StudentPrimary } = require('./../models/studentPrimary');
 const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { Syllabus } = require('./../models/syllabus');
+const { TimeTable } = require('./../models/timeTable');
 
 const { giveLatestThreeItem, giveUser, giveAll } = require('./../utils/utils');
 
@@ -13,6 +14,7 @@ const giveLatestThreeEvents = giveLatestThreeItem(Event);
 const giveStudent = giveUser(StudentPrimary);
 const giveTeacher = giveUser(TeacherPrimary);
 const giveAllSyllabus = giveAll(Syllabus);
+const giveAllTimeTable = giveAll(TimeTable);
 
 const getLatestNotifications = async (req, res) => {
   try {
@@ -61,10 +63,20 @@ const getSyllabus = async (req, res) => {
   }
 };
 
+const getTimeTable = async (req, res) => {
+  try {
+    const timeTable = await giveAllTimeTable();
+    res.send(timeTable);
+  } catch (error) {
+    res.send(404).send(`Something Went Wrong: ${error}`);
+  }
+};
+
 module.exports = {
   getLatestNotifications,
   getLatestEvents,
   getStudent,
   getTeacher,
   getSyllabus,
+  getTimeTable,
 };

@@ -8,6 +8,7 @@ const {
   getTeacher,
   getStudent,
   getSyllabus,
+  getTimeTable,
 } = require('./../controllers/visitorControllers');
 
 // Initializing the Router
@@ -19,6 +20,8 @@ visitorRoutes.get('/getnotifications', getLatestNotifications);
 visitorRoutes.get('/getevents', getLatestEvents);
 
 visitorRoutes.get('/getsyll', getSyllabus);
+
+visitorRoutes.get('/gettt', getTimeTable);
 
 visitorRoutes.post('/getteacher', getTeacher);
 

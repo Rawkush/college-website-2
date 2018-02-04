@@ -9,7 +9,7 @@ export default ({ timeTableArray, semester, auth }) => (
     {timeTableArray
       .filter((timeTable) => timeTable.semester === semester)
       .map((timeTable) => (
-        <TimeTableListItem auth={auth} key={timeTable.wef} {...timeTable} />
+        <TimeTableListItem auth={auth} key={timeTable._id} {...timeTable} />
       ))}
   </div>
 );

@@ -6,6 +6,7 @@ import configureStore from './store/configureStore';
 // Actions
 import { startSetNotification } from './actions/notifications';
 import { startSetSyllabus } from './actions/syllabus';
+import { startSetTimeTable } from './actions/timeTable';
 
 // Components
 import AppRouter from './routers/AppRouter';
@@ -14,6 +15,7 @@ const store = configureStore();
 
 store.dispatch(startSetNotification());
 store.dispatch(startSetSyllabus());
+store.dispatch(startSetTimeTable());
 
 const jsx = (
   <Provider store={store}>
