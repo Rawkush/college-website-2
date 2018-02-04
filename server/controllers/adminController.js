@@ -61,11 +61,11 @@ const addNotifications = async (req, res) => {
 const editNotifications = async (req, res) => {
   const { _id, removeFile } = req.body;
   const body = pickNotifications(req);
-  if (body.file === null) {
-    delete body.file;
-  }
-  if (removeFile === true) {
+
+  if (removeFile === 'true') {
     body.file = null;
+  } else if (body.file === null) {
+    delete body.file;
   }
   try {
     const notifications = await updateNotifications({ _id }, { ...body });
