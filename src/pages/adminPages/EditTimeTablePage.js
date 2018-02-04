@@ -23,6 +23,7 @@ const EditTimeTablePage = ({
       history={history}
       onSubmit={editTimeTable}
       deleteTimeTable={removeTimeTable}
+      edit
     />
   </div>
 );

@@ -9,6 +9,7 @@ const SyllabusForm = ({
   isSubmitting,
   handleChange,
   handleBlur,
+  setFieldValue,
 }) => (
   <Form>
     {errors.error && <p>{errors.error}</p>}
@@ -115,11 +116,12 @@ const SyllabusForm = ({
       </select>
     </label>
     <hr />
-    {values.file && (
-      <a href={values.file} target="_blank">
-        Preview already uploaded file.
-      </a>
-    )}
+    {values.file &&
+      values.edit && (
+        <a href={values.file} target="_blank">
+          Preview already uploaded file.
+        </a>
+      )}
     <label htmlFor="file">
       File:
       <input
@@ -127,25 +129,26 @@ const SyllabusForm = ({
         name="file"
         id="file"
         onChange={(e) => {
-          values.file = e.currentTarget.files[0];
+          setFieldValue('file', e.currentTarget.files[0]);
         }}
       />
     </label>
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-    {values.subject && (
-      <button
-        type="button"
-        onClick={() => {
-          values
-            .deleteSyllabus(values._id)
-            .then(() => values.history.push('/admin/syllabus'));
-        }}
-      >
-        Remove
-      </button>
-    )}
+    {values.subject &&
+      values.edit && (
+        <button
+          type="button"
+          onClick={() => {
+            values
+              .deleteSyllabus(values._id)
+              .then(() => values.history.push('/admin/syllabus'));
+          }}
+        >
+          Remove
+        </button>
+      )}
   </Form>
 );
 
@@ -165,6 +168,7 @@ const FormikSyllabusForm = withFormik({
     file = '',
     deleteSyllabus = '',
     history = '',
+    edit = '',
   }) {
     return {
       _id,
@@ -181,6 +185,7 @@ const FormikSyllabusForm = withFormik({
       file,
       deleteSyllabus,
       history,
+      edit,
     };
   },
   validationSchema: Yup.object().shape({

@@ -24,6 +24,7 @@ const EditNotificationPage = ({
         history={history}
         onSubmit={editNotification}
         deleteNotification={deleteNotification}
+        edit
       />
     ) : (
       <p>L</p>

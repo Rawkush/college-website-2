@@ -48,11 +48,12 @@ const SyllabusForm = ({
       </select>
     </label>
     <hr />
-    {values.file && (
-      <a href={values.file} target="_blank">
-        Preview already uploaded file.
-      </a>
-    )}
+    {values.file &&
+      values.edit && (
+        <a href={values.file} target="_blank">
+          Preview already uploaded file.
+        </a>
+      )}
     <label htmlFor="file">
       File:
       <input
@@ -67,18 +68,19 @@ const SyllabusForm = ({
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-    {values.title && (
-      <button
-        type="button"
-        onClick={() => {
-          values
-            .deleteTimeTable(values._id)
-            .then(() => values.history.push('/admin/syllabus'));
-        }}
-      >
-        Remove
-      </button>
-    )}
+    {values.title &&
+      values.edit && (
+        <button
+          type="button"
+          onClick={() => {
+            values
+              .deleteTimeTable(values._id)
+              .then(() => values.history.push('/admin/syllabus'));
+          }}
+        >
+          Remove
+        </button>
+      )}
   </Form>
 );
 
@@ -91,6 +93,7 @@ const FormikSyllabusForm = withFormik({
     file = '',
     deleteTimeTable = '',
     history = '',
+    edit = '',
   }) {
     return {
       _id,
@@ -100,6 +103,7 @@ const FormikSyllabusForm = withFormik({
       file,
       deleteTimeTable,
       history,
+      edit,
     };
   },
   validationSchema: Yup.object().shape({

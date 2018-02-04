@@ -24,6 +24,7 @@ const EditSyllabusPage = ({
         history={history}
         onSubmit={editSyllabus}
         deleteSyllabus={deleteSyllabus}
+        edit
       />
     ) : (
       <p>L</p>
