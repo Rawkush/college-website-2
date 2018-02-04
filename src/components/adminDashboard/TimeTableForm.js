@@ -10,6 +10,7 @@ const SyllabusForm = ({
   isSubmitting,
   handleBlur,
   handleChange,
+  setFieldValue,
 }) => (
   <Form>
     {errors.error && <p>{errors.error}</p>}
@@ -59,7 +60,7 @@ const SyllabusForm = ({
         name="file"
         id="file"
         onChange={(e) => {
-          values.file = e.currentTarget.files[0];
+          setFieldValue('file', e.currentTarget.files[0]);
         }}
       />
     </label>

@@ -158,7 +158,6 @@ const addTimeTable = async (req, res) => {
     res.send(timeTable);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
-    console.log('add ttt Error: ', error);
   }
 };
 
@@ -173,7 +172,6 @@ const editTimeTable = async (req, res) => {
     res.send(timeTable);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
-    console.log(' edit ttt Error: ', error);
   }
 };
 

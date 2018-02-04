@@ -2,7 +2,13 @@ import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
 
-const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
+const NotificationForm = ({
+  values,
+  errors,
+  touched,
+  isSubmitting,
+  setFieldValue,
+}) => (
   <Form>
     {errors.error && <p>{errors.error}</p>}
     Title:
@@ -102,7 +108,7 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
         name="file"
         id="file"
         onChange={(e) => {
-          values.file = e.currentTarget.files[0];
+          setFieldValue('file', e.currentTarget.files[0]);
         }}
       />
     </label>

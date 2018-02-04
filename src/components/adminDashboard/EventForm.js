@@ -2,7 +2,13 @@ import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
 
-const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
+const NotificationForm = ({
+  values,
+  errors,
+  touched,
+  isSubmitting,
+  setFieldValue,
+}) => (
   <Form>
     {errors.error && <p>{errors.error}</p>}
     <label htmlFor="name">
@@ -45,7 +51,7 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
         name="mainPhoto"
         id="mainPhoto"
         onChange={(e) => {
-          values.mainPhoto = e.currentTarget.files[0];
+          setFieldValue('mainPhoto', e.currentTarget.files[0]);
         }}
       />
     </label>
@@ -56,7 +62,7 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
         name="photo1"
         id="photo1"
         onChange={(e) => {
-          values.photo1 = e.currentTarget.files[0];
+          setFieldValue('photo1', e.currentTarget.files[0]);
         }}
       />
     </label>
@@ -67,7 +73,7 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
         name="photo2"
         id="photo2"
         onChange={(e) => {
-          values.photo2 = e.currentTarget.files[0];
+          setFieldValue('photo2', e.currentTarget.files[0]);
         }}
       />
     </label>
@@ -78,7 +84,7 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
         name="photo3"
         id="photo3"
         onChange={(e) => {
-          values.photo3 = e.currentTarget.files[0];
+          setFieldValue('photo3', e.currentTarget.files[0]);
         }}
       />
     </label>
@@ -89,7 +95,7 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
         name="photo4"
         id="photo4"
         onChange={(e) => {
-          values.photo4 = e.currentTarget.files[0];
+          setFieldValue('photo4', e.currentTarget.files[0]);
         }}
       />
     </label>
