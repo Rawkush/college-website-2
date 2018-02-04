@@ -1,13 +1,15 @@
 import React from 'react';
 
 //  Components
-import TimeTableListItem from './timeTableListItem';
+import TimeTableListItem from './TimeTableListItem';
 
-export default ({ timeTableArray, semester }) => (
+export default ({ timeTableArray, semester, auth }) => (
   <div>
     <h2>{semester === 'odd' ? 'Odd Semester' : 'Even  Semester'}</h2>
-    {timeTableArray.map((timeTable) => (
-      <TimeTableListItem key={timeTable.wef} {...timeTable} />
-    ))}
+    {timeTableArray
+      .filter((timeTable) => timeTable.semester === semester)
+      .map((timeTable) => (
+        <TimeTableListItem auth={auth} key={timeTable.wef} {...timeTable} />
+      ))}
   </div>
 );

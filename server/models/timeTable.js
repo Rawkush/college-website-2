@@ -8,7 +8,6 @@ const TimeTableSchema = new mongoose.Schema(
     title: String,
     file: {
       type: String,
-      required: true,
     },
   },
   {

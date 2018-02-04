@@ -45,13 +45,14 @@ export const editTimeTable = (timeTable) => ({
 });
 
 export const startEditTimeTable = (
-  { wef = '', title = '', file = '' },
+  { wef = '', title = '', file = '', semester = '' },
   _id
 ) => (dispatch) => {
   const formdata = new FormData();
   formdata.append('_id', _id);
   formdata.append('wef', wef);
   formdata.append('title', title);
+  formdata.append('semester', semester);
   if (file instanceof Blob) {
     formdata.append('file', file);
   }

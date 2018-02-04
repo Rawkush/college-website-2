@@ -24,6 +24,7 @@ import EditSyllabusPage from './../pages/adminPages/EditSyllabusPage';
 import AdminTimeTablePage from './../pages/adminPages/AdminTimeTablePage';
 import AddTimeTablePage from './../pages/adminPages/AddTimeTablePage';
 import TimeTablePage from './../pages/publicPages/TimeTablePage';
+import EditTimeTablePage from './../pages/adminPages/EditTimeTablePage';
 
 export const history = createHistory();
 
@@ -82,6 +83,11 @@ const AppRouter = () => (
           exact
         />
         <Route path="/timetable/:semester" component={TimeTablePage} />
+        <AdminRoute
+          path="/admin/timetable/edit/:_id"
+          component={EditTimeTablePage}
+          exact
+        />
         <Route component={NotFound} />
       </Switch>
       <Footer />

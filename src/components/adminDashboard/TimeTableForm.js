@@ -1,6 +1,7 @@
 import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
+import moment from 'moment';
 
 const SyllabusForm = ({
   values,
@@ -92,7 +93,7 @@ const FormikSyllabusForm = withFormik({
   }) {
     return {
       _id,
-      wef,
+      wef: wef ? moment(wef).format('YYYY-MM-DD') : '',
       title,
       semester,
       file,
@@ -119,6 +120,7 @@ const FormikSyllabusForm = withFormik({
         })
         .catch(() => {
           setErrors({ error: 'Something Went Wrong!' });
+          setSubmitting(false);
         });
     }
   },

@@ -63,7 +63,7 @@ adminRoutes.delete('/deletesyll', deleteSyllabus);
 
 adminRoutes.post('/addtt', uploadTimeTable.single('file'), addTimeTable);
 
-adminRoutes.post('/edittt', uploadTimeTable.single('file'), editTimeTable);
+adminRoutes.patch('/edittt', uploadTimeTable.single('file'), editTimeTable);
 
 adminRoutes.delete('/deletett', deleteTimeTable);
 

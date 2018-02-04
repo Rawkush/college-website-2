@@ -158,17 +158,22 @@ const addTimeTable = async (req, res) => {
     res.send(timeTable);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
+    console.log('add ttt Error: ', error);
   }
 };
 
 const editTimeTable = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   const body = pickTT(req);
+  if (body.file === null) {
+    delete body.file;
+  }
   try {
-    const timeTable = await updateTimeTable({ _id: id }, { ...body });
+    const timeTable = await updateTimeTable({ _id }, { ...body });
     res.send(timeTable);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
+    console.log(' edit ttt Error: ', error);
   }
 };
 
