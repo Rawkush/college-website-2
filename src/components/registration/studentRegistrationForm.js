@@ -1,6 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 import moment from 'moment';
 
 import { withFormik, Form, Field } from 'formik';
@@ -98,6 +96,8 @@ const FormikStudentRegistration = withFormik({
     dateOfBirth,
     gender,
     bio,
+    branch,
+    admittedIn,
   }) {
     return {
       name: name || '',
@@ -107,8 +107,8 @@ const FormikStudentRegistration = withFormik({
       dateOfBirth: dateOfBirth ? moment(dateOfBirth).format('YYYY-MM-DD') : '',
       gender: gender || '',
       bio: bio || '',
-      branch: '',
-      admittedIn: '',
+      branch: branch || '',
+      admittedIn: admittedIn || '',
     };
   },
   validationSchema: Yup.object().shape({
@@ -127,21 +127,14 @@ const FormikStudentRegistration = withFormik({
       ...props,
       ...val,
     };
-    axios({
-      method: 'post',
-      url: 'http://localhost:3000/s/student/registeration',
-      data,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
+    props
+      .onSubmit(data)
+      .then(() => {
         setSubmitting(false);
-        localStorage.setItem('studentToken', res.data.token);
-        return <Redirect to="\login" />;
+        props.history.push('/student/myprofile');
       })
       .catch((err) => {
-        setErrors({ error: `Something went wrong: ${err}` });
+        setErrors({ error: `Something Went wrong ${err}` });
         setSubmitting(false);
       });
   },

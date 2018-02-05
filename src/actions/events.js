@@ -75,9 +75,6 @@ export const startEditEvent = (
     config: { headers: { 'Content-Type': 'application/json' } },
   })
     .then((res) => {
-      console.log('====================================');
-      console.log(res);
-      console.log('====================================');
       dispatch(editEvent(res.data));
       return Promise.resolve();
     })

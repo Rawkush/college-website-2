@@ -23,7 +23,7 @@ const studentDefaultState = {
 export default (state = studentDefaultState, action) => {
   switch (action.type) {
     case 'ADD_STUDENT':
-      return [...state, action.student];
+      return action.student;
     case 'SET_STUDENT':
       return action.student;
     case 'EDIT_STUDENT':
