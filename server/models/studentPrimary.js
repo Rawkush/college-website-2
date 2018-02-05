@@ -130,10 +130,6 @@ const StudentPrimarySchema = new mongoose.Schema(
           type: String,
           required: true,
         },
-        linkedId: {
-          type: String,
-          required: true,
-        },
       },
     ],
     slugg: {

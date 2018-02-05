@@ -26,33 +26,74 @@ export const setStudent = (student) => ({
   student,
 });
 
-export const startSetStudent = () => (dispatch) =>
-  axios.get('http://localhost:3000/s/visitor/gettt').then((res) => {
-    dispatch(setStudent(res.data));
-  });
+export const startSetStudent = () => (dispatch) => {
+  const token = localStorage.getItem('studentToken');
+  if (token) {
+    axios({
+      method: 'post',
+      url: 'http://localhost:3000/s/student/getstudent',
+      data: { token },
+      config: { headers: { 'Content-Type': 'multipart/form-data' } },
+    }).then((res) => {
+      dispatch(setStudent(res.data));
+    });
+  }
+};
 
 export const editStudent = (student) => ({
   type: 'EDIT_STUDENT',
   student,
 });
 
-export const startEditStudent = (
-  { wef = '', title = '', file = '', semester = '' },
-  _id
-) => (dispatch) => {
-  const formdata = new FormData();
-  formdata.append('_id', _id);
-  formdata.append('wef', wef);
-  formdata.append('title', title);
-  formdata.append('semester', semester);
-  if (file instanceof Blob) {
-    formdata.append('file', file);
-  }
+export const startEditStudent = ({
+  admittedIn = '',
+  bio = '',
+  branch = '',
+  dateOfBirth = '',
+  email = '',
+  gender = '',
+  location = '',
+  name = '',
+  rollNo = '',
+  profile0 = '',
+  profile1 = '',
+  profile2 = '',
+  profile3 = '',
+  profile4 = '',
+  url0 = '',
+  url1 = '',
+  url2 = '',
+  url3 = '',
+  url4 = '',
+}) => (dispatch) => {
+  const linkedProfilesTemp = [
+    { provider: profile0, url: url0 },
+    { provider: profile1, url: url1 },
+    { provider: profile2, url: url2 },
+    { provider: profile3, url: url3 },
+    { provider: profile4, url: url4 },
+  ];
+  const linkedProfiles = linkedProfilesTemp.filter(
+    (linkedProfile) => linkedProfile.provider !== '' && linkedProfile.url !== ''
+  );
+  const data = {
+    admittedIn,
+    bio,
+    branch,
+    dateOfBirth,
+    email,
+    gender,
+    location,
+    name,
+    rollNo,
+    linkedProfiles,
+    token: localStorage.getItem('studentToken'),
+  };
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/admin/edittt',
-    data: formdata,
-    config: { headers: { 'Content-Type': 'multipart/form-data' } },
+    url: 'http://localhost:3000/s/student/updateprofile',
+    data,
+    config: { headers: { 'Content-Type': 'application/json' } },
   })
     .then((res) => {
       dispatch(editStudent(res.data));

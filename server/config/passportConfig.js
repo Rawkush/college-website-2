@@ -20,7 +20,7 @@ const googleOptions = {
 const linkedInOptions = {
   clientID: process.env.LINKEDIN_CLIENT_ID,
   clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
-  callbackURL: '/student/auth/linkedin/callback',
+  callbackURL: '/s/student/auth/linkedin/callback',
   scope: ['r_emailaddress', 'r_basicprofile'],
   passReqToCallback: true,
 };
@@ -28,7 +28,7 @@ const linkedInOptions = {
 const gitHubOptions = {
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: '/student/auth/github/callback',
+  callbackURL: '/s/student/auth/github/callback',
   passReqToCallback: true,
 };
 

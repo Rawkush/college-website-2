@@ -87,7 +87,7 @@ const studentRegistration = async (req, res) => {
 
 //  Authenticatin the Student with the current given token
 const tokenAuthenticate = async (req, res, next) => {
-  const token = req.header('x-auth');
+  const { token } = req.body;
   try {
     const student = await authStudentMinimal(token);
     if (student) {
@@ -258,6 +258,10 @@ const fillRegistration = (req, res) => {
   res.redirect('/student/register');
 };
 
+const getStudent = (req, res) => {
+  res.send(req.student);
+};
+
 module.exports = {
   studentGoogleLogin,
   studentGitHubLogin,
@@ -279,4 +283,5 @@ module.exports = {
   removeProject,
   getAllNotifications,
   checkStudent,
+  getStudent,
 };

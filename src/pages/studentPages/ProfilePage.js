@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 //  Components
 import StudentPhoto from './../../components/StudentDashboard/Photo';
@@ -11,6 +12,7 @@ const StudentProfilePage = ({ student }) => (
     <StudentPhoto {...student} />
     <StudentPrimaryInfo {...student} />
     <LinksList {...student} />
+    <Link to="/student/myprofile/edit"> Edit Profile</Link>
   </div>
 );
 
