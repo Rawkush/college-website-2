@@ -6,6 +6,8 @@ const NotificationForm = ({
   values,
   errors,
   touched,
+  handleChange,
+  handleBlur,
   isSubmitting,
   setFieldValue,
 }) => (
@@ -20,16 +22,11 @@ const NotificationForm = ({
         placeholder="Enter the name of the event."
       />
     </label>
-    <label htmlFor="description">
-      Description:
-      {touched.description && errors.description && <p>{errors.description}</p>}
-      <Field type="text" name="description" placeholder="Description" />
-    </label>
     <label htmlFor="date">
-      Link:
+      Date:
       {touched.date && errors.date && <p>{errors.date}</p>}
       <Field
-        type="text"
+        type="date"
         name="date"
         placeholder="When this event took place."
       />
@@ -43,6 +40,26 @@ const NotificationForm = ({
         placeholder="Where this event took place."
       />
     </label>
+    <label htmlFor="description">
+      Description:
+      {touched.description && errors.description && <p>{errors.description}</p>}
+      <Field type="text" name="description" placeholder="Description" />
+    </label>
+    <hr />
+    <select
+      name="type"
+      id="type"
+      value={values.type}
+      onChange={handleChange}
+      onBlur={handleBlur}
+    >
+      <option value="" disabled>
+        Select the type of the Event
+      </option>
+      <option value="cultural">Cultural Event</option>
+      <option value="tech">Tech Event</option>
+      <option value="Sports">Sports Event</option>
+    </select>
     <hr />
     <label htmlFor="mainPhoto">
       Main photo:
@@ -55,6 +72,7 @@ const NotificationForm = ({
         }}
       />
     </label>
+    <hr />
     <label htmlFor="photo1">
       Photo 1:
       <input
@@ -66,8 +84,9 @@ const NotificationForm = ({
         }}
       />
     </label>
+    <hr />
     <label htmlFor="photo2">
-      File:
+      Photo 2:
       <input
         type="file"
         name="photo2"
@@ -77,8 +96,9 @@ const NotificationForm = ({
         }}
       />
     </label>
+    <hr />
     <label htmlFor="photo3">
-      File:
+      Photo 3:
       <input
         type="file"
         name="photo3"
@@ -88,8 +108,9 @@ const NotificationForm = ({
         }}
       />
     </label>
+    <hr />
     <label htmlFor="photo4">
-      File:
+      Photo 4:
       <input
         type="file"
         name="photo4"
@@ -99,6 +120,7 @@ const NotificationForm = ({
         }}
       />
     </label>
+    <hr />
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
@@ -118,27 +140,35 @@ const NotificationForm = ({
 );
 
 const FormikNotificationForm = withFormik({
-  mapPropsToValues(props) {
+  mapPropsToValues({
+    name = '',
+    date = '',
+    place = '',
+    type = '',
+    mainPhoto = '',
+    photo1 = '',
+    photo2 = '',
+    photo3 = '',
+    photo4 = '',
+    description = '',
+    deleteNotification = '',
+    history = '',
+    _id = '',
+  }) {
     return {
-      title: props.title || '',
-      description: props.description || '',
-      link: props.link || '',
-      file: props.file || '',
-      student: props.tags ? props.tags.includes('student') : '',
-      teacher: props.tags ? props.tags.includes('teacher') : '',
-      iyear: props.tags ? props.tags.includes('iyear') : '',
-      iiyear: props.tags ? props.tags.includes('iiyear') : '',
-      iiiyear: props.tags ? props.tags.includes('iiiyear') : '',
-      ivyear: props.tags ? props.tags.includes('ivyear') : '',
-      googleForm: props.tags ? props.tags.includes('googleForm') : '',
-      pdf: props.tags ? props.tags.includes('pdf') : '',
-      external: props.tags ? props.tags.includes('external') : '',
-      civil: props.tags ? props.tags.includes('civil') : '',
-      it: props.tags ? props.tags.includes('it') : '',
-      env: props.tags ? props.tags.includes('env') : '',
-      deleteNotification: props.deleteNotification,
-      history: props.history,
-      _id: props._id,
+      name,
+      date,
+      place,
+      type,
+      mainPhoto,
+      photo1,
+      photo2,
+      photo3,
+      photo4,
+      description,
+      deleteNotification,
+      history,
+      _id,
     };
   },
   validationSchema: Yup.object().shape({
@@ -146,20 +176,15 @@ const FormikNotificationForm = withFormik({
       'Oops! Seems like you forgot the name of the Event.'
     ),
     description: Yup.string().required('Description is required.'),
-    student: Yup.boolean(),
-    teacher: Yup.boolean(),
-    iyear: Yup.boolean(),
-    iiyear: Yup.boolean(),
-    iiiyear: Yup.boolean(),
-    ivyear: Yup.boolean(),
-    googleForm: Yup.boolean(),
-    pdf: Yup.boolean(),
-    external: Yup.boolean(),
-    civil: Yup.boolean(),
-    it: Yup.boolean(),
-    env: Yup.boolean(),
+    date: Yup.date().required('Date of the Event is required.'),
+    place: Yup.string().required('Place of the Event is required.'),
+    type: Yup.string().required('Type of the Event is required.'),
   }),
   handleSubmit(val, { props, resetForm, setErrors, setSubmitting }) {
+    if (!val.mainPhoto) {
+      setErrors({ errors: 'Event requires a main photo!' });
+    }
+    setSubmitting(false);
     props
       .onSubmit(val, props._id)
       .then(() => {

@@ -25,6 +25,8 @@ import AdminTimeTablePage from './../pages/adminPages/AdminTimeTablePage';
 import AddTimeTablePage from './../pages/adminPages/AddTimeTablePage';
 import TimeTablePage from './../pages/publicPages/TimeTablePage';
 import EditTimeTablePage from './../pages/adminPages/EditTimeTablePage';
+import AddEventsPage from './../pages/adminPages/AddEventsPage';
+import AdminEventsPage from './../pages/adminPages/AdminEventsPage';
 
 export const history = createHistory();
 
@@ -88,6 +90,8 @@ const AppRouter = () => (
           component={EditTimeTablePage}
           exact
         />
+        <Route path="/admin/events" component={AdminEventsPage} exact />
+        <Route path="/admin/events/add" component={AddEventsPage} exact />
         <Route component={NotFound} />
       </Switch>
       <Footer />

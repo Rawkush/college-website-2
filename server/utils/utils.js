@@ -211,17 +211,11 @@ const loginAdmin = (Model) => async (username, password) => {
 };
 
 const pickEvent = (req) => {
-  const body = _.pick(req.body, [
-    'name',
-    'photo',
-    'time',
-    'place',
-    'description',
-  ]);
-  const file = req.file ? req.file.path : null;
+  const body = _.pick(req.body, ['name', 'date', 'place', 'description']);
+  const photos = req.files ? req.files.map((file) => file.path) : null;
   const newBody = {
     ...body,
-    file,
+    photos,
   };
   return newBody;
 };
