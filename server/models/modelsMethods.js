@@ -6,7 +6,18 @@ const slug = require('slug');
 function toJSON() {
   const user = this;
   const userObject = user.toObject();
-  return _.pick(userObject, ['_id', 'email']);
+  return _.pick(userObject, [
+    '_id',
+    'name',
+    'rollNo',
+    'location',
+    'branch',
+    'gender',
+    'admittedIn',
+    'bio',
+    'photo',
+    'linkedProfiles',
+  ]);
 }
 
 function generateAuthToken() {

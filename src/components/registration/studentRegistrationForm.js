@@ -52,6 +52,24 @@ const StudentRegistration = ({
         max={moment().format('YYYY-MM-DD')}
       />
     </label>
+    <label htmlFor="branch ">
+      Branch :
+      {touched.branch && errors.branch && <p>{errors.branch}</p>}
+      <select
+        name="branch"
+        id="branch"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.branch}
+      >
+        <option value="" disabled>
+          Select the in which you are admitted.
+        </option>
+        <option value="it">I.T.</option>
+        <option value="civil">Civil</option>
+        <option value="env">Environment</option>
+      </select>
+    </label>
     <label htmlFor="gender">
       Gender:
       {touched.gender && errors.gender && <p>{errors.gender}</p>}
@@ -89,6 +107,7 @@ const FormikStudentRegistration = withFormik({
       dateOfBirth: dateOfBirth ? moment(dateOfBirth).format('YYYY-MM-DD') : '',
       gender: gender || '',
       bio: bio || '',
+      branch: '',
       admittedIn: '',
     };
   },

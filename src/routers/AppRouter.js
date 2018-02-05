@@ -31,6 +31,9 @@ import EditEventPage from './../pages/adminPages/EditEventPage';
 import EventsOptionPage from './../pages/publicPages/EventsOptionPage';
 import EventsPage from './../pages/publicPages/EventsPage';
 
+// Student Page
+import StudentProfilePage from './../pages/studentPages/ProfilePage';
+
 export const history = createHistory();
 
 const AppRouter = () => (
@@ -98,6 +101,7 @@ const AppRouter = () => (
         <Route path="/admin/events" component={AdminEventsPage} exact />
         <Route path="/admin/events/add" component={AddEventsPage} exact />
         <Route path="/admin/events/edit/:_id" component={EditEventPage} exact />
+        <Route path="/student/myprofile" component={StudentProfilePage} exact />
         <Route component={NotFound} />
       </Switch>
       <Footer />

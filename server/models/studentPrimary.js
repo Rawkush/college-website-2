@@ -70,6 +70,10 @@ const StudentPrimarySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    branch: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,

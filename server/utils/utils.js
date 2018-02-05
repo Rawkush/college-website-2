@@ -10,6 +10,7 @@ const pickBody = (req) => {
     'dateOfBirth',
     'gender',
     'email',
+    'branch',
     'admittedIn',
     'bio',
     'photo',
