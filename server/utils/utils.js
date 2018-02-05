@@ -3,14 +3,14 @@ const _ = require('lodash');
 
 //  Minimal Functions
 const pickBody = (req) => {
-  const body = _.pick(req.body.userData, [
+  const body = _.pick(req.body, [
     'name',
     'rollNo',
     'location',
     'dateOfBirth',
     'gender',
     'email',
-    'addmittedIn',
+    'admittedIn',
     'bio',
     'photo',
     'linkedProfiles',

@@ -61,9 +61,6 @@ const studentRegistration = async (req, res) => {
   const body = pickBody(req);
   const { token } = req.body;
   let decodedToken;
-  console.log('====================================');
-  console.log(body);
-  console.log('====================================');
   try {
     decodedToken = await decodeStudentAuthToken(token);
   } catch (error) {
@@ -82,7 +79,7 @@ const studentRegistration = async (req, res) => {
 
   try {
     const data = await saveStudentMinimal(newBody);
-    res.header('x-auth', data.token).send(data.user);
+    res.send(data);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
   }

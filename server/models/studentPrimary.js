@@ -86,7 +86,7 @@ const StudentPrimarySchema = new mongoose.Schema(
     photo: {
       type: String,
     },
-    addmittedIn: {
+    admittedIn: {
       type: Date,
       required: true,
       validate: [

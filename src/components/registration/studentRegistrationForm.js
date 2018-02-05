@@ -1,11 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import moment from 'moment';
 
 import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
 
-const StudentRegistration = ({ values, errors, touched, isSubmitting }) => (
+const StudentRegistration = ({
+  values,
+  errors,
+  touched,
+  isSubmitting,
+  handleBlur,
+  handleChange,
+}) => (
   <Form>
     {errors.error && <p>{errors.error}</p>}
     <label htmlFor="name">
@@ -28,6 +36,22 @@ const StudentRegistration = ({ values, errors, touched, isSubmitting }) => (
       {touched.dateOfBirth && errors.dateOfBirth && <p>{errors.dateOfBirth}</p>}
       <Field type="date" name="dateOfBirth" placeholder="Date of Birth" />
     </label>
+    <label htmlFor="admittedIn">
+      Admitted in:
+      {touched.admittedIn && errors.admittedIn && <p>{errors.admittedIn}</p>}
+      <input
+        type="month"
+        name="admittedIn"
+        id="admittedIn"
+        value={values.admittedIn}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        min={moment()
+          .subtract(4, 'years')
+          .format('YYYY-MM-DD')}
+        max={moment().format('YYYY-MM-DD')}
+      />
+    </label>
     <label htmlFor="gender">
       Gender:
       {touched.gender && errors.gender && <p>{errors.gender}</p>}
@@ -41,7 +65,7 @@ const StudentRegistration = ({ values, errors, touched, isSubmitting }) => (
     <label htmlFor="bio">
       Bio:
       {touched.bio && errors.bio && <p>{errors.bio}</p>}
-      <Field type="textarea" name="bio" placeholder="Enter your Bio" />
+      <Field type="text" name="bio" placeholder="Enter your Bio" />
     </label>
     <button disabled={!!isSubmitting}> Submit </button>
   </Form>
@@ -49,22 +73,23 @@ const StudentRegistration = ({ values, errors, touched, isSubmitting }) => (
 
 const FormikStudentRegistration = withFormik({
   mapPropsToValues({
-    name = '',
-    rollNo = '',
-    email = '',
-    location = '',
-    dateOfBirth = '',
-    gender = '',
-    bio = '',
+    name,
+    rollNo,
+    email,
+    location,
+    dateOfBirth,
+    gender,
+    bio,
   }) {
     return {
-      name,
-      rollNo,
-      email,
-      location,
-      dateOfBirth,
-      gender,
-      bio,
+      name: name || '',
+      rollNo: rollNo || '',
+      email: email || '',
+      location: location || '',
+      dateOfBirth: dateOfBirth ? moment(dateOfBirth).format('YYYY-MM-DD') : '',
+      gender: gender || '',
+      bio: bio || '',
+      admittedIn: '',
     };
   },
   validationSchema: Yup.object().shape({
@@ -86,15 +111,14 @@ const FormikStudentRegistration = withFormik({
     axios({
       method: 'post',
       url: 'http://localhost:3000/s/student/registeration',
-      data: {
-        name: 'Aman',
-      },
+      data,
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then(() => {
+      .then((res) => {
         setSubmitting(false);
+        localStorage.setItem('studentToken', res.data.token);
         return <Redirect to="\login" />;
       })
       .catch((err) => {
