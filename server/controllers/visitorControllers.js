@@ -15,6 +15,7 @@ const giveStudent = giveUser(StudentPrimary);
 const giveTeacher = giveUser(TeacherPrimary);
 const giveAllSyllabus = giveAll(Syllabus);
 const giveAllTimeTable = giveAll(TimeTable);
+const giveAllEvents = giveAll(Event);
 
 const getLatestNotifications = async (req, res) => {
   try {
@@ -72,6 +73,14 @@ const getTimeTable = async (req, res) => {
   }
 };
 
+const getAllEvents = async (req, res) => {
+  try {
+    const events = await giveAllEvents();
+    res.send(events);
+  } catch (error) {
+    res.send(404).send(`Something Went Wrong: ${error}`);
+  }
+};
 module.exports = {
   getLatestNotifications,
   getLatestEvents,
@@ -79,4 +88,5 @@ module.exports = {
   getTeacher,
   getSyllabus,
   getTimeTable,
+  getAllEvents,
 };

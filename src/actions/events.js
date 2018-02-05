@@ -47,7 +47,7 @@ export const setEvent = (event) => ({
 });
 
 export const startSetEvent = () => (dispatch) =>
-  axios.get('http://localhost:3000/s/visitor/gettt').then((res) => {
+  axios.get('http://localhost:3000/s/visitor/getallevents').then((res) => {
     dispatch(setEvent(res.data));
   });
 
@@ -57,24 +57,27 @@ export const editEvent = (event) => ({
 });
 
 export const startEditEvent = (
-  { wef = '', title = '', file = '', semester = '' },
+  { name = '', date = '', place = '', type = '', description = '' },
   _id
 ) => (dispatch) => {
-  const formdata = new FormData();
-  formdata.append('_id', _id);
-  formdata.append('wef', wef);
-  formdata.append('title', title);
-  formdata.append('semester', semester);
-  if (file instanceof Blob) {
-    formdata.append('file', file);
-  }
+  const data = {
+    name,
+    date,
+    place,
+    type,
+    description,
+    _id,
+  };
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/admin/edittt',
-    data: formdata,
-    config: { headers: { 'Content-Type': 'multipart/form-data' } },
+    url: 'http://localhost:3000/s/admin/editevent',
+    data,
+    config: { headers: { 'Content-Type': 'application/json' } },
   })
     .then((res) => {
+      console.log('====================================');
+      console.log(res);
+      console.log('====================================');
       dispatch(editEvent(res.data));
       return Promise.resolve();
     })
@@ -89,7 +92,7 @@ const removeEvent = (event) => ({
 export const startRemoveEvent = (_id) => (dispatch) =>
   axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/admin/deletesyll',
+    url: 'http://localhost:3000/s/admin/deleteevent',
     data: {
       _id,
     },

@@ -38,6 +38,9 @@ class Header extends Component {
         <NavLink to="/timetable/odd" activeClassName="is-active" exact>
           Time Table - Odd
         </NavLink>
+        <NavLink to="/events" activeClassName="is-active" exact>
+          Events
+        </NavLink>
         <button onClick={this.onLoginClick}>Login</button>
         <LoginModal
           loginModal={this.state.loginModal}

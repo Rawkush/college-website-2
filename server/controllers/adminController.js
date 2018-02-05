@@ -96,10 +96,10 @@ const addEvents = async (req, res) => {
 };
 
 const editEvent = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   const body = pickEvent(req);
   try {
-    const event = await updateEvents({ _id: id }, { ...body });
+    const event = await updateEvents({ _id }, { ...body });
     res.send(event);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -107,9 +107,9 @@ const editEvent = async (req, res) => {
 };
 
 const deleteEvents = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   try {
-    const event = await deleteEventsMinimal(id);
+    const event = await deleteEventsMinimal(_id);
     res.send(event);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);

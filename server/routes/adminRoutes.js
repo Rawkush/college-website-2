@@ -51,9 +51,9 @@ adminRoutes.delete('/deletenotification', deleteNotifications);
 
 adminRoutes.post('/addevent', uploadEvents.array('photo', 5), addEvents);
 
-adminRoutes.post('/editevents', uploadEvents.single('file'), editEvent);
+adminRoutes.patch('/editevent', editEvent);
 
-adminRoutes.delete('/deleteevents', deleteEvents);
+adminRoutes.delete('/deleteevent', deleteEvents);
 
 adminRoutes.post('/addsyll', uploadSyllabus.single('file'), addSyllabus);
 

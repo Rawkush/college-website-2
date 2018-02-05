@@ -4,6 +4,7 @@ const express = require('express');
 // Defined Module Import
 const {
   getLatestEvents,
+  getAllEvents,
   getLatestNotifications,
   getTeacher,
   getStudent,
@@ -18,6 +19,8 @@ const visitorRoutes = express.Router();
 visitorRoutes.get('/getnotifications', getLatestNotifications);
 
 visitorRoutes.get('/getevents', getLatestEvents);
+
+visitorRoutes.get('/getallevents', getAllEvents);
 
 visitorRoutes.get('/getsyll', getSyllabus);
 
