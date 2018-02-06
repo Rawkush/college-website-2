@@ -90,7 +90,7 @@ export const startRemoveAccomplishment = (_id) => (dispatch) =>
     },
   })
     .then((res) => {
-      dispatch(setStudentSecondary(res.data));
+      dispatch(editAccomplishment(res.data.accomplishments));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
@@ -142,14 +142,21 @@ export const startEditProject = ({
   link = '',
   _id = '',
 }) => (dispatch) => {
+  console.log(photos);
   const formdata = new FormData();
   formdata.append('token', localStorage.getItem('studentToken'));
   formdata.append('title', title);
   formdata.append('link', link);
   formdata.append('description', description);
   formdata.append('_id', _id);
-  if (photos instanceof Blob) {
-    formdata.append('photos', photos);
+  if (photos) {
+    if (photos[0] instanceof Blob) {
+      formdata.append('photos', photos[0]);
+      formdata.append('photos', photos[1]);
+      formdata.append('photos', photos[2]);
+      formdata.append('photos', photos[3]);
+      formdata.append('photos', photos[4]);
+    }
   }
   return axios({
     method: 'patch',
@@ -158,7 +165,7 @@ export const startEditProject = ({
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
     .then((res) => {
-      dispatch(editAccomplishment(res.data.projects));
+      dispatch(editProject(res.data.projects));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
@@ -177,7 +184,7 @@ export const startRemoveProject = (_id) => (dispatch) =>
     },
   })
     .then((res) => {
-      dispatch(setStudentSecondary(res.data));
+      dispatch(editProject(res.data.projects));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));

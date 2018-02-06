@@ -218,6 +218,45 @@ const addProjects = async (req, res) => {
   }
 };
 
+const updateProject = async (req, res) => {
+  const _creator = req.student._id;
+  const { _id } = req.body;
+  const body = pickProjects(req);
+
+  let update;
+
+  if (body.photos[0] === undefined) {
+    delete body.photos;
+    update = {
+      'projects.$.title': body.title,
+      'projects.$.description': body.description,
+      'projects.$.link': body.link,
+    };
+  } else {
+    update = {
+      'projects.$.title': body.title,
+      'projects.$.description': body.description,
+      'projects.$.link': body.link,
+      'projects.$.photos': body.photos,
+    };
+  }
+
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      {
+        _creator,
+        'projects._id': _id,
+      },
+      {
+        $set: update,
+      }
+    );
+    res.send(updatedSecondary);
+  } catch (error) {
+    res.status(401).send(`Some error happened: ${error}`);
+  }
+};
+
 const removeProject = async (req, res) => {
   const { _id } = req.body;
 
@@ -335,4 +374,5 @@ module.exports = {
   checkStudent,
   getStudent,
   getAllStudentSecondary,
+  updateProject,
 };

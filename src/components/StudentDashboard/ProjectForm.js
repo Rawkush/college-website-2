@@ -65,7 +65,7 @@ const ProjectForm = ({
         type="button"
         onClick={() => {
           values
-            .removeProjects(values._id)
+            .removeProject(values._id)
             .then(() => values.history.push('/student/myprofile'));
         }}
       >
@@ -87,13 +87,13 @@ const FormikProjectForm = withFormik({
     link = '',
     _id = '',
     edit = '',
-    removeProjects = '',
+    removeProject = '',
   }) {
     return {
       title,
       photos,
       description,
-      removeProjects,
+      removeProject,
       history,
       _id,
       edit,

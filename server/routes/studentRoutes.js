@@ -38,6 +38,7 @@ const {
   getStudent,
   getAllStudentSecondary,
   updateAccomplishment,
+  updateProject,
 } = require('./../controllers/studentsController');
 
 // Routes
@@ -109,6 +110,13 @@ studentRoutes.patch(
   uploadProjects.array('photos', 5),
   tokenAuthenticate,
   addProjects
+);
+
+studentRoutes.patch(
+  '/updateproject',
+  uploadProjects.array('photos', 5),
+  tokenAuthenticate,
+  updateProject
 );
 
 studentRoutes.patch('/removeProject', tokenAuthenticate, removeProject);

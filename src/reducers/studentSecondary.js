@@ -10,10 +10,12 @@ export default (state = secondaryDefaultState, action) => {
       return { ...action.studentSecondary };
     case 'ADD_ACCOMPLISHMENT':
       return { ...state, accomplishments: action.accomplishment };
+    case 'ADD_PROJECT':
+      return { ...state, projects: action.project };
     case 'EDIT_ACCOMPLISHMENT':
       return { ...state, accomplishments: action.accomplishment };
-    case 'REMOVE_ACCOMPLISHMENT':
-      return {};
+    case 'EDIT_PROJECT':
+      return { ...state, projects: action.project };
     default:
       return state;
   }
