@@ -209,7 +209,7 @@ const addProjects = async (req, res) => {
     const updatedSecondary = await updateSecondaryMinimal(
       { _creator: req.student._id },
       {
-        $push: { ...body },
+        $push: { projects: body },
       }
     );
     return res.send(updatedSecondary);

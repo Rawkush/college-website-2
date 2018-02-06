@@ -9,6 +9,8 @@ const uploadAccomplishments = multerConfig(
   /jpg|jpeg|png/
 );
 
+const uploadProjects = multerConfig('uploads/projects', /jpg|jpeg|png/);
+
 // Initializing the Router
 const studentRoutes = express.Router();
 
@@ -90,8 +92,6 @@ studentRoutes.patch(
 
 studentRoutes.post('/logout', tokenAuthenticate, logout);
 
-studentRoutes.patch('/addProjects', tokenAuthenticate, addProjects);
-
 studentRoutes.patch(
   '/addSpecialisations',
   tokenAuthenticate,
@@ -104,7 +104,12 @@ studentRoutes.patch(
   removeAccomplishment
 );
 
-studentRoutes.patch('/removeProject', tokenAuthenticate, removeProject);
+studentRoutes.patch(
+  '/addproject',
+  uploadProjects.array('photos', 5),
+  tokenAuthenticate,
+  addProjects
+);
 
 studentRoutes.patch('/removeProject', tokenAuthenticate, removeProject);
 

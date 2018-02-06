@@ -42,6 +42,8 @@ const StudentSecondrySchema = new mongoose.Schema({
         trim: true,
         minlength: 50,
       },
+      photos: [{ type: String }],
+      link: String,
     },
   ],
   _creator: {

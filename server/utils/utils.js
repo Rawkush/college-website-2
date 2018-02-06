@@ -49,8 +49,9 @@ const pickAccomplishments = (req) => {
 };
 
 const pickProjects = (req) => {
-  const projects = _.pick(req.body, ['title', 'description']);
-  return { projects };
+  const projects = _.pick(req.body, ['title', 'description', 'link']);
+  const photos = req.files ? req.files.map((file) => file.path) : null;
+  return { ...projects, photos };
 };
 
 const pickSpecialisations = (req) => {
