@@ -5,10 +5,14 @@ import { connect } from 'react-redux';
 import AccomplishmentForm from './../../components/StudentDashboard/AccomplishmentForm';
 
 // Actions
-import { startEditAccomplishment } from './../../actions/studentSecondary';
+import {
+  startEditAccomplishment,
+  startRemoveAccomplishment,
+} from './../../actions/studentSecondary';
 
 const EditAccomplishment = ({
   editAccomplishment,
+  removeAccomplishment,
   history,
   accomplishment,
 }) => (
@@ -17,6 +21,7 @@ const EditAccomplishment = ({
     {accomplishment ? (
       <AccomplishmentForm
         onSubmit={editAccomplishment}
+        removeAccomplishment={removeAccomplishment}
         history={history}
         edit
         {...accomplishment}
@@ -35,6 +40,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   editAccomplishment: (val) => dispatch(startEditAccomplishment(val)),
+  removeAccomplishment: (_id) => dispatch(startRemoveAccomplishment(_id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditAccomplishment);

@@ -56,7 +56,7 @@ const AccomplishmentForm = ({
         type="button"
         onClick={() => {
           values
-            .deleteEvent(values._id)
+            .removeAccomplishment(values._id)
             .then(() => values.history.push('/student/myprofile'));
         }}
       >
@@ -77,13 +77,13 @@ const FormikAccomplishmentForm = withFormik({
     history = '',
     _id = '',
     edit = '',
-    deleteThing,
+    removeAccomplishment = '',
   }) {
     return {
       title,
       photo,
       description,
-      deleteThing,
+      removeAccomplishment,
       history,
       _id,
       edit,
