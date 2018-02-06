@@ -8,11 +8,8 @@ const EventSchema = new mongoose.Schema(
     },
     date: Date,
     place: String,
-    mainPhoto: String,
-    photo1: String,
-    photo2: String,
-    photo3: String,
-    photo4: String,
+    type: String,
+    photos: [{ type: String }],
     description: {
       type: String,
       required: true,

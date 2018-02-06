@@ -21,6 +21,19 @@ import EditNotificationPage from '../pages/adminPages/EditNotificaitonPage';
 import AddNotificationPage from './../pages/adminPages/AddNotificationPage';
 import AdminSyllabusPage from './../pages/adminPages/AdminSyllabusPage';
 import EditSyllabusPage from './../pages/adminPages/EditSyllabusPage';
+import AdminTimeTablePage from './../pages/adminPages/AdminTimeTablePage';
+import AddTimeTablePage from './../pages/adminPages/AddTimeTablePage';
+import TimeTablePage from './../pages/publicPages/TimeTablePage';
+import EditTimeTablePage from './../pages/adminPages/EditTimeTablePage';
+import AddEventsPage from './../pages/adminPages/AddEventsPage';
+import AdminEventsPage from './../pages/adminPages/AdminEventsPage';
+import EditEventPage from './../pages/adminPages/EditEventPage';
+import EventsOptionPage from './../pages/publicPages/EventsOptionPage';
+import EventsPage from './../pages/publicPages/EventsPage';
+
+// Student Page
+import StudentProfilePage from './../pages/studentPages/ProfilePage';
+import ProfileEditPage from './../pages/studentPages/ProfileEditPage';
 
 export const history = createHistory();
 
@@ -53,11 +66,46 @@ const AppRouter = () => (
           component={AddNotificationPage}
           exact
         />
-        <Route path="/admin/syllabus" component={AdminSyllabusPage} exact />
-        <Route path="/admin/syllabus/add" component={AddSyllabusPage} exact />
-        <Route
+        <AdminRoute
+          path="/admin/syllabus"
+          component={AdminSyllabusPage}
+          exact
+        />
+        <AdminRoute
+          path="/admin/syllabus/add"
+          component={AddSyllabusPage}
+          exact
+        />
+        <AdminRoute
           path="/admin/syllabus/edit/:_id"
           component={EditSyllabusPage}
+          exact
+        />
+        <AdminRoute
+          path="/admin/timetable"
+          component={AdminTimeTablePage}
+          exact
+        />
+        <AdminRoute
+          path="/admin/timetable/add"
+          component={AddTimeTablePage}
+          exact
+        />
+        <Route path="/timetable/:semester" component={TimeTablePage} />
+        <AdminRoute
+          path="/admin/timetable/edit/:_id"
+          component={EditTimeTablePage}
+          exact
+        />
+        <Route path="/events" component={EventsOptionPage} exact />
+        <Route path="/events/:type" component={EventsPage} exact />
+        <Route path="/admin/events" component={AdminEventsPage} exact />
+        <Route path="/admin/events/add" component={AddEventsPage} exact />
+        <Route path="/admin/events/edit/:_id" component={EditEventPage} exact />
+        <Route path="/student/myprofile" component={StudentProfilePage} exact />
+        <Route
+          path="/student/myprofile/edit"
+          component={ProfileEditPage}
           exact
         />
         <Route component={NotFound} />

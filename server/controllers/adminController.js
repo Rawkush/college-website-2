@@ -61,11 +61,11 @@ const addNotifications = async (req, res) => {
 const editNotifications = async (req, res) => {
   const { _id, removeFile } = req.body;
   const body = pickNotifications(req);
-  if (body.file === null) {
-    delete body.file;
-  }
-  if (removeFile === true) {
+
+  if (removeFile === 'true') {
     body.file = null;
+  } else if (body.file === null) {
+    delete body.file;
   }
   try {
     const notifications = await updateNotifications({ _id }, { ...body });
@@ -96,10 +96,10 @@ const addEvents = async (req, res) => {
 };
 
 const editEvent = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   const body = pickEvent(req);
   try {
-    const event = await updateEvents({ _id: id }, { ...body });
+    const event = await updateEvents({ _id }, { ...body });
     res.send(event);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -107,9 +107,9 @@ const editEvent = async (req, res) => {
 };
 
 const deleteEvents = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   try {
-    const event = await deleteEventsMinimal(id);
+    const event = await deleteEventsMinimal(_id);
     res.send(event);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -162,10 +162,13 @@ const addTimeTable = async (req, res) => {
 };
 
 const editTimeTable = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   const body = pickTT(req);
+  if (body.file === null) {
+    delete body.file;
+  }
   try {
-    const timeTable = await updateTimeTable({ _id: id }, { ...body });
+    const timeTable = await updateTimeTable({ _id }, { ...body });
     res.send(timeTable);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);

@@ -2,7 +2,13 @@ import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
 
-const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
+const NotificationForm = ({
+  values,
+  errors,
+  touched,
+  isSubmitting,
+  setFieldValue,
+}) => (
   <Form>
     {errors.error && <p>{errors.error}</p>}
     Title:
@@ -79,22 +85,24 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
       <Field type="checkbox" name="env" checked={values.env} />
     </label>
     <hr />
-    {values.file && (
-      <label htmlFor="removeFile">
-        Remove File:
-        <Field
-          type="checkbox"
-          name="removeFile"
-          id="removeFile"
-          checked={values.removeFile}
-        />
-      </label>
-    )}
-    {values.file && (
-      <a href={values.file} target="_blank">
-        Preview already uploaded file.
-      </a>
-    )}
+    {values.file &&
+      values.edit && (
+        <label htmlFor="removeFile">
+          Remove File:
+          <Field
+            type="checkbox"
+            name="removeFile"
+            id="removeFile"
+            checked={values.removeFile}
+          />
+        </label>
+      )}
+    {values.file &&
+      values.edit && (
+        <a href={values.file} target="_blank">
+          Preview already uploaded file.
+        </a>
+      )}
     <label htmlFor="file">
       File:
       <input
@@ -102,25 +110,26 @@ const NotificationForm = ({ values, errors, touched, isSubmitting }) => (
         name="file"
         id="file"
         onChange={(e) => {
-          values.file = e.currentTarget.files[0];
+          setFieldValue('file', e.currentTarget.files[0]);
         }}
       />
     </label>
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-    {values.title && (
-      <button
-        type="button"
-        onClick={() => {
-          values
-            .deleteNotification(values._id)
-            .then(() => values.history.push('/admin/notifications'));
-        }}
-      >
-        Remove
-      </button>
-    )}
+    {values.title &&
+      values.edit && (
+        <button
+          type="button"
+          onClick={() => {
+            values
+              .deleteNotification(values._id)
+              .then(() => values.history.push('/admin/notifications'));
+          }}
+        >
+          Remove
+        </button>
+      )}
   </Form>
 );
 
@@ -147,6 +156,7 @@ const FormikNotificationForm = withFormik({
       history: props.history,
       _id: props._id,
       removeFile: false,
+      edit: props.edit,
     };
   },
   validationSchema: Yup.object().shape({

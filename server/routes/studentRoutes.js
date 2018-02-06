@@ -25,6 +25,7 @@ const {
   addSpecialisations,
   removeAccomplishment,
   removeProject,
+  getStudent,
 } = require('./../controllers/studentsController');
 
 // Routes
@@ -84,5 +85,7 @@ studentRoutes.patch(
 studentRoutes.patch('/removeProject', tokenAuthenticate, removeProject);
 
 studentRoutes.patch('/removeProject', tokenAuthenticate, removeProject);
+
+studentRoutes.post('/getstudent', tokenAuthenticate, getStudent);
 
 module.exports = { studentRoutes };

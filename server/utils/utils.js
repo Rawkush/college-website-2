@@ -3,14 +3,15 @@ const _ = require('lodash');
 
 //  Minimal Functions
 const pickBody = (req) => {
-  const body = _.pick(req.body.userData, [
+  const body = _.pick(req.body, [
     'name',
     'rollNo',
     'location',
     'dateOfBirth',
     'gender',
     'email',
-    'addmittedIn',
+    'branch',
+    'admittedIn',
     'bio',
     'photo',
     'linkedProfiles',
@@ -213,15 +214,15 @@ const loginAdmin = (Model) => async (username, password) => {
 const pickEvent = (req) => {
   const body = _.pick(req.body, [
     'name',
-    'photo',
-    'time',
+    'date',
+    'type',
     'place',
     'description',
   ]);
-  const file = req.file ? req.file.path : null;
+  const photos = req.files ? req.files.map((file) => file.path) : null;
   const newBody = {
     ...body,
-    file,
+    photos,
   };
   return newBody;
 };
@@ -249,7 +250,7 @@ const pickSyllabus = (req) => {
 };
 
 const pickTT = (req) => {
-  const body = _.pick(req.body, ['branch', 'semester', 'wef']);
+  const body = _.pick(req.body, ['branch', 'semester', 'wef', 'title']);
   const file = req.file ? req.file.path : null;
   const newBody = {
     ...body,
