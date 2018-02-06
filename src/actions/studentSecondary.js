@@ -188,3 +188,35 @@ export const startRemoveProject = (_id) => (dispatch) =>
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
+
+// Specialisation
+export const updateSpecialisation = (specialisation) => ({
+  type: 'UPDATE_SPECIALISATION',
+  specialisation,
+});
+
+export const startUpdateSpecialisation = ({
+  s1 = '',
+  s2 = '',
+  s3 = '',
+  s4 = '',
+  s5 = '',
+}) => (dispatch) => {
+  const specialisationTemp = [s1, s2, s3, s4, s5];
+  const specialisation = specialisationTemp.filter((elem) => elem !== '');
+
+  return axios({
+    method: 'patch',
+    url: 'http://localhost:3000/s/student/updatespecialisation',
+    data: {
+      token: localStorage.getItem('studentToken'),
+      specialisation,
+    },
+    config: { headers: { 'Content-Type': 'application/json' } },
+  })
+    .then((res) => {
+      dispatch(updateSpecialisation(res.data.specialisation));
+      return Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));
+};

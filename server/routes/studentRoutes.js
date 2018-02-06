@@ -94,7 +94,7 @@ studentRoutes.patch(
 studentRoutes.post('/logout', tokenAuthenticate, logout);
 
 studentRoutes.patch(
-  '/addSpecialisations',
+  '/updatespecialisation',
   tokenAuthenticate,
   addSpecialisations
 );

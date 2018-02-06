@@ -8,6 +8,7 @@ import StudentPrimaryInfo from './../../components/StudentDashboard/PrimayInfo';
 import LinksList from './../../components/StudentDashboard/LinksList';
 import AccomplishmentsList from './../../components/StudentDashboard/AccomplishmentsList';
 import ProjectList from './../../components/StudentDashboard/ProjectsList';
+import SpecialisationList from './../../components/StudentDashboard/SpecialisationList';
 
 const StudentProfilePage = ({ student, secondary }) => (
   <div>
@@ -19,10 +20,14 @@ const StudentProfilePage = ({ student, secondary }) => (
         <LinksList {...student} />
         <AccomplishmentsList {...secondary} edit />
         <ProjectList {...secondary} edit />
+        <SpecialisationList {...secondary} />
         <Link to="/student/myprofile/addaccomplishment">
           Add Accomplishment
         </Link>
         <Link to="/student/myprofile/addproject">Add Project</Link>
+        <Link to="/student/myprofile/updatespecialisation">
+          Add Specialisation
+        </Link>
         <Link to="/student/myprofile/edit"> Edit Profile</Link>
       </div>
     ) : (
