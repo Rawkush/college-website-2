@@ -1,6 +1,14 @@
 // Global Modules import
 const express = require('express');
 
+// Configurations
+const { multerConfig } = require('./../config/multerConfig');
+
+const uploadAccomplishments = multerConfig(
+  'uploads/achievement',
+  /jpg|jpeg|png/
+);
+
 // Initializing the Router
 const studentRoutes = express.Router();
 
@@ -26,6 +34,8 @@ const {
   removeAccomplishment,
   removeProject,
   getStudent,
+  getAllStudentSecondary,
+  updateAccomplishment,
 } = require('./../controllers/studentsController');
 
 // Routes
@@ -60,11 +70,23 @@ studentRoutes.post('/registeration', checkStudent, studentRegistration);
 
 studentRoutes.patch('/updateProfile', tokenAuthenticate, updateStudent);
 
-studentRoutes.patch('/deleteProfile', tokenAuthenticate, deleteStudent);
+studentRoutes.delete('/deleteProfile', tokenAuthenticate, deleteStudent);
 
 studentRoutes.get('/login', login);
 
-studentRoutes.patch('/addAccomplishment', tokenAuthenticate, addAccomplishment);
+studentRoutes.patch(
+  '/addAccomplishment',
+  uploadAccomplishments.single('photo'),
+  tokenAuthenticate,
+  addAccomplishment
+);
+
+studentRoutes.patch(
+  '/updateaccomplishment',
+  uploadAccomplishments.single('photo'),
+  tokenAuthenticate,
+  updateAccomplishment
+);
 
 studentRoutes.post('/logout', tokenAuthenticate, logout);
 
@@ -87,5 +109,11 @@ studentRoutes.patch('/removeProject', tokenAuthenticate, removeProject);
 studentRoutes.patch('/removeProject', tokenAuthenticate, removeProject);
 
 studentRoutes.post('/getstudent', tokenAuthenticate, getStudent);
+
+studentRoutes.post(
+  '/getstudentsecondary',
+  tokenAuthenticate,
+  getAllStudentSecondary
+);
 
 module.exports = { studentRoutes };

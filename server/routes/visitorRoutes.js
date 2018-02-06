@@ -10,6 +10,7 @@ const {
   getStudent,
   getSyllabus,
   getTimeTable,
+  getAllStudentSecondaryData,
 } = require('./../controllers/visitorControllers');
 
 // Initializing the Router
@@ -29,5 +30,7 @@ visitorRoutes.get('/gettt', getTimeTable);
 visitorRoutes.post('/getteacher', getTeacher);
 
 visitorRoutes.post('/getstudent', getStudent);
+
+visitorRoutes.post('/getstudentsecondary', getAllStudentSecondaryData);
 
 module.exports = { visitorRoutes };

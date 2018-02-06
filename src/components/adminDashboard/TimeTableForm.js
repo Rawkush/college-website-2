@@ -75,7 +75,7 @@ const SyllabusForm = ({
           onClick={() => {
             values
               .deleteTimeTable(values._id)
-              .then(() => values.history.push('/admin/syllabus'));
+              .then(() => values.history.push('/admin/timetable'));
           }}
         >
           Remove

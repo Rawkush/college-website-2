@@ -175,6 +175,16 @@ const StudentRegistration = ({
             />
           </label>
         </div>
+        <button
+          type="button"
+          onClick={() => {
+            values.onRemove().then(() =>
+              values.history.push('/').catch(() => {
+                errors.error = 'Cannot Delete';
+              })
+            );
+          }}
+        />
       </div>
     )}
     <button disabled={!!isSubmitting}> Submit </button>
@@ -194,6 +204,7 @@ const FormikStudentRegistration = withFormik({
     branch,
     admittedIn,
     linkedProfiles,
+    onRemove,
   }) {
     const profile0 = linkedProfiles[0] ? linkedProfiles[0].provider : '';
     const url0 = linkedProfiles[0] ? linkedProfiles[0].url : '';
@@ -227,6 +238,7 @@ const FormikStudentRegistration = withFormik({
       url3,
       profile4,
       url4,
+      onRemove: onRemove || '',
     };
   },
   validationSchema: Yup.object().shape({

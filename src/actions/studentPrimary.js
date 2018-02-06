@@ -102,24 +102,23 @@ export const startEditStudent = ({
     .catch((err) => Promise.reject(err));
 };
 
-const removeStudent = (student) => ({
+const removeStudent = () => ({
   type: 'REMOVE_STUDENT',
-  student,
 });
 
-export const startRemoveStudent = (_id) => (dispatch) =>
+export const startRemoveStudent = () => (dispatch) =>
   axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/admin/deletesyll',
+    url: 'http://localhost:3000/s/student/deleteprofile',
     data: {
-      _id,
+      token: localStorage.getItem('studentToken'),
     },
     headers: {
       'Content-Type': 'application/json',
     },
   })
-    .then((res) => {
-      dispatch(removeStudent(res.data));
+    .then(() => {
+      dispatch(removeStudent());
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));

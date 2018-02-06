@@ -34,6 +34,8 @@ import EventsPage from './../pages/publicPages/EventsPage';
 // Student Page
 import StudentProfilePage from './../pages/studentPages/ProfilePage';
 import ProfileEditPage from './../pages/studentPages/ProfileEditPage';
+import AddAccomplishmentPage from './../pages/studentPages/AddAccomplishmentPage';
+import EditAccomplishmentPage from './../pages/studentPages/EditAccomplishmentPage';
 
 export const history = createHistory();
 
@@ -106,6 +108,16 @@ const AppRouter = () => (
         <Route
           path="/student/myprofile/edit"
           component={ProfileEditPage}
+          exact
+        />
+        <Route
+          path="/student/myprofile/addaccomplishment"
+          component={AddAccomplishmentPage}
+          exact
+        />
+        <Route
+          path="/student/myprofile/editaccomplishment/:_id"
+          component={EditAccomplishmentPage}
           exact
         />
         <Route component={NotFound} />

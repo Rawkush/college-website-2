@@ -19,7 +19,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <h1>CBPGEC</h1>
+        <h1>CBPGEC, Jaffarpur</h1>
         <NavLink to="/" activeClassName="is-active" exact>
           Home
         </NavLink>

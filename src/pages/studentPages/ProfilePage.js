@@ -6,18 +6,45 @@ import { Link } from 'react-router-dom';
 import StudentPhoto from './../../components/StudentDashboard/Photo';
 import StudentPrimaryInfo from './../../components/StudentDashboard/PrimayInfo';
 import LinksList from './../../components/StudentDashboard/LinksList';
+import AccomplishmentsList from './../../components/StudentDashboard/AccomplishmentsList';
 
-const StudentProfilePage = ({ student }) => (
+import { startRemoveAccomplishment } from './../../actions/studentSecondary';
+
+const StudentProfilePage = ({
+  student,
+  accomplishments,
+  deleteAccomplishment,
+}) => (
   <div>
-    <StudentPhoto {...student} />
-    <StudentPrimaryInfo {...student} />
-    <LinksList {...student} />
-    <Link to="/student/myprofile/edit"> Edit Profile</Link>
+    <h2>My Profile</h2>
+    {student ? (
+      <div>
+        <StudentPhoto {...student} />
+        <StudentPrimaryInfo {...student} />
+        <LinksList {...student} />
+        <AccomplishmentsList
+          {...accomplishments}
+          edit
+          deleteAccomplishment={deleteAccomplishment}
+        />
+        <Link to="/student/myprofile/addaccomplishment">
+          Add Accomplishment
+        </Link>
+        <Link to="/student/myprofile/edit"> Edit Profile</Link>
+      </div>
+    ) : (
+      <p>Loading ...</p>
+    )}
   </div>
 );
 
 const mapStateToProps = (state) => ({
   student: state.studentPrimary,
+  accomplishments: state.studentSecondary,
 });
 
-export default connect(mapStateToProps)(StudentProfilePage);
+const mapDispatchToProps = (dispatch) => ({
+  deleteAccomplishment: (_id) => dispatch(startRemoveAccomplishment(_id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentProfilePage);

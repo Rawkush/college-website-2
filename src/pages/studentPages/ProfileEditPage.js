@@ -5,14 +5,23 @@ import { connect } from 'react-redux';
 import FormikStudentRegistrationForm from './../../components/registration/studentRegistrationForm';
 
 // Actions
-import { startEditStudent } from './../../actions/studentPrimary';
+import {
+  startEditStudent,
+  startRemoveStudent,
+} from './../../actions/studentPrimary';
 
-const StudentEditProfilePage = ({ student, editStudent, history }) => (
+const StudentEditProfilePage = ({
+  student,
+  editStudent,
+  deleteStudent,
+  history,
+}) => (
   <div>
     <FormikStudentRegistrationForm
       edit
       {...student}
       onSubmit={editStudent}
+      onRemove={deleteStudent}
       history={history}
     />
   </div>
@@ -24,6 +33,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   editStudent: (data) => dispatch(startEditStudent(data)),
+  deleteStudent: () => dispatch(startRemoveStudent()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
