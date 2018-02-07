@@ -20,6 +20,7 @@ const {
   generateAuthToken,
   removeTokenMinimal,
   deleteSecondaryMinimal,
+  giveAllSecondary,
 } = require('./../utils/utils');
 
 // Initializing Model Specific Functions
@@ -30,6 +31,7 @@ const checkStudentMinimal = checkUserMinimal(StudentPrimary);
 const authStudentMinimal = authTokenMinimal(StudentPrimary);
 const deleteStudentMinimal = deleteMinimal(StudentPrimary);
 const decodeStudentAuthToken = decodeAuthTokenMinimal(StudentPrimary);
+const giveAllStudentSecondary = giveAllSecondary(StudentSecondry);
 
 const updateSecondaryMinimal = updateMinimal(StudentSecondry, false, true);
 const deleteSecondary = deleteSecondaryMinimal(StudentSecondry);
@@ -139,12 +141,49 @@ const addAccomplishment = async (req, res) => {
     const updatedSecondary = await updateSecondaryMinimal(
       { _creator: req.student._id },
       {
-        $push: { ...body },
+        $push: { accomplishments: { ...body } },
       }
     );
     return res.send(updatedSecondary);
   } catch (error) {
     return res.status(400).send(`Something went wrong: ${error}`);
+  }
+};
+
+const updateAccomplishment = async (req, res) => {
+  const _creator = req.student._id;
+  const { _id } = req.body;
+  const body = pickAccomplishments(req);
+
+  let update;
+
+  if (body.photo === null) {
+    delete body.photo;
+    update = {
+      'accomplishments.$.title': body.title,
+      'accomplishments.$.description': body.description,
+    };
+  } else {
+    update = {
+      'accomplishments.$.title': body.title,
+      'accomplishments.$.description': body.description,
+      'accomplishments.$.photo': body.photo,
+    };
+  }
+
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      {
+        _creator,
+        'accomplishments._id': _id,
+      },
+      {
+        $set: update,
+      }
+    );
+    res.send(updatedSecondary);
+  } catch (error) {
+    res.status(401).send(`Some error happened: ${error}`);
   }
 };
 
@@ -170,12 +209,51 @@ const addProjects = async (req, res) => {
     const updatedSecondary = await updateSecondaryMinimal(
       { _creator: req.student._id },
       {
-        $push: { ...body },
+        $push: { projects: body },
       }
     );
     return res.send(updatedSecondary);
   } catch (error) {
     return res.status(400).send(`Something went wrong: ${error}`);
+  }
+};
+
+const updateProject = async (req, res) => {
+  const _creator = req.student._id;
+  const { _id } = req.body;
+  const body = pickProjects(req);
+
+  let update;
+
+  if (body.photos[0] === undefined) {
+    delete body.photos;
+    update = {
+      'projects.$.title': body.title,
+      'projects.$.description': body.description,
+      'projects.$.link': body.link,
+    };
+  } else {
+    update = {
+      'projects.$.title': body.title,
+      'projects.$.description': body.description,
+      'projects.$.link': body.link,
+      'projects.$.photos': body.photos,
+    };
+  }
+
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      {
+        _creator,
+        'projects._id': _id,
+      },
+      {
+        $set: update,
+      }
+    );
+    res.send(updatedSecondary);
+  } catch (error) {
+    res.status(401).send(`Some error happened: ${error}`);
   }
 };
 
@@ -262,6 +340,16 @@ const getStudent = (req, res) => {
   res.send(req.student);
 };
 
+const getAllStudentSecondary = async (req, res) => {
+  const _creator = req.student._id; // eslint-disable-line
+  try {
+    const secondaryData = await giveAllStudentSecondary(_creator);
+    res.send(secondaryData);
+  } catch (error) {
+    res.status(401).send(`Something went wrong : ${error}`);
+  }
+};
+
 module.exports = {
   studentGoogleLogin,
   studentGitHubLogin,
@@ -277,6 +365,7 @@ module.exports = {
   updateStudent,
   deleteStudent,
   addAccomplishment,
+  updateAccomplishment,
   addProjects,
   addSpecialisations,
   removeAccomplishment,
@@ -284,4 +373,6 @@ module.exports = {
   getAllNotifications,
   checkStudent,
   getStudent,
+  getAllStudentSecondary,
+  updateProject,
 };

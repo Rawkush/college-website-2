@@ -44,12 +44,14 @@ const pickNotifications = (req) => {
 
 const pickAccomplishments = (req) => {
   const accomplishments = _.pick(req.body, ['title', 'description']);
-  return { accomplishments };
+  const photo = req.file ? req.file.path : null;
+  return { ...accomplishments, photo };
 };
 
 const pickProjects = (req) => {
-  const projects = _.pick(req.body, ['title', 'description']);
-  return { projects };
+  const projects = _.pick(req.body, ['title', 'description', 'link']);
+  const photos = req.files ? req.files.map((file) => file.path) : null;
+  return { ...projects, photos };
 };
 
 const pickSpecialisations = (req) => {
@@ -280,6 +282,15 @@ const giveAll = (Model) => async () => {
   }
 };
 
+const giveAllSecondary = (Model) => async (_creator) => {
+  try {
+    const things = await Model.find({ _creator });
+    return things;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const giveUser = (Model) => async (slug) => {
   try {
     const user = await Model.findBySlug(slug);
@@ -321,6 +332,7 @@ module.exports = {
   giveLatestThreeItem,
   giveUser,
   giveAll,
+  giveAllSecondary,
   pickAdmin,
   loginAdmin,
 };

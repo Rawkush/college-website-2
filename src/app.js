@@ -9,6 +9,7 @@ import { startSetSyllabus } from './actions/syllabus';
 import { startSetTimeTable } from './actions/timeTable';
 import { startSetEvent } from './actions/events';
 import { startSetStudent } from './actions/studentPrimary';
+import { startSetStudentSecondary } from './actions/studentSecondary';
 
 // Components
 import AppRouter from './routers/AppRouter';
@@ -20,6 +21,7 @@ store.dispatch(startSetSyllabus());
 store.dispatch(startSetTimeTable());
 store.dispatch(startSetEvent());
 store.dispatch(startSetStudent());
+store.dispatch(startSetStudentSecondary());
 
 const jsx = (
   <Provider store={store}>

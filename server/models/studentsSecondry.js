@@ -17,6 +17,9 @@ const StudentSecondrySchema = new mongoose.Schema({
         trim: true,
         minlength: 25,
       },
+      photo: {
+        type: String,
+      },
     },
   ],
   specialisation: [
@@ -39,6 +42,8 @@ const StudentSecondrySchema = new mongoose.Schema({
         trim: true,
         minlength: 50,
       },
+      photos: [{ type: String }],
+      link: String,
     },
   ],
   _creator: {
