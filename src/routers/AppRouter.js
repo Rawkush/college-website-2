@@ -8,7 +8,7 @@ import AdminRoute from './AdminRoute';
 import Header from './../components/header/Header';
 import Footer from './../components/Footer/Footer';
 import AdminNotifications from './../pages/adminPages/AdminNotifications';
-import Syllabus from './../components/syllabus/SyllabusContainer';
+// import Syllabus from './../components/syllabus/SyllabusContainer';
 import NotFound from './../components/notFound/NotFound';
 
 // Pages
@@ -39,6 +39,7 @@ import EditAccomplishmentPage from './../pages/studentPages/EditAccomplishmentPa
 import AddProjectPage from './../pages/studentPages/AddProjectPage';
 import EditProjectPage from './../pages/studentPages/EditProjectPage';
 import UpdateSpecialisationPage from './../pages/studentPages/AddSpecialisationPage';
+import TeacherRegistrationPage from '../pages/publicPages/TeacherRegistrationPage';
 
 export const history = createHistory();
 
@@ -48,8 +49,9 @@ const AppRouter = () => (
       <Header />
       <Switch>
         <Route path="/" component={HomePage} exact />
-        <Route path="/syllabus/:sub" component={Syllabus} />
+        {/* <Route path="/syllabus/:sub" component={Syllabus} /> */}
         <Route path="/student/register" component={StudentRegistrationPage} />
+        <Route path="/teacher/register" component={TeacherRegistrationPage} />
         <Route path="/admin/login" component={AdminLoginPage} exact />
         <AdminRoute
           path="/admin/dashboard"
