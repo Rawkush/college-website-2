@@ -26,6 +26,7 @@ const pickTeacher = (req) => {
     'password',
     'dateOfBirth',
     'gender',
+    'status',
     'currentPosition',
     'photo',
   ]);
@@ -284,7 +285,10 @@ const giveAll = (Model) => async () => {
 
 const giveAllSecondary = (Model) => async (_creator) => {
   try {
-    const things = await Model.find({ _creator });
+    const things = await Model.find({ _creator }).populate({
+      path: 'notifications._ref',
+      populate: { path: '_creator' },
+    });
     return things;
   } catch (error) {
     throw new Error(error);

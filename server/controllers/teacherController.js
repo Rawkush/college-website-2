@@ -2,6 +2,8 @@
 const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { TeacherSecondry } = require('./../models/teacherSecondary');
 const { teachersNotificaton } = require('./../models/teacherNotifications');
+const { StudentPrimary } = require('./../models/studentPrimary');
+const { StudentSecondry } = require('./../models/studentsSecondry');
 const {
   pickTeacher,
   pickWork,
@@ -180,13 +182,29 @@ const addNotification = async (req, res) => {
   const body = pickNotifications(req);
 
   const newBody = {
-    _creator: req.teacher._id,
+    // _creator: req.teacher._id,
+    _creator: req.body.teacher._id,
     ...body,
   };
 
   try {
     const notification = await saveNotificationsMinimal(newBody);
-    res.header('x-auth', req.header('x-auth')).send(notification);
+    const { branch, rollNo, year } = notification.tags;
+    const studentIds = await StudentPrimary.findAllIdByTags({
+      branch,
+      rollNo,
+      year,
+    });
+    console.log(studentIds);
+    studentIds.forEach(async (_creator) => {
+      await StudentSecondry.findOneAndUpdate(
+        { _creator },
+        {
+          $push: { notifications: { _ref: notification._id } },
+        }
+      );
+    });
+    res.send(notification);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
   }

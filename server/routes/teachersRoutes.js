@@ -20,7 +20,7 @@ const {
   teacherRegister,
 } = require('./../controllers/teacherController');
 
-teacherRoutes.post('/teacherRegister', teacherRegister);
+teacherRoutes.post('/register', teacherRegister);
 
 teacherRoutes.post('/teacherLogin', teacherLogin);
 
@@ -50,7 +50,7 @@ teacherRoutes.delete('/deleteTeacher', tokenTeacherAuthenticate, deleteTeacher);
 
 teacherRoutes.post(
   '/addNotifications',
-  tokenTeacherAuthenticate,
+  /* tokenTeacherAuthenticate, */
   addNotification
 );
 
