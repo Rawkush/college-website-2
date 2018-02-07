@@ -3,14 +3,15 @@ const _ = require('lodash');
 
 //  Minimal Functions
 const pickBody = (req) => {
-  const body = _.pick(req.body.userData, [
+  const body = _.pick(req.body, [
     'name',
     'rollNo',
     'location',
     'dateOfBirth',
     'gender',
     'email',
-    'addmittedIn',
+    'branch',
+    'admittedIn',
     'bio',
     'photo',
     'linkedProfiles',
@@ -43,12 +44,14 @@ const pickNotifications = (req) => {
 
 const pickAccomplishments = (req) => {
   const accomplishments = _.pick(req.body, ['title', 'description']);
-  return { accomplishments };
+  const photo = req.file ? req.file.path : null;
+  return { ...accomplishments, photo };
 };
 
 const pickProjects = (req) => {
-  const projects = _.pick(req.body, ['title', 'description']);
-  return { projects };
+  const projects = _.pick(req.body, ['title', 'description', 'link']);
+  const photos = req.files ? req.files.map((file) => file.path) : null;
+  return { ...projects, photos };
 };
 
 const pickSpecialisations = (req) => {
@@ -213,15 +216,15 @@ const loginAdmin = (Model) => async (username, password) => {
 const pickEvent = (req) => {
   const body = _.pick(req.body, [
     'name',
-    'photo',
-    'time',
+    'date',
+    'type',
     'place',
     'description',
   ]);
-  const file = req.file ? req.file.path : null;
+  const photos = req.files ? req.files.map((file) => file.path) : null;
   const newBody = {
     ...body,
-    file,
+    photos,
   };
   return newBody;
 };
@@ -249,7 +252,7 @@ const pickSyllabus = (req) => {
 };
 
 const pickTT = (req) => {
-  const body = _.pick(req.body, ['branch', 'semester', 'wef']);
+  const body = _.pick(req.body, ['branch', 'semester', 'wef', 'title']);
   const file = req.file ? req.file.path : null;
   const newBody = {
     ...body,
@@ -273,6 +276,15 @@ const giveLatestThreeItem = (Model) => async () => {
 const giveAll = (Model) => async () => {
   try {
     const things = await Model.find({}).sort({ createdAt: -1 });
+    return things;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const giveAllSecondary = (Model) => async (_creator) => {
+  try {
+    const things = await Model.find({ _creator });
     return things;
   } catch (error) {
     throw new Error(error);
@@ -320,6 +332,7 @@ module.exports = {
   giveLatestThreeItem,
   giveUser,
   giveAll,
+  giveAllSecondary,
   pickAdmin,
   loginAdmin,
 };

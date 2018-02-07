@@ -9,14 +9,14 @@ const Notification = ({ notifications }) => (
     <h2>Notifications</h2>
     {notifications ? (
       notifications.map(({ title, createdAt, tags, link, _id, file }) => (
-  <div key={_id}>
+        <div key={_id}>
           <NotificationItem
-      title={title}
-      createdAt={createdAt}
-      tags={tags}
-      link={link}
-      file={file}
-    />
+            title={title}
+            createdAt={createdAt}
+            tags={tags}
+            link={link}
+            file={file}
+          />
         </div>
       ))
     ) : (

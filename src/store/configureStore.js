@@ -7,6 +7,9 @@ import notificaionsReducer from './../reducers/notifications';
 import eventsReducer from './../reducers/events';
 import syllabusReducer from './../reducers/syllabus';
 import timeTableReducer from './../reducers/timeTable';
+import studentPrimaryReducer from './../reducers/studentPrimary';
+import studentSecondaryReducer from './../reducers/studentSecondary';
+import teacherPrimaryReducer from './../reducers/teacherPrimary';
 
 // eslint-disable-next-line
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -19,6 +22,9 @@ export default () => {
       events: eventsReducer,
       syllabus: syllabusReducer,
       timeTable: timeTableReducer,
+      studentPrimary: studentPrimaryReducer,
+      studentSecondary: studentSecondaryReducer,
+      teacherPrimary: teacherPrimaryReducer,
     }),
     composeEnhancers(applyMiddleware(thunk))
   );

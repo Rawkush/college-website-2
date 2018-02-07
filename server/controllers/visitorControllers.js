@@ -2,10 +2,17 @@
 const { Event } = require('./../models//events');
 const { Notifications } = require('./../models/notification');
 const { StudentPrimary } = require('./../models/studentPrimary');
+const { StudentSecondry } = require('./../models/studentsSecondry');
 const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { Syllabus } = require('./../models/syllabus');
+const { TimeTable } = require('./../models/timeTable');
 
-const { giveLatestThreeItem, giveUser, giveAll } = require('./../utils/utils');
+const {
+  giveLatestThreeItem,
+  giveUser,
+  giveAll,
+  giveAllSecondary,
+} = require('./../utils/utils');
 
 // Initializing the Instances of Model
 const giveLatestThreeNotifications = giveLatestThreeItem(Notifications);
@@ -13,6 +20,9 @@ const giveLatestThreeEvents = giveLatestThreeItem(Event);
 const giveStudent = giveUser(StudentPrimary);
 const giveTeacher = giveUser(TeacherPrimary);
 const giveAllSyllabus = giveAll(Syllabus);
+const giveAllTimeTable = giveAll(TimeTable);
+const giveAllEvents = giveAll(Event);
+const giveAllStudentSecondary = giveAllSecondary(StudentSecondry);
 
 const getLatestNotifications = async (req, res) => {
   try {
@@ -61,10 +71,41 @@ const getSyllabus = async (req, res) => {
   }
 };
 
+const getTimeTable = async (req, res) => {
+  try {
+    const timeTable = await giveAllTimeTable();
+    res.send(timeTable);
+  } catch (error) {
+    res.send(404).send(`Something Went Wrong: ${error}`);
+  }
+};
+
+const getAllEvents = async (req, res) => {
+  try {
+    const events = await giveAllEvents();
+    res.send(events);
+  } catch (error) {
+    res.send(404).send(`Something Went Wrong: ${error}`);
+  }
+};
+
+const getAllStudentSecondaryData = async (req, res) => {
+  const { _creator } = req.body;
+  try {
+    const secondarydata = await giveAllStudentSecondary(_creator);
+    res.send(secondarydata);
+  } catch (error) {
+    res.status(401).send(`Some error happened: ${error}`);
+  }
+};
+
 module.exports = {
   getLatestNotifications,
   getLatestEvents,
   getStudent,
   getTeacher,
   getSyllabus,
+  getTimeTable,
+  getAllEvents,
+  getAllStudentSecondaryData,
 };

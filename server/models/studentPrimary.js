@@ -70,6 +70,10 @@ const StudentPrimarySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    branch: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -86,7 +90,7 @@ const StudentPrimarySchema = new mongoose.Schema(
     photo: {
       type: String,
     },
-    addmittedIn: {
+    admittedIn: {
       type: Date,
       required: true,
       validate: [
@@ -123,10 +127,6 @@ const StudentPrimarySchema = new mongoose.Schema(
           required: true,
         },
         url: {
-          type: String,
-          required: true,
-        },
-        linkedId: {
           type: String,
           required: true,
         },

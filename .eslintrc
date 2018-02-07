@@ -31,7 +31,7 @@
     "no-underscore-dangle": [
       "error",
       {
-        "allow": ["_id"]
+        "allow": ["_id", "_creator"]
       }
     ],
     "prettier/prettier": "error",
@@ -40,6 +40,14 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": 0,
     "object-curly-newline": 0,
-    "function-paren-newline": 0
+    "function-paren-newline": 0,
+    "jsx-a11y/anchor-is-valid": [
+      "never",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ]
   }
 }

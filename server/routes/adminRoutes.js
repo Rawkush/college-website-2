@@ -49,11 +49,11 @@ adminRoutes.patch(
 
 adminRoutes.delete('/deletenotification', deleteNotifications);
 
-adminRoutes.post('/addevents', uploadEvents.single('file'), addEvents);
+adminRoutes.post('/addevent', uploadEvents.array('photo', 5), addEvents);
 
-adminRoutes.post('/editevents', uploadEvents.single('file'), editEvent);
+adminRoutes.patch('/editevent', editEvent);
 
-adminRoutes.delete('/deleteevents', deleteEvents);
+adminRoutes.delete('/deleteevent', deleteEvents);
 
 adminRoutes.post('/addsyll', uploadSyllabus.single('file'), addSyllabus);
 
@@ -63,7 +63,7 @@ adminRoutes.delete('/deletesyll', deleteSyllabus);
 
 adminRoutes.post('/addtt', uploadTimeTable.single('file'), addTimeTable);
 
-adminRoutes.post('/edittt', uploadTimeTable.single('file'), editTimeTable);
+adminRoutes.patch('/edittt', uploadTimeTable.single('file'), editTimeTable);
 
 adminRoutes.delete('/deletett', deleteTimeTable);
 

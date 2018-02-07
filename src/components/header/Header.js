@@ -32,6 +32,19 @@ class Header extends Component {
         <NavLink to="/syllabus/environment" activeClassName="is-active" exact>
           Syllabus - Env
         </NavLink>
+        <NavLink to="/timetable/even" activeClassName="is-active" exact>
+          Time Table - Even
+        </NavLink>
+        <NavLink to="/timetable/odd" activeClassName="is-active" exact>
+          Time Table - Odd
+        </NavLink>
+        <NavLink to="/events" activeClassName="is-active" exact>
+          Events
+        </NavLink>
+        <NavLink to="/student/myprofile" activeClassName="is-active" exact>
+          My Profile
+        </NavLink>
+        <NavLink to="/teacher/register" activeClassName="is-active" exact> Teacher LOgin </NavLink>
         <button onClick={this.onLoginClick}>Login</button>
         <LoginModal
           loginModal={this.state.loginModal}
