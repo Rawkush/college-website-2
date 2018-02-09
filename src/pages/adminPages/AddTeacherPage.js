@@ -24,6 +24,7 @@ class TeacherRegisterPage extends Component {
       <TeacherRegistrationForm
         onSubmit={this.addTeacher}
         history={this.props.history}
+        redirect="/admin/dashboard"
       />
     );
   }

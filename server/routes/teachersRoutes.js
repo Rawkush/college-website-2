@@ -30,7 +30,7 @@ const {
 
 teacherRoutes.post('/register', teacherRegister);
 
-teacherRoutes.post('/teacherLogin', teacherLogin);
+teacherRoutes.post('/login', teacherLogin);
 
 teacherRoutes.post('/teacherLogout', tokenTeacherAuthenticate, teacherLogout);
 

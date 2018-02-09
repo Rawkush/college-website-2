@@ -35,7 +35,7 @@ const FormikSpecialisationForm = withFormik({
       .then(() => {
         resetForm();
         setSubmitting(false);
-        props.history.push('/admin/dashboard');
+        props.history.push(props.redirect);
       })
       .catch((err) => {
         setErrors({ error: `Something Went Wrong: ${err}` });
