@@ -15,6 +15,7 @@ import NotFound from './../components/notFound/NotFound';
 import HomePage from './../pages/publicPages/HomePage';
 import AddSyllabusPage from './../pages/adminPages/AddSyllabusPage';
 import StudentRegistrationPage from './../pages/publicPages/StudentRegistrationPage';
+import TeacherRegistrationPage from '../pages/publicPages/TeacherRegistrationPage';
 import AdminLoginPage from '../pages/publicPages/AdminLoginPage';
 import AdminDashboardPage from './../pages/adminPages/AdminDashboardPage';
 import EditNotificationPage from '../pages/adminPages/EditNotificaitonPage';
@@ -39,7 +40,9 @@ import EditAccomplishmentPage from './../pages/studentPages/EditAccomplishmentPa
 import AddProjectPage from './../pages/studentPages/AddProjectPage';
 import EditProjectPage from './../pages/studentPages/EditProjectPage';
 import UpdateSpecialisationPage from './../pages/studentPages/AddSpecialisationPage';
-import TeacherRegistrationPage from '../pages/publicPages/TeacherRegistrationPage';
+
+// Teacher Page
+import TeacherProfilePage from './../pages/teacherPages/ProfilePage';
 
 export const history = createHistory();
 
@@ -141,6 +144,7 @@ const AppRouter = () => (
           exact
         />
         <Route component={NotFound} />
+        <Route path="/teacher/myprofile" component={TeacherProfilePage} />
       </Switch>
       <Footer />
     </div>
