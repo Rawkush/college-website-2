@@ -2,8 +2,10 @@ const teacherDefaultState = {};
 
 export default (state = teacherDefaultState, action) => {
   switch (action.type) {
-    case 'ADD_TEACHER':
-      return action.teacher;
+    case 'LOGIN_TEACHER':
+      return { auth: true };
+    case 'SET_TEACHER':
+      return { ...state, ...action.teacher };
     default:
       return state;
   }

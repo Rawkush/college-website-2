@@ -45,6 +45,16 @@ const TeacherRegistration = ({ values, errors, touched, isSubmitting }) => (
       {touched.Password && errors.password && <p>{errors.password} </p>}
       <Field type="password" name="password" placeholder="Password" />
     </label>
+    <label htmlFor="confirmPassword">
+      Confirm Password:
+      {touched.confirmPassword &&
+        errors.confirmPassword && <p>{errors.confirmPassword} </p>}
+      <Field
+        type="confirmPassword"
+        name="confirmPassword"
+        placeholder="Confirm your password."
+      />
+    </label>
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
@@ -58,16 +68,16 @@ const FormikTeacherRegistration = withFormik({
     dateOfBirth,
     gender,
     currentPosition,
-    password,
     edit,
-  }) {
+  } = {}) {
     return {
       name: name || '',
       email: email || '',
       dateOfBirth: dateOfBirth ? moment(dateOfBirth).format('YYYY-MM-DD') : '',
       gender: gender || '',
       currentPosition: currentPosition || '',
-      password: password || '',
+      password: '',
+      confirmPassword: '',
       edit: edit || '',
     };
   },
@@ -78,18 +88,33 @@ const FormikTeacherRegistration = withFormik({
       .required('Email is required for registration.'),
     dateOfBirth: Yup.date(),
     currentPosition: Yup.string().required('currentPosition musted be entered'),
-    password: Yup.string().required(),
   }),
   handleSubmit(val, { props, setErrors, setSubmitting }) {
-    props
-      .onSubmit(val)
-      .then(() => {
-        setSubmitting(false);
-      })
-      .catch((err) => {
-        setErrors({ error: `Something Went wrong ${err}` });
-        setSubmitting(false);
-      });
+    if (val.password) {
+      if (val.password !== val.confirmPassword) {
+        setErrors({ confirmPassword: 'Passwords do not match.' });
+      } else {
+        props
+          .onSubmit(val)
+          .then(() => {
+            setSubmitting(false);
+          })
+          .catch((err) => {
+            setErrors({ error: `Something Went wrong ${err}` });
+            setSubmitting(false);
+          });
+      }
+    } else {
+      props
+        .onSubmit(val)
+        .then(() => {
+          setSubmitting(false);
+        })
+        .catch((err) => {
+          setErrors({ error: `Something Went wrong ${err}` });
+          setSubmitting(false);
+        });
+    }
   },
 })(TeacherRegistration);
 

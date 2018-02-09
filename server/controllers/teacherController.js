@@ -54,7 +54,7 @@ const teacherLogin = async (req, res) => {
 };
 
 const tokenTeacherAuthenticate = async (req, res, next) => {
-  const token = req.header('x-auth');
+  const { token } = req.body;
   try {
     const teacher = await authTeacherMinimal(token);
     if (teacher) {

@@ -34,7 +34,7 @@ teacherRoutes.post('/login', teacherLogin);
 
 teacherRoutes.post('/teacherLogout', tokenTeacherAuthenticate, teacherLogout);
 
-teacherRoutes.patch('/teacherUpdate', tokenTeacherAuthenticate, teacherUpdate);
+teacherRoutes.patch('/updateprofile', tokenTeacherAuthenticate, teacherUpdate);
 
 teacherRoutes.patch('/addWork', tokenTeacherAuthenticate, addWork);
 

@@ -45,6 +45,8 @@ import UpdateSpecialisationPage from './../pages/studentPages/AddSpecialisationP
 // import TeacherRegistrationPage from './../pages/publicPages/TeacherRegistrationPage';
 import AddTeacherNotificationPage from './../pages/teacherPages/AddNotificationPage';
 import TeacherLoginPage from './../pages/publicPages/TeacherLoginPage';
+import TeacherProfilePage from './../pages/teacherPages/ProfilePage';
+import EditTeacherProfilePage from './../pages/teacherPages/EditTeacherProfilePage';
 
 export const history = createHistory();
 
@@ -159,6 +161,12 @@ const AppRouter = () => (
           component={TeacherRegistrationPage}
           exact
         />
+        <Route
+          path="/teacher/editprofile"
+          component={EditTeacherProfilePage}
+          exact
+        />
+        <Route path="/teacher/myprofile" component={TeacherProfilePage} exact />
         <Route path="/teacher/login" component={TeacherLoginPage} exact />
         <Route component={NotFound} />
       </Switch>
