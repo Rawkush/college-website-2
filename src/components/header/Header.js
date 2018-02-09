@@ -44,6 +44,19 @@ class Header extends Component {
         <NavLink to="/student/myprofile" activeClassName="is-active" exact>
           My Profile
         </NavLink>
+        <NavLink to="/teacher/register" activeClassName="is-active" exact>
+          Teacher Registeration
+        </NavLink>
+        <NavLink to="/teacher/login" activeClassName="is-active" exact>
+          Teacher Login
+        </NavLink>
+        <NavLink
+          to="/teacher/addNotification"
+          activeClassName="is-active"
+          exact
+        >
+          Add Teacher Notification
+        </NavLink>
         <button onClick={this.onLoginClick}>Login</button>
         <LoginModal
           loginModal={this.state.loginModal}

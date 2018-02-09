@@ -31,7 +31,7 @@
     "no-underscore-dangle": [
       "error",
       {
-        "allow": ["_id", "_creator"]
+        "allow": ["_id", "_creator", "_ref"]
       }
     ],
     "prettier/prettier": "error",

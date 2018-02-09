@@ -142,7 +142,6 @@ export const startEditProject = ({
   link = '',
   _id = '',
 }) => (dispatch) => {
-  console.log(photos);
   const formdata = new FormData();
   formdata.append('token', localStorage.getItem('studentToken'));
   formdata.append('title', title);

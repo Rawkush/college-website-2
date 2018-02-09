@@ -26,6 +26,7 @@ const {
   editEvent,
   adminRegister,
   adminLogin,
+  registerTeacher,
 } = require('./../controllers/adminController');
 
 // Initializing the Router
@@ -70,6 +71,8 @@ adminRoutes.delete('/deletett', deleteTimeTable);
 adminRoutes.post('/register', adminRegister);
 
 adminRoutes.post('/login', adminLogin);
+
+adminRoutes.post('/teacherregisteration', registerTeacher);
 
 module.exports = {
   adminRoutes,

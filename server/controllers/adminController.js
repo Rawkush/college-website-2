@@ -23,6 +23,7 @@ const saveEventsMinimal = saveMinimal2(Event);
 const saveSyllabusMinimal = saveMinimal2(Syllabus);
 const saveTimeTableMinimal = saveMinimal2(TimeTable);
 const saveAdminMinimal = saveMinimal2(Admin);
+const saveTeacherMinimal = saveMinimal2(TeacherPrimary);
 const login = loginAdmin(Admin);
 
 const updateNotifications = updateMinimal(Notifications, true, false);
@@ -37,6 +38,16 @@ const deleteSyllabusMinimal = deleteMinimal(Syllabus);
 const deleteTimeTableMinimal = deleteMinimal(TimeTable);
 
 // Controllers
+
+const registerTeacher = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const teacher = await saveTeacherMinimal({ email, password });
+    res.send(teacher);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
 
 const deleteTeacher = async (req, res) => {
   const { id } = req.body;
@@ -221,4 +232,5 @@ module.exports = {
   deleteTeacher,
   adminRegister,
   adminLogin,
+  registerTeacher,
 };

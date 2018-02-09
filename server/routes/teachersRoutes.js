@@ -1,6 +1,14 @@
 // Global Modules import
 const express = require('express');
 
+// Configurations
+const { multerConfig } = require('./../config/multerConfig');
+
+const uploadTeacherNotification = multerConfig(
+  'uploads/teacherNotification',
+  /pdf|jpg|jpeg|png/
+);
+
 // Initializing the Router
 const teacherRoutes = express.Router();
 
@@ -49,7 +57,8 @@ teacherRoutes.patch(
 teacherRoutes.delete('/deleteTeacher', tokenTeacherAuthenticate, deleteTeacher);
 
 teacherRoutes.post(
-  '/addNotifications',
+  '/addnotification',
+  uploadTeacherNotification.single('file'),
   /* tokenTeacherAuthenticate, */
   addNotification
 );

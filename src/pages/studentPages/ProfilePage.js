@@ -9,6 +9,7 @@ import LinksList from './../../components/StudentDashboard/LinksList';
 import AccomplishmentsList from './../../components/StudentDashboard/AccomplishmentsList';
 import ProjectList from './../../components/StudentDashboard/ProjectsList';
 import SpecialisationList from './../../components/StudentDashboard/SpecialisationList';
+import NotificationList from './../../components/StudentDashboard/NotificationList';
 
 const StudentProfilePage = ({ student, secondary }) => (
   <div>
@@ -21,6 +22,7 @@ const StudentProfilePage = ({ student, secondary }) => (
         <AccomplishmentsList {...secondary} edit />
         <ProjectList {...secondary} edit />
         <SpecialisationList {...secondary} />
+        <NotificationList {...secondary} />
         <Link to="/student/myprofile/addaccomplishment">
           Add Accomplishment
         </Link>

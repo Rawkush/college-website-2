@@ -2,6 +2,7 @@ const secondaryDefaultState = {
   accomplishments: [],
   specialisation: [],
   projects: [],
+  notifications: [],
 };
 
 export default (state = secondaryDefaultState, action) => {

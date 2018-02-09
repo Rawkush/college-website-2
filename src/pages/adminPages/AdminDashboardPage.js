@@ -8,5 +8,6 @@ export default () => (
     <Link to="/admin/events"> Events </Link>
     <Link to="/admin/timetable"> Time Table </Link>
     <Link to="/admin/syllabus"> Syllabus </Link>
+    <Link to="/admin/registerteacher"> Register Teacher </Link>
   </div>
 );

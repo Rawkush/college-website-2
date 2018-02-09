@@ -7,7 +7,6 @@ const { StudentSecondry } = require('./../models/studentsSecondry');
 const {
   pickTeacher,
   pickWork,
-  pickNotifications,
   pickEducation,
   loginLocal,
   removeTokenMinimal,
@@ -18,6 +17,7 @@ const {
   deleteMinimal,
   deleteSecondaryMinimal,
   saveMinimal2,
+  pickTeacherNotifications,
 } = require('./../utils/utils');
 
 // Initializing the function for the Model
@@ -179,11 +179,11 @@ const deleteTeacher = async (req, res) => {
 };
 
 const addNotification = async (req, res) => {
-  const body = pickNotifications(req);
+  const body = pickTeacherNotifications(req);
 
   const newBody = {
     // _creator: req.teacher._id,
-    _creator: req.body.teacher._id,
+    _creator: req.body._id,
     ...body,
   };
 
@@ -195,7 +195,6 @@ const addNotification = async (req, res) => {
       rollNo,
       year,
     });
-    console.log(studentIds);
     studentIds.forEach(async (_creator) => {
       await StudentSecondry.findOneAndUpdate(
         { _creator },

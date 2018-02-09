@@ -30,6 +30,7 @@ import AdminEventsPage from './../pages/adminPages/AdminEventsPage';
 import EditEventPage from './../pages/adminPages/EditEventPage';
 import EventsOptionPage from './../pages/publicPages/EventsOptionPage';
 import EventsPage from './../pages/publicPages/EventsPage';
+import TeacherRegistrationPage from './../pages/adminPages/AddTeacherPage';
 
 // Student Page
 import StudentProfilePage from './../pages/studentPages/ProfilePage';
@@ -39,6 +40,11 @@ import EditAccomplishmentPage from './../pages/studentPages/EditAccomplishmentPa
 import AddProjectPage from './../pages/studentPages/AddProjectPage';
 import EditProjectPage from './../pages/studentPages/EditProjectPage';
 import UpdateSpecialisationPage from './../pages/studentPages/AddSpecialisationPage';
+
+// Teachers Page
+// import TeacherRegistrationPage from './../pages/publicPages/TeacherRegistrationPage';
+import AddTeacherNotificationPage from './../pages/teacherPages/AddNotificationPage';
+import TeacherLoginPage from './../pages/publicPages/TeacherLoginPage';
 
 export const history = createHistory();
 
@@ -138,6 +144,22 @@ const AppRouter = () => (
           component={UpdateSpecialisationPage}
           exact
         />
+        <Route
+          path="/teacher/register"
+          component={TeacherRegistrationPage}
+          exact
+        />
+        <Route
+          path="/teacher/addnotification"
+          component={AddTeacherNotificationPage}
+          exact
+        />
+        <Route
+          path="/admin/registerteacher"
+          component={TeacherRegistrationPage}
+          exact
+        />
+        <Route path="/teacher/login" component={TeacherLoginPage} exact />
         <Route component={NotFound} />
       </Switch>
       <Footer />

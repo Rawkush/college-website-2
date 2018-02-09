@@ -43,6 +43,33 @@ const pickNotifications = (req) => {
   return newBody;
 };
 
+const pickTeacherNotifications = (req) => {
+  const body1 = _.pick(req.body, [
+    'title',
+    'description',
+    'link',
+    'branch',
+    'rollNo',
+    'year',
+  ]);
+  const body2 = {
+    title: body1.title,
+    description: body1.description,
+    link: body1.link,
+    tags: {
+      branch: body1.branch,
+      rollNo: body1.rollNo,
+      year: body1.year,
+    },
+  };
+  const file = req.file ? req.file.path : null;
+  const newBody = {
+    ...body2,
+    file,
+  };
+  return newBody;
+};
+
 const pickAccomplishments = (req) => {
   const accomplishments = _.pick(req.body, ['title', 'description']);
   const photo = req.file ? req.file.path : null;
@@ -339,4 +366,5 @@ module.exports = {
   giveAllSecondary,
   pickAdmin,
   loginAdmin,
+  pickTeacherNotifications,
 };
