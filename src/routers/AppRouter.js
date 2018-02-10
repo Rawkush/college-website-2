@@ -43,6 +43,12 @@ import UpdateSpecialisationPage from './../pages/studentPages/AddSpecialisationP
 
 // Teacher Page
 import TeacherProfilePage from './../pages/teacherPages/ProfilePage';
+import AddWorkPage from './../pages/teacherPages/AddWorkPage';
+import EditWorkPage from './../pages/teacherPages/EditWorkPage';
+import AddTechnicalSkillsPage from './../pages/teacherPages/AddTechnicalSkillsPage';
+import AddCommittePage from './../pages/teacherPages/AddCommittePage';
+import AddSpecialisationPage from './../pages/teacherPages/AddSpecialisationPage';
+import AddEductionPage from './../pages/teacherPages/AddEductionPage';
 
 export const history = createHistory();
 
@@ -143,8 +149,38 @@ const AppRouter = () => (
           component={UpdateSpecialisationPage}
           exact
         />
+        <Route path="/teacher/myprofile" component={TeacherProfilePage} exact />
+        <Route
+          path="/teacher/myprofile/addwork"
+          component={AddWorkPage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/editwork/:_id"
+          component={EditWorkPage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/addtechnicalskill"
+          component={AddTechnicalSkillsPage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/addcommitte"
+          component={AddCommittePage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/updatespecialisation"
+          component={AddSpecialisationPage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/updateeduction"
+          component={AddEductionPage}
+          exact
+        />
         <Route component={NotFound} />
-        <Route path="/teacher/myprofile" component={TeacherProfilePage} />
       </Switch>
       <Footer />
     </div>
