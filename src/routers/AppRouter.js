@@ -46,7 +46,9 @@ import TeacherProfilePage from './../pages/teacherPages/ProfilePage';
 import AddWorkPage from './../pages/teacherPages/AddWorkPage';
 import EditWorkPage from './../pages/teacherPages/EditWorkPage';
 import AddTechnicalSkillsPage from './../pages/teacherPages/AddTechnicalSkillsPage';
+import EditTechnicalSkillsPage from './../pages/teacherPages/EditTechnicalSkillsPage';
 import AddCommittePage from './../pages/teacherPages/AddCommittePage';
+import EditCommittePage from './../pages/teacherPages/EditCommittePage';
 import AddSpecialisationPage from './../pages/teacherPages/AddSpecialisationPage';
 import AddEductionPage from './../pages/teacherPages/AddEductionPage';
 
@@ -166,8 +168,18 @@ const AppRouter = () => (
           exact
         />
         <Route
+          path="/teacher/myprofile/edittechnicalskill/:_id"
+          component={EditTechnicalSkillsPage}
+          exact
+        />
+        <Route
           path="/teacher/myprofile/addcommitte"
           component={AddCommittePage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/editcommitte/:_id"
+          component={EditCommittePage}
           exact
         />
         <Route
