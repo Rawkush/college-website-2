@@ -350,6 +350,27 @@ const getAllStudentSecondary = async (req, res) => {
   }
 };
 
+const markAsRead = async (req, res) => {
+  const _creator = req.student._id;
+  const { _id } = req.body;
+  try {
+    const know = await updateSecondaryMinimal(
+      {
+        _creator,
+        'notifications._id': _id,
+      },
+      {
+        $set: {
+          'notfications.$.read': true,
+        },
+      }
+    );
+    res.status(200).send(know);
+  } catch (error) {
+    res.send(`Something went wrong: ${error}`);
+  }
+};
+
 module.exports = {
   studentGoogleLogin,
   studentGitHubLogin,
@@ -375,4 +396,5 @@ module.exports = {
   getStudent,
   getAllStudentSecondary,
   updateProject,
+  markAsRead,
 };

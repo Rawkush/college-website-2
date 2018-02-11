@@ -18,6 +18,7 @@ const {
   deleteSecondaryMinimal,
   saveMinimal2,
   pickTeacherNotifications,
+  pickCommittee,
 } = require('./../utils/utils');
 
 // Initializing the function for the Model
@@ -107,17 +108,88 @@ const addWork = async (req, res) => {
   }
 };
 
+const updateWork = async (req, res) => {
+  const body = pickWork(req);
+  const { _id } = req.body;
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      { _creator: req.teacher._id, 'work._id': _id },
+      {
+        $set: {
+          'work.$.title': body.work.title,
+          'work.$.description': body.work.description,
+        },
+      }
+    );
+    return res.send(updatedSecondary);
+  } catch (error) {
+    return res.status(400).send(`Something went wrong:${error}`);
+  }
+};
+
 const removeWork = async (req, res) => {
   const { _id } = req.body;
 
   try {
     const updatedSecondary = await updateSecondaryMinimal(
-      { _creator: req.teacher._id },
+      { _creator: req.teacher._id, 'work._id': _id },
       {
         $pull: { work: { _id } },
       }
     );
     return res.header('x-auth', req.header('x-auth')).send(updatedSecondary);
+  } catch (error) {
+    return res.sendStatus(400).send('Something went wrong');
+  }
+};
+
+const addTeacherCommittee = async (req, res) => {
+  const body = pickCommittee(req);
+
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      { _creator: req.teacher._id },
+      {
+        $push: { ...body },
+      }
+    );
+    return res.send(updatedSecondary);
+  } catch (error) {
+    return res.status(400).send(`Something went wrong: ${error}`);
+  }
+};
+
+const updateTeacherCommittee = async (req, res) => {
+  const body = pickCommittee(req);
+  const { _id } = req.body;
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      { _creator: req.teacher._id, 'committee._id': _id },
+      {
+        $set: {
+          'committee.$.name': body.committee.name,
+          'committee.$.designation': body.committee.designation,
+          'committee.$.status': body.committee.status,
+        },
+      }
+    );
+    return res.send(updatedSecondary);
+  } catch (error) {
+    return res.status(400).send(`Something went wrong: ${error}`);
+  }
+};
+
+const removeCommittee = async (req, res) => {
+  const { _id } = req.body;
+
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      { _creator: req.teacher._id, 'committee._id': _id },
+      {
+        $pull: { committee: { _id } },
+      }
+    );
+    return res.send(updatedSecondary);
   } catch (error) {
     return res.sendStatus(400).send('Something went wrong');
   }
@@ -182,8 +254,7 @@ const addNotification = async (req, res) => {
   const body = pickTeacherNotifications(req);
 
   const newBody = {
-    // _creator: req.teacher._id,
-    _creator: req.body._id,
+    _creator: req.teacher._id,
     ...body,
   };
 
@@ -209,12 +280,25 @@ const addNotification = async (req, res) => {
   }
 };
 
+const getTeacherSecondary = async (req, res) => {
+  const { _id } = req.teacher;
+
+  try {
+    const teacherSecondary = await TeacherSecondry.find({ _creator: _id });
+    const notifications = await teachersNotificaton.find({ _creator: _id });
+    res.send({ ...teacherSecondary, notifications });
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
 module.exports = {
   teacherLogin,
   teacherLogout,
   tokenTeacherAuthenticate,
   teacherUpdate,
   addWork,
+  updateWork,
   removeWork,
   addEducation,
   addTeacherSpecialications,
@@ -222,4 +306,8 @@ module.exports = {
   deleteTeacher,
   addNotification,
   teacherRegister,
+  getTeacherSecondary,
+  addTeacherCommittee,
+  updateTeacherCommittee,
+  removeCommittee,
 };

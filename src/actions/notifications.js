@@ -67,6 +67,13 @@ export const startSetNotification = () => (dispatch) =>
     dispatch(setNotification(res.data));
   });
 
+export const startSetAllNotification = () => (dispatch) =>
+  axios
+    .get('http://localhost:3000/s/visitor/getallNotifications')
+    .then((res) => {
+      dispatch(setNotification(res.data));
+    });
+
 export const editNotification = (notification) => ({
   type: 'EDIT_NOTIFICATION',
   notification,

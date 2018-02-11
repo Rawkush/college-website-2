@@ -1,8 +1,24 @@
 import React from 'react';
 
-export default ({ title, description, file, link, tags = {} }) => (
+export default ({
+  title,
+  description,
+  file,
+  link,
+  read,
+  tags = {},
+  markAsRead,
+  _id,
+}) => (
   <div>
-    <a href={link}>
+    <a
+      href={link}
+      onClick={() => {
+        if (!read) {
+          markAsRead(_id);
+        }
+      }}
+    >
       <h4>{title}</h4>
       <p>{description}</p>
       <p>Tags:</p>

@@ -11,8 +11,11 @@ import AdminNotifications from './../pages/adminPages/AdminNotifications';
 import Syllabus from './../components/syllabus/SyllabusContainer';
 import NotFound from './../components/notFound/NotFound';
 
-// Pages
+// Public Pages
 import HomePage from './../pages/publicPages/HomePage';
+import NotificationPage from './../pages/publicPages/NotificationPage';
+
+// Pages
 import AddSyllabusPage from './../pages/adminPages/AddSyllabusPage';
 import StudentRegistrationPage from './../pages/publicPages/StudentRegistrationPage';
 import AdminLoginPage from '../pages/publicPages/AdminLoginPage';
@@ -47,6 +50,12 @@ import AddTeacherNotificationPage from './../pages/teacherPages/AddNotificationP
 import TeacherLoginPage from './../pages/publicPages/TeacherLoginPage';
 import TeacherProfilePage from './../pages/teacherPages/ProfilePage';
 import EditTeacherProfilePage from './../pages/teacherPages/EditTeacherProfilePage';
+import AddWorkPage from './../pages/teacherPages/AddWorkPage';
+import AddTechnicalSkillsPage from './../pages/teacherPages/AddTechnicalSkillsPage';
+import AddCommittePage from './../pages/teacherPages/AddCommittePage';
+import AddSpecialisationPage from './../pages/teacherPages/AddSpecialisationPage';
+import AddEductionPage from './../pages/teacherPages/AddEductionPage';
+import EditWorkPage from './../pages/teacherPages/EditWorkPage';
 
 export const history = createHistory();
 
@@ -56,6 +65,7 @@ const AppRouter = () => (
       <Header />
       <Switch>
         <Route path="/" component={HomePage} exact />
+        <Route path="/notification" component={NotificationPage} exact />
         <Route path="/syllabus/:sub" component={Syllabus} />
         <Route path="/student/register" component={StudentRegistrationPage} />
         <Route path="/admin/login" component={AdminLoginPage} exact />
@@ -168,6 +178,20 @@ const AppRouter = () => (
         />
         <Route path="/teacher/myprofile" component={TeacherProfilePage} exact />
         <Route path="/teacher/login" component={TeacherLoginPage} exact />
+        <Route path="/teacher/addwork" component={AddWorkPage} exact />
+        <Route path="/teacher/addcommitte" component={AddCommittePage} exact />
+        <Route path="/teacher/addeducation" component={AddEductionPage} exact />
+        <Route
+          path="/teacher/addtechnicalskill"
+          component={AddTechnicalSkillsPage}
+          exact
+        />
+        <Route
+          path="/teacher/addspecialisation"
+          component={AddSpecialisationPage}
+          exact
+        />
+        <Route path="/teacher/editwork/:_id" component={EditWorkPage} exact />
         <Route component={NotFound} />
       </Switch>
       <Footer />

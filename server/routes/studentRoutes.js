@@ -39,6 +39,7 @@ const {
   getAllStudentSecondary,
   updateAccomplishment,
   updateProject,
+  markAsRead,
 } = require('./../controllers/studentsController');
 
 // Routes
@@ -128,5 +129,7 @@ studentRoutes.post(
   tokenAuthenticate,
   getAllStudentSecondary
 );
+
+studentRoutes.post('/markasread', tokenAuthenticate, markAsRead);
 
 module.exports = { studentRoutes };

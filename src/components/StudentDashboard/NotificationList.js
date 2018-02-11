@@ -3,10 +3,15 @@ import React from 'react';
 // Components
 import NotificationListItem from './NotificationListItem';
 
-export default ({ notifications }) => (
+export default ({ notifications, markAsRead }) => (
   <div>
     {notifications.map((notification) => (
-      <NotificationListItem key={notification._id} {...notification._ref} />
+      <NotificationListItem
+        markAsRead={markAsRead}
+        key={notification._id}
+        {...notification._ref}
+        read={notification.read}
+      />
     ))}
   </div>
 );

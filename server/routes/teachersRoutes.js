@@ -19,6 +19,7 @@ const {
   teacherLogout,
   teacherUpdate,
   addWork,
+  updateWork,
   removeWork,
   addEducation,
   addTechnicalSkills,
@@ -26,9 +27,19 @@ const {
   deleteTeacher,
   addNotification,
   teacherRegister,
+  getTeacherSecondary,
+  addTeacherCommittee,
+  updateTeacherCommittee,
+  removeCommittee,
 } = require('./../controllers/teacherController');
 
 teacherRoutes.post('/register', teacherRegister);
+
+teacherRoutes.post(
+  '/getteachersecondary',
+  tokenTeacherAuthenticate,
+  getTeacherSecondary
+);
 
 teacherRoutes.post('/login', teacherLogin);
 
@@ -36,20 +47,22 @@ teacherRoutes.post('/teacherLogout', tokenTeacherAuthenticate, teacherLogout);
 
 teacherRoutes.patch('/updateprofile', tokenTeacherAuthenticate, teacherUpdate);
 
-teacherRoutes.patch('/addWork', tokenTeacherAuthenticate, addWork);
+teacherRoutes.patch('/addwork', tokenTeacherAuthenticate, addWork);
 
-teacherRoutes.patch('/removeWork', tokenTeacherAuthenticate, removeWork);
+teacherRoutes.patch('/updatework', tokenTeacherAuthenticate, updateWork);
 
-teacherRoutes.patch('/addEducation', tokenTeacherAuthenticate, addEducation);
+teacherRoutes.patch('/removework', tokenTeacherAuthenticate, removeWork);
+
+teacherRoutes.patch('/updateeducation', tokenTeacherAuthenticate, addEducation);
 
 teacherRoutes.patch(
-  '/addTechnicalSkills',
+  '/updatetechnicalskill',
   tokenTeacherAuthenticate,
   addTechnicalSkills
 );
 
 teacherRoutes.patch(
-  '/addSpecialiscations',
+  '/updatespecialisation',
   tokenTeacherAuthenticate,
   addTeacherSpecialications
 );
@@ -59,8 +72,26 @@ teacherRoutes.delete('/deleteTeacher', tokenTeacherAuthenticate, deleteTeacher);
 teacherRoutes.post(
   '/addnotification',
   uploadTeacherNotification.single('file'),
-  /* tokenTeacherAuthenticate, */
+  tokenTeacherAuthenticate,
   addNotification
+);
+
+teacherRoutes.post(
+  '/addcommittee',
+  tokenTeacherAuthenticate,
+  addTeacherCommittee
+);
+
+teacherRoutes.patch(
+  '/updatecommttee',
+  tokenTeacherAuthenticate,
+  updateTeacherCommittee
+);
+
+teacherRoutes.delete(
+  '/removecommittee',
+  tokenTeacherAuthenticate,
+  removeCommittee
 );
 
 module.exports = { teacherRoutes };

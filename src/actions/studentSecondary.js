@@ -219,3 +219,19 @@ export const startUpdateSpecialisation = ({
     })
     .catch((err) => Promise.reject(err));
 };
+
+const markNotificationAsRead = () => ({
+  type: 'MARK_AS_READ',
+});
+
+export const startMarkNotificationAsRead = (_id) => (dispatch) =>
+  axios
+    .post('http://localhost:3000/s/student/markasread', {
+      _id,
+      token: localStorage.getItem('studentToken'),
+    })
+    .then((res) => {
+      dispatch(markNotificationAsRead(res));
+      Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));

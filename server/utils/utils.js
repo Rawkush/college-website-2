@@ -111,6 +111,11 @@ const pickTechnicalSkills = (req) => {
   return { ...technicalSkills };
 };
 
+const pickCommittee = (req) => {
+  const committee = _.pick(req.body, ['name', 'designation', 'status']);
+  return { committee };
+};
+
 const generateAuthToken = async (user) => {
   try {
     const token = await user.generateAuthToken();
@@ -367,4 +372,5 @@ module.exports = {
   pickAdmin,
   loginAdmin,
   pickTeacherNotifications,
+  pickCommittee,
 };
