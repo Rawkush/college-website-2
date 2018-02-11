@@ -146,55 +146,60 @@ export const startAddTechnicalSkill = ({
 };
 
 // committe
-export const addCommitte = (committe) => ({
-  type: 'ADD_COMMITTE',
-  committe,
-});
-
-export const startAddCommitte = ({ committe = '' }) => (dispatch) => {
-  const formdata = new FormData();
-  formdata.append('token', localStorage.getItem('teacherToken'));
-  formdata.append('committe', committe);
+export const startAddCommittee = ({
+  name = '',
+  designation = '',
+  status = '',
+}) => (dispatch) => {
+  const data = {
+    name,
+    designation,
+    status,
+    token: localStorage.getItem('teacherToken'),
+  };
   return axios({
-    method: 'patch',
-    url: 'http://localhost:3000/s/teacher/addcommitte',
-    date: formdata,
+    method: 'post',
+    url: 'http://localhost:3000/s/teacher/addcommittee',
+    data,
     config: { headers: { 'Content-Type': 'application/json' } },
   })
     .then((res) => {
-      dispatch(addCommitte(res.data.committes));
-      return Promise.reject.resolve();
-    })
-    .catch((err) => Promise.reject(err));
-};
-
-export const editCommitte = (committe) => ({
-  type: 'EDIT_COMMITTE',
-  committe,
-});
-
-export const startEditCommitte = ({ committe = '', _id = '' }) => (
-  dispatch
-) => {
-  const formdata = new FormData();
-  formdata.append('token', localStorage.getItem('studentToken'));
-  return axios({
-    method: 'patch',
-    url: 'http://localhost:3000/s/student/updateaccomplishment',
-    data: formdata,
-    config: { headers: { 'Content-Type': 'application/json' } },
-  })
-    .then((res) => {
-      dispatch(editCommitte(res.data.committes));
+      dispatch(setTeacherSecondary(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
 };
 
-export const startRemoveCommitte = (_id) => (dispatch) =>
-  axios({
+export const startEditCommittee = ({
+  name = '',
+  designation = '',
+  status = '',
+  _id = '',
+}) => (dispatch) => {
+  const data = {
+    name,
+    designation,
+    status,
+    _id,
+    token: localStorage.getItem('teacherToken'),
+  };
+  return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/teacher/removecommitte',
+    url: 'http://localhost:3000/s/teacher/updatecommittee',
+    data,
+    config: { headers: { 'Content-Type': 'application/json' } },
+  })
+    .then((res) => {
+      dispatch(setTeacherSecondary(res.data));
+      return Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));
+};
+
+export const startRemoveCommittee = (_id) => (dispatch) =>
+  axios({
+    method: 'delete',
+    url: 'http://localhost:3000/s/teacher/removecommittee',
     data: {
       token: localStorage.getItem('teacherToken'),
       _id,
@@ -204,7 +209,7 @@ export const startRemoveCommitte = (_id) => (dispatch) =>
     },
   })
     .then((res) => {
-      dispatch(editCommitte(res.data.committes));
+      dispatch(setTeacherSecondary(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));

@@ -137,7 +137,7 @@ const removeWork = async (req, res) => {
         $pull: { work: { _id } },
       }
     );
-    return res.header('x-auth', req.header('x-auth')).send(updatedSecondary);
+    return res.send(updatedSecondary);
   } catch (error) {
     return res.sendStatus(400).send('Something went wrong');
   }
@@ -182,6 +182,10 @@ const updateTeacherCommittee = async (req, res) => {
 const removeCommittee = async (req, res) => {
   const { _id } = req.body;
 
+  console.log('====================================');
+  console.log(_id);
+  console.log(req.teacher._id);
+  console.log('====================================');
   try {
     const updatedSecondary = await updateSecondaryMinimal(
       { _creator: req.teacher._id, 'committee._id': _id },
@@ -191,6 +195,7 @@ const removeCommittee = async (req, res) => {
     );
     return res.send(updatedSecondary);
   } catch (error) {
+    console.log(error);
     return res.sendStatus(400).send('Something went wrong');
   }
 };

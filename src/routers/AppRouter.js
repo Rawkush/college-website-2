@@ -56,6 +56,7 @@ import AddCommittePage from './../pages/teacherPages/AddCommittePage';
 import AddSpecialisationPage from './../pages/teacherPages/AddSpecialisationPage';
 import AddEductionPage from './../pages/teacherPages/AddEductionPage';
 import EditWorkPage from './../pages/teacherPages/EditWorkPage';
+import EditCommitteePage from './../pages/teacherPages/EditCommittePage';
 
 export const history = createHistory();
 
@@ -192,6 +193,11 @@ const AppRouter = () => (
           exact
         />
         <Route path="/teacher/editwork/:_id" component={EditWorkPage} exact />
+        <Route
+          path="/teacher/editcommittee/:_id"
+          component={EditCommitteePage}
+          exact
+        />
         <Route component={NotFound} />
       </Switch>
       <Footer />

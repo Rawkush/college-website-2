@@ -2,20 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Components
-import CommitteForm from './../../components/TeacherDashBoard/CommitteForm';
+import CommitteeForm from './../../components/TeacherDashBoard/CommitteeForm';
 
 // actios
-import { startAddCommitte } from './../../actions/teacherSecondary';
+import { startAddCommittee } from './../../actions/teacherSecondary';
 
-const AddCommitte = ({ addCommitte, history }) => (
+const AddCommitte = ({ addCommittee, history }) => (
   <div>
     <h2> Add Committe </h2>
-    <CommitteForm onSubmit={addCommitte} history={history} />
+    <CommitteeForm onSubmit={addCommittee} history={history} />
   </div>
 );
 
 const mapDispatchToProps = (dispatch) => ({
-  addCommitte: (val) => dispatch(startAddCommitte(val)),
+  addCommittee: (val) => dispatch(startAddCommittee(val)),
 });
 
 export default connect(undefined, mapDispatchToProps)(AddCommitte);

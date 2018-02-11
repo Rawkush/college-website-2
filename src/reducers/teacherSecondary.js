@@ -4,7 +4,7 @@ const teacherSecondaryDefaultState = {
   education: [],
   specialisation: [],
   technicalSkills: [],
-  committees: [],
+  committee: [],
 };
 
 export default (state = teacherSecondaryDefaultState, action) => {

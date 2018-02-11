@@ -1,16 +1,16 @@
 import React from 'react';
 
 // Components
-import CommitteListItem from './WorkListItem';
+import CommitteeListItem from './CommitteeListItem';
 
-export default ({ committees }) => (
+export default ({ committee }) => (
   <div>
-    {committees ? (
+    {committee ? (
       <div>
         <hr />
-        <h4>Works</h4>
-        {committees.map((committee) => (
-          <CommitteListItem key={committee._id} {...committee} edit />
+        <h4>Committee - </h4>
+        {committee.map((elem) => (
+          <CommitteeListItem key={elem._id} {...elem} edit />
         ))}
       </div>
     ) : (

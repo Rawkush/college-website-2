@@ -83,7 +83,7 @@ teacherRoutes.post(
 );
 
 teacherRoutes.patch(
-  '/updatecommttee',
+  '/updatecommittee',
   tokenTeacherAuthenticate,
   updateTeacherCommittee
 );
