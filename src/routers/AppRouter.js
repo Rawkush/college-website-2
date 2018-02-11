@@ -15,6 +15,7 @@ import NotFound from './../components/notFound/NotFound';
 import HomePage from './../pages/publicPages/HomePage';
 import AddSyllabusPage from './../pages/adminPages/AddSyllabusPage';
 import StudentRegistrationPage from './../pages/publicPages/StudentRegistrationPage';
+import TeacherRegistrationPage from '../pages/publicPages/TeacherRegistrationPage';
 import AdminLoginPage from '../pages/publicPages/AdminLoginPage';
 import AdminDashboardPage from './../pages/adminPages/AdminDashboardPage';
 import EditNotificationPage from '../pages/adminPages/EditNotificaitonPage';
@@ -39,7 +40,17 @@ import EditAccomplishmentPage from './../pages/studentPages/EditAccomplishmentPa
 import AddProjectPage from './../pages/studentPages/AddProjectPage';
 import EditProjectPage from './../pages/studentPages/EditProjectPage';
 import UpdateSpecialisationPage from './../pages/studentPages/AddSpecialisationPage';
-import TeacherRegistrationPage from '../pages/publicPages/TeacherRegistrationPage';
+
+// Teacher Page
+import TeacherProfilePage from './../pages/teacherPages/ProfilePage';
+import AddWorkPage from './../pages/teacherPages/AddWorkPage';
+import EditWorkPage from './../pages/teacherPages/EditWorkPage';
+import AddTechnicalSkillsPage from './../pages/teacherPages/AddTechnicalSkillsPage';
+import EditTechnicalSkillsPage from './../pages/teacherPages/EditTechnicalSkillsPage';
+import AddCommittePage from './../pages/teacherPages/AddCommittePage';
+import EditCommittePage from './../pages/teacherPages/EditCommittePage';
+import AddSpecialisationPage from './../pages/teacherPages/AddSpecialisationPage';
+import AddEductionPage from './../pages/teacherPages/AddEductionPage';
 
 export const history = createHistory();
 
@@ -138,6 +149,47 @@ const AppRouter = () => (
         <Route
           path="/student/myprofile/updatespecialisation"
           component={UpdateSpecialisationPage}
+          exact
+        />
+        <Route path="/teacher/myprofile" component={TeacherProfilePage} exact />
+        <Route
+          path="/teacher/myprofile/addwork"
+          component={AddWorkPage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/editwork/:_id"
+          component={EditWorkPage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/addtechnicalskill"
+          component={AddTechnicalSkillsPage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/edittechnicalskill/:_id"
+          component={EditTechnicalSkillsPage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/addcommitte"
+          component={AddCommittePage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/editcommitte/:_id"
+          component={EditCommittePage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/updatespecialisation"
+          component={AddSpecialisationPage}
+          exact
+        />
+        <Route
+          path="/teacher/myprofile/updateeduction"
+          component={AddEductionPage}
           exact
         />
         <Route component={NotFound} />
