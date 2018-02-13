@@ -27,6 +27,12 @@ const login = loginLocal(TeacherPrimary);
 const authTeacherMinimal = authTokenMinimal(TeacherPrimary);
 const updateTeacherMinimal = updateMinimal(TeacherPrimary, true, false);
 const deleteTeacherMinimal = deleteMinimal(TeacherPrimary);
+const updateNotificationMinimal = updateMinimal(
+  teachersNotificaton,
+  true,
+  false
+);
+const deleteNotificationMinimal = deleteMinimal(teachersNotificaton);
 
 const updateSecondaryMinimal = updateMinimal(TeacherSecondry, false, true);
 const deleteSecondary = deleteSecondaryMinimal(TeacherSecondry);
@@ -181,11 +187,6 @@ const updateTeacherCommittee = async (req, res) => {
 
 const removeCommittee = async (req, res) => {
   const { _id } = req.body;
-
-  console.log('====================================');
-  console.log(_id);
-  console.log(req.teacher._id);
-  console.log('====================================');
   try {
     const updatedSecondary = await updateSecondaryMinimal(
       { _creator: req.teacher._id, 'committee._id': _id },
@@ -195,7 +196,6 @@ const removeCommittee = async (req, res) => {
     );
     return res.send(updatedSecondary);
   } catch (error) {
-    console.log(error);
     return res.sendStatus(400).send('Something went wrong');
   }
 };
@@ -297,6 +297,47 @@ const getTeacherSecondary = async (req, res) => {
   }
 };
 
+const updateNotification = async (req, res) => {
+  const { _id } = req.teacher;
+  const body = pickTeacherNotifications(req);
+  if (body.file === null) {
+    delete body.file;
+  }
+
+  try {
+    const updatedNotification = await updateNotificationMinimal(
+      {
+        _creator: _id,
+        _id: req.body._id,
+      },
+      {
+        $set: { ...body },
+      }
+    );
+    res.send(updatedNotification);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+const deleteNotification = async (req, res) => {
+  const _creator = req.teacher._id;
+  const { _id } = req.body;
+
+  console.log(_id);
+  console.log(_creator);
+
+  try {
+    const deleted = await deleteNotificationMinimal({
+      _creator,
+      _id,
+    });
+    res.send(deleted);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
 module.exports = {
   teacherLogin,
   teacherLogout,
@@ -310,6 +351,8 @@ module.exports = {
   addTechnicalSkills,
   deleteTeacher,
   addNotification,
+  updateNotification,
+  deleteNotification,
   teacherRegister,
   getTeacherSecondary,
   addTeacherCommittee,

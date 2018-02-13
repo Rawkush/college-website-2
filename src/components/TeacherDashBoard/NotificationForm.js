@@ -71,35 +71,19 @@ const TeacherNotificationForm = ({
         placeholder="Enter the students roll number"
       />
     </label>
-    {values.file &&
-      values.edit && (
-        <label htmlFor="removeFile">
-          Remove File:
-          <Field
-            type="checkbox"
-            name="removeFile"
-            id="removeFile"
-            checked={values.removeFile}
-          />
-        </label>
-      )}
-    {values.file &&
-      values.edit && (
-        <a href={values.file} target="_blank">
-          Preview already uploaded file.
-        </a>
-      )}
-    <label htmlFor="file">
-      File:
-      <input
-        type="file"
-        name="file"
-        id="file"
-        onChange={(e) => {
-          setFieldValue('file', e.currentTarget.files[0]);
-        }}
-      />
-    </label>
+    {!values.edit && (
+      <label htmlFor="file">
+        File:
+        <input
+          type="file"
+          name="file"
+          id="file"
+          onChange={(e) => {
+            setFieldValue('file', e.currentTarget.files[0]);
+          }}
+        />
+      </label>
+    )}
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
@@ -109,8 +93,8 @@ const TeacherNotificationForm = ({
           type="button"
           onClick={() => {
             values
-              .deleteNotification(values._id)
-              .then(() => values.history.push('/teacher/notifications'));
+              .remove(values._id)
+              .then(() => values.history.push('/teacher/myprofile'));
           }}
         >
           Remove
@@ -127,7 +111,9 @@ const FormikTeacherNotificationForm = withFormik({
     link = '',
     tags = {},
     _id = '',
-    removeNotification = '',
+    remove = '',
+    edit = '',
+    history = '',
   } = {}) {
     return {
       title,
@@ -138,7 +124,9 @@ const FormikTeacherNotificationForm = withFormik({
       year: tags.year || '',
       rollNo: tags.rollNo || '',
       _id,
-      removeNotification,
+      remove,
+      edit,
+      history,
     };
   },
   validationSchema: Yup.object().shape({

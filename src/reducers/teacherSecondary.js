@@ -12,7 +12,26 @@ export default (state = teacherSecondaryDefaultState, action) => {
     case 'ADD_TEACHER_NOTIFICATION':
       return {
         ...state,
-        notifications: action.notification,
+        notifications: [...state.notifications, action.notification],
+      };
+    case 'EDIT_TEACHER_NOTIFICATION':
+      return {
+        ...state,
+        notifications: [
+          ...state.notifications.filter(
+            (notification) => notification._id !== action.notification._id
+          ),
+          action.notification,
+        ],
+      };
+    case 'REMOVE_TEACHER_NOTIFICATION':
+      return {
+        ...state,
+        notifications: [
+          ...state.notifications.filter(
+            (notification) => notification._id !== action.notification._id
+          ),
+        ],
       };
     case 'SET_TEACHER_SECONDARY':
       return { ...state, ...action.secondary };

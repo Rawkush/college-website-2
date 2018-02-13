@@ -9,6 +9,7 @@ import TechnicalList from './../../components/TeacherDashBoard/TechnicalList';
 import CommitteList from './../../components/TeacherDashBoard/CommitteList';
 import SpecialisationList from './../../components/TeacherDashBoard/SpecialistionList';
 import EducationList from './../../components/TeacherDashBoard/EducationList';
+import NotificationList from './../../components/TeacherDashBoard/NotificationList';
 
 const StudentProfilePage = ({ teacher, history, secondary }) => (
   <div>
@@ -23,11 +24,13 @@ const StudentProfilePage = ({ teacher, history, secondary }) => (
         <TechnicalList {...secondary} edit />
         <CommitteList {...secondary} edit />
         <SpecialisationList {...secondary} />
+        <NotificationList {...secondary} />
         <Link to="/teacher/addwork">Add Work </Link>
         <Link to="/teacher/addtechnicalskill">Add Tech</Link>
         <Link to="/teacher/addcommitte">Add Committe </Link>
         <Link to="/teacher/addeducation">Add Education</Link>
         <Link to="/teacher/addspecialisation">Add Specialisation</Link>
+        <Link to="/teacher/addNotification">Add Teacher Notification</Link>
       </div>
     ) : (
       <p>Loading ...</p>

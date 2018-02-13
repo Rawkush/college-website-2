@@ -57,9 +57,6 @@ const Links = () => (
     <NavLink to="/teacher/login" activeClassName="is-active" exact>
       Teacher Login
     </NavLink>
-    <NavLink to="/teacher/addNotification" activeClassName="is-active" exact>
-      Add Teacher Notification
-    </NavLink>
   </div>
 );
 

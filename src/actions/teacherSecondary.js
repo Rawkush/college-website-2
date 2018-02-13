@@ -22,8 +22,7 @@ export const startAddNotification = ({
   formdata.append('year', year);
   formdata.append('rollNo', rollNo);
   formdata.append('file', file);
-  // TODO: Make this thing Dynamic
-  formdata.append('_id', '5a7b04a6a77e41245c084c23');
+  formdata.append('token', localStorage.getItem('teacherToken'));
   return axios({
     method: 'post',
     url: 'http://localhost:3000/s/teacher/addnotification',
@@ -32,6 +31,67 @@ export const startAddNotification = ({
   })
     .then((res) => {
       dispatch(addNotification(res.data));
+      return Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));
+};
+
+export const editNotification = (notification) => ({
+  type: 'EDIT_TEACHER_NOTIFICATION',
+  notification,
+});
+
+export const startEditNotification = ({
+  title = '',
+  description = '',
+  branch = '',
+  year = '',
+  rollNo = '',
+  file = '',
+  link = '',
+  _id = '',
+} = {}) => (dispatch) => {
+  const formdata = new FormData();
+  formdata.append('title', title);
+  formdata.append('description', description);
+  formdata.append('link', link);
+  formdata.append('branch', branch);
+  formdata.append('year', year);
+  formdata.append('rollNo', rollNo);
+  formdata.append('file', file);
+  formdata.append('token', localStorage.getItem('teacherToken'));
+  formdata.append('_id', _id);
+  return axios({
+    method: 'post',
+    url: 'http://localhost:3000/s/teacher/updatenotification',
+    data: formdata,
+    config: { headers: { 'Content-Type': 'multipart/form-data' } },
+  })
+    .then((res) => {
+      dispatch(editNotification(res.data));
+      return Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));
+};
+
+export const removeNotification = (notification) => ({
+  type: 'EDIT_TEACHER_NOTIFICATION',
+  notification,
+});
+
+export const startRemoveNotification = (_id = '') => (dispatch) => {
+  const data = {
+    _id,
+    token: localStorage.getItem('teacherToken'),
+  };
+  return axios({
+    method: 'delete',
+    url: 'http://localhost:3000/s/teacher/removenotification',
+    data,
+    config: { headers: { 'Content-Type': 'application/json' } },
+  })
+    .then((res) => {
+      dispatch(removeNotification(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
@@ -50,7 +110,12 @@ export const startSetTeacherSecondary = () => (dispatch) =>
     data: { token: localStorage.getItem('teacherToken') },
     config: { headers: { 'Content-Type': 'application/json' } },
   }).then((res) => {
-    dispatch(setTeacherSecondary(res.data[0]));
+    dispatch(
+      setTeacherSecondary({
+        ...res.data[0],
+        notifications: res.data.notifications,
+      })
+    );
   });
 
 export const startAddWork = ({ title = '', description = '' } = {}) => (
@@ -113,11 +178,6 @@ export const startRemoveWork = (_id) => (dispatch) =>
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
-// add technicalSkill
-export const addTechnicalSkill = (technicalSkill) => ({
-  type: 'ADD_TECHNICALSKILL',
-  technicalSkill,
-});
 
 export const startAddTechnicalSkill = ({
   ts1 = '',

@@ -26,6 +26,8 @@ const {
   addTeacherSpecialications,
   deleteTeacher,
   addNotification,
+  updateNotification,
+  deleteNotification,
   teacherRegister,
   getTeacherSecondary,
   addTeacherCommittee,
@@ -74,6 +76,19 @@ teacherRoutes.post(
   uploadTeacherNotification.single('file'),
   tokenTeacherAuthenticate,
   addNotification
+);
+
+teacherRoutes.post(
+  '/updatenotification',
+  uploadTeacherNotification.single('file'),
+  tokenTeacherAuthenticate,
+  updateNotification
+);
+
+teacherRoutes.delete(
+  '/removenotification',
+  tokenTeacherAuthenticate,
+  deleteNotification
 );
 
 teacherRoutes.post(
