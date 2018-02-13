@@ -29,30 +29,39 @@ const Links = () => (
     <NavLink to="/" activeClassName="is-active" exact>
       Home
     </NavLink>
+    <br />
     <NavLink to="/syllabus/it" activeClassName="is-active" exact>
       Syllabus - I.T.
     </NavLink>
+    <br />
     <NavLink to="/syllabus/civil" activeClassName="is-active" exact>
       Syllabus - Civil
     </NavLink>
-    <NavLink to="/syllabus/environment" activeClassName="is-active" exact>
+    <br />
+    <NavLink to="/syllabus/env" activeClassName="is-active" exact>
       Syllabus - Env
     </NavLink>
+    <br />
     <NavLink to="/timetable/even" activeClassName="is-active" exact>
       Time Table - Even
     </NavLink>
+    <br />
     <NavLink to="/timetable/odd" activeClassName="is-active" exact>
       Time Table - Odd
     </NavLink>
+    <br />
     <NavLink to="/events" activeClassName="is-active" exact>
       Events
     </NavLink>
+    <br />
     <NavLink to="/student/myprofile" activeClassName="is-active" exact>
       My Profile
     </NavLink>
+    <br />
     <NavLink to="/teacher/register" activeClassName="is-active" exact>
       Teacher Registeration
     </NavLink>
+    <br />
     <NavLink to="/teacher/login" activeClassName="is-active" exact>
       Teacher Login
     </NavLink>

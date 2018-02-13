@@ -62,7 +62,7 @@ const Syllabus = ({ syllabusArray, match, auth }) => {
 
 const mapStateToProps = (state) => ({
   syllabusArray: state.syllabus,
-  auth: state.admin.auth,
+  auth: state.auth.admin,
 });
 
 export default connect(mapStateToProps)(Syllabus);

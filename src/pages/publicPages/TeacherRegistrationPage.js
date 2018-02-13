@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import TeacherRegistrationForm from './../../components/Forms/TeacherRegistrationForm';
+import TeacherRegistrationForm from './../../components/adminDashboard/TeacherRegistrationForm';
 
 class TeacherRegistrationPage extends Component {
   state = {
