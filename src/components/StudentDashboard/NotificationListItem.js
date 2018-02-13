@@ -8,16 +8,17 @@ export default ({
   read,
   tags = {},
   markAsRead,
-  _id,
+  notificationId,
 }) => (
   <div>
     <a
       href={link}
       onClick={() => {
         if (!read) {
-          markAsRead(_id);
+          markAsRead(notificationId);
         }
       }}
+      target="_blank"
     >
       <h4>{title}</h4>
       <p>{description}</p>
@@ -26,6 +27,8 @@ export default ({
       {tags.year ? <p>{tags.year}</p> : ''}
       {tags.rollNo ? <p>{tags.rollNo}</p> : ''}
     </a>
-    <a href={file}>Download File</a>
+    <a href={file} target="_blank">
+      Download File
+    </a>
   </div>
 );

@@ -220,8 +220,9 @@ export const startUpdateSpecialisation = ({
     .catch((err) => Promise.reject(err));
 };
 
-const markNotificationAsRead = () => ({
+const markNotificationAsRead = (_id) => ({
   type: 'MARK_AS_READ',
+  _id,
 });
 
 export const startMarkNotificationAsRead = (_id) => (dispatch) =>
@@ -231,7 +232,7 @@ export const startMarkNotificationAsRead = (_id) => (dispatch) =>
       token: localStorage.getItem('studentToken'),
     })
     .then((res) => {
-      dispatch(markNotificationAsRead(res));
+      dispatch(markNotificationAsRead(res.data._id));
       Promise.resolve();
     })
     .catch((err) => Promise.reject(err));

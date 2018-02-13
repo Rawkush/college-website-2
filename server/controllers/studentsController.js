@@ -34,6 +34,11 @@ const decodeStudentAuthToken = decodeAuthTokenMinimal(StudentPrimary);
 const giveAllStudentSecondary = giveAllSecondary(StudentSecondry);
 
 const updateSecondaryMinimal = updateMinimal(StudentSecondry, false, true);
+const updateSecondaryMinimalNoNew = updateMinimal(
+  StudentSecondry,
+  false,
+  false
+);
 const deleteSecondary = deleteSecondaryMinimal(StudentSecondry);
 
 //  Controllers
@@ -354,18 +359,18 @@ const markAsRead = async (req, res) => {
   const _creator = req.student._id;
   const { _id } = req.body;
   try {
-    const know = await updateSecondaryMinimal(
+    await updateSecondaryMinimalNoNew(
       {
         _creator,
         'notifications._id': _id,
       },
       {
         $set: {
-          'notfications.$.read': true,
+          'notifications.$.read': true,
         },
       }
     );
-    res.status(200).send(know);
+    res.status(200).send({ _id });
   } catch (error) {
     res.send(`Something went wrong: ${error}`);
   }

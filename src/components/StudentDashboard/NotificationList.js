@@ -11,6 +11,7 @@ export default ({ notifications, markAsRead }) => (
         key={notification._id}
         {...notification._ref}
         read={notification.read}
+        notificationId={notification._id}
       />
     ))}
   </div>

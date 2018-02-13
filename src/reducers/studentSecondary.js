@@ -19,6 +19,21 @@ export default (state = secondaryDefaultState, action) => {
       return { ...state, accomplishments: action.accomplishment };
     case 'EDIT_PROJECT':
       return { ...state, projects: action.project };
+    case 'MARK_AS_READ':
+      return {
+        ...state,
+        notifications: [
+          ...state.notifications.filter(
+            (notification) => notification._id !== action._id
+          ),
+          {
+            ...state.notifications.find(
+              (notification) => notification._id === action._id
+            ),
+            read: true,
+          },
+        ],
+      };
     default:
       return state;
   }
