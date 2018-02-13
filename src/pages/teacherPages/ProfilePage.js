@@ -11,7 +11,10 @@ import SpecialisationList from './../../components/TeacherDashBoard/Specialistio
 import EducationList from './../../components/TeacherDashBoard/EducationList';
 import NotificationList from './../../components/TeacherDashBoard/NotificationList';
 
-const StudentProfilePage = ({ teacher, history, secondary }) => (
+//  Actions
+import { startTeacherLogout } from './../../actions/teacherPrimary';
+
+const StudentProfilePage = ({ teacher, history, secondary, logout }) => (
   <div>
     <h2>My Profile</h2>
     {teacher ? (
@@ -31,6 +34,13 @@ const StudentProfilePage = ({ teacher, history, secondary }) => (
         <Link to="/teacher/addeducation">Add Education</Link>
         <Link to="/teacher/addspecialisation">Add Specialisation</Link>
         <Link to="/teacher/addNotification">Add Teacher Notification</Link>
+        <button
+          onClick={() => {
+            logout().then(() => history.push('/'));
+          }}
+        >
+          Logout
+        </button>
       </div>
     ) : (
       <p>Loading ...</p>
@@ -43,4 +53,8 @@ const mapStateToProps = (state) => ({
   secondary: state.teacherSecondary,
 });
 
-export default connect(mapStateToProps)(StudentProfilePage);
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch(startTeacherLogout()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentProfilePage);

@@ -323,10 +323,6 @@ const updateNotification = async (req, res) => {
 const deleteNotification = async (req, res) => {
   const _creator = req.teacher._id;
   const { _id } = req.body;
-
-  console.log(_id);
-  console.log(_creator);
-
   try {
     const deleted = await deleteNotificationMinimal({
       _creator,
@@ -336,6 +332,10 @@ const deleteNotification = async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+};
+
+const getTeacher = (req, res) => {
+  res.send(req.teacher);
 };
 
 module.exports = {
@@ -358,4 +358,5 @@ module.exports = {
   addTeacherCommittee,
   updateTeacherCommittee,
   removeCommittee,
+  getTeacher,
 };

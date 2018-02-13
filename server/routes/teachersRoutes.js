@@ -33,6 +33,7 @@ const {
   addTeacherCommittee,
   updateTeacherCommittee,
   removeCommittee,
+  getTeacher,
 } = require('./../controllers/teacherController');
 
 teacherRoutes.post('/register', teacherRegister);
@@ -45,7 +46,7 @@ teacherRoutes.post(
 
 teacherRoutes.post('/login', teacherLogin);
 
-teacherRoutes.post('/teacherLogout', tokenTeacherAuthenticate, teacherLogout);
+teacherRoutes.post('/logout', tokenTeacherAuthenticate, teacherLogout);
 
 teacherRoutes.patch('/updateprofile', tokenTeacherAuthenticate, teacherUpdate);
 
@@ -108,5 +109,7 @@ teacherRoutes.delete(
   tokenTeacherAuthenticate,
   removeCommittee
 );
+
+teacherRoutes.post('/getteacher', tokenTeacherAuthenticate, getTeacher);
 
 module.exports = { teacherRoutes };

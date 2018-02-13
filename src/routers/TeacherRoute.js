@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
-const AdminRoute = ({ isAdmin, component: Component, ...rest }) => (
+const AdminRoute = ({ isTeacher, component: Component, ...rest }) => (
   <Route
     {...rest}
     component={(props) => {
-      if (isAdmin) {
+      if (isTeacher) {
         return (
           <div>
             <Component {...props} />
@@ -23,7 +23,7 @@ const AdminRoute = ({ isAdmin, component: Component, ...rest }) => (
 );
 
 const mapStateToProps = (state) => ({
-  isAdmin: state.auth.admin,
+  isTeacher: state.auth.teacher,
 });
 
 export default connect(mapStateToProps)(AdminRoute);

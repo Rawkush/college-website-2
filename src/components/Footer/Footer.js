@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Footer = () => (
-  <div>
-    <Link to="/admin/login">Admin Login</Link>
-  </div>
+const Footer = ({ isAdminLoggedIn }) => (
+  <div>{!isAdminLoggedIn && <Link to="/admin/login">Admin Login</Link>}</div>
 );
 
-export default Footer;
+const mapStateToProps = (state) => ({
+  isAdminLoggedIn: state.auth.admin,
+});
+
+export default connect(mapStateToProps)(Footer);

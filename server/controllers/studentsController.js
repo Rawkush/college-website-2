@@ -295,7 +295,7 @@ const checkStudent = async (req, res, next) => {
     if (exists) {
       res.cookie('token', token, {
         expires: new Date(Date.now() + 30000),
-        httpOnly: true,
+        httpOnly: false,
       });
       res.redirect('/student/login');
       return;
@@ -307,11 +307,11 @@ const checkStudent = async (req, res, next) => {
 };
 
 const login = async (req, res) => {
-  const { token } = req.cookies;
+  const { token } = req.body;
   const student = await checkStudentMinimal(token);
   if (student) {
     const newToken = await generateAuthToken(student);
-    res.header('x-auth', newToken).send('you are logged in now');
+    res.send({ token: newToken });
     return;
   }
   res.sendStatus(404);

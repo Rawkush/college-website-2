@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 //  Actions
+import { startStudentLogout } from './../../actions/studentPrimary';
 import { startMarkNotificationAsRead as startMarkAsRead } from './../../actions/studentSecondary';
 
 //  Components
@@ -14,7 +15,13 @@ import ProjectList from './../../components/StudentDashboard/ProjectsList';
 import SpecialisationList from './../../components/StudentDashboard/SpecialisationList';
 import NotificationList from './../../components/StudentDashboard/NotificationList';
 
-const StudentProfilePage = ({ student, secondary, markAsRead }) => (
+const StudentProfilePage = ({
+  student,
+  secondary,
+  markAsRead,
+  logout,
+  history,
+}) => (
   <div>
     <h2>My Profile</h2>
     {student ? (
@@ -34,6 +41,13 @@ const StudentProfilePage = ({ student, secondary, markAsRead }) => (
           Add Specialisation
         </Link>
         <Link to="/student/myprofile/edit"> Edit Profile</Link>
+        <button
+          onClick={() => {
+            logout().then(() => history.push('/'));
+          }}
+        >
+          Logout
+        </button>
       </div>
     ) : (
       <p>Loading ...</p>
@@ -48,6 +62,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   markAsRead: (_id) => dispatch(startMarkAsRead(_id)),
+  logout: () => dispatch(startStudentLogout()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentProfilePage);

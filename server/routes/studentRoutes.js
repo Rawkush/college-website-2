@@ -76,7 +76,7 @@ studentRoutes.patch('/updateProfile', tokenAuthenticate, updateStudent);
 
 studentRoutes.delete('/deleteProfile', tokenAuthenticate, deleteStudent);
 
-studentRoutes.get('/login', login);
+studentRoutes.post('/login', login);
 
 studentRoutes.patch(
   '/addAccomplishment',

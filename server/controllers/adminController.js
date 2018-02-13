@@ -15,6 +15,8 @@ const {
   updateMinimal,
   pickAdmin,
   loginAdmin,
+  authTokenMinimal,
+  removeTokenMinimal,
 } = require('./../utils/utils');
 
 // Initializing the functions
@@ -25,6 +27,7 @@ const saveTimeTableMinimal = saveMinimal2(TimeTable);
 const saveAdminMinimal = saveMinimal2(Admin);
 const saveTeacherMinimal = saveMinimal2(TeacherPrimary);
 const login = loginAdmin(Admin);
+const adminAuthenticate = authTokenMinimal(Admin);
 
 const updateNotifications = updateMinimal(Notifications, true, false);
 const updateSyllabus = updateMinimal(Syllabus, true, false);
@@ -216,6 +219,31 @@ const adminLogin = async (req, res) => {
   }
 };
 
+const adminLogout = async (req, res) => {
+  const { token } = req.body;
+  const { admin } = req;
+  try {
+    const data = await removeTokenMinimal(admin, token);
+    res.send(data);
+  } catch (error) {
+    res.status(400).send(`Some went wrong: ${error}`);
+  }
+};
+
+const tokenAuthenticate = async (req, res, next) => {
+  const { token } = req.body;
+  try {
+    const admin = await adminAuthenticate(token);
+    if (admin) {
+      req.admin = admin;
+      req.token = token;
+      next();
+    }
+  } catch (error) {
+    res.status(401).send(`Access Denied! ${error}`);
+  }
+};
+
 module.exports = {
   addNotifications,
   editNotifications,
@@ -232,5 +260,7 @@ module.exports = {
   deleteTeacher,
   adminRegister,
   adminLogin,
+  adminLogout,
+  tokenAuthenticate,
   registerTeacher,
 };

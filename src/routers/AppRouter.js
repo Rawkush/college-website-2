@@ -2,7 +2,10 @@ import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
+// Route restrictions
 import AdminRoute from './AdminRoute';
+import StudentRoute from './StudentRoute';
+import TeacherRoute from './TeacherRoute';
 
 // Components
 import Header from './../components/header/Header';
@@ -14,6 +17,7 @@ import NotFound from './../components/notFound/NotFound';
 // Public Pages
 import HomePage from './../pages/publicPages/HomePage';
 import NotificationPage from './../pages/publicPages/NotificationPage';
+import StudentLoginPage from './../pages/publicPages/StudentLoginPage';
 
 // Pages
 import AddSyllabusPage from './../pages/adminPages/AddSyllabusPage';
@@ -47,7 +51,7 @@ import UpdateSpecialisationPage from './../pages/studentPages/AddSpecialisationP
 // Teachers Page
 // import TeacherRegistrationPage from './../pages/publicPages/TeacherRegistrationPage';
 import AddTeacherNotificationPage from './../pages/teacherPages/AddNotificationPage';
-import TeacherLoginPage from './../pages/publicPages/TeacherLoginPage';
+import LoginPage from './../pages/publicPages/LoginPage';
 import TeacherProfilePage from './../pages/teacherPages/ProfilePage';
 import EditTeacherProfilePage from './../pages/teacherPages/EditTeacherProfilePage';
 import AddWorkPage from './../pages/teacherPages/AddWorkPage';
@@ -70,7 +74,9 @@ const AppRouter = () => (
         <Route path="/notification" component={NotificationPage} exact />
         <Route path="/syllabus/:sub" component={Syllabus} />
         <Route path="/student/register" component={StudentRegistrationPage} />
+        <Route path="/login" component={LoginPage} exact />
         <Route path="/admin/login" component={AdminLoginPage} exact />
+        <Route path="/student/login" component={StudentLoginPage} exact />
         <AdminRoute
           path="/admin/dashboard"
           component={AdminDashboardPage}
@@ -124,36 +130,44 @@ const AppRouter = () => (
         />
         <Route path="/events" component={EventsOptionPage} exact />
         <Route path="/events/:type" component={EventsPage} exact />
-        <Route path="/admin/events" component={AdminEventsPage} exact />
-        <Route path="/admin/events/add" component={AddEventsPage} exact />
-        <Route path="/admin/events/edit/:_id" component={EditEventPage} exact />
-        <Route path="/student/myprofile" component={StudentProfilePage} exact />
-        <Route
+        <AdminRoute path="/admin/events" component={AdminEventsPage} exact />
+        <AdminRoute path="/admin/events/add" component={AddEventsPage} exact />
+        <AdminRoute
+          path="/admin/events/edit/:_id"
+          component={EditEventPage}
+          exact
+        />
+        <StudentRoute
+          path="/student/myprofile"
+          component={StudentProfilePage}
+          exact
+        />
+        <StudentRoute
           path="/student/myprofile/edit"
           component={ProfileEditPage}
           exact
         />
-        <Route
+        <StudentRoute
           path="/student/myprofile/addaccomplishment"
           component={AddAccomplishmentPage}
           exact
         />
-        <Route
+        <StudentRoute
           path="/student/myprofile/editaccomplishment/:_id"
           component={EditAccomplishmentPage}
           exact
         />
-        <Route
+        <StudentRoute
           path="/student/myprofile/addproject"
           component={AddProjectPage}
           exact
         />
-        <Route
+        <StudentRoute
           path="/student/myprofile/editproject/:_id"
           component={EditProjectPage}
           exact
         />
-        <Route
+        <StudentRoute
           path="/student/myprofile/updatespecialisation"
           component={UpdateSpecialisationPage}
           exact
@@ -163,43 +177,58 @@ const AppRouter = () => (
           component={TeacherRegistrationPage}
           exact
         />
-        <Route
+        <TeacherRoute
           path="/teacher/addnotification"
           component={AddTeacherNotificationPage}
           exact
         />
-        <Route
+        <TeacherRoute
           path="/admin/registerteacher"
           component={TeacherRegistrationPage}
           exact
         />
-        <Route
+        <TeacherRoute
           path="/teacher/editprofile"
           component={EditTeacherProfilePage}
           exact
         />
-        <Route path="/teacher/myprofile" component={TeacherProfilePage} exact />
-        <Route path="/teacher/login" component={TeacherLoginPage} exact />
-        <Route path="/teacher/addwork" component={AddWorkPage} exact />
-        <Route path="/teacher/addcommitte" component={AddCommittePage} exact />
-        <Route path="/teacher/addeducation" component={AddEductionPage} exact />
-        <Route
+        <TeacherRoute
+          path="/teacher/myprofile"
+          component={TeacherProfilePage}
+          exact
+        />
+        <TeacherRoute path="/teacher/addwork" component={AddWorkPage} exact />
+        <TeacherRoute
+          path="/teacher/addcommitte"
+          component={AddCommittePage}
+          exact
+        />
+        <TeacherRoute
+          path="/teacher/addeducation"
+          component={AddEductionPage}
+          exact
+        />
+        <TeacherRoute
           path="/teacher/addtechnicalskill"
           component={AddTechnicalSkillsPage}
           exact
         />
-        <Route
+        <TeacherRoute
           path="/teacher/addspecialisation"
           component={AddSpecialisationPage}
           exact
         />
-        <Route path="/teacher/editwork/:_id" component={EditWorkPage} exact />
-        <Route
+        <TeacherRoute
+          path="/teacher/editwork/:_id"
+          component={EditWorkPage}
+          exact
+        />
+        <TeacherRoute
           path="/teacher/editcommittee/:_id"
           component={EditCommitteePage}
           exact
         />
-        <Route
+        <TeacherRoute
           path="/teacher/editnotification/:_id"
           component={EditNotificaitonPage}
           exact

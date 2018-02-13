@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const login = () => ({
+export const teacherLogin = () => ({
   type: 'TEACHER_LOGIN',
 });
 
@@ -17,11 +17,27 @@ export const startLoginTeacher = ({ email, password }) => (dispatch) =>
     })
     .then((res) => {
       localStorage.setItem('teacherToken', res.data.token);
-      dispatch(login());
+      dispatch(teacherLogin());
       dispatch(setTeacher(res.data.user));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
+
+export const teacherLogout = () => ({
+  type: 'TEACHER_LOGOUT',
+});
+
+export const startTeacherLogout = () => (dispatch) =>
+  axios
+    .post('http://localhost:3000/s/teacher/logout', {
+      token: localStorage.getItem('teacherToken'),
+    })
+    .then(() => {
+      localStorage.removeItem('teacherToken');
+      dispatch(teacherLogout());
+      return Promise.resolve();
+    })
+    .catch(() => Promise.reject());
 
 export const startEditTeacher = ({
   name = '',
@@ -55,7 +71,10 @@ export const startSetTeacher = () => (dispatch) => {
     axios({
       method: 'post',
       url: 'http://localhost:3000/s/teacher/getteacher',
-      config: { headers: { 'content-Type': 'multipart/form-data' } },
+      data: {
+        token,
+      },
+      config: { headers: { 'content-Type': 'application/json' } },
     }).then((res) => {
       dispatch(setTeacher(res.data));
     });

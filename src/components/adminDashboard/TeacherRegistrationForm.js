@@ -30,17 +30,33 @@ const FormikSpecialisationForm = withFormik({
     password: Yup.string().required(),
   }),
   handleSubmit(val, { props, resetForm, setErrors, setSubmitting }) {
-    props
-      .onSubmit(val)
-      .then(() => {
-        resetForm();
-        setSubmitting(false);
-        props.history.push(props.redirect);
-      })
-      .catch((err) => {
-        setErrors({ error: `Something Went Wrong: ${err}` });
-        setSubmitting(false);
-      });
+    if (props.login) {
+      props
+        .onSubmit(val)
+        .then(() => {
+          resetForm();
+          setSubmitting(false);
+          props.history.push(props.redirect);
+          props.setProfile();
+        })
+        .then(() => props.setSecondary())
+        .catch((err) => {
+          setErrors({ error: `Something Went Wrong: ${err}` });
+          setSubmitting(false);
+        });
+    } else {
+      props
+        .onSubmit(val)
+        .then(() => {
+          resetForm();
+          setSubmitting(false);
+          props.history.push(props.redirect);
+        })
+        .catch((err) => {
+          setErrors({ error: `Something Went Wrong: ${err}` });
+          setSubmitting(false);
+        });
+    }
   },
 })(TeacherRegistrationForm);
 
