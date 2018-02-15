@@ -4,6 +4,7 @@ node_modules/
 .vscode/
 server/dev-server.js
 server/playground/play.js
+playground/server.js
 wallaby.js
 uploads
 public/dist
