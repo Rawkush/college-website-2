@@ -50,7 +50,7 @@ const Div = styled.div`
   width: 100%;
   position: fixed;
   background: #fff;
-  top: ${(props) => (props.active ? '92px' : '-210px')};
+  top: ${(props) => (props.active ? '92px' : '-250px')};
   transition: all cubic-bezier(0.46, 0.22, 0.5, 0.93) 0.3s;
   z-index: 90;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.09);

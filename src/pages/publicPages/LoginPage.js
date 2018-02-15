@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// Styled-Components
+import { Page } from './../../theme/Components';
+
 import {
   startLoginTeacher,
   startSetTeacher,
@@ -10,7 +13,7 @@ import { startSetTeacherSecondary } from './../../actions/teacherSecondary';
 import TeacherLoginForm from './../../components/adminDashboard/TeacherRegistrationForm';
 
 const LoginPage = ({ login, setProfile, setSecondary, history }) => (
-  <div>
+  <Page>
     <h2>Login or register using...</h2>
     <a href="http://localhost:3000/s/student/auth/google">Google</a>
     <a href="http://localhost:3000/s/student/auth/github">GitHub</a>
@@ -25,7 +28,7 @@ const LoginPage = ({ login, setProfile, setSecondary, history }) => (
       setSecondary={setSecondary}
       login
     />
-  </div>
+  </Page>
 );
 
 const mapDispatchToProps = (dispatch) => ({

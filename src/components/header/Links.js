@@ -1,30 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
 
-import NavBar from './NavBar/NavBar';
-
-// Importing Styled Components
-import {
-  H1,
-  Container,
-  Button,
-  Flex,
-  FlexCenter,
-  Page,
-} from './../../theme/Components';
-
-// Styles
-
-const FixedHeader = styled.header`
-  position: fixed;
-  width: 100%;
-  top: 0;
-  background: #fff;
-  z-index: 100;
-`;
-
-const Links = () => (
+export default () => (
   <div>
     <NavLink to="/" activeClassName="is-active" exact>
       Home
@@ -87,23 +64,3 @@ const Links = () => (
     </NavLink>
   </div>
 );
-
-const Header = () => (
-  <div>
-    <FixedHeader>
-      <Container>
-        <Flex>
-          <H1>Ch. Bramh Prakash Govt. Engg. College</H1>
-          <FlexCenter>
-            <NavLink to="/login">
-              <Button>Login</Button>
-            </NavLink>
-          </FlexCenter>
-        </Flex>
-      </Container>
-    </FixedHeader>
-    <NavBar />
-  </div>
-);
-
-export default Header;
