@@ -1,13 +1,13 @@
 import React from 'react';
 
-import DepartmentsCard from './Departments';
+import DepartmentsCard, { SyllabusCard } from './Departments';
 import { Flex, Container } from './../../../../theme/Components';
 
 export default () => (
   <Container>
     <Flex>
       <DepartmentsCard />
-      <DepartmentsCard />
+      <SyllabusCard />
       <DepartmentsCard />
       <DepartmentsCard />
     </Flex>
