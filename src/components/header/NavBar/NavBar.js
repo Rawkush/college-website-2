@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Container } from './../../../theme/Components';
 import AcademicsNav from './Academics/Academics';
+import StudentsNav from './Students/Students';
 
 const NavContainer = styled.div`
   display: flex;
@@ -102,7 +103,9 @@ class NavBar extends Component {
         <Div active={this.state.active1}>
           <AcademicsNav />
         </Div>
-        <Div active={this.state.active2} />
+        <Div active={this.state.active2}>
+          <StudentsNav />
+        </Div>
       </div>
     );
   }

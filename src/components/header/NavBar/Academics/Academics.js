@@ -1,6 +1,11 @@
 import React from 'react';
 
-import DepartmentsCard, { SyllabusCard } from './Departments';
+import DepartmentsCard from './Departments';
+import SyllabusCard from './Syllabus';
+import TimeTableCard from './TimeTable';
+import AcademicCalendar from './AcademicCalendar';
+
+// Styled Components
 import { Flex, Container } from './../../../../theme/Components';
 
 export default () => (
@@ -8,8 +13,8 @@ export default () => (
     <Flex>
       <DepartmentsCard />
       <SyllabusCard />
-      <DepartmentsCard />
-      <DepartmentsCard />
+      <TimeTableCard />
+      <AcademicCalendar />
     </Flex>
   </Container>
 );
