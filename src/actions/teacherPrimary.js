@@ -56,7 +56,7 @@ export const startEditTeacher = ({
   if (password) {
     data.password = password;
   }
-  axios
+  return axios
     .patch('http://localhost:3000/s/teacher/updateprofile', { ...data })
     .then((res) => {
       dispatch(setTeacher(res.data));

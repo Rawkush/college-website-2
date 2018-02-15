@@ -93,11 +93,13 @@ const FormikTeacherRegistration = withFormik({
     if (val.password) {
       if (val.password !== val.confirmPassword) {
         setErrors({ confirmPassword: 'Passwords do not match.' });
+        setSubmitting(false);
       } else {
         props
           .onSubmit(val)
           .then(() => {
             setSubmitting(false);
+            props.history.push('/teacher/myprofile');
           })
           .catch((err) => {
             setErrors({ error: `Something Went wrong ${err}` });
@@ -109,6 +111,7 @@ const FormikTeacherRegistration = withFormik({
         .onSubmit(val)
         .then(() => {
           setSubmitting(false);
+          props.history.push('/teacher/myprofile');
         })
         .catch((err) => {
           setErrors({ error: `Something Went wrong ${err}` });

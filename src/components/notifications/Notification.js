@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 //  Components
 import NotificationItem from './NotificationItem';
 
-// Actions
-import { startSetAllNotification } from './../../actions/notifications';
-
 const Notification = ({ notifications, home, notification }) => (
   <div>
     <h2>Notifications</h2>
@@ -31,8 +28,4 @@ const Notification = ({ notifications, home, notification }) => (
 );
 
 const mapStateToProps = (state) => ({ notifications: state.notifications });
-const mapDispatchToProps = (dispatch) => ({
-  setNotification: () => dispatch(startSetAllNotification()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Notification);
+export default connect(mapStateToProps)(Notification);

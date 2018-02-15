@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const AdminTimeTablePage = () => (
   <div>
-    <h1>Syllabus</h1>
+    <h1>Time Table</h1>
     <Link to="/timetable/even"> Even </Link>
     <Link to="/timetable/odd"> Odd</Link>
     <Link to="/admin/timetable/add"> Add Time Table</Link>

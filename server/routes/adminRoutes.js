@@ -40,15 +40,15 @@ adminRoutes.delete('/deleteTeacher', tokenAuthenticate, deleteTeacher);
 
 adminRoutes.post(
   '/addnotification',
-  tokenAuthenticate,
   uploadNotifications.single('file'),
+  tokenAuthenticate,
   addNotifications
 );
 
 adminRoutes.patch(
   '/editnotification',
-  tokenAuthenticate,
   uploadNotifications.single('file'),
+  tokenAuthenticate,
   editNotifications
 );
 
@@ -60,8 +60,8 @@ adminRoutes.delete(
 
 adminRoutes.post(
   '/addevent',
-  tokenAuthenticate,
   uploadEvents.array('photo', 5),
+  tokenAuthenticate,
   addEvents
 );
 
@@ -71,15 +71,15 @@ adminRoutes.delete('/deleteevent', tokenAuthenticate, deleteEvents);
 
 adminRoutes.post(
   '/addsyll',
-  tokenAuthenticate,
   uploadSyllabus.single('file'),
+  tokenAuthenticate,
   addSyllabus
 );
 
 adminRoutes.patch(
   '/editsyll',
-  tokenAuthenticate,
   uploadSyllabus.single('file'),
+  tokenAuthenticate,
   editSyllabus
 );
 
@@ -87,19 +87,19 @@ adminRoutes.delete('/deletesyll', tokenAuthenticate, deleteSyllabus);
 
 adminRoutes.post(
   '/addtt',
-  tokenAuthenticate,
   uploadTimeTable.single('file'),
+  tokenAuthenticate,
   addTimeTable
 );
 
 adminRoutes.patch(
   '/edittt',
-  tokenAuthenticate,
   uploadTimeTable.single('file'),
+  tokenAuthenticate,
   editTimeTable
 );
 
-adminRoutes.delete('/deletett', deleteTimeTable);
+adminRoutes.delete('/deletett', tokenAuthenticate, deleteTimeTable);
 
 adminRoutes.post('/register', adminRegister);
 
@@ -107,7 +107,7 @@ adminRoutes.post('/login', adminLogin);
 
 adminRoutes.post('/logout', tokenAuthenticate, adminLogout);
 
-adminRoutes.post('/teacherregisteration', registerTeacher);
+adminRoutes.post('/teacherregisteration', tokenAuthenticate, registerTeacher);
 
 module.exports = {
   adminRoutes,

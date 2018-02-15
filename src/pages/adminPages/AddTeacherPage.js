@@ -12,6 +12,7 @@ class TeacherRegisterPage extends Component {
       data: {
         email,
         password,
+        token: localStorage.getItem('adminToken'),
       },
       headers: {
         'Content-Type': 'application/json',

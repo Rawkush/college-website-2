@@ -30,16 +30,28 @@ const Links = () => (
       Home
     </NavLink>
     <br />
-    <NavLink to="/syllabus/it" activeClassName="is-active" exact>
-      Syllabus - I.T.
+    <NavLink to="/syllabus/new/it" activeClassName="is-active" exact>
+      Syllabus - I.T. (New)
     </NavLink>
     <br />
-    <NavLink to="/syllabus/civil" activeClassName="is-active" exact>
-      Syllabus - Civil
+    <NavLink to="/syllabus/new/civil" activeClassName="is-active" exact>
+      Syllabus - Civil (New)
     </NavLink>
     <br />
-    <NavLink to="/syllabus/env" activeClassName="is-active" exact>
-      Syllabus - Env
+    <NavLink to="/syllabus/new/env" activeClassName="is-active" exact>
+      Syllabus - Env (New)
+    </NavLink>
+    <br />
+    <NavLink to="/syllabus/old/it" activeClassName="is-active" exact>
+      Syllabus - I.T. (old)
+    </NavLink>
+    <br />
+    <NavLink to="/syllabus/old/civil" activeClassName="is-active" exact>
+      Syllabus - Civil (old)
+    </NavLink>
+    <br />
+    <NavLink to="/syllabus/old/env" activeClassName="is-active" exact>
+      Syllabus - Env (old)
     </NavLink>
     <br />
     <NavLink to="/timetable/even" activeClassName="is-active" exact>
@@ -64,6 +76,14 @@ const Links = () => (
     <br />
     <NavLink to="/teacher/login" activeClassName="is-active" exact>
       Teacher Login
+    </NavLink>
+    <br />
+    <NavLink to="/admin/dashboard" activeClassName="is-active" exact>
+      Admin DB
+    </NavLink>
+    <br />
+    <NavLink to="/teacher/myprofile" activeClassName="is-active" exact>
+      Teacher Profile
     </NavLink>
   </div>
 );

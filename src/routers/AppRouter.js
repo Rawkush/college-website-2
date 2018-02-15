@@ -72,7 +72,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" component={HomePage} exact />
         <Route path="/notification" component={NotificationPage} exact />
-        <Route path="/syllabus/:sub" component={Syllabus} />
+        <Route path="/syllabus/:period/:sub" component={Syllabus} />
         <Route path="/student/register" component={StudentRegistrationPage} />
         <Route path="/login" component={LoginPage} exact />
         <Route path="/admin/login" component={AdminLoginPage} exact />
@@ -137,6 +137,11 @@ const AppRouter = () => (
           component={EditEventPage}
           exact
         />
+        <AdminRoute
+          path="/admin/registerteacher"
+          component={TeacherRegistrationPage}
+          exact
+        />
         <StudentRoute
           path="/student/myprofile"
           component={StudentProfilePage}
@@ -180,11 +185,6 @@ const AppRouter = () => (
         <TeacherRoute
           path="/teacher/addnotification"
           component={AddTeacherNotificationPage}
-          exact
-        />
-        <TeacherRoute
-          path="/admin/registerteacher"
-          component={TeacherRegistrationPage}
           exact
         />
         <TeacherRoute

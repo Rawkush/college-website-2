@@ -190,9 +190,9 @@ const editTimeTable = async (req, res) => {
 };
 
 const deleteTimeTable = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   try {
-    const timeTable = await deleteTimeTableMinimal(id);
+    const timeTable = await deleteTimeTableMinimal(_id);
     res.send(timeTable);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
