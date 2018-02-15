@@ -22,7 +22,7 @@ const AdminNotificationPanel = ({ location, notifications, auth }) => (
 
 const mapStateToProps = (state) => ({
   notifications: state.notifications,
-  auth: state.admin.auth,
+  auth: state.auth.admin,
 });
 
 export default connect(mapStateToProps)(AdminNotificationPanel);

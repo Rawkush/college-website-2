@@ -39,6 +39,7 @@ const {
   getAllStudentSecondary,
   updateAccomplishment,
   updateProject,
+  markAsRead,
 } = require('./../controllers/studentsController');
 
 // Routes
@@ -75,7 +76,7 @@ studentRoutes.patch('/updateProfile', tokenAuthenticate, updateStudent);
 
 studentRoutes.delete('/deleteProfile', tokenAuthenticate, deleteStudent);
 
-studentRoutes.get('/login', login);
+studentRoutes.post('/login', login);
 
 studentRoutes.patch(
   '/addAccomplishment',
@@ -128,5 +129,7 @@ studentRoutes.post(
   tokenAuthenticate,
   getAllStudentSecondary
 );
+
+studentRoutes.post('/markasread', tokenAuthenticate, markAsRead);
 
 module.exports = { studentRoutes };

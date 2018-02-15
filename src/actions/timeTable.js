@@ -16,6 +16,7 @@ export const startAddTimeTable = ({
   formdata.append('title', title);
   formdata.append('semester', semester);
   formdata.append('file', file);
+  formdata.append('token', localStorage.getItem('adminToken'));
   return axios({
     method: 'post',
     url: 'http://localhost:3000/s/admin/addtt',
@@ -52,6 +53,7 @@ export const startEditTimeTable = (
   formdata.append('_id', _id);
   formdata.append('wef', wef);
   formdata.append('title', title);
+  formdata.append('token', localStorage.getItem('adminToken'));
   formdata.append('semester', semester);
   if (file instanceof Blob) {
     formdata.append('file', file);
@@ -77,9 +79,10 @@ const removeTimeTable = (timeTable) => ({
 export const startRemoveTimeTable = (_id) => (dispatch) =>
   axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/admin/deletesyll',
+    url: 'http://localhost:3000/s/admin/deletett',
     data: {
       _id,
+      token: localStorage.getItem('adminToken'),
     },
     headers: {
       'Content-Type': 'application/json',

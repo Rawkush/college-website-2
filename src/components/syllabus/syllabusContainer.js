@@ -5,29 +5,31 @@ import { connect } from 'react-redux';
 import SyllabusListItem from './SyllabusListItem';
 
 const Syllabus = ({ syllabusArray, match, auth }) => {
-  const { sub } = match.params;
-  const syllSem1 = syllabusArray.filter(
+  const { sub, period } = match.params;
+  const syllabusFilter = syllabusArray.filter((item) => item.period === period);
+
+  const syllSem1 = syllabusFilter.filter(
     (item) => item.semester === 1 && item.branch === sub
   );
-  const syllSem2 = syllabusArray.filter(
+  const syllSem2 = syllabusFilter.filter(
     (item) => item.semester === 2 && item.branch === sub
   );
-  const syllSem3 = syllabusArray.filter(
+  const syllSem3 = syllabusFilter.filter(
     (item) => item.semester === 3 && item.branch === sub
   );
-  const syllSem4 = syllabusArray.filter(
+  const syllSem4 = syllabusFilter.filter(
     (item) => item.semester === 4 && item.branch === sub
   );
-  const syllSem5 = syllabusArray.filter(
+  const syllSem5 = syllabusFilter.filter(
     (item) => item.semester === 5 && item.branch === sub
   );
-  const syllSem6 = syllabusArray.filter(
+  const syllSem6 = syllabusFilter.filter(
     (item) => item.semester === 6 && item.branch === sub
   );
-  const syllSem7 = syllabusArray.filter(
+  const syllSem7 = syllabusFilter.filter(
     (item) => item.semester === 7 && item.branch === sub
   );
-  const syllSem8 = syllabusArray.filter(
+  const syllSem8 = syllabusFilter.filter(
     (item) => item.semester === 8 && item.branch === sub
   );
   return (
@@ -62,7 +64,7 @@ const Syllabus = ({ syllabusArray, match, auth }) => {
 
 const mapStateToProps = (state) => ({
   syllabusArray: state.syllabus,
-  auth: state.admin.auth,
+  auth: state.auth.admin,
 });
 
 export default connect(mapStateToProps)(Syllabus);

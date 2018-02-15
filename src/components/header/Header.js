@@ -1,63 +1,112 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
-import LoginModal from './../login/LoginModal';
+import NavBar from './NavBar/NavBar';
 
-class Header extends Component {
-  state = {
-    loginModal: false,
-  };
+// Importing Styled Components
+import {
+  H1,
+  Container,
+  Button,
+  Flex,
+  FlexCenter,
+  Page,
+} from './../../theme/Components';
 
-  onLoginClick = () => {
-    this.setState(() => ({ loginModal: true }));
-  };
+// Styles
 
-  closeLoginModal = () => {
-    this.setState(() => ({ loginModal: false }));
-  };
+const FixedHeader = styled.header`
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: #fff;
+  z-index: 100;
+`;
 
-  render() {
-    return (
-      <header>
-        <h1>CBPGEC</h1>
-        <NavLink to="/" activeClassName="is-active" exact>
-          Home
-        </NavLink>
-        <NavLink to="/syllabus/it" activeClassName="is-active" exact>
-          Syllabus - I.T.
-        </NavLink>
-        <NavLink to="/syllabus/civil" activeClassName="is-active" exact>
-          Syllabus - Civil
-        </NavLink>
-        <NavLink to="/syllabus/environment" activeClassName="is-active" exact>
-          Syllabus - Env
-        </NavLink>
-        <NavLink to="/timetable/even" activeClassName="is-active" exact>
-          Time Table - Even
-        </NavLink>
-        <NavLink to="/timetable/odd" activeClassName="is-active" exact>
-          Time Table - Odd
-        </NavLink>
-        <NavLink to="/events" activeClassName="is-active" exact>
-          Events
-        </NavLink>
-        <NavLink to="/student/myprofile" activeClassName="is-active" exact>
-          Student Profile
-        </NavLink>
-        <NavLink to="/teacher/myprofile" activeClassName="is-active" exact>
-          Teacher Profile
-        </NavLink>
-        <NavLink to="/teacher/register" activeClassName="is-active" exact>
-          Sign Up
-        </NavLink>
-        <button onClick={this.onLoginClick}>Sign Up</button>
-        <LoginModal
-          loginModal={this.state.loginModal}
-          closeLoginModal={this.closeLoginModal}
-        />
-      </header>
-    );
-  }
-}
+const Links = () => (
+  <div>
+    <NavLink to="/" activeClassName="is-active" exact>
+      Home
+    </NavLink>
+    <br />
+    <NavLink to="/syllabus/new/it" activeClassName="is-active" exact>
+      Syllabus - I.T. (New)
+    </NavLink>
+    <br />
+    <NavLink to="/syllabus/new/civil" activeClassName="is-active" exact>
+      Syllabus - Civil (New)
+    </NavLink>
+    <br />
+    <NavLink to="/syllabus/new/env" activeClassName="is-active" exact>
+      Syllabus - Env (New)
+    </NavLink>
+    <br />
+    <NavLink to="/syllabus/old/it" activeClassName="is-active" exact>
+      Syllabus - I.T. (old)
+    </NavLink>
+    <br />
+    <NavLink to="/syllabus/old/civil" activeClassName="is-active" exact>
+      Syllabus - Civil (old)
+    </NavLink>
+    <br />
+    <NavLink to="/syllabus/old/env" activeClassName="is-active" exact>
+      Syllabus - Env (old)
+    </NavLink>
+    <br />
+    <NavLink to="/timetable/even" activeClassName="is-active" exact>
+      Time Table - Even
+    </NavLink>
+    <br />
+    <NavLink to="/timetable/odd" activeClassName="is-active" exact>
+      Time Table - Odd
+    </NavLink>
+    <br />
+    <NavLink to="/events" activeClassName="is-active" exact>
+      Events
+    </NavLink>
+    <br />
+    <NavLink to="/student/myprofile" activeClassName="is-active" exact>
+      My Profile
+    </NavLink>
+    <br />
+    <NavLink to="/teacher/register" activeClassName="is-active" exact>
+      Teacher Registeration
+    </NavLink>
+    <br />
+    <NavLink to="/teacher/login" activeClassName="is-active" exact>
+      Teacher Login
+    </NavLink>
+    <br />
+    <NavLink to="/admin/dashboard" activeClassName="is-active" exact>
+      Admin DB
+    </NavLink>
+    <br />
+    <NavLink to="/teacher/myprofile" activeClassName="is-active" exact>
+      Teacher Profile
+    </NavLink>
+  </div>
+);
+
+const Header = () => (
+  <div>
+    <FixedHeader>
+      <Container>
+        <Flex>
+          <H1>Ch. Bramh Prakash Govt. Engg. College</H1>
+          <FlexCenter>
+            <NavLink to="/login">
+              <Button>Login</Button>
+            </NavLink>
+          </FlexCenter>
+        </Flex>
+      </Container>
+    </FixedHeader>
+    <NavBar />
+    <Page>
+      <Links />
+    </Page>
+  </div>
+);
 
 export default Header;

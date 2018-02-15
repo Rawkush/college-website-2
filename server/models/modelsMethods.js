@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
+const moment = require('moment');
 const bcrypt = require('bcryptjs');
 const slug = require('slug');
 
@@ -167,6 +168,55 @@ function findBySlug(slugg) {
   const User = this;
   return User.findOne({ slugg });
 }
+
+async function findAllIdByTags({ branch, rollNo, year }) {
+  const getYear = (y) => {
+    switch (y) {
+      case 'iyear':
+        return moment()
+          .subtract(1, 'years')
+          .format('YYYY');
+      case 'iiyear':
+        return moment()
+          .subtract(2, 'years')
+          .format('YYYY');
+      case 'iiiyear':
+        return moment()
+          .subtract(3, 'years')
+          .format('YYYY');
+      case 'ivyear':
+        return moment()
+          .subtract(4, 'years')
+          .format('YYYY');
+      default:
+        return null;
+    }
+  };
+
+  const whichYear = Number(getYear(year));
+
+  let match = {};
+
+  match = branch ? { branch } : match;
+  match = rollNo ? { ...match, rollNo } : match;
+  match = year ? { ...match, year: whichYear } : match;
+
+  const students = await this.aggregate([
+    {
+      $project: {
+        rollNo: 1,
+        _id: 1,
+        branch: 1,
+        year: { $year: '$admittedIn' },
+      },
+    },
+    {
+      $match: match,
+    },
+  ]);
+
+  return students.map((student) => student._id);
+}
 module.exports = {
   toJSON,
   generateAuthToken,
@@ -180,4 +230,5 @@ module.exports = {
   slugGen,
   findBySlug,
   findAdmin,
+  findAllIdByTags,
 };

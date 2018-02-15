@@ -1,29 +1,69 @@
 import axios from 'axios';
 
-export const addTeacher = (teacher) => ({
-  type: 'ADD_TEACHER',
-  teacher,
+export const teacherLogin = () => ({
+  type: 'TEACHER_LOGIN',
 });
-export const startAddTeacher = (data) => (dispatch) =>
-  axios({
-    method: 'post',
-    url: 'http://localhost:3000/s/teacher/registeration',
-    data,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((res) => {
-      dispatch(addTeacher(res.data.user));
-      localStorage.setItem('teacherToken', res.data.token);
-      return Promise.resolve();
-    })
-    .catch((err) => Promise.reject(err));
 
 export const setTeacher = (teacher) => ({
   type: 'SET_TEACHER',
   teacher,
 });
+
+export const startLoginTeacher = ({ email, password }) => (dispatch) =>
+  axios
+    .post('http://localhost:3000/s/teacher/login', {
+      email,
+      password,
+    })
+    .then((res) => {
+      localStorage.setItem('teacherToken', res.data.token);
+      dispatch(teacherLogin());
+      dispatch(setTeacher(res.data.user));
+      return Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));
+
+export const teacherLogout = () => ({
+  type: 'TEACHER_LOGOUT',
+});
+
+export const startTeacherLogout = () => (dispatch) =>
+  axios
+    .post('http://localhost:3000/s/teacher/logout', {
+      token: localStorage.getItem('teacherToken'),
+    })
+    .then(() => {
+      localStorage.removeItem('teacherToken');
+      dispatch(teacherLogout());
+      return Promise.resolve();
+    })
+    .catch(() => Promise.reject());
+
+export const startEditTeacher = ({
+  name = '',
+  dateOfBirth = '',
+  gender = '',
+  password = '',
+  currentPosition = '',
+}) => (dispatch) => {
+  const data = {
+    name,
+    dateOfBirth,
+    gender,
+    currentPosition,
+    token: localStorage.getItem('teacherToken'),
+  };
+  if (password) {
+    data.password = password;
+  }
+  return axios
+    .patch('http://localhost:3000/s/teacher/updateprofile', { ...data })
+    .then((res) => {
+      dispatch(setTeacher(res.data));
+      return Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));
+};
 
 export const startSetTeacher = () => (dispatch) => {
   const token = localStorage.getItem('teacherToken');
@@ -31,7 +71,10 @@ export const startSetTeacher = () => (dispatch) => {
     axios({
       method: 'post',
       url: 'http://localhost:3000/s/teacher/getteacher',
-      config: { headers: { 'content-Type': 'multipart/form-data' } },
+      data: {
+        token,
+      },
+      config: { headers: { 'content-Type': 'application/json' } },
     }).then((res) => {
       dispatch(setTeacher(res.data));
     });
@@ -42,33 +85,6 @@ export const editTeacher = (teacher) => ({
   type: 'EDIT_TEACHER',
   teacher,
 });
-
-export const startEditTeacher = ({
-  name = '',
-  email = '',
-  dateOfBirth = '',
-  currentPosition = '',
-  gender = '',
-}) => (dispatch) => {
-  const data = {
-    name,
-    email,
-    dateOfBirth,
-    currentPosition,
-    gender,
-  };
-  return axios({
-    method: 'patch',
-    url: 'http://localhost:3000/s/teacher/updateprofile',
-    data,
-    config: { headers: { 'Content-Type': 'application/json' } },
-  })
-    .then((res) => {
-      dispatch(editTeacher(res.data));
-      return Promise.resolve();
-    })
-    .catch((err) => Promise.reject(err));
-};
 
 const removeTeacher = () => ({
   type: 'REMOVE_TEACHER',

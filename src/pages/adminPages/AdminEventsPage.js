@@ -15,7 +15,7 @@ const AdminEventsPage = () => (
 );
 
 const mapStateToProps = (state) => ({
-  auth: state.admin.auth,
+  auth: state.auth.admin,
 });
 
 export default connect(mapStateToProps)(AdminEventsPage);

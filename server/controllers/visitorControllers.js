@@ -16,6 +16,7 @@ const {
 
 // Initializing the Instances of Model
 const giveLatestThreeNotifications = giveLatestThreeItem(Notifications);
+const giveAllNotifications = giveAll(Notifications);
 const giveLatestThreeEvents = giveLatestThreeItem(Event);
 const giveStudent = giveUser(StudentPrimary);
 const giveTeacher = giveUser(TeacherPrimary);
@@ -27,6 +28,15 @@ const giveAllStudentSecondary = giveAllSecondary(StudentSecondry);
 const getLatestNotifications = async (req, res) => {
   try {
     const notifications = await giveLatestThreeNotifications();
+    res.send(notifications);
+  } catch (error) {
+    res.send(404).send(`Something Went Wrong: ${error}`);
+  }
+};
+
+const getAllNotifications = async (req, res) => {
+  try {
+    const notifications = await giveAllNotifications();
     res.send(notifications);
   } catch (error) {
     res.send(404).send(`Something Went Wrong: ${error}`);
@@ -101,6 +111,7 @@ const getAllStudentSecondaryData = async (req, res) => {
 
 module.exports = {
   getLatestNotifications,
+  getAllNotifications,
   getLatestEvents,
   getStudent,
   getTeacher,

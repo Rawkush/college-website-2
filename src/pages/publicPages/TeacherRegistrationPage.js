@@ -1,18 +1,43 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-import FormikTeacherRegistrationForm from './../../components/registration/teacherRegistrationForm';
+import TeacherRegistrationForm from './../../components/adminDashboard/TeacherRegistrationForm';
 
-import { startAddTeacher } from './../../actions/teacherPrimary';
+class TeacherRegistrationPage extends Component {
+  state = {
+    registeration: false,
+  };
+  registerTeacher = (val) => {
+    const { name, dateOfBirth, gender, email, password } = val;
+    const data = { name, dateOfBirth, gender, email, password };
+    return axios({
+      method: 'post',
+      url: 'http://localhost:3000/s/teacher/register',
+      data,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => {
+        this.setState(() => ({ registeration: true }));
+        Promise.resolve();
+      })
+      .catch((err) => Promise.reject(err));
+  };
+  render() {
+    return (
+      <div>
+        {this.state.registeration ? (
+          <p>Your profile will be looked by the admin and then approve!</p>
+        ) : (
+          <TeacherRegistrationForm
+            onSubmit={this.registerTeacher}
+            history={this.props.history}
+          />
+        )}
+      </div>
+    );
+  }
+}
 
-const TeacherRegistrationPage = ({ addTeacher, history }) => (
-  <div>
-    <FormikTeacherRegistrationForm onSubmit={addTeacher} history={history} />
-  </div>
-);
-
-const mapDispatchToProps = (dispatch) => ({
-  addTeacher: (data) => dispatch(startAddTeacher(data)),
-});
-
-export default connect(undefined, mapDispatchToProps)(TeacherRegistrationPage);
+export default TeacherRegistrationPage;

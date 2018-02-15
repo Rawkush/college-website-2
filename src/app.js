@@ -1,32 +1,58 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+// Style related Imports
+import 'normalize.css/normalize.css';
+import './theme/globalStyles';
+
+// Configuring the store
 import configureStore from './store/configureStore';
 
 // Actions
-import { startSetNotification } from './actions/notifications';
+import {
+  startSetNotification,
+  startSetAllNotification,
+} from './actions/notifications';
 import { startSetSyllabus } from './actions/syllabus';
 import { startSetTimeTable } from './actions/timeTable';
 import { startSetEvent } from './actions/events';
-import { startSetStudent } from './actions/studentPrimary';
+import { startSetStudent, studentlogin } from './actions/studentPrimary';
 import { startSetStudentSecondary } from './actions/studentSecondary';
+import { teacherLogin } from './actions/teacherPrimary';
+import { startSetTeacherSecondary } from './actions/teacherSecondary';
 
 // Components
 import AppRouter from './routers/AppRouter';
 
 const store = configureStore();
 
+// Actions
 store.dispatch(startSetNotification());
+store.dispatch(startSetAllNotification());
 store.dispatch(startSetSyllabus());
 store.dispatch(startSetTimeTable());
 store.dispatch(startSetEvent());
-store.dispatch(startSetStudent());
-store.dispatch(startSetStudentSecondary());
 
-const jsx = (
+// Loging In Login
+const studentToken = localStorage.getItem('studentToken');
+const teacherToken = localStorage.getItem('teacherToken');
+if (studentToken) {
+  store.dispatch(studentlogin());
+  store.dispatch(startSetStudent());
+  store.dispatch(startSetStudentSecondary());
+}
+
+if (teacherToken) {
+  store.dispatch(teacherLogin());
+  // TODO: Make all the things required.
+  // store.dispatch(startSetStudent());
+  // store.dispatch(startSetStudentSecondary());
+  store.dispatch(startSetTeacherSecondary());
+}
+
+const App = () => (
   <Provider store={store}>
     <AppRouter />
   </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+export default App;

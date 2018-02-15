@@ -26,6 +26,7 @@ const pickTeacher = (req) => {
     'password',
     'dateOfBirth',
     'gender',
+    'status',
     'currentPosition',
     'photo',
   ]);
@@ -37,6 +38,33 @@ const pickNotifications = (req) => {
   const file = req.file ? req.file.path : null;
   const newBody = {
     ...body,
+    file,
+  };
+  return newBody;
+};
+
+const pickTeacherNotifications = (req) => {
+  const body1 = _.pick(req.body, [
+    'title',
+    'description',
+    'link',
+    'branch',
+    'rollNo',
+    'year',
+  ]);
+  const body2 = {
+    title: body1.title,
+    description: body1.description,
+    link: body1.link,
+    tags: {
+      branch: body1.branch,
+      rollNo: body1.rollNo,
+      year: body1.year,
+    },
+  };
+  const file = req.file ? req.file.path : null;
+  const newBody = {
+    ...body2,
     file,
   };
   return newBody;
@@ -81,6 +109,11 @@ const pickTechnicalSkills = (req) => {
     return null;
   }
   return { ...technicalSkills };
+};
+
+const pickCommittee = (req) => {
+  const committee = _.pick(req.body, ['name', 'designation', 'status']);
+  return { committee };
 };
 
 const generateAuthToken = async (user) => {
@@ -284,7 +317,10 @@ const giveAll = (Model) => async () => {
 
 const giveAllSecondary = (Model) => async (_creator) => {
   try {
-    const things = await Model.find({ _creator });
+    const things = await Model.find({ _creator }).populate({
+      path: 'notifications._ref',
+      populate: { path: '_creator' },
+    });
     return things;
   } catch (error) {
     throw new Error(error);
@@ -335,4 +371,6 @@ module.exports = {
   giveAllSecondary,
   pickAdmin,
   loginAdmin,
+  pickTeacherNotifications,
+  pickCommittee,
 };

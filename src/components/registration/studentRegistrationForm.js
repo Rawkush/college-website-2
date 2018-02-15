@@ -11,6 +11,7 @@ const StudentRegistration = ({
   isSubmitting,
   handleBlur,
   handleChange,
+  setErrors,
 }) => (
   <Form>
     {errors.error && <p>{errors.error}</p>}
@@ -178,11 +179,12 @@ const StudentRegistration = ({
         <button
           type="button"
           onClick={() => {
-            values.onRemove().then(() =>
-              values.history.push('/').catch(() => {
-                errors.error = 'Cannot Delete';
-              })
-            );
+            values
+              .onRemove()
+              .then(() => values.history.push('/'))
+              .catch(() => {
+                setErrors({ error: 'Cannot Delete' });
+              });
           }}
         />
       </div>

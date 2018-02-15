@@ -44,6 +44,8 @@ export const startAddNotification = ({
   formdata.append('link', link);
   tags.map((tag) => formdata.append('tags[]', tag));
   formdata.append('file', file);
+  formdata.append('token', localStorage.getItem('adminToken'));
+
   return axios({
     method: 'post',
     url: 'http://localhost:3000/s/admin/addnotification',
@@ -66,6 +68,13 @@ export const startSetNotification = () => (dispatch) =>
   axios.get('http://localhost:3000/s/visitor/getNotifications').then((res) => {
     dispatch(setNotification(res.data));
   });
+
+export const startSetAllNotification = () => (dispatch) =>
+  axios
+    .get('http://localhost:3000/s/visitor/getallNotifications')
+    .then((res) => {
+      dispatch(setNotification(res.data));
+    });
 
 export const editNotification = (notification) => ({
   type: 'EDIT_NOTIFICATION',
@@ -113,6 +122,7 @@ export const startEditNotification = (
   formdata.append('_id', _id);
   formdata.append('title', title);
   formdata.append('description', description);
+  formdata.append('token', localStorage.getItem('adminToken'));
   formdata.append('link', link);
   formdata.append('removeFile', removeFile);
   tags.map((tag) => formdata.append('tags[]', tag));
@@ -144,6 +154,7 @@ export const startRemoveNotification = (_id) => (dispatch) =>
     url: 'http://localhost:3000/s/admin/deletenotification',
     data: {
       _id,
+      token: localStorage.getItem('adminToken'),
     },
     headers: {
       'Content-Type': 'application/json',

@@ -2,10 +2,11 @@
 const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { TeacherSecondry } = require('./../models/teacherSecondary');
 const { teachersNotificaton } = require('./../models/teacherNotifications');
+const { StudentPrimary } = require('./../models/studentPrimary');
+const { StudentSecondry } = require('./../models/studentsSecondry');
 const {
   pickTeacher,
   pickWork,
-  pickNotifications,
   pickEducation,
   loginLocal,
   removeTokenMinimal,
@@ -16,6 +17,8 @@ const {
   deleteMinimal,
   deleteSecondaryMinimal,
   saveMinimal2,
+  pickTeacherNotifications,
+  pickCommittee,
 } = require('./../utils/utils');
 
 // Initializing the function for the Model
@@ -24,6 +27,12 @@ const login = loginLocal(TeacherPrimary);
 const authTeacherMinimal = authTokenMinimal(TeacherPrimary);
 const updateTeacherMinimal = updateMinimal(TeacherPrimary, true, false);
 const deleteTeacherMinimal = deleteMinimal(TeacherPrimary);
+const updateNotificationMinimal = updateMinimal(
+  teachersNotificaton,
+  true,
+  false
+);
+const deleteNotificationMinimal = deleteMinimal(teachersNotificaton);
 
 const updateSecondaryMinimal = updateMinimal(TeacherSecondry, false, true);
 const deleteSecondary = deleteSecondaryMinimal(TeacherSecondry);
@@ -52,7 +61,7 @@ const teacherLogin = async (req, res) => {
 };
 
 const tokenTeacherAuthenticate = async (req, res, next) => {
-  const token = req.header('x-auth');
+  const { token } = req.body;
   try {
     const teacher = await authTeacherMinimal(token);
     if (teacher) {
@@ -105,17 +114,87 @@ const addWork = async (req, res) => {
   }
 };
 
+const updateWork = async (req, res) => {
+  const body = pickWork(req);
+  const { _id } = req.body;
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      { _creator: req.teacher._id, 'work._id': _id },
+      {
+        $set: {
+          'work.$.title': body.work.title,
+          'work.$.description': body.work.description,
+        },
+      }
+    );
+    return res.send(updatedSecondary);
+  } catch (error) {
+    return res.status(400).send(`Something went wrong:${error}`);
+  }
+};
+
 const removeWork = async (req, res) => {
   const { _id } = req.body;
 
   try {
     const updatedSecondary = await updateSecondaryMinimal(
-      { _creator: req.teacher._id },
+      { _creator: req.teacher._id, 'work._id': _id },
       {
         $pull: { work: { _id } },
       }
     );
-    return res.header('x-auth', req.header('x-auth')).send(updatedSecondary);
+    return res.send(updatedSecondary);
+  } catch (error) {
+    return res.sendStatus(400).send('Something went wrong');
+  }
+};
+
+const addTeacherCommittee = async (req, res) => {
+  const body = pickCommittee(req);
+
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      { _creator: req.teacher._id },
+      {
+        $push: { ...body },
+      }
+    );
+    return res.send(updatedSecondary);
+  } catch (error) {
+    return res.status(400).send(`Something went wrong: ${error}`);
+  }
+};
+
+const updateTeacherCommittee = async (req, res) => {
+  const body = pickCommittee(req);
+  const { _id } = req.body;
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      { _creator: req.teacher._id, 'committee._id': _id },
+      {
+        $set: {
+          'committee.$.name': body.committee.name,
+          'committee.$.designation': body.committee.designation,
+          'committee.$.status': body.committee.status,
+        },
+      }
+    );
+    return res.send(updatedSecondary);
+  } catch (error) {
+    return res.status(400).send(`Something went wrong: ${error}`);
+  }
+};
+
+const removeCommittee = async (req, res) => {
+  const { _id } = req.body;
+  try {
+    const updatedSecondary = await updateSecondaryMinimal(
+      { _creator: req.teacher._id, 'committee._id': _id },
+      {
+        $pull: { committee: { _id } },
+      }
+    );
+    return res.send(updatedSecondary);
   } catch (error) {
     return res.sendStatus(400).send('Something went wrong');
   }
@@ -177,7 +256,7 @@ const deleteTeacher = async (req, res) => {
 };
 
 const addNotification = async (req, res) => {
-  const body = pickNotifications(req);
+  const body = pickTeacherNotifications(req);
 
   const newBody = {
     _creator: req.teacher._id,
@@ -186,10 +265,77 @@ const addNotification = async (req, res) => {
 
   try {
     const notification = await saveNotificationsMinimal(newBody);
-    res.header('x-auth', req.header('x-auth')).send(notification);
+    const { branch, rollNo, year } = notification.tags;
+    const studentIds = await StudentPrimary.findAllIdByTags({
+      branch,
+      rollNo,
+      year,
+    });
+    studentIds.forEach(async (_creator) => {
+      await StudentSecondry.findOneAndUpdate(
+        { _creator },
+        {
+          $push: { notifications: { _ref: notification._id } },
+        }
+      );
+    });
+    res.send(notification);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
   }
+};
+
+const getTeacherSecondary = async (req, res) => {
+  const { _id } = req.teacher;
+
+  try {
+    const teacherSecondary = await TeacherSecondry.find({ _creator: _id });
+    const notifications = await teachersNotificaton.find({ _creator: _id });
+    res.send({ ...teacherSecondary, notifications });
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
+const updateNotification = async (req, res) => {
+  const { _id } = req.teacher;
+  const body = pickTeacherNotifications(req);
+  if (body.file === null) {
+    delete body.file;
+  }
+
+  try {
+    const updatedNotification = await updateNotificationMinimal(
+      {
+        _creator: _id,
+        _id: req.body._id,
+      },
+      {
+        $set: { ...body },
+      }
+    );
+    res.send(updatedNotification);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+const deleteNotification = async (req, res) => {
+  const _creator = req.teacher._id;
+  const { _id } = req.body;
+  try {
+    const deleted = await deleteNotificationMinimal({
+      _creator,
+      _id,
+    });
+    res.send(deleted);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+const getTeacher = (req, res) => {
+  res.send(req.teacher);
 };
 
 module.exports = {
@@ -198,11 +344,19 @@ module.exports = {
   tokenTeacherAuthenticate,
   teacherUpdate,
   addWork,
+  updateWork,
   removeWork,
   addEducation,
   addTeacherSpecialications,
   addTechnicalSkills,
   deleteTeacher,
   addNotification,
+  updateNotification,
+  deleteNotification,
   teacherRegister,
+  getTeacherSecondary,
+  addTeacherCommittee,
+  updateTeacherCommittee,
+  removeCommittee,
+  getTeacher,
 };

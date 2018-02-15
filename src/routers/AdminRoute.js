@@ -23,7 +23,7 @@ const AdminRoute = ({ isAdmin, component: Component, ...rest }) => (
 );
 
 const mapStateToProps = (state) => ({
-  isAdmin: !!state.admin.auth,
+  isAdmin: state.auth.admin,
 });
 
 export default connect(mapStateToProps)(AdminRoute);

@@ -142,7 +142,6 @@ export const startEditProject = ({
   link = '',
   _id = '',
 }) => (dispatch) => {
-  console.log(photos);
   const formdata = new FormData();
   formdata.append('token', localStorage.getItem('studentToken'));
   formdata.append('title', title);
@@ -220,3 +219,20 @@ export const startUpdateSpecialisation = ({
     })
     .catch((err) => Promise.reject(err));
 };
+
+const markNotificationAsRead = (_id) => ({
+  type: 'MARK_AS_READ',
+  _id,
+});
+
+export const startMarkNotificationAsRead = (_id) => (dispatch) =>
+  axios
+    .post('http://localhost:3000/s/student/markasread', {
+      _id,
+      token: localStorage.getItem('studentToken'),
+    })
+    .then((res) => {
+      dispatch(markNotificationAsRead(res.data._id));
+      Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));

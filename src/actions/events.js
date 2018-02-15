@@ -22,6 +22,7 @@ export const startAddEvent = ({
   formdata.append('date', date);
   formdata.append('place', place);
   formdata.append('type', type);
+  formdata.append('token', localStorage.getItem('adminToken'));
   formdata.append('photo', mainPhoto);
   formdata.append('photo', photo1);
   formdata.append('photo', photo2);
@@ -67,6 +68,7 @@ export const startEditEvent = (
     type,
     description,
     _id,
+    token: localStorage.getItem('adminToken'),
   };
   return axios({
     method: 'patch',
@@ -92,6 +94,7 @@ export const startRemoveEvent = (_id) => (dispatch) =>
     url: 'http://localhost:3000/s/admin/deleteevent',
     data: {
       _id,
+      token: localStorage.getItem('adminToken'),
     },
     headers: {
       'Content-Type': 'application/json',

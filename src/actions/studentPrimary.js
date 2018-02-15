@@ -122,3 +122,33 @@ export const startRemoveStudent = () => (dispatch) =>
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
+
+export const studentlogin = () => ({
+  type: 'STUDENT_LOGIN',
+});
+
+export const startStudentLogin = (token) => (dispatch) =>
+  axios
+    .post('http://localhost:3000/s/student/login', { token })
+    .then((res) => {
+      localStorage.setItem('studentToken', res.data.token);
+      dispatch(studentlogin());
+      return Promise.resolve('success');
+    })
+    .catch((err) => Promise.reject(err));
+
+export const studentLogout = () => ({
+  type: 'STUDENT_LOGOUT',
+});
+
+export const startStudentLogout = () => (dispatch) =>
+  axios
+    .post('http://localhost:3000/s/student/logout', {
+      token: localStorage.getItem('studentToken'),
+    })
+    .then(() => {
+      localStorage.removeItem('studentToken');
+      dispatch(studentLogout());
+      return Promise.resolve();
+    })
+    .catch(() => Promise.reject());

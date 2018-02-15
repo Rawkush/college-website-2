@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 // Reducers
-import adminAuthReducer from '../reducers/adminAuth';
+import authReducer from '../reducers/auth';
 import notificaionsReducer from './../reducers/notifications';
 import eventsReducer from './../reducers/events';
 import syllabusReducer from './../reducers/syllabus';
@@ -18,7 +18,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export default () => {
   const store = createStore(
     combineReducers({
-      admin: adminAuthReducer,
+      auth: authReducer,
       notifications: notificaionsReducer,
       events: eventsReducer,
       syllabus: syllabusReducer,
