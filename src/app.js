@@ -9,7 +9,7 @@ import configureStore from './store/configureStore';
 
 // Actions
 import {
-  startSetNotification,
+  // startSetNotification,
   startSetAllNotification,
 } from './actions/notifications';
 import { startSetSyllabus } from './actions/syllabus';
@@ -26,7 +26,7 @@ import AppRouter from './routers/AppRouter';
 const store = configureStore();
 
 // Actions
-store.dispatch(startSetNotification());
+// store.dispatch(startSetNotification());
 store.dispatch(startSetAllNotification());
 store.dispatch(startSetSyllabus());
 store.dispatch(startSetTimeTable());
