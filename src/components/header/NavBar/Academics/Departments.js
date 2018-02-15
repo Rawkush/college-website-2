@@ -44,30 +44,36 @@ export default () => (
   </NavCardFlex>
 );
 
+const FlexHorizontal = Flex.extend`
+  flex-direction: row;
+`;
+
 export const SyllabusCard = () => (
   <NavCardFlex>
     <NavItemFlexHeading>Syllabus</NavItemFlexHeading>
     <NavItemFlexSubHeading>New</NavItemFlexSubHeading>
-    <NavItemFlex>
-      <Link to="/syllabus/it">I.T.</Link>
-    </NavItemFlex>
-    <NavItemFlex>
-      <Link to="/syllabus/civil">Civil</Link>
-    </NavItemFlex>
-    <NavItemFlex>
-      <Link to="/syllabus/env">Env</Link>
-    </NavItemFlex>
+    <FlexHorizontal>
+      <NavItemFlex>
+        <Link to="/syllabus/new/it">I.T.</Link>
+      </NavItemFlex>
+      <NavItemFlex>
+        <Link to="/syllabus/new/civil">Civil</Link>
+      </NavItemFlex>
+      <NavItemFlex>
+        <Link to="/syllabus/new/env">Env</Link>
+      </NavItemFlex>
+    </FlexHorizontal>
     <NavItemFlexSubHeading>Old</NavItemFlexSubHeading>
-    <NavItemFlex>
+    <FlexHorizontal>
       <NavItemFlex>
-        <Link to="/syllabus/it">I.T.</Link>
+        <Link to="/syllabus/old/it">I.T.</Link>
       </NavItemFlex>
       <NavItemFlex>
-        <Link to="/syllabus/civil">Civil</Link>
+        <Link to="/syllabus/old/civil">Civil</Link>
       </NavItemFlex>
       <NavItemFlex>
-        <Link to="/syllabus/env">Env</Link>
+        <Link to="/syllabus/old/env">Env</Link>
       </NavItemFlex>
-    </NavItemFlex>
+    </FlexHorizontal>
   </NavCardFlex>
 );
