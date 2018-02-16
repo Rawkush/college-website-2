@@ -13,7 +13,7 @@
     "server-test":
       "export NODE_ENV=test || SET \"NODE_ENV=test\" &&mocha server/**/*.test.js",
     "test-server-watch": "nodemon --exec \"npm test\"",
-    "heroku-postbuild": "npm tun build:prod"
+    "heroku-postbuild": "npm run build:prod"
   },
   "author": "",
   "license": "ISC",
