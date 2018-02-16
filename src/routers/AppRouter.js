@@ -11,7 +11,7 @@ import TeacherRoute from './TeacherRoute';
 import Header from './../components/header/Header';
 import Footer from './../components/Footer/Footer';
 import AdminNotifications from './../pages/adminPages/AdminNotifications';
-import Syllabus from './../components/syllabus/SyllabusContainer';
+import Syllabus from './../components/syllabus/syllabusContainer';
 import NotFound from './../components/notFound/NotFound';
 
 // Public Pages
