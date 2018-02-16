@@ -66,7 +66,7 @@ const callbackFunction = (req, accessToken, refreshToken, profile, done) => {
 
   const userData = {
     name: body.displayName,
-    email: body.emails[0].value,
+    email: body.emails ? body.emails[0].value : null,
     gender: body.gender,
     photo: body.photos[0] ? body.photos[0].value : null,
     bio: body._json.bio || body._json.headline, // eslint-disable-line
