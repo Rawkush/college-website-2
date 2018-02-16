@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import media from '../../theme/media';
 
 import NavBar from './NavBar/NavBar';
 
@@ -22,6 +23,17 @@ const FixedHeader = styled.header`
   top: 0;
   background: #fff;
   z-index: 100;
+  ${media.phone`
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.2196078431372549);
+    height: 10vh;
+  `};
+`;
+
+const Title = H1.extend`
+  flex-grow: 1;
+  ${media.phone`
+    font-size: 5vw;
+  `};
 `;
 
 const Links = () => (
@@ -93,7 +105,9 @@ const Header = () => (
     <FixedHeader>
       <Container>
         <Flex>
-          <H1>Ch. Bramh Prakash Govt. Engg. College</H1>
+          <FlexCenter>
+            <Title>Ch. Bramh Prakash Govt. Engg. College</Title>
+          </FlexCenter>
           <FlexCenter>
             <NavLink to="/login">
               <Button>Login</Button>
