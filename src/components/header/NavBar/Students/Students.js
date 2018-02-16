@@ -1,10 +1,9 @@
 import React from 'react';
 
-import DepartmentsCard from './Departments';
-import SyllabusCard from './Syllabus';
-import TimeTableCard from './TimeTable';
-import AcademicCalendar from './AcademicCalendar';
-
+import CirriculumCard from './Curriculum';
+import EventsCard from './Events';
+import ScholarshipCard from './Scholarship';
+import OthersCard from './Others';
 import media from './../../../../theme/media';
 
 // Styled Components
@@ -19,10 +18,10 @@ const NavFlex = Flex.extend`
 export default () => (
   <Container>
     <NavFlex>
-      <DepartmentsCard />
-      <SyllabusCard />
-      <TimeTableCard />
-      <AcademicCalendar />
+      <CirriculumCard />
+      <EventsCard />
+      <ScholarshipCard />
+      <OthersCard />
     </NavFlex>
   </Container>
 );

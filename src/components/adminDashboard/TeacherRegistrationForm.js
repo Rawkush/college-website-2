@@ -7,12 +7,16 @@ const TeacherRegistrationForm = ({ isSubmitting, errors }) => (
     {errors.error && <p>{errors.error}</p>}
     <label htmlFor="email">
       Email:
+      <br />
       <Field type="text" name="email" placeholder="email of the teacher." />
     </label>
+    <br />
     <label htmlFor="password">
       Password:
+      <br />
       <Field type="password" name="password" placeholder="Password" />
     </label>
+    <br />
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Container } from './../../../theme/Components';
 import AcademicsNav from './Academics/Academics';
+import StudentsNav from './Students/Students';
+import media from './../../../theme/media';
 
 const NavContainer = styled.div`
   display: flex;
@@ -11,6 +13,11 @@ const NavContainer = styled.div`
   margin: 0 auto;
   padding-bottom: 10px;
   z-index: 100;
+  ${media.phone`
+    width: 100%;
+    height: 8vh;
+    padding-bottom: 0px;
+  `};
 `;
 
 const NavItem = styled.div`
@@ -28,6 +35,11 @@ const NavItem = styled.div`
       color: #c14545;
     }
   }
+  ${media.phone`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `};
 `;
 
 const FixedCover = styled.div`
@@ -43,6 +55,9 @@ const FixedCover = styled.div`
     position: fixed;
     bottom: 0px;
   }
+  ${media.phone`
+    box-shadow: 0px -1px rgba(0,0,0,0.2196078431372549);
+  `};
 `;
 
 const Div = styled.div`
@@ -50,10 +65,17 @@ const Div = styled.div`
   width: 100%;
   position: fixed;
   background: #fff;
-  top: ${(props) => (props.active ? '92px' : '-210px')};
+  top: ${(props) => (props.active ? '92px' : '-250px')};
   transition: all cubic-bezier(0.46, 0.22, 0.5, 0.93) 0.3s;
   z-index: 90;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.09);
+  ${media.phone`
+    top: ${(props) => (props.active ? '10vh' : '20vh')};    
+    opacity: ${(props) => (props.active ? '100' : '0')};
+    height: 82vh;
+    overflow-y: auto;
+    pointer-events: ${(props) => (props.active ? 'auto' : 'none')};
+  `};
 `;
 
 class NavBar extends Component {
@@ -102,7 +124,9 @@ class NavBar extends Component {
         <Div active={this.state.active1}>
           <AcademicsNav />
         </Div>
-        <Div active={this.state.active2} />
+        <Div active={this.state.active2}>
+          <StudentsNav />
+        </Div>
       </div>
     );
   }
