@@ -32,11 +32,11 @@ const TeacherSecondrySchema = new mongoose.Schema({
       trim: true,
     },
   ],
-  committes: [
+  committee: [
     {
-      committeName: String,
-      nameAndDesignation: String,
-      statusInCommitte: String,
+      name: String,
+      designation: String,
+      status: String,
     },
   ],
   _creator: {

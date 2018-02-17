@@ -1,63 +1,161 @@
 import axios from 'axios';
-import { format } from 'url';
 
-// Setting all data
-export const setTeacherSecondary = (teacherSecondary) => ({
-  type: 'SET_TEACHER_SECONDARY',
-  teacherSecondary,
+export const addNotification = (notification) => ({
+  type: 'ADD_TEACHER_NOTIFICATION',
+  notification,
 });
 
-export const startSetStudentSecondary = () => (dispatch) =>
+export const startAddNotification = ({
+  title = '',
+  description = '',
+  branch = '',
+  year = '',
+  rollNo = '',
+  file = '',
+  link = '',
+} = {}) => (dispatch) => {
+  const formdata = new FormData();
+  formdata.append('title', title);
+  formdata.append('description', description);
+  formdata.append('link', link);
+  formdata.append('branch', branch);
+  formdata.append('year', year);
+  formdata.append('rollNo', rollNo);
+  formdata.append('file', file);
+  formdata.append('token', localStorage.getItem('teacherToken'));
+  return axios({
+    method: 'post',
+    url: 'http://localhost:3000/s/teacher/addnotification',
+    data: formdata,
+    config: { headers: { 'Content-Type': 'multipart/form-data' } },
+  })
+    .then((res) => {
+      dispatch(addNotification(res.data));
+      return Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));
+};
+
+export const editNotification = (notification) => ({
+  type: 'EDIT_TEACHER_NOTIFICATION',
+  notification,
+});
+
+export const startEditNotification = ({
+  title = '',
+  description = '',
+  branch = '',
+  year = '',
+  rollNo = '',
+  file = '',
+  link = '',
+  _id = '',
+} = {}) => (dispatch) => {
+  const formdata = new FormData();
+  formdata.append('title', title);
+  formdata.append('description', description);
+  formdata.append('link', link);
+  formdata.append('branch', branch);
+  formdata.append('year', year);
+  formdata.append('rollNo', rollNo);
+  formdata.append('file', file);
+  formdata.append('token', localStorage.getItem('teacherToken'));
+  formdata.append('_id', _id);
+  return axios({
+    method: 'post',
+    url: 'http://localhost:3000/s/teacher/updatenotification',
+    data: formdata,
+    config: { headers: { 'Content-Type': 'multipart/form-data' } },
+  })
+    .then((res) => {
+      dispatch(editNotification(res.data));
+      return Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));
+};
+
+export const removeNotification = (notification) => ({
+  type: 'EDIT_TEACHER_NOTIFICATION',
+  notification,
+});
+
+export const startRemoveNotification = (_id = '') => (dispatch) => {
+  const data = {
+    _id,
+    token: localStorage.getItem('teacherToken'),
+  };
+  return axios({
+    method: 'delete',
+    url: 'http://localhost:3000/s/teacher/removenotification',
+    data,
+    config: { headers: { 'Content-Type': 'application/json' } },
+  })
+    .then((res) => {
+      dispatch(removeNotification(res.data));
+      return Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));
+};
+
+// Setting all data
+export const setTeacherSecondary = (secondary) => ({
+  type: 'SET_TEACHER_SECONDARY',
+  secondary,
+});
+
+export const startSetTeacherSecondary = () => (dispatch) =>
   axios({
     method: 'post',
     url: 'http://localhost:3000/s/teacher/getteachersecondary',
     data: { token: localStorage.getItem('teacherToken') },
     config: { headers: { 'Content-Type': 'application/json' } },
   }).then((res) => {
-    dispatch(setTeacherSecondary(res.data[0]));
+    dispatch(
+      setTeacherSecondary({
+        ...res.data[0],
+        notifications: res.data.notifications,
+      })
+    );
   });
 
-// add work
-export const addWork = (work) => ({
-  type: 'ADD_WORK',
-  work,
-});
-
-export const startAddWork = ({ work = '' }) => (dispatch) => {
-  const formdata = new FormData();
-  formdata.append('token', localStorage.getItem('teacherToken'));
-  formdata.append('work', work);
+export const startAddWork = ({ title = '', description = '' } = {}) => (
+  dispatch
+) => {
+  const data = {
+    title,
+    description,
+    token: localStorage.getItem('teacherToken'),
+  };
   return axios({
     method: 'patch',
     url: 'http://localhost:3000/s/teacher/addwork',
-    data: formdata,
+    data,
     config: { header: { 'Content-Type': 'application/json' } },
   })
     .then((res) => {
-      dispatch(addWork(res.data.work));
+      dispatch(setTeacherSecondary(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
 };
 
-export const editWork = (work) => ({
-  type: 'EDIT_WORK',
-  work,
-});
-
-export const startEditWork = ({ work = '', _id = '' }) => (dispatch) => {
-  const formdata = new FormData();
-  formdata.append('token', localStorage.getItem('teacherToken'));
-  formdata.append('work', work);
-  formdata.append('_id', _id);
+export const startEditWork = ({ title = '', _id = '', description = '' }) => (
+  dispatch
+) => {
+  const data = {
+    title,
+    _id,
+    description,
+    token: localStorage.getItem('teacherToken'),
+  };
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/student/updatework',
-    data: formdata,
+    url: 'http://localhost:3000/s/teacher/updatework',
+    data,
     config: { header: { 'Content-Type': 'application/json' } },
   })
     .then((res) => {
-      dispatch(editWork(res.data.work));
+      dispatch(setTeacherSecondary(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
@@ -76,121 +174,92 @@ export const startRemoveWork = (_id) => (dispatch) =>
     },
   })
     .then((res) => {
-      dispatch(editWork(res.data.work));
+      dispatch(setTeacherSecondary(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
-// add technicalSkill
-export const addTechnicalSkill = (technicalSkill) => ({
-  type: 'ADD_TECHNICALSKILL',
-  technicalSkill,
-});
 
-export const startAddTechnicalSkill = ({ skill = '' }) => (dispatch) => {
-  const formdata = new FormData();
-  formdata.append('skill', skill);
-  return axios({
-    method: 'patch',
-    url: 'http://localhost:3000/s/teacher/addtechnicalskill',
-    data: formdata,
-    config: { headers: { 'Content-Type': 'application/json' } },
-  })
-    .then((res) => {
-      dispatch(addTechnicalSkill(res.data.technicalSkills));
-      return Promise.resolve();
-    })
-    .catch((err) => Promise.reject(err));
-};
-
-export const editTechnicalSkill = (technicalSkill) => ({
-  type: 'EDIT_TECHNICALSKILL',
-  technicalSkill,
-});
-
-export const startEditTechnicalSkill = ({ skill = '', _id = '' }) => (dispatch) => {
-  const formdata = new FormData();
-  formdata.append('token', localStorage.getItem('teacherToken'));
-  formdata.append('skill', skill);
-  formdata.append('_id', _id);
+export const startAddTechnicalSkill = ({
+  ts1 = '',
+  ts2 = '',
+  ts3 = '',
+  ts4 = '',
+  ts5 = '',
+}) => (dispatch) => {
+  const technicalSkillsTemp = [ts1, ts2, ts3, ts4, ts5];
+  const technicalSkills = technicalSkillsTemp.filter((elem) => elem !== '');
+  const data = {
+    token: localStorage.getItem('teacherToken'),
+    technicalSkills,
+  };
   return axios({
     method: 'patch',
     url: 'http://localhost:3000/s/teacher/updatetechnicalskill',
-    data: formdata,
-    config: { headers: { 'Content-Type': 'appplication/json' } },
+    data,
+    config: { headers: { 'Content-Type': 'application/json' } },
   })
     .then((res) => {
-      dispatch(editTechnicalSkill(res.data.technicalSkills));
+      dispatch(startSetTeacherSecondary(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
 };
-export const startRemoveTechnicalSkill = (_id) => (dispatch) =>
-  axios({
-    method: 'patch',
-    url: 'http://localhost:3000/s/teacher/removetechnicalskill',
-    data: {
-      token: localStorage.getItem('teacherToken'),
-      _id,
-    },
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((res) => {
-      dispatch(editTechnicalSkill(res.data.technicalSkills));
-      return Promise.resolve();
-    })
-    .catch((err) => Promise.reject(err));
+
 // committe
-export const addCommitte = (committe) => ({
-  type: 'ADD_COMMITTE',
-  committe,
-});
-
-export const startAddCommitte = ({ committe = '' }) => (dispatch) => {
-  const formdata = new FormData();
-  formdata.append('token', localStorage.getItem('teacherToken'));
-  formdata.append('committe', committe);
+export const startAddCommittee = ({
+  name = '',
+  designation = '',
+  status = '',
+}) => (dispatch) => {
+  const data = {
+    name,
+    designation,
+    status,
+    token: localStorage.getItem('teacherToken'),
+  };
   return axios({
-    method: 'patch',
-    url: 'http://localhost:3000/s/teacher/addcommitte',
-    date: formdata,
+    method: 'post',
+    url: 'http://localhost:3000/s/teacher/addcommittee',
+    data,
     config: { headers: { 'Content-Type': 'application/json' } },
   })
     .then((res) => {
-      dispatch(addCommitte(res.data.committes));
-      return Promise.reject.resolve();
-    })
-    .catch((err) => Promise.reject(err));
-};
-
-export const editCommitte = (committe) => ({
-  type: 'EDIT_COMMITTE',
-  committe,
-});
-
-export const startEditCommitte = ({ committe = '', _id = '' }) => (dispatch) => {
-  const formdata = new FormData();
-  formdata.append('token', localStorage.getItem('studentToken'));
-  format.append('committe', committe);
-  format.append('_id', _id);
-  return axios({
-    method: 'patch',
-    url: 'http://localhost:3000/s/student/updateaccomplishment',
-    data: formdata,
-    config: { headers: { 'Content-Type': 'application/json' } },
-  })
-    .then((res) => {
-      dispatch(editCommitte(res.data.committes));
+      dispatch(setTeacherSecondary(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
 };
 
-export const startRemoveCommitte = (_id) => (dispatch) =>
-  axios({
+export const startEditCommittee = ({
+  name = '',
+  designation = '',
+  status = '',
+  _id = '',
+}) => (dispatch) => {
+  const data = {
+    name,
+    designation,
+    status,
+    _id,
+    token: localStorage.getItem('teacherToken'),
+  };
+  return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/teacher/removecommitte',
+    url: 'http://localhost:3000/s/teacher/updatecommittee',
+    data,
+    config: { headers: { 'Content-Type': 'application/json' } },
+  })
+    .then((res) => {
+      dispatch(setTeacherSecondary(res.data));
+      return Promise.resolve();
+    })
+    .catch((err) => Promise.reject(err));
+};
+
+export const startRemoveCommittee = (_id) => (dispatch) =>
+  axios({
+    method: 'delete',
+    url: 'http://localhost:3000/s/teacher/removecommittee',
     data: {
       token: localStorage.getItem('teacherToken'),
       _id,
@@ -200,17 +269,12 @@ export const startRemoveCommitte = (_id) => (dispatch) =>
     },
   })
     .then((res) => {
-      dispatch(editCommitte(res.data.committes));
+      dispatch(setTeacherSecondary(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
 
 // update specialisation
-export const updateSpecialisation = (specialisation) => ({
-  type: 'UPDATE_SPECIALISATION',
-  specialisation,
-});
-
 export const startUpdateSpecialisation = ({
   sp1 = '',
   sp2 = '',
@@ -225,45 +289,40 @@ export const startUpdateSpecialisation = ({
     method: 'patch',
     url: 'http://localhost:3000/s/teacher/updatespecialisation',
     data: {
-      token: localStorage.getItem('studentToken'),
+      token: localStorage.getItem('teacherToken'),
       specialisation,
     },
     config: { headers: { 'Content-Type': 'application/json' } },
   })
     .then((res) => {
-      dispatch(updateSpecialisation(res.data.specialisation));
+      dispatch(setTeacherSecondary(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));
 };
 
 // updateEduction
-export const updateEduction = (eduction) => ({
-  type: 'UPDATE_EDUCTION',
-  eduction,
-});
-
-export const startUpdateEduction = ({
-  ed1 = '',
-  ed2 = '',
-  ed3 = '',
-  ed4 = '',
-  ed5 = '',
+export const startUpdateEducation = ({
+  e1 = '',
+  e2 = '',
+  e3 = '',
+  e4 = '',
+  e5 = '',
 }) => (dispatch) => {
-  const eductiontemp = [ed1, ed2, ed3, ed4, ed5];
-  const eduction = eductiontemp.filter((elem) => elem !== '');
+  const educationtemp = [e1, e2, e3, e4, e5];
+  const education = educationtemp.filter((elem) => elem !== '');
 
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/teacher/updateeduction',
+    url: 'http://localhost:3000/s/teacher/updateeducation',
     data: {
       token: localStorage.getItem('teacherToken'),
-      eduction,
+      education,
     },
     config: { headers: { 'Content-Type': 'application/json' } },
   })
     .then((res) => {
-      dispatch(updateEduction(res.data.eduction));
+      dispatch(setTeacherSecondary(res.data));
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));

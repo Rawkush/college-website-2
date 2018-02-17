@@ -48,8 +48,21 @@ const StudentSecondrySchema = new mongoose.Schema({
   ],
   _creator: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'StudentPrimary',
     required: true,
   },
+  notifications: [
+    {
+      _ref: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'teachersNotificaton',
+      },
+      read: {
+        type: Boolean,
+        default: false,
+      },
+    },
+  ],
 });
 const StudentSecondry = mongoose.model(
   'StudentSecondary',

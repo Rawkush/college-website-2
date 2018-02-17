@@ -26,6 +26,9 @@ const {
   editEvent,
   adminRegister,
   adminLogin,
+  adminLogout,
+  registerTeacher,
+  tokenAuthenticate,
 } = require('./../controllers/adminController');
 
 // Initializing the Router
@@ -33,43 +36,78 @@ const adminRoutes = express.Router();
 
 // Routing
 
-adminRoutes.delete('/deleteTeacher', deleteTeacher);
+adminRoutes.delete('/deleteTeacher', tokenAuthenticate, deleteTeacher);
 
 adminRoutes.post(
   '/addnotification',
   uploadNotifications.single('file'),
+  tokenAuthenticate,
   addNotifications
 );
 
 adminRoutes.patch(
   '/editnotification',
   uploadNotifications.single('file'),
+  tokenAuthenticate,
   editNotifications
 );
 
-adminRoutes.delete('/deletenotification', deleteNotifications);
+adminRoutes.delete(
+  '/deletenotification',
+  tokenAuthenticate,
+  deleteNotifications
+);
 
-adminRoutes.post('/addevent', uploadEvents.array('photo', 5), addEvents);
+adminRoutes.post(
+  '/addevent',
+  uploadEvents.array('photo', 5),
+  tokenAuthenticate,
+  addEvents
+);
 
-adminRoutes.patch('/editevent', editEvent);
+adminRoutes.patch('/editevent', tokenAuthenticate, editEvent);
 
-adminRoutes.delete('/deleteevent', deleteEvents);
+adminRoutes.delete('/deleteevent', tokenAuthenticate, deleteEvents);
 
-adminRoutes.post('/addsyll', uploadSyllabus.single('file'), addSyllabus);
+adminRoutes.post(
+  '/addsyll',
+  uploadSyllabus.single('file'),
+  tokenAuthenticate,
+  addSyllabus
+);
 
-adminRoutes.patch('/editsyll', uploadSyllabus.single('file'), editSyllabus);
+adminRoutes.patch(
+  '/editsyll',
+  uploadSyllabus.single('file'),
+  tokenAuthenticate,
+  editSyllabus
+);
 
-adminRoutes.delete('/deletesyll', deleteSyllabus);
+adminRoutes.delete('/deletesyll', tokenAuthenticate, deleteSyllabus);
 
-adminRoutes.post('/addtt', uploadTimeTable.single('file'), addTimeTable);
+adminRoutes.post(
+  '/addtt',
+  uploadTimeTable.single('file'),
+  tokenAuthenticate,
+  addTimeTable
+);
 
-adminRoutes.patch('/edittt', uploadTimeTable.single('file'), editTimeTable);
+adminRoutes.patch(
+  '/edittt',
+  uploadTimeTable.single('file'),
+  tokenAuthenticate,
+  editTimeTable
+);
 
-adminRoutes.delete('/deletett', deleteTimeTable);
+adminRoutes.delete('/deletett', tokenAuthenticate, deleteTimeTable);
 
 adminRoutes.post('/register', adminRegister);
 
 adminRoutes.post('/login', adminLogin);
+
+adminRoutes.post('/logout', tokenAuthenticate, adminLogout);
+
+adminRoutes.post('/teacherregisteration', tokenAuthenticate, registerTeacher);
 
 module.exports = {
   adminRoutes,

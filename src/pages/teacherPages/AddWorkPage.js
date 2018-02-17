@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Components
-import WorkForm from './../../components/TeacherDashboard/WorkForm';
+import WorkForm from './../../components/TeacherDashBoard/WorkForm';
 
 // Actions
 import { startAddWork } from './../../actions/teacherSecondary';

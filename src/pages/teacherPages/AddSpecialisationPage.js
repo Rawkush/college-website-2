@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Components
-import SpecialisationForm from './../../components/TeacherDashboard/SpecialisationForm';
+import SpecialisationForm from './../../components/TeacherDashBoard/SpecialisationForm';
 
 // Actions
 import { startUpdateSpecialisation } from './../../actions/teacherSecondary';

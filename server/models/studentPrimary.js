@@ -7,11 +7,11 @@ const {
   findByToken,
   decodeProviderAndId,
   findByCredentials,
-  checkPassword,
   removeToken,
   findByProviderAndId,
   slugGen,
   findBySlug,
+  findAllIdByTags,
 } = require('./modelsMethods');
 
 const StudentPrimarySchema = new mongoose.Schema(
@@ -161,6 +161,7 @@ StudentPrimarySchema.statics.findByToken = findByToken;
 StudentPrimarySchema.statics.findByCredentials = findByCredentials;
 StudentPrimarySchema.statics.findByProviderAndId = findByProviderAndId;
 StudentPrimarySchema.statics.findBySlug = findBySlug;
+StudentPrimarySchema.statics.findAllIdByTags = findAllIdByTags;
 StudentPrimarySchema.pre('save', slugGen);
 
 const StudentPrimary = mongoose.model('StudentPrimary', StudentPrimarySchema);

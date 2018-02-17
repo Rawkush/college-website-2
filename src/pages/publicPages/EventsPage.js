@@ -12,7 +12,7 @@ const EventsPage = ({ match, events, auth }) => (
 
 const mapStateToProps = (state) => ({
   events: state.events,
-  auth: state.admin.auth,
+  auth: state.auth.admin,
 });
 
 export default connect(mapStateToProps)(EventsPage);

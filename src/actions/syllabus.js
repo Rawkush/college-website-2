@@ -26,6 +26,7 @@ export const startAddSyllabus = ({
   formdata.append('l', l);
   formdata.append('tp', tp);
   formdata.append('credits', credits);
+  formdata.append('token', localStorage.getItem('adminToken'));
   formdata.append('status', status);
   formdata.append('period', period);
   formdata.append('type', type);
@@ -86,6 +87,7 @@ export const startEditSyllabus = (
   formdata.append('status', status);
   formdata.append('period', period);
   formdata.append('type', type);
+  formdata.append('token', localStorage.getItem('adminToken'));
   if (file instanceof Blob) {
     formdata.append('file', file);
   }
@@ -113,6 +115,7 @@ export const startRemoveSyllabus = (_id) => (dispatch) =>
     url: 'http://localhost:3000/s/admin/deletesyll',
     data: {
       _id,
+      token: localStorage.getItem('adminToken'),
     },
     headers: {
       'Content-Type': 'application/json',

@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // componets
-import EducationForm from './../../components/TeacherDashboard/EductionForm';
+import EducationForm from './../../components/TeacherDashBoard/EductionForm';
 
 // actions
-import { startUpdateEduction } from './../../actions/teacherSecondary';
+import { startUpdateEducation } from './../../actions/teacherSecondary';
 
-const AddEduction = ({ updateEduction, history, education }) => (
+const AddEduction = ({ updateEducation, history, education }) => (
   <div>
     <h2> Add Eduction </h2>
     <EducationForm
-      onSubmit={updateEduction}
+      onSubmit={updateEducation}
       history={history}
       education={education}
     />
@@ -22,7 +22,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateEduction: (val) => dispatch(startUpdateEduction(val)),
+  updateEducation: (val) => dispatch(startUpdateEducation(val)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddEduction);

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 //  Component
 import TimeTableList from './../../components/timeTable/TimeTableList';
 
-const TimeTablePage = ({ timeTableArray, match, auth }) => (
+const TimeTablePage = ({ timeTableArray, match, isAdmin }) => (
   <div>
     <TimeTableList
-      auth={auth}
+      isAdmin={isAdmin}
       timeTableArray={timeTableArray.filter(
         (timeTable) => timeTable.semster === match.params.sem
       )}
@@ -18,7 +18,7 @@ const TimeTablePage = ({ timeTableArray, match, auth }) => (
 
 const mapStateToProps = (state) => ({
   timeTableArray: state.timeTable,
-  auth: state.admin.auth,
+  isAdmin: state.auth.admin,
 });
 
 export default connect(mapStateToProps)(TimeTablePage);

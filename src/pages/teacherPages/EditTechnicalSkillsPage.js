@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // components
-import TechnicalSkillsForm from './../../components/TeacherDashboard/TechnicalSkillsForm';
+import TechnicalSkillsForm from './../../components/TeacherDashBoard/TechnicalSkillsForm';
 
 // actions
 import {

@@ -15,13 +15,12 @@ const TeacherPrimarySchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
       trim: true,
       minlength: 1,
     },
     email: {
       type: String,
-      required: true,
+      required: 'Email is required for registration.',
       trim: true,
       minlength: 1,
       unique: true,
@@ -39,23 +38,19 @@ const TeacherPrimarySchema = new mongoose.Schema(
     },
     dateOfBirth: {
       type: Date,
-      required: true,
     },
     slugg: {
       type: String,
     },
     gender: {
       type: String,
-      required: true,
       trim: true,
     },
     currentPosition: {
       type: String,
-      required: true,
     },
     status: {
       type: Boolean,
-      required: true,
     },
     photo: String,
     tokens: [

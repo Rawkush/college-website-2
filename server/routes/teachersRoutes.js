@@ -1,6 +1,14 @@
 // Global Modules import
 const express = require('express');
 
+// Configurations
+const { multerConfig } = require('./../config/multerConfig');
+
+const uploadTeacherNotification = multerConfig(
+  'uploads/teacherNotification',
+  /pdf|jpg|jpeg|png/
+);
+
 // Initializing the Router
 const teacherRoutes = express.Router();
 
@@ -11,37 +19,53 @@ const {
   teacherLogout,
   teacherUpdate,
   addWork,
+  updateWork,
   removeWork,
   addEducation,
   addTechnicalSkills,
   addTeacherSpecialications,
   deleteTeacher,
   addNotification,
+  updateNotification,
+  deleteNotification,
   teacherRegister,
+  getTeacherSecondary,
+  addTeacherCommittee,
+  updateTeacherCommittee,
+  removeCommittee,
+  getTeacher,
 } = require('./../controllers/teacherController');
 
-teacherRoutes.post('/teacherRegister', teacherRegister);
+teacherRoutes.post('/register', teacherRegister);
 
-teacherRoutes.post('/teacherLogin', teacherLogin);
+teacherRoutes.post(
+  '/getteachersecondary',
+  tokenTeacherAuthenticate,
+  getTeacherSecondary
+);
 
-teacherRoutes.post('/teacherLogout', tokenTeacherAuthenticate, teacherLogout);
+teacherRoutes.post('/login', teacherLogin);
 
-teacherRoutes.patch('/teacherUpdate', tokenTeacherAuthenticate, teacherUpdate);
+teacherRoutes.post('/logout', tokenTeacherAuthenticate, teacherLogout);
 
-teacherRoutes.patch('/addWork', tokenTeacherAuthenticate, addWork);
+teacherRoutes.patch('/updateprofile', tokenTeacherAuthenticate, teacherUpdate);
 
-teacherRoutes.patch('/removeWork', tokenTeacherAuthenticate, removeWork);
+teacherRoutes.patch('/addwork', tokenTeacherAuthenticate, addWork);
 
-teacherRoutes.patch('/addEducation', tokenTeacherAuthenticate, addEducation);
+teacherRoutes.patch('/updatework', tokenTeacherAuthenticate, updateWork);
+
+teacherRoutes.patch('/removework', tokenTeacherAuthenticate, removeWork);
+
+teacherRoutes.patch('/updateeducation', tokenTeacherAuthenticate, addEducation);
 
 teacherRoutes.patch(
-  '/addTechnicalSkills',
+  '/updatetechnicalskill',
   tokenTeacherAuthenticate,
   addTechnicalSkills
 );
 
 teacherRoutes.patch(
-  '/addSpecialiscations',
+  '/updatespecialisation',
   tokenTeacherAuthenticate,
   addTeacherSpecialications
 );
@@ -49,9 +73,43 @@ teacherRoutes.patch(
 teacherRoutes.delete('/deleteTeacher', tokenTeacherAuthenticate, deleteTeacher);
 
 teacherRoutes.post(
-  '/addNotifications',
+  '/addnotification',
+  uploadTeacherNotification.single('file'),
   tokenTeacherAuthenticate,
   addNotification
 );
+
+teacherRoutes.post(
+  '/updatenotification',
+  uploadTeacherNotification.single('file'),
+  tokenTeacherAuthenticate,
+  updateNotification
+);
+
+teacherRoutes.delete(
+  '/removenotification',
+  tokenTeacherAuthenticate,
+  deleteNotification
+);
+
+teacherRoutes.post(
+  '/addcommittee',
+  tokenTeacherAuthenticate,
+  addTeacherCommittee
+);
+
+teacherRoutes.patch(
+  '/updatecommittee',
+  tokenTeacherAuthenticate,
+  updateTeacherCommittee
+);
+
+teacherRoutes.delete(
+  '/removecommittee',
+  tokenTeacherAuthenticate,
+  removeCommittee
+);
+
+teacherRoutes.post('/getteacher', tokenTeacherAuthenticate, getTeacher);
 
 module.exports = { teacherRoutes };

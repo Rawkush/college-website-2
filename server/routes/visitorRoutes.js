@@ -6,6 +6,7 @@ const {
   getLatestEvents,
   getAllEvents,
   getLatestNotifications,
+  getAllNotifications,
   getTeacher,
   getStudent,
   getSyllabus,
@@ -18,6 +19,8 @@ const visitorRoutes = express.Router();
 
 // Routes
 visitorRoutes.get('/getnotifications', getLatestNotifications);
+
+visitorRoutes.get('/getallnotifications', getAllNotifications);
 
 visitorRoutes.get('/getevents', getLatestEvents);
 

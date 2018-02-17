@@ -9,7 +9,7 @@ import TimeTableForm from './../../components/adminDashboard/TimeTableForm';
 
 const AddSyllabusPage = ({ addTimeTable, history }) => (
   <div>
-    <h2>Add Syllabus</h2>
+    <h2>Add Time Table</h2>
     <TimeTableForm history={history} onSubmit={addTimeTable} />
   </div>
 );

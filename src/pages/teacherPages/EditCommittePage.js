@@ -2,24 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // component
-import CommitteForm from './../../components/TeacherDashboard/CommitteForm';
+import CommitteeForm from './../../components/TeacherDashBoard/CommitteeForm';
 
 // action
 import {
-  startEditCommitte,
-  startRemoveCommitte,
+  startEditCommittee,
+  startRemoveCommittee,
 } from './../../actions/teacherSecondary';
 
-const EditCommitte = ({ editCommitte, removeCommitte, history, committe }) => (
+const EditCommitte = ({
+  editCommittee,
+  removeCommittee,
+  history,
+  committee,
+}) => (
   <div>
     <h2> Edit Committe </h2>
-    {committe ? (
-      <CommitteForm
-        onSubmit={editCommitte}
-        removeTechnicalSkill={removeCommitte}
+    {committee ? (
+      <CommitteeForm
+        onSubmit={editCommittee}
+        remove={removeCommittee}
         history={history}
         edit
-        {...committe}
+        {...committee}
       />
     ) : (
       <p> editing committe </p>
@@ -28,14 +33,14 @@ const EditCommitte = ({ editCommitte, removeCommitte, history, committe }) => (
 );
 
 const mapStateToProps = (state, props) => ({
-  committe: state.teacherSecondary.committe.find(
-    (committe) => committe._id === props.match.params._id
+  committee: state.teacherSecondary.committee.find(
+    (elem) => elem._id === props.match.params._id
   ),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  editCommitte: (val) => dispatch(startEditCommitte(val)),
-  removeCommitte: (_id) => dispatch(startRemoveCommitte(_id)),
+  editCommittee: (val) => dispatch(startEditCommittee(val)),
+  removeCommittee: (_id) => dispatch(startRemoveCommittee(_id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCommitte);

@@ -34,6 +34,11 @@ const decodeStudentAuthToken = decodeAuthTokenMinimal(StudentPrimary);
 const giveAllStudentSecondary = giveAllSecondary(StudentSecondry);
 
 const updateSecondaryMinimal = updateMinimal(StudentSecondry, false, true);
+const updateSecondaryMinimalNoNew = updateMinimal(
+  StudentSecondry,
+  false,
+  false
+);
 const deleteSecondary = deleteSecondaryMinimal(StudentSecondry);
 
 //  Controllers
@@ -295,7 +300,7 @@ const checkStudent = async (req, res, next) => {
     if (exists) {
       res.cookie('token', token, {
         expires: new Date(Date.now() + 30000),
-        httpOnly: true,
+        httpOnly: false,
       });
       res.redirect('/student/login');
       return;
@@ -307,11 +312,11 @@ const checkStudent = async (req, res, next) => {
 };
 
 const login = async (req, res) => {
-  const { token } = req.cookies;
+  const { token } = req.body;
   const student = await checkStudentMinimal(token);
   if (student) {
     const newToken = await generateAuthToken(student);
-    res.header('x-auth', newToken).send('you are logged in now');
+    res.send({ token: newToken });
     return;
   }
   res.sendStatus(404);
@@ -350,6 +355,27 @@ const getAllStudentSecondary = async (req, res) => {
   }
 };
 
+const markAsRead = async (req, res) => {
+  const _creator = req.student._id;
+  const { _id } = req.body;
+  try {
+    await updateSecondaryMinimalNoNew(
+      {
+        _creator,
+        'notifications._id': _id,
+      },
+      {
+        $set: {
+          'notifications.$.read': true,
+        },
+      }
+    );
+    res.status(200).send({ _id });
+  } catch (error) {
+    res.send(`Something went wrong: ${error}`);
+  }
+};
+
 module.exports = {
   studentGoogleLogin,
   studentGitHubLogin,
@@ -375,4 +401,5 @@ module.exports = {
   getStudent,
   getAllStudentSecondary,
   updateProject,
+  markAsRead,
 };
