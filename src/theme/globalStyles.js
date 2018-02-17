@@ -4,12 +4,13 @@ import { injectGlobal } from 'styled-components';
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Noto+Serif');
   @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:400');
+  @import url('https://fonts.googleapis.com/css?family=Roboto');
   body: {
     margin: 0;
     padding: 0;
     margin-top: 92px;
     font-size: 15px;  
-    font-family: roboto;
+    font-family: Roboto;
     @media (max-width: 700px) {
       font-size: 10px;
     }

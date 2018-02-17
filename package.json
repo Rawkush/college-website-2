@@ -10,8 +10,10 @@
     "client-test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "start": "node server/server.js",
     "server-watch": "nodemon server/server.js",
-    "server-test": "export NODE_ENV=test || SET \"NODE_ENV=test\" &&mocha server/**/*.test.js",
-    "test-server-watch": "nodemon --exec \"npm test\""
+    "server-test":
+      "export NODE_ENV=test || SET \"NODE_ENV=test\" &&mocha server/**/*.test.js",
+    "test-server-watch": "nodemon --exec \"npm test\"",
+    "heroku-postbuild": "npm run build:prod"
   },
   "author": "",
   "license": "ISC",

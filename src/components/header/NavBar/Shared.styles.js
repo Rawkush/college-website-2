@@ -1,9 +1,13 @@
 import { Flex, FlexItem } from './../../../theme/Components';
+import media from './../../../theme/media';
 
 const NavCardFlex = Flex.extend`
   flex-direction: column;
   flex: 1;
   min-height: 200px;
+  ${media.phone`
+    min-height: 30px;
+  `};
 `;
 
 const NavItemFlex = FlexItem.extend`

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import media from './../../../../theme/media';
 
 import {
   NavCardFlex,
@@ -7,23 +8,30 @@ import {
   NavItemFlexHeading,
 } from './../Shared.styles';
 
+const NavItemFlexResponsive = NavItemFlex.extend`
+  ${media.phone`
+    text-align: left;
+    padding-left: 50px;
+  `};
+`;
+
 export default () => (
   <NavCardFlex>
     <NavItemFlexHeading>Departments</NavItemFlexHeading>
-    <NavItemFlex>
+    <NavItemFlexResponsive>
       <Link to="/department/it">Information Techonology</Link>
-    </NavItemFlex>
-    <NavItemFlex>
+    </NavItemFlexResponsive>
+    <NavItemFlexResponsive>
       <Link to="/department/civil">Civil</Link>
-    </NavItemFlex>
-    <NavItemFlex>
+    </NavItemFlexResponsive>
+    <NavItemFlexResponsive>
       <Link to="/department/env">Environment</Link>
-    </NavItemFlex>
-    <NavItemFlex>
+    </NavItemFlexResponsive>
+    <NavItemFlexResponsive>
       <Link to="/department/allied">Allied</Link>
-    </NavItemFlex>
-    <NavItemFlex>
+    </NavItemFlexResponsive>
+    <NavItemFlexResponsive>
       <Link to="/department/applied">Applied Science and Humanities</Link>
-    </NavItemFlex>
+    </NavItemFlexResponsive>
   </NavCardFlex>
 );
