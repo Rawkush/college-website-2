@@ -48,7 +48,7 @@ export const startAddNotification = ({
 
   return axios({
     method: 'post',
-    url: 'http://localhost:3000/s/admin/addnotification',
+    url: '/s/admin/addnotification',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -65,16 +65,14 @@ export const setNotification = (notifications) => ({
 });
 
 export const startSetNotification = () => (dispatch) =>
-  axios.get('http://localhost:3000/s/visitor/getNotifications').then((res) => {
+  axios.get('/s/visitor/getNotifications').then((res) => {
     dispatch(setNotification(res.data));
   });
 
 export const startSetAllNotification = () => (dispatch) =>
-  axios
-    .get('http://localhost:3000/s/visitor/getallNotifications')
-    .then((res) => {
-      dispatch(setNotification(res.data));
-    });
+  axios.get('/s/visitor/getallNotifications').then((res) => {
+    dispatch(setNotification(res.data));
+  });
 
 export const editNotification = (notification) => ({
   type: 'EDIT_NOTIFICATION',
@@ -132,7 +130,7 @@ export const startEditNotification = (
   }
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/admin/editnotification',
+    url: '/s/admin/editnotification',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -151,7 +149,7 @@ const removeNotification = (notification) => ({
 export const startRemoveNotification = (_id) => (dispatch) =>
   axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/admin/deletenotification',
+    url: '/s/admin/deletenotification',
     data: {
       _id,
       token: localStorage.getItem('adminToken'),
