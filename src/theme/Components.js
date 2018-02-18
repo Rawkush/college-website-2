@@ -63,6 +63,7 @@ const FlexCenter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
   flex-grow: 1;
   height: ${(props) => (props.h ? props.h : '')};
 `;

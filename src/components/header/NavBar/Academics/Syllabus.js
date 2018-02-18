@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import {
   NavCardFlex,
@@ -7,6 +6,7 @@ import {
   NavItemFlexHeading,
   NavItemFlexSubHeading,
   FlexHorizontal,
+  StyledLink,
 } from './../Shared.styles';
 
 export default () => (
@@ -15,25 +15,25 @@ export default () => (
     <NavItemFlexSubHeading>New</NavItemFlexSubHeading>
     <FlexHorizontal>
       <NavItemFlex center>
-        <Link to="/syllabus/new/it">I.T.</Link>
+        <StyledLink to="/syllabus/new/it">I.T.</StyledLink>
       </NavItemFlex>
       <NavItemFlex center>
-        <Link to="/syllabus/new/civil">Civil</Link>
+        <StyledLink to="/syllabus/new/civil">Civil</StyledLink>
       </NavItemFlex>
       <NavItemFlex center>
-        <Link to="/syllabus/new/env">Env</Link>
+        <StyledLink to="/syllabus/new/env">Env</StyledLink>
       </NavItemFlex>
     </FlexHorizontal>
     <NavItemFlexSubHeading>Old</NavItemFlexSubHeading>
     <FlexHorizontal>
       <NavItemFlex center>
-        <Link to="/syllabus/old/it">I.T.</Link>
+        <StyledLink to="/syllabus/old/it">I.T.</StyledLink>
       </NavItemFlex>
       <NavItemFlex center>
-        <Link to="/syllabus/old/civil">Civil</Link>
+        <StyledLink to="/syllabus/old/civil">Civil</StyledLink>
       </NavItemFlex>
       <NavItemFlex center>
-        <Link to="/syllabus/old/env">Env</Link>
+        <StyledLink to="/syllabus/old/env">Env</StyledLink>
       </NavItemFlex>
     </FlexHorizontal>
   </NavCardFlex>

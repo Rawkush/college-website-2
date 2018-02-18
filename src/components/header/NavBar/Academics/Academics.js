@@ -6,6 +6,7 @@ import TimeTableCard from './TimeTable';
 import AcademicCalendar from './AcademicCalendar';
 
 import media from './../../../../theme/media';
+import { VerticalLine } from './../Shared.styles';
 
 // Styled Components
 import { Flex, Container } from './../../../../theme/Components';
@@ -20,8 +21,11 @@ export default () => (
   <Container>
     <NavFlex>
       <DepartmentsCard />
+      <VerticalLine />
       <SyllabusCard />
+      <VerticalLine />
       <TimeTableCard />
+      <VerticalLine />
       <AcademicCalendar />
     </NavFlex>
   </Container>
