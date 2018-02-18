@@ -15,7 +15,7 @@ const { visitorRoutes } = require('./routes/visitorRoutes');
 
 const app = express();
 
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT || 3000;
 const host = '0.0.0.0';
 const publicPath = path.join(__dirname, '..', 'public');
 
