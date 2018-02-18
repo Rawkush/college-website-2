@@ -15,13 +15,19 @@ module.exports = (env) => {
   const isProduction = env === 'production';
   const CSSExtract = new ExtractTextPlugin('styles.css');
 
+  const productionEntry = ['./src/index.js'];
+
+  const developmentEntry = [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './src/index.js',
+  ];
+
+  const entry = isProduction ? productionEntry : developmentEntry;
+
   return {
-    entry: [
-      'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
-      './src/index.js',
-    ],
+    entry,
     output: {
       publicPath: '/dist/',
       path: path.join(__dirname, 'public', 'dist'),
