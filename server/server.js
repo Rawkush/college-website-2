@@ -16,7 +16,7 @@ const { visitorRoutes } = require('./routes/visitorRoutes');
 const app = express();
 
 const port = 3000 || process.env.PORT;
-
+const host = '0.0.0.0';
 const publicPath = path.join(__dirname, '..', 'public');
 
 //  Adding middlewares
@@ -40,4 +40,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-app.listen(port, () => console.log(`Server is up on the ${port}`)); // eslint-disable-line
+app.listen(port, host, () => console.log(`Server is up on the ${port}`)); // eslint-disable-line
