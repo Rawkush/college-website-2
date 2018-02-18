@@ -27,6 +27,9 @@ module.exports = (env) => {
       path: path.join(__dirname, 'public', 'dist'),
       filename: 'bundle.js',
     },
+    resolve: {
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    },
     module: {
       rules: [
         {
@@ -52,6 +55,13 @@ module.exports = (env) => {
               },
             ],
           }),
+        },
+        {
+          test: /\.(png|jpg)$/,
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+          },
         },
       ],
     },
