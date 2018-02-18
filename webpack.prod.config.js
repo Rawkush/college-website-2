@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const dontenv = require('dotenv');
 
@@ -16,12 +15,7 @@ module.exports = (env) => {
   const CSSExtract = new ExtractTextPlugin('styles.css');
 
   return {
-    entry: [
-      'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
-      './src/index.js',
-    ],
+    entry: ['./src/index.js'],
     output: {
       publicPath: '/dist/',
       path: path.join(__dirname, 'public', 'dist'),
@@ -33,7 +27,7 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          loaders: ['react-hot-loader/webpack', 'babel-loader'],
+          loaders: ['babel-loader'],
           test: /\.js$/,
           exclude: /node_modules/,
         },
@@ -65,17 +59,12 @@ module.exports = (env) => {
         },
       ],
     },
-    plugins: [
-      CSSExtract,
-      new webpack.NamedModulesPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
-    ],
+    plugins: [CSSExtract],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true,
       publicPath: '/dist/',
-      hot: true,
     },
   };
 };
