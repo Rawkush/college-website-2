@@ -33,7 +33,7 @@ export const startAddSyllabus = ({
   formdata.append('file', file);
   return axios({
     method: 'post',
-    url: 'http://localhost:3000/s/admin/addsyll',
+    url: '/s/admin/addsyll',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -50,7 +50,7 @@ export const setSyllabus = (syllabus) => ({
 });
 
 export const startSetSyllabus = () => (dispatch) =>
-  axios.get('http://localhost:3000/s/visitor/getsyll').then((res) => {
+  axios.get('/s/visitor/getsyll').then((res) => {
     dispatch(setSyllabus(res.data));
   });
 
@@ -93,7 +93,7 @@ export const startEditSyllabus = (
   }
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/admin/editsyll',
+    url: '/s/admin/editsyll',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -112,7 +112,7 @@ const removeSyllabus = (syllabus) => ({
 export const startRemoveSyllabus = (_id) => (dispatch) =>
   axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/admin/deletesyll',
+    url: '/s/admin/deletesyll',
     data: {
       _id,
       token: localStorage.getItem('adminToken'),

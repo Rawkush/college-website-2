@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 //  Component
-import TimeTableList from './../../components/timeTable/TimeTableList';
+import TimeTableList from 'components/timeTable/timeTableList';
 
 const TimeTablePage = ({ timeTableArray, match, isAdmin }) => (
   <div>

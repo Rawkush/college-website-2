@@ -25,11 +25,11 @@ const LoginPage = ({ login, setProfile, setSecondary, history }) => (
         <FlexItem>
           <H3>Students Login or register using...</H3>
           <br />
-          <a href="http://localhost:3000/s/student/auth/google">Google</a>
+          <a href="/s/student/auth/google">Google</a>
           <br />
-          <a href="http://localhost:3000/s/student/auth/github">GitHub</a>
+          <a href="/s/student/auth/github">GitHub</a>
           <br />
-          <a href="http://localhost:3000/s/student/auth/linkedin">LinkedIn</a>
+          <a href="/s/student/auth/linkedin">LinkedIn</a>
           <br />
         </FlexItem>
         <FlexItem>

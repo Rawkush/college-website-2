@@ -15,8 +15,8 @@ const { visitorRoutes } = require('./routes/visitorRoutes');
 
 const app = express();
 
-const port = 3000 || process.env.PORT;
-
+const port = process.env.PORT || 3000;
+const host = '0.0.0.0';
 const publicPath = path.join(__dirname, '..', 'public');
 
 //  Adding middlewares
@@ -28,7 +28,7 @@ app.use(express.static(publicPath));
 app.use(cors());
 
 // For uploaded files
-// app.use('/uploads/', express.static(path.join(__dirname, '..', 'uploads')));
+app.use('/uploads/', express.static(path.join(__dirname, '..', 'uploads')));
 
 //  Routing
 app.get('/', (req, res) => res.render('index'));
@@ -40,4 +40,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-app.listen(port, () => console.log(`Server is up on the ${port}`)); // eslint-disable-line
+app.listen(port, host, () => console.log(`Server is up on the ${port}`)); // eslint-disable-line

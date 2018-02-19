@@ -8,7 +8,7 @@ export const addstudent = (student) => ({
 export const startAddStudent = (data) => (dispatch) =>
   axios({
     method: 'post',
-    url: 'http://localhost:3000/s/student/registeration',
+    url: '/s/student/registeration',
     data,
     headers: {
       'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export const startSetStudent = () => (dispatch) => {
   if (token) {
     axios({
       method: 'post',
-      url: 'http://localhost:3000/s/student/getstudent',
+      url: '/s/student/getstudent',
       data: { token },
       config: { headers: { 'Content-Type': 'multipart/form-data' } },
     }).then((res) => {
@@ -91,7 +91,7 @@ export const startEditStudent = ({
   };
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/student/updateprofile',
+    url: '/s/student/updateprofile',
     data,
     config: { headers: { 'Content-Type': 'application/json' } },
   })
@@ -109,7 +109,7 @@ const removeStudent = () => ({
 export const startRemoveStudent = () => (dispatch) =>
   axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/student/deleteprofile',
+    url: '/s/student/deleteprofile',
     data: {
       token: localStorage.getItem('studentToken'),
     },
@@ -129,7 +129,7 @@ export const studentlogin = () => ({
 
 export const startStudentLogin = (token) => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/student/login', { token })
+    .post('/s/student/login', { token })
     .then((res) => {
       localStorage.setItem('studentToken', res.data.token);
       dispatch(studentlogin());
@@ -143,7 +143,7 @@ export const studentLogout = () => ({
 
 export const startStudentLogout = () => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/student/logout', {
+    .post('/s/student/logout', {
       token: localStorage.getItem('studentToken'),
     })
     .then(() => {

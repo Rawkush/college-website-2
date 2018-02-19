@@ -19,7 +19,7 @@ export const startAddTimeTable = ({
   formdata.append('token', localStorage.getItem('adminToken'));
   return axios({
     method: 'post',
-    url: 'http://localhost:3000/s/admin/addtt',
+    url: '/s/admin/addtt',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -36,7 +36,7 @@ export const setTimeTable = (timeTable) => ({
 });
 
 export const startSetTimeTable = () => (dispatch) =>
-  axios.get('http://localhost:3000/s/visitor/gettt').then((res) => {
+  axios.get('/s/visitor/gettt').then((res) => {
     dispatch(setTimeTable(res.data));
   });
 
@@ -60,7 +60,7 @@ export const startEditTimeTable = (
   }
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/admin/edittt',
+    url: '/s/admin/edittt',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -79,7 +79,7 @@ const removeTimeTable = (timeTable) => ({
 export const startRemoveTimeTable = (_id) => (dispatch) =>
   axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/admin/deletett',
+    url: '/s/admin/deletett',
     data: {
       _id,
       token: localStorage.getItem('adminToken'),

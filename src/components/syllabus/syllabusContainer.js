@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Components
-import SyllabusListItem from './SyllabusListItem';
+import SyllabusListItem from './syllabusListItem';
 
 const Syllabus = ({ syllabusArray, match, auth }) => {
   const { sub, period } = match.params;
