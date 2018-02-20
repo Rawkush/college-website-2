@@ -7,15 +7,18 @@ import EducationForm from './../../components/TeacherDashBoard/EductionForm';
 // actions
 import { startUpdateEducation } from './../../actions/teacherSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddEduction = ({ updateEducation, history, education }) => (
-  <div>
+  <Page>
     <h2> Add Eduction </h2>
     <EducationForm
       onSubmit={updateEducation}
       history={history}
       education={education}
     />
-  </div>
+  </Page>
 );
 const mapStateToProps = (state) => ({
   education: state.teacherSecondary.education,

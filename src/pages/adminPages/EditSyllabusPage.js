@@ -10,6 +10,9 @@ import {
   startRemoveSyllabus,
 } from './../../actions/syllabus';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const EditSyllabusPage = ({
   syllabus,
   history,
@@ -19,13 +22,15 @@ const EditSyllabusPage = ({
   <div>
     <h2>Edit Syllabus</h2>
     {syllabus ? (
-      <SyllabusForm
-        {...syllabus}
-        history={history}
-        onSubmit={editSyllabus}
-        deleteSyllabus={deleteSyllabus}
-        edit
-      />
+      <Page>
+        <SyllabusForm
+          {...syllabus}
+          history={history}
+          onSubmit={editSyllabus}
+          deleteSyllabus={deleteSyllabus}
+          edit
+        />
+      </Page>
     ) : (
       <p>L</p>
     )}

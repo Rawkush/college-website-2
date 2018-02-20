@@ -7,19 +7,22 @@ import SpecialisationForm from './../../components/StudentDashboard/Specialisati
 // Actions
 import { startUpdateSpecialisation } from './../../actions/studentSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddSpecialisation = ({
   updateSpecialisation,
   history,
   specialisation,
 }) => (
-  <div>
+  <Page>
     <h2>Add Specialisation</h2>
     <SpecialisationForm
       onSubmit={updateSpecialisation}
       history={history}
       specialisation={specialisation}
     />
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state) => ({

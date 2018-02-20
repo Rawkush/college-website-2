@@ -7,11 +7,14 @@ import ProjectForm from './../../components/StudentDashboard/ProjectForm';
 // Actions
 import { startAddProject } from './../../actions/studentSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddAccomplishment = ({ addProject, history }) => (
-  <div>
+  <Page>
     <h2>Add Project</h2>
     <ProjectForm onSubmit={addProject} history={history} />
-  </div>
+  </Page>
 );
 
 const mapDispatchToProps = (dispatch) => ({

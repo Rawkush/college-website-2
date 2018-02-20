@@ -9,13 +9,16 @@ import {
 // Component
 import NotificationForm from './../../components/TeacherDashBoard/NotificationForm';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddNotificationPage = ({
   editNotification,
   history,
   notification,
   removeNotification,
 }) => (
-  <div>
+  <Page>
     <h2>Add Notification</h2>
     <NotificationForm
       onSubmit={editNotification}
@@ -24,7 +27,7 @@ const AddNotificationPage = ({
       {...notification}
       remove={removeNotification}
     />
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state, props) => ({

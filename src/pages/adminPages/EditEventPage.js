@@ -7,17 +7,22 @@ import EventForm from './../../components/adminDashboard/EventForm';
 // Actions
 import { startEditEvent, startRemoveEvent } from './../../actions/events';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const EditEventPage = ({ event, history, editEvent, deleteEvent }) => (
   <div>
     <h2>Edit Events</h2>
     {event ? (
-      <EventForm
-        {...event}
-        history={history}
-        onSubmit={editEvent}
-        deleteEvent={deleteEvent}
-        edit
-      />
+      <Page>
+        <EventForm
+          {...event}
+          history={history}
+          onSubmit={editEvent}
+          deleteEvent={deleteEvent}
+          edit
+        />
+      </Page>
     ) : (
       <p>L</p>
     )}

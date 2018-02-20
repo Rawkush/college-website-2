@@ -7,11 +7,14 @@ import { startAddSyllabus } from './../../actions/syllabus';
 // Component
 import SyllabusForm from './../../components/adminDashboard/SyllabusForm';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddSyllabusPage = ({ addNotification, history }) => (
-  <div>
+  <Page>
     <h2>Add Syllabus</h2>
     <SyllabusForm history={history} onSubmit={addNotification} />
-  </div>
+  </Page>
 );
 const mapDispatchToProps = (dispatch) => ({
   addNotification: (val) => dispatch(startAddSyllabus(val)),

@@ -11,14 +11,13 @@ const H2 = styled.h2`
   font-family: 'Noto Serif', serif;
   font-size: 1.6rem;
   font-weight: 400;
-  flex-grow: 20;
 `;
 
 const H3 = styled.h3`
   font-family: 'Alegreya Sans', serif;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 400;
-  flex-grow: 20;
+  margin: ${({ margin }) => margin || '0px'};
 `;
 
 const Container = styled.div`

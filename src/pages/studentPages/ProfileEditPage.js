@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 // Component
 import FormikStudentRegistrationForm from './../../components/registration/studentRegistrationForm';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 // Actions
 import {
   startEditStudent,
@@ -16,7 +19,7 @@ const StudentEditProfilePage = ({
   deleteStudent,
   history,
 }) => (
-  <div>
+  <Page>
     <FormikStudentRegistrationForm
       edit
       {...student}
@@ -24,7 +27,7 @@ const StudentEditProfilePage = ({
       onRemove={deleteStudent}
       history={history}
     />
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state) => ({

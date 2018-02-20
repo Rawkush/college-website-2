@@ -7,11 +7,14 @@ import { startAddTimeTable } from './../../actions/timeTable';
 // Component
 import TimeTableForm from './../../components/adminDashboard/TimeTableForm';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddSyllabusPage = ({ addTimeTable, history }) => (
-  <div>
+  <Page>
     <h2>Add Time Table</h2>
     <TimeTableForm history={history} onSubmit={addTimeTable} />
-  </div>
+  </Page>
 );
 const mapDispatchToProps = (dispatch) => ({
   addTimeTable: (val) => dispatch(startAddTimeTable(val)),

@@ -5,10 +5,15 @@ import { startAdminLogin } from './../../actions/auth';
 
 import FormikAdminLoginForm from './../../components/adminLogin/AdminLoginForm';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AdminLoginPage = ({ startLogin, history }) => (
   <div>
-    <h2>Admin login page.</h2>
-    <FormikAdminLoginForm startLogin={startLogin} history={history} />
+    <Page>
+      <h2>Admin login page.</h2>
+      <FormikAdminLoginForm startLogin={startLogin} history={history} />
+    </Page>
   </div>
 );
 
