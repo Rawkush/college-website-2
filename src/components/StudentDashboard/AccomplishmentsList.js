@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import AccomplishmentsListItem from './AccomplishmentsListItem';
 
-export default ({ accomplishments }) => (
+export default ({ accomplishments } = {}) => (
   <div>
     {accomplishments ? (
       <div>

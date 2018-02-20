@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import ProjectListItem from './ProjectsListItem';
 
-export default ({ projects, edit }) => (
+export default ({ projects, edit } = {}) => (
   <div>
     {projects ? (
       <div>

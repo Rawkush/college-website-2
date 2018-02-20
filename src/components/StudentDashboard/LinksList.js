@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import LinksListItem from './LinksListItem';
 
-export default ({ linkedProfiles }) => (
+export default ({ linkedProfiles } = {}) => (
   <div>
     {linkedProfiles ? (
       <div>

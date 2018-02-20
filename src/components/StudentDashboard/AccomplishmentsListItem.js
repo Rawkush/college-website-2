@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default ({ title, photo, description, _id, edit }) => (
+export default ({ title, photo, description, _id, edit } = {}) => (
   <div>
     <h3>{title}</h3>
     <img

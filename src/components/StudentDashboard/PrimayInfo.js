@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ name, rollNo, branch, year, bio, location }) => {
+export default ({ name, rollNo, branch, year, bio, location } = {}) => {
   let showBranch;
   if (branch === 'it') {
     showBranch = 'Information Techonology';
