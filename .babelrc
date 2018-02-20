@@ -6,7 +6,7 @@
     "react-hot-loader/babel"
   ],
   "env": {
-    "production": {
+    "development": {
       "plugins": ["babel-plugin-styled-components"]
     }
   }
