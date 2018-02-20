@@ -10,13 +10,16 @@ import {
 // Component
 import TimeTableForm from './../../components/adminDashboard/TimeTableForm';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const EditTimeTablePage = ({
   timeTable,
   editTimeTable,
   removeTimeTable,
   history,
 }) => (
-  <div>
+  <Page>
     <h2>Edit Time Table</h2>
     <TimeTableForm
       {...timeTable}
@@ -25,7 +28,7 @@ const EditTimeTablePage = ({
       deleteTimeTable={removeTimeTable}
       edit
     />
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state, props) => ({

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+//  Components
 import TeacherRegistrationForm from './../../components/adminDashboard/TeacherRegistrationForm';
+
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
 
 class TeacherRegistrationPage extends Component {
   state = {
@@ -26,7 +30,7 @@ class TeacherRegistrationPage extends Component {
   };
   render() {
     return (
-      <div>
+      <Page>
         {this.state.registeration ? (
           <p>Your profile will be looked by the admin and then approve!</p>
         ) : (
@@ -35,7 +39,7 @@ class TeacherRegistrationPage extends Component {
             history={this.props.history}
           />
         )}
-      </div>
+      </Page>
     );
   }
 }

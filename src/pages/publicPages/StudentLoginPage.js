@@ -8,6 +8,9 @@ import {
 } from './../../actions/studentPrimary';
 import { startSetStudentSecondary } from './../../actions/studentSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const StudentRegistrationPage = ({
   login,
   setProfile,
@@ -47,9 +50,9 @@ const StudentRegistrationPage = ({
   }
 
   return (
-    <div>
+    <Page>
       <p>Please Wait...</p>
-    </div>
+    </Page>
   );
 };
 

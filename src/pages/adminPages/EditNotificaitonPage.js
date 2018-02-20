@@ -10,6 +10,9 @@ import {
   startRemoveNotification,
 } from './../../actions/notifications';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const EditNotificationPage = ({
   notification,
   history,
@@ -19,13 +22,15 @@ const EditNotificationPage = ({
   <div>
     <h2>Edit Notifications</h2>
     {notification ? (
-      <NotificationForm
-        {...notification}
-        history={history}
-        onSubmit={editNotification}
-        deleteNotification={deleteNotification}
-        edit
-      />
+      <Page>
+        <NotificationForm
+          {...notification}
+          history={history}
+          onSubmit={editNotification}
+          deleteNotification={deleteNotification}
+          edit
+        />
+      </Page>
     ) : (
       <p>L</p>
     )}

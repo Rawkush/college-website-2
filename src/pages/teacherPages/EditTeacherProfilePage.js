@@ -10,13 +10,16 @@ import {
   startRemoveTeacher,
 } from './../../actions/teacherPrimary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const TeacherEditProfilePage = ({
   teacher,
   editTeacher,
   deleteStudent,
   history,
 }) => (
-  <div>
+  <Page>
     <TeacherProfileForm
       edit
       {...teacher}
@@ -25,7 +28,7 @@ const TeacherEditProfilePage = ({
       history={history}
       redirect="/teacher/myprofile"
     />
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state) => ({

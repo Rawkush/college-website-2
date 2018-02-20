@@ -8,6 +8,9 @@ import FormikStudentRegistrationForm from './../../components/registration/stude
 // Actions
 import { startAddStudent } from './../../actions/studentPrimary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const StudentRegistrationPage = ({ addStudent, history }) => {
   function getCookieValue(cname) {
     const name = `${cname}=`;
@@ -32,16 +35,18 @@ const StudentRegistrationPage = ({ addStudent, history }) => {
   const data = jwt.decode(token);
 
   return token ? (
-    <div>
+    <Page>
       <FormikStudentRegistrationForm
         {...data.userData}
         token={data.token}
         onSubmit={addStudent}
         history={history}
       />
-    </div>
+    </Page>
   ) : (
-    <p>Sorry You cannor proceed.</p>
+    <Page>
+      <p>Sorry! You cannot proceed.</p>
+    </Page>
   );
 };
 

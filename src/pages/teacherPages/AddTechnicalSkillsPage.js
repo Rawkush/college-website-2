@@ -7,15 +7,18 @@ import TechnicalSkillsForm from './../../components/TeacherDashBoard/TechnicalSk
 // Actions
 import { startAddTechnicalSkill } from './../../actions/teacherSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddTechnicalSkill = ({ addSkill, history, technicalSkills }) => (
-  <div>
+  <Page>
     <h2>Add TechnicalSkills </h2>
     <TechnicalSkillsForm
       onSubmit={addSkill}
       history={history}
       technicalSkills={technicalSkills}
     />
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state) => ({

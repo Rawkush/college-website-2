@@ -4,6 +4,9 @@ import axios from 'axios';
 // Components
 import TeacherRegistrationForm from './../../components/adminDashboard/TeacherRegistrationForm';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 class TeacherRegisterPage extends Component {
   addTeacher = ({ email, password }) =>
     axios({
@@ -22,11 +25,13 @@ class TeacherRegisterPage extends Component {
       .catch((err) => Promise.reject(err));
   render() {
     return (
-      <TeacherRegistrationForm
-        onSubmit={this.addTeacher}
-        history={this.props.history}
-        redirect="/admin/dashboard"
-      />
+      <Page>
+        <TeacherRegistrationForm
+          onSubmit={this.addTeacher}
+          history={this.props.history}
+          redirect="/admin/dashboard"
+        />
+      </Page>
     );
   }
 }

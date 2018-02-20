@@ -10,13 +10,16 @@ import {
   startRemoveProject,
 } from './../../actions/studentSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const EditAccomplishment = ({
   editProject,
   removeProject,
   history,
   project,
 }) => (
-  <div>
+  <Page>
     <h2>Edit Accomplishment</h2>
     {project ? (
       <ProjectForm
@@ -29,7 +32,7 @@ const EditAccomplishment = ({
     ) : (
       <p>L</p>
     )}
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state, props) => ({

@@ -7,11 +7,14 @@ import WorkForm from './../../components/TeacherDashBoard/WorkForm';
 // Actions
 import { startAddWork } from './../../actions/teacherSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddWork = ({ addWork, history }) => (
-  <div>
+  <Page>
     <h2>Add Work</h2>
     <WorkForm onSubmit={addWork} history={history} />
-  </div>
+  </Page>
 );
 
 const mapDispatchToProps = (dispatch) => ({

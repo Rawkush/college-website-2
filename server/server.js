@@ -28,7 +28,7 @@ app.use(express.static(publicPath));
 app.use(cors());
 
 // For uploaded files
-app.use('/uploads/', express.static(path.join(__dirname, '..', 'uploads')));
+app.use('/uploads/', express.static(path.join(__dirname, 'uploads')));
 
 //  Routing
 app.get('/', (req, res) => res.render('index'));

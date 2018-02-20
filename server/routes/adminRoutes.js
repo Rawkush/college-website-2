@@ -24,7 +24,7 @@ const {
   editTimeTable,
   editSyllabus,
   editEvent,
-  adminRegister,
+  // adminRegister,
   adminLogin,
   adminLogout,
   registerTeacher,
@@ -101,7 +101,7 @@ adminRoutes.patch(
 
 adminRoutes.delete('/deletett', tokenAuthenticate, deleteTimeTable);
 
-adminRoutes.post('/register', adminRegister);
+// adminRoutes.post('/register', adminRegister);
 
 adminRoutes.post('/login', adminLogin);
 

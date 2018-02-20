@@ -14,8 +14,11 @@ import NotificationList from './../../components/TeacherDashBoard/NotificationLi
 //  Actions
 import { startTeacherLogout } from './../../actions/teacherPrimary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const StudentProfilePage = ({ teacher, history, secondary, logout }) => (
-  <div>
+  <Page>
     <h2>My Profile</h2>
     {teacher ? (
       <div>
@@ -45,7 +48,7 @@ const StudentProfilePage = ({ teacher, history, secondary, logout }) => (
     ) : (
       <p>Loading ...</p>
     )}
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state) => ({

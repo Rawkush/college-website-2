@@ -57,7 +57,7 @@ module.exports = (env) => {
           }),
         },
         {
-          test: /\.(png|jpg)$/,
+          test: /\.(png|jpg|svg)$/,
           loader: 'url-loader',
           options: {
             limit: 8192,
@@ -76,6 +76,13 @@ module.exports = (env) => {
       historyApiFallback: true,
       publicPath: '/dist/',
       hot: true,
+      proxy: {
+        '/s/*': {
+          target: 'http://localhost:3000/',
+          secure: 'false',
+          changeOrigin: true,
+        },
+      },
     },
   };
 };

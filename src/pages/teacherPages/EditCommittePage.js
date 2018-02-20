@@ -10,13 +10,16 @@ import {
   startRemoveCommittee,
 } from './../../actions/teacherSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const EditCommitte = ({
   editCommittee,
   removeCommittee,
   history,
   committee,
 }) => (
-  <div>
+  <Page>
     <h2> Edit Committe </h2>
     {committee ? (
       <CommitteeForm
@@ -29,7 +32,7 @@ const EditCommitte = ({
     ) : (
       <p> editing committe </p>
     )}
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state, props) => ({
