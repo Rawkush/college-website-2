@@ -1,10 +1,15 @@
+//  Global Imports
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Container } from './../../../theme/Components';
+
+//  Styled Imports
+import { Container } from 'theme/Components';
+import media from 'theme/media';
+
+//  Component Imports
 import AcademicsNav from './Academics/Academics';
 import StudentsNav from './Students/Students';
-import media from './../../../theme/media';
 
 const NavContainer = styled.div`
   display: flex;

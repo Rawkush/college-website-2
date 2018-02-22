@@ -1,6 +1,9 @@
+//  Global Imports
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Flex, FlexItem } from './../../../theme/Components';
+
+//  Styled Imports
+import { Flex, FlexItem } from 'theme/Components';
 import media from 'theme/media';
 import { lightBlack, red } from 'theme/variable';
 
