@@ -16,11 +16,45 @@ const NotificationDiv = styled.div`
   text-align: center;
 `;
 
-const FilterComponent = ({ changeHandler }) => (
+const TextFilterComponent = ({ changeHandler }) => (
   <div>
     <input type="text" onChange={(e) => changeHandler(e)} />
   </div>
 );
+
+const SelectFilterComponent = ({ changeHandler }) => (
+  <div>
+    <select
+      name="filter"
+      id="filter"
+      placeholder="Filter"
+      onChange={(e) => changeHandler(e)}
+    >
+      <option value="" hidden>
+        Filter
+      </option>
+      <option value="">None</option>
+      <option value="it">I.T.</option>
+      <option value="civil">Civil</option>
+      <option value="env">Environment</option>
+      <hr />
+      <option value="iyear">1st Year</option>
+      <option value="iiyear">2nd Year</option>
+      <option value="iiiyear">3rd Year</option>
+      <option value="ivyear">4th Year</option>
+      <hr />
+      <option value="teacher">Teachers</option>
+      <option value="student">Students</option>
+      <hr />
+      <option value="pdf">PDFs</option>
+      <option value="googleForm">Google Form</option>
+      <option value="external">External Link</option>
+    </select>
+  </div>
+);
+
+const latestSort = (array) =>
+  array.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
 
 class Notification extends Component {
   constructor(props) {
@@ -46,16 +80,32 @@ class Notification extends Component {
     }));
   }
 
-  filterText = (array, text) =>
+  filterText = (array, text, match) =>
     array.filter((elem) =>
-      elem.title.toLowerCase().includes(text.toLowerCase())
+      elem[match].toLowerCase().includes(text.toLowerCase())
     );
 
-  changeHandler = (e) => {
+  filterArray = (array, text, matchArray) =>
+    array.filter((elem) => elem[matchArray].includes(text));
+
+  filterChangeHandler = (e) => {
     const { value } = e.target;
     if (value) {
       this.setState((prevState, props) => ({
-        notifications: this.filterText(props.notifications, value),
+        notifications: this.filterText(props.notifications, value, 'title'),
+      }));
+    } else {
+      this.setState((prevState, props) => ({
+        notifications: props.notifications,
+      }));
+    }
+  };
+
+  filterSelectChangeHandler = (e) => {
+    const { value } = e.target;
+    if (value) {
+      this.setState((prevState, props) => ({
+        notifications: this.filterArray(props.notifications, value, 'tags'),
       }));
     } else {
       this.setState((prevState, props) => ({
@@ -69,7 +119,12 @@ class Notification extends Component {
       <NotificationDiv>
         <h2>Notifications</h2>
         {this.state.notification && (
-          <FilterComponent changeHandler={this.changeHandler} />
+          <div>
+            <TextFilterComponent changeHandler={this.filterChangeHandler} />
+            <SelectFilterComponent
+              changeHandler={this.filterSelectChangeHandler}
+            />
+          </div>
         )}
         <Flex>
           {this.state.notifications ? (
@@ -97,7 +152,9 @@ class Notification extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ notifications: state.notifications });
+const mapStateToProps = (state) => ({
+  notifications: latestSort(state.notifications),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   getNotifications: () => dispatch(startSetAllNotification()),
