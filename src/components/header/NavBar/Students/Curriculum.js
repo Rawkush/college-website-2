@@ -34,10 +34,10 @@ const HoverDiv = styled.div`
   }
 `;
 
-export default () => (
+export default ({ click }) => (
   <NavCardFlex mTop="16px">
     <NavItemFlex>
-      <StyledLink to="/shinigsstars">
+      <StyledLink to="/shinigsstars" onClick={click}>
         <HoverDiv>
           <Image src={ssImage} />
           <Span>Shining Stars</Span>
@@ -45,7 +45,7 @@ export default () => (
       </StyledLink>
     </NavItemFlex>
     <NavItemFlex>
-      <StyledLink to="/placements">
+      <StyledLink to="/placements" onClick={click}>
         <HoverDiv>
           <Image src={placementImage} />
           <Span>Placements</Span>

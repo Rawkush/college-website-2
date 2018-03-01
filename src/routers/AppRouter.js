@@ -77,6 +77,9 @@ const AppRouter = () => (
         <Route path="/login" component={LoginPage} exact />
         <Route path="/admin/login" component={AdminLoginPage} exact />
         <Route path="/student/login" component={StudentLoginPage} exact />
+        <Route path="/timetable/:semester" component={TimeTablePage} />
+        <Route path="/events" component={EventsOptionPage} exact />
+        <Route path="/events/:type" component={EventsPage} exact />
         <AdminRoute
           path="/admin/dashboard"
           component={AdminDashboardPage}
@@ -122,14 +125,11 @@ const AppRouter = () => (
           component={AddTimeTablePage}
           exact
         />
-        <Route path="/timetable/:semester" component={TimeTablePage} />
         <AdminRoute
           path="/admin/timetable/edit/:_id"
           component={EditTimeTablePage}
           exact
         />
-        <Route path="/events" component={EventsOptionPage} exact />
-        <Route path="/events/:type" component={EventsPage} exact />
         <AdminRoute path="/admin/events" component={AdminEventsPage} exact />
         <AdminRoute path="/admin/events/add" component={AddEventsPage} exact />
         <AdminRoute

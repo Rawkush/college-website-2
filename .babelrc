@@ -3,7 +3,11 @@
   "plugins": [
     "transform-class-properties",
     "transform-object-rest-spread",
-    "react-hot-loader/babel",
-    "babel-plugin-styled-components"
-  ]
+    "react-hot-loader/babel"
+  ],
+  "env": {
+    "development": {
+      "plugins": ["babel-plugin-styled-components"]
+    }
+  }
 }

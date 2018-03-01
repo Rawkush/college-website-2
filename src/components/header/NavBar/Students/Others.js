@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { NavCardFlex, NavItemFlex } from './../Shared.styles';
 import { FlexCenter } from 'theme/Components';
 import { red } from 'theme/variable';
+
+import { NavCardFlex, NavItemFlex } from './../Shared.styles';
 
 const Span = styled.div`
   padding: 10px 0px;
@@ -20,17 +21,17 @@ const FlexCenterNav = FlexCenter.extend`
   }
 `;
 
-export default () => (
+export default ({ click }) => (
   <NavCardFlex>
     <NavItemFlex>
-      <Link to="/studentList">
+      <Link to="/studentList" onClick={click}>
         <FlexCenterNav>
           <Span>Student List</Span>
         </FlexCenterNav>
       </Link>
     </NavItemFlex>
     <NavItemFlex>
-      <Link to="/someexternallink">
+      <Link to="/someexternallink" onClick={click}>
         <FlexCenterNav>
           <Span>SBI Collect</Span>
         </FlexCenterNav>

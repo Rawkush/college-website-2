@@ -9,7 +9,7 @@ export default ({
   tags = {},
   markAsRead,
   notificationId,
-}) => (
+} = {}) => (
   <div>
     <a
       href={link}

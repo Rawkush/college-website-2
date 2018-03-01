@@ -9,7 +9,7 @@ const { TimeTable } = require('./../models/timeTable');
 
 const {
   giveLatestThreeItem,
-  giveUser,
+  // giveUser,
   giveAll,
   giveAllSecondary,
 } = require('./../utils/utils');
@@ -18,8 +18,8 @@ const {
 const giveLatestThreeNotifications = giveLatestThreeItem(Notifications);
 const giveAllNotifications = giveAll(Notifications);
 const giveLatestThreeEvents = giveLatestThreeItem(Event);
-const giveStudent = giveUser(StudentPrimary);
-const giveTeacher = giveUser(TeacherPrimary);
+// const giveStudent = giveUser(StudentPrimary);
+// const giveTeacher = giveUser(TeacherPrimary);
 const giveAllSyllabus = giveAll(Syllabus);
 const giveAllTimeTable = giveAll(TimeTable);
 const giveAllEvents = giveAll(Event);
@@ -109,6 +109,16 @@ const getAllStudentSecondaryData = async (req, res) => {
   }
 };
 
+// const searchStudents = async (req, res) => {
+//   const { name } = req.body;
+//   try {
+//     const searchResults = await findStudents(name);
+//   } catch (error){
+//     res.status(401).send(`Some error happened: ${error}`);
+
+//   }
+// };
+
 module.exports = {
   getLatestNotifications,
   getAllNotifications,
@@ -119,4 +129,5 @@ module.exports = {
   getTimeTable,
   getAllEvents,
   getAllStudentSecondaryData,
+  // searchStudents,
 };

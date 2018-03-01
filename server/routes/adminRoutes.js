@@ -29,6 +29,7 @@ const {
   adminLogout,
   registerTeacher,
   tokenAuthenticate,
+  giveAllTeachersList,
 } = require('./../controllers/adminController');
 
 // Initializing the Router
@@ -108,6 +109,8 @@ adminRoutes.post('/login', adminLogin);
 adminRoutes.post('/logout', tokenAuthenticate, adminLogout);
 
 adminRoutes.post('/teacherregisteration', tokenAuthenticate, registerTeacher);
+
+adminRoutes.post('/giveallteacher', tokenAuthenticate, giveAllTeachersList);
 
 module.exports = {
   adminRoutes,

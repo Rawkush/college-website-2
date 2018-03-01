@@ -43,12 +43,12 @@ const HoverDiv = styled.div`
   }
 `;
 
-export default () => (
+export default ({ click }) => (
   <NavCardFlex>
     <NavItemFlexHeading>Events</NavItemFlexHeading>
     <FlexHorizontalLong>
       <NavItemFlexHeading>
-        <StyledLink to="/events/cultural">
+        <StyledLink to="/events/cultural" onClick={click}>
           <HoverDiv>
             <Image src={culturalImage} alt="cultural" />
             <Span> Cultural Events </Span>
@@ -56,7 +56,7 @@ export default () => (
         </StyledLink>
       </NavItemFlexHeading>
       <NavItemFlexHeading>
-        <StyledLink to="/events/sports">
+        <StyledLink to="/events/sports" onClick={click}>
           <HoverDiv>
             <Image src={sportsImage} alt="sports" />
             <Span> Sports Events </Span>

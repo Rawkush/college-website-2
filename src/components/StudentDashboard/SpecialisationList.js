@@ -1,8 +1,12 @@
 import React from 'react';
 
-export default ({ specialisation }) => (
+export default ({ specialisation } = {}) => (
   <div>
     <h2>Specialisation</h2>
-    {specialisation.map((elem) => <p key={elem}>{elem}</p>)}
+    {specialisation ? (
+      specialisation.map((elem) => <p key={elem}>{elem}</p>)
+    ) : (
+      <p>Loading...</p>
+    )}
   </div>
 );
