@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 // Styled default components
 import { Container } from 'theme/Components';
+import media from 'theme/media';
 
 //  Components
 import LoveIconSVG from './LoveIconSVG';
@@ -23,6 +24,8 @@ const P = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 const StyledLink = styled(Link)`
