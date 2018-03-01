@@ -17,16 +17,16 @@ const NavFlex = Flex.extend`
   `};
 `;
 
-export default () => (
+export default ({ click }) => (
   <Container>
     <NavFlex>
-      <CirriculumCard />
+      <CirriculumCard click={click} />
       <VerticalLine />
-      <EventsCard />
+      <EventsCard click={click} />
       <VerticalLine />
-      <ScholarshipCard />
+      <ScholarshipCard click={click} />
       <VerticalLine />
-      <OthersCard />
+      <OthersCard click={click} />
     </NavFlex>
   </Container>
 );

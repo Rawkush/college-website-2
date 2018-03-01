@@ -1,13 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-import { NavCardFlex, NavItemFlex, StyledLink } from './../Shared.styles';
 
 import elImage from 'images/el.jpg';
 import scholarshipImage from 'images/scholarships.jpg';
 import media from 'theme/media';
 import { red } from 'theme/variable';
+
+import { NavCardFlex, NavItemFlex, StyledLink } from './../Shared.styles';
 
 const Image = styled.img`
   display: block;
@@ -34,10 +33,10 @@ const HoverDiv = styled.div`
   }
 `;
 
-export default () => (
+export default ({ click }) => (
   <NavCardFlex mTop="16px">
     <NavItemFlex>
-      <StyledLink to="/scholarships">
+      <StyledLink to="/scholarships" onClick={click}>
         <HoverDiv>
           <Image src={scholarshipImage} />
           <Span>Scholarships</Span>
@@ -45,7 +44,7 @@ export default () => (
       </StyledLink>
     </NavItemFlex>
     <NavItemFlex>
-      <StyledLink to="/educationloan">
+      <StyledLink to="/educationloan" onClick={click}>
         <HoverDiv>
           <Image src={elImage} />
           <Span>Education Loan</Span>

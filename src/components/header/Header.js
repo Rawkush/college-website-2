@@ -1,9 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { lightBlack } from 'theme/variable';
 import media from '../../theme/media';
 
 import NavBar from './NavBar/NavBar';
+import LogoSVG from './LogoSVG';
 
 // Importing Styled Components
 import {
@@ -16,7 +18,6 @@ import {
 } from './../../theme/Components';
 
 // Styles
-
 const FixedHeader = styled.header`
   position: fixed;
   width: 100%;
@@ -30,10 +31,25 @@ const FixedHeader = styled.header`
 `;
 
 const Title = H1.extend`
+  /* flex-grow: 1;
+  ${media.phone`
+    font-size: 5vw;
+  `}; */
+`;
+
+const StyledLink = styled(Link)`
+  color: ${lightBlack};
+  text-decoration: none;
   flex-grow: 1;
   ${media.phone`
     font-size: 5vw;
   `};
+  display: flex;
+  &:hover {
+    > svg {
+      transform: scale(1.07);
+    }
+  }
 `;
 
 const Header = () => (
@@ -42,7 +58,10 @@ const Header = () => (
       <Container>
         <Flex>
           <FlexCenter>
-            <Title>Ch. Bramh Prakash Govt. Engg. College</Title>
+            <StyledLink to="/">
+              <LogoSVG />
+              <Title>Ch. Bramh Prakash Govt. Engg. College</Title>
+            </StyledLink>
           </FlexCenter>
           <FlexCenter>
             <NavLink to="/login">

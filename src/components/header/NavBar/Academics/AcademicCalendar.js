@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import calendarImage from 'images/calendar.jpg';
 import { FlexCenter } from 'theme/Components';
@@ -18,10 +17,10 @@ const CalendarImage = styled.img`
 `;
 
 const HoverDiv = styled.div`
-  & :hover {
+  &:hover {
     color: ${red};
     > img {
-      transform: scale(1.1);
+      transform: scale(1.5);
     }
   }
 `;
@@ -30,10 +29,10 @@ const StyledLink2 = StyledLink.extend`
   flex: 3;
 `;
 
-export default () => (
+export default ({ click }) => (
   <NavCardFlex>
     <NavItemFlexHeading>Academic Calendar</NavItemFlexHeading>
-    <StyledLink2 to="/somestaticthing">
+    <StyledLink2 to="/somestaticthing" onClick={click}>
       <HoverDiv>
         <FlexCenter>
           <CalendarImage src={calendarImage} />

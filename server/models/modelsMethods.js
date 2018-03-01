@@ -154,16 +154,24 @@ function findByProviderAndId(token) {
     'auth.providerId': id,
   });
 }
-function slugGen(next) {
+async function slugGen(next) {
   const user = this;
   if (user.isModified('name')) {
     const slugg = slug(user.name);
+    const sluggRegex = new RegExp(`^(${slugg})((-[0-9]*$)?)$`, 'i');
+    const userWithSlugg = await user.constructor.find({ slugg: sluggRegex });
+    if (userWithSlugg.length) {
+      user.slugg = `${slugg}-${userWithSlugg.length + 1}`;
+      next();
+      return;
+    }
     user.slugg = slugg;
     next();
   } else {
     next();
   }
 }
+
 function findBySlug(slugg) {
   const User = this;
   return User.findOne({ slugg });

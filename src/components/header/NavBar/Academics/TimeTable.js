@@ -7,14 +7,18 @@ import {
   StyledLink,
 } from './../Shared.styles';
 
-export default () => (
+export default ({ click }) => (
   <NavCardFlex>
     <NavItemFlexHeading>Time Table</NavItemFlexHeading>
     <NavItemFlex center>
-      <StyledLink to="/timetable/odd">Odd</StyledLink>
+      <StyledLink to="/timetable/odd" onClick={click}>
+        Odd
+      </StyledLink>
     </NavItemFlex>
     <NavItemFlex center>
-      <StyledLink to="/timetable/even">Even</StyledLink>
+      <StyledLink to="/timetable/even" onClick={click}>
+        Even
+      </StyledLink>
     </NavItemFlex>
   </NavCardFlex>
 );

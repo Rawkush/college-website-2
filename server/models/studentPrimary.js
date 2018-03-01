@@ -153,6 +153,10 @@ const StudentPrimarySchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+StudentPrimarySchema.index({ name: 'text' });
+StudentPrimarySchema.index({ rollNo: 1 });
+
 StudentPrimarySchema.methods.toJSON = toJSON;
 StudentPrimarySchema.methods.generateAuthToken = generateAuthToken;
 StudentPrimarySchema.methods.removeToken = removeToken;

@@ -105,6 +105,10 @@ class NavBar extends Component {
     }
   };
 
+  navClick = () => {
+    this.setState(() => ({ active1: false, active2: false }));
+  };
+
   render() {
     return (
       <div>
@@ -112,7 +116,9 @@ class NavBar extends Component {
           <Container>
             <NavContainer>
               <NavItem>
-                <Link to="/">HOME</Link>
+                <Link to="/" onClick={this.navClick}>
+                  HOME
+                </Link>
               </NavItem>
               <NavItem red={this.state.active1}>
                 <a onClick={this.click1}>ACADEMICS</a>
@@ -121,16 +127,18 @@ class NavBar extends Component {
                 <a onClick={this.click2}>STUDENTS</a>
               </NavItem>
               <NavItem>
-                <Link to="/about">ABOUT US</Link>
+                <Link to="/about" onClick={this.navClick}>
+                  ABOUT US
+                </Link>
               </NavItem>
             </NavContainer>
           </Container>
         </FixedCover>
         <Div active={this.state.active1}>
-          <AcademicsNav />
+          <AcademicsNav click={this.navClick} />
         </Div>
         <Div active={this.state.active2}>
-          <StudentsNav />
+          <StudentsNav click={this.navClick} />
         </Div>
       </div>
     );
