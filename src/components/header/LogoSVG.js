@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import media from 'theme/media';
+
 const SVG = styled.svg`
   enable-background: 'new 0 0 60 60';
   height: 50px;
@@ -8,6 +10,9 @@ const SVG = styled.svg`
   padding: 7px 20px;
   display: inline-block;
   transition: all 0.2s ease-in-out;
+  ${media.phone`
+    padding: 7px 10px 7px 0px;
+  `};
 `;
 
 export default () => (

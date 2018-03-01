@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 //  Styled-default Components
 import { Container, Flex } from 'theme/Components';
+import media from 'theme/media';
 
 // Icons SVG
 // import { FBIconSVG, TwitterIconSvg, IGIconSVG } from './IconSvg';
@@ -19,6 +20,9 @@ const Card = styled.div`
 
 const InnerCard1 = styled.div`
   display: flex;
+  ${media.phone`
+    flex-direction: column;
+  `};
 `;
 
 const InnerCard2 = styled.div`
@@ -142,13 +146,19 @@ const HelpfullLinks = () => (
   </Card>
 );
 
+const FlexWrapper = Flex.extend`
+  ${media.phone`
+    flex-direction: column;
+  `};
+`;
+
 export default ({ admin }) => (
   <Background>
     <Container>
-      <Flex>
+      <FlexWrapper>
         <RelatedLinks />
         <HelpfullLinks />
-      </Flex>
+      </FlexWrapper>
       <Wrapper>
         {!admin && <ButtonLink to="/admin/login">Admin Login</ButtonLink>}
       </Wrapper>

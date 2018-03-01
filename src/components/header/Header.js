@@ -31,10 +31,9 @@ const FixedHeader = styled.header`
 `;
 
 const Title = H1.extend`
-  /* flex-grow: 1;
   ${media.phone`
     font-size: 5vw;
-  `}; */
+  `};
 `;
 
 const StyledLink = styled(Link)`
