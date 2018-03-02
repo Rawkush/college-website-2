@@ -1,8 +1,74 @@
 import React from 'react';
 import moment from 'moment';
-
+import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
+import media from 'theme/media';
+
+const StyledForm = styled(Form)`
+  > label {
+    display: block;
+    padding: 15px 0px 5px 0px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  > input {
+    width: 100%;
+    padding: 7px;
+    ${media.phone`
+      padding: 5px 0px 5px 5px;
+      width: 97%;
+    `};
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    border: solid 1px rgba(0, 0, 0, 0.27);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    line-height: 1.5;
+    &:focus {
+      border: solid 1px red;
+      box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
+    }
+  }
+  > select {
+    width: 103%;
+    padding: 7px;
+    ${media.phone`
+      padding: 5px 0px;
+      width: 100%;
+    `};
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    border: solid 1px rgba(0, 0, 0, 0.27);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    line-height: 1.5;
+    &:focus {
+      border: solid 1px red;
+      box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
+    }
+  }
+  > button {
+    background: none;
+    border: solid 1px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    padding: 10px 50px;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 30px 0px;
+    border-radius: 3px;
+    transition: all 0.15s ease-in-out;
+    border: solid 1px rgba(179, 0, 0, 0.7);
+    color: rgba(179, 0, 0, 0.7);
+    &:hover {
+      color: white;
+      background: rgba(179, 0, 0, 0.7);
+    }
+  }
+`;
+
+const ErrorAlert = styled.p`
+  color: red;
+  font-family: 'Open Sans', sans-serif;
+`;
 
 const StudentRegistration = ({
   values,
@@ -13,168 +79,159 @@ const StudentRegistration = ({
   handleChange,
   setErrors,
 }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
-    <label htmlFor="name">
-      Name:
-      {touched.name && errors.name && <p>{errors.name}</p>}
-      <Field type="text" name="name" placeholder="Enter your name here..." />
-    </label>
-    <label htmlFor="rollNo">
-      Roll Number:
-      {touched.rollNo && errors.rollNo && <p>{errors.rollNo}</p>}
-      <Field type="text" name="rollNo" placeholder="Roll Number" />
-    </label>
-    <label htmlFor="location">
-      Location:
-      {touched.location && errors.location && <p>{errors.location}</p>}
-      <Field type="text" name="location" placeholder="Location" />
-    </label>
-    <label htmlFor="dateOfBirth">
-      Date of Birth:
-      {touched.dateOfBirth && errors.dateOfBirth && <p>{errors.dateOfBirth}</p>}
-      <Field type="date" name="dateOfBirth" placeholder="Date of Birth" />
-    </label>
-    <label htmlFor="admittedIn">
-      Admitted in:
-      {touched.admittedIn && errors.admittedIn && <p>{errors.admittedIn}</p>}
-      <input
-        type="month"
-        name="admittedIn"
-        id="admittedIn"
-        value={values.admittedIn}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-    </label>
-    <label htmlFor="branch ">
-      Branch :
-      {touched.branch && errors.branch && <p>{errors.branch}</p>}
-      <select
-        name="branch"
-        id="branch"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.branch}
-      >
-        <option value="" disabled>
-          Select the in which you are admitted.
-        </option>
-        <option value="it">I.T.</option>
-        <option value="civil">Civil</option>
-        <option value="env">Environment</option>
-      </select>
-    </label>
-    <label htmlFor="gender">
-      Gender:
-      {touched.gender && errors.gender && <p>{errors.gender}</p>}
-      <Field type="text" name="gender" placeholder="Gender" />
-    </label>
-    <label htmlFor="email">
-      Email:
-      {touched.email && errors.email && <p>{errors.email}</p>}
-      <Field type="email" name="email" placeholder="Email" />
-    </label>
-    <label htmlFor="bio">
-      Bio:
-      {touched.bio && errors.bio && <p>{errors.bio}</p>}
-      <Field type="text" name="bio" placeholder="Enter your Bio" />
-    </label>
+  <StyledForm>
+    {errors.error && <ErrorAlert>{errors.error}</ErrorAlert>}
+    <label htmlFor="name">Name:</label>
+    {touched.name && errors.name && <ErrorAlert>{errors.name}</ErrorAlert>}
+    <Field
+      type="text"
+      name="name"
+      id="name"
+      placeholder="Enter your name here..."
+    />
+    <label htmlFor="rollNo">Roll Number:</label>
+    {touched.rollNo &&
+      errors.rollNo && <ErrorAlert>{errors.rollNo}</ErrorAlert>}
+    <Field type="text" name="rollNo" placeholder="Roll Number" id="rollNo" />
+    <label htmlFor="email">Email:</label>
+    {touched.email && errors.email && <ErrorAlert>{errors.email}</ErrorAlert>}
+    <Field type="email" name="email" placeholder="Email" id="email" />
+    <label htmlFor="location">Location:</label>
+    {touched.location &&
+      errors.location && <ErrorAlert>{errors.location}</ErrorAlert>}
+    <Field type="text" name="location" placeholder="Location" id="location" />
+    <label htmlFor="dateOfBirth">Date of Birth:</label>
+    {touched.dateOfBirth &&
+      errors.dateOfBirth && <ErrorAlert>{errors.dateOfBirth}</ErrorAlert>}
+    <Field
+      type="date"
+      name="dateOfBirth"
+      placeholder="Date of Birth"
+      id="dateOfBirth"
+    />
+    <label htmlFor="admittedIn">Admitted in:</label>
+    {touched.admittedIn &&
+      errors.admittedIn && <ErrorAlert>{errors.admittedIn}</ErrorAlert>}
+    <input
+      type="month"
+      name="admittedIn"
+      id="admittedIn"
+      value={values.admittedIn}
+      onChange={handleChange}
+      onBlur={handleBlur}
+    />
+    <label htmlFor="branch">Branch :</label>
+    {touched.branch &&
+      errors.branch && <ErrorAlert>{errors.branch}</ErrorAlert>}
+    <select
+      name="branch"
+      id="branch"
+      onChange={handleChange}
+      onBlur={handleBlur}
+      value={values.branch}
+    >
+      <option value="" disabled>
+        Select the in which you are admitted.
+      </option>
+      <option value="it">I.T.</option>
+      <option value="civil">Civil</option>
+      <option value="env">Environment</option>
+    </select>
+    <label htmlFor="gender">Gender:</label>
+    {touched.gender &&
+      errors.gender && <ErrorAlert>{errors.gender}</ErrorAlert>}
+    <select
+      name="gender"
+      id="gender"
+      onChange={handleChange}
+      onBlur={handleBlur}
+      value={values.gender}
+    >
+      <option value="" disabled>
+        Select your gender.
+      </option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+    <label htmlFor="bio">Bio:</label>
+    {touched.bio && errors.bio && <ErrorAlert>{errors.bio}</ErrorAlert>}
+    <Field type="textarea" name="bio" placeholder="Enter your Bio" id="bio" />
     {values.edit && (
       <div>
         <p>Links:</p>
         <div>
-          <label htmlFor="provider">
-            Name:
-            <Field
-              type="text"
-              name="profile0"
-              placeholder="eg. Google, LinkedIn, Portfolio"
-            />
-          </label>
-          <label htmlFor="url">
-            Url:
-            <Field
-              type="text"
-              name="url0"
-              placeholder="www.example.com/myprofile"
-            />
-          </label>
+          <label htmlFor="provider">Name:</label>
+          <Field
+            type="text"
+            name="profile0"
+            placeholder="eg. Google, LinkedIn, Portfolio"
+          />
+          <label htmlFor="url">Url:</label>
+          <Field
+            type="text"
+            name="url0"
+            placeholder="www.example.com/myprofile"
+          />
         </div>
         <div>
-          <label htmlFor="provider">
-            Name:
-            <Field
-              type="text"
-              name="profile1"
-              placeholder="eg. Google, LinkedIn, Portfolio"
-            />
-          </label>
-          <label htmlFor="url">
-            Url:
-            <Field
-              type="text"
-              name="url1"
-              placeholder="www.example.com/myprofile"
-            />
-          </label>
+          <label htmlFor="provider">Name:</label>
+          <Field
+            type="text"
+            name="profile1"
+            placeholder="eg. Google, LinkedIn, Portfolio"
+          />
+          <label htmlFor="url">Url:</label>
+          <Field
+            type="text"
+            name="url1"
+            placeholder="www.example.com/myprofile"
+          />
         </div>
 
         <div>
-          <label htmlFor="provider">
-            Name:
-            <Field
-              type="text"
-              name="profile2"
-              placeholder="eg. Google, LinkedIn, Portfolio"
-            />
-          </label>
-          <label htmlFor="url">
-            Url:
-            <Field
-              type="text"
-              name="url2"
-              placeholder="www.example.com/myprofile"
-            />
-          </label>
+          <label htmlFor="provider">Name:</label>
+          <Field
+            type="text"
+            name="profile2"
+            placeholder="eg. Google, LinkedIn, Portfolio"
+          />
+          <label htmlFor="url">Url:</label>
+          <Field
+            type="text"
+            name="url2"
+            placeholder="www.example.com/myprofile"
+          />
         </div>
 
         <div>
-          <label htmlFor="provider">
-            Name:
-            <Field
-              type="text"
-              name="profile3"
-              placeholder="eg. Google, LinkedIn, Portfolio"
-            />
-          </label>
-          <label htmlFor="url">
-            Url:
-            <Field
-              type="text"
-              name="url3"
-              placeholder="www.example.com/myprofile"
-            />
-          </label>
+          <label htmlFor="provider">Name:</label>
+          <Field
+            type="text"
+            name="profile3"
+            placeholder="eg. Google, LinkedIn, Portfolio"
+          />
+          <label htmlFor="url">Url:</label>
+          <Field
+            type="text"
+            name="url3"
+            placeholder="www.example.com/myprofile"
+          />
         </div>
 
         <div>
-          <label htmlFor="provider">
-            Name:
-            <Field
-              type="text"
-              name="profile4"
-              placeholder="eg. Google, LinkedIn, Portfolio"
-            />
-          </label>
-          <label htmlFor="url">
-            Url:
-            <Field
-              type="text"
-              name="url4"
-              placeholder="www.example.com/myprofile"
-            />
-          </label>
+          <label htmlFor="provider">Name:</label>
+          <Field
+            type="text"
+            name="profile4"
+            placeholder="eg. Google, LinkedIn, Portfolio"
+          />
+          <label htmlFor="url">Url:</label>
+          <Field
+            type="text"
+            name="url4"
+            placeholder="www.example.com/myprofile"
+          />
         </div>
         <button
           type="button"
@@ -190,7 +247,7 @@ const StudentRegistration = ({
       </div>
     )}
     <button disabled={!!isSubmitting}> Submit </button>
-  </Form>
+  </StyledForm>
 );
 
 const FormikStudentRegistration = withFormik({
@@ -205,9 +262,9 @@ const FormikStudentRegistration = withFormik({
     bio,
     branch,
     admittedIn,
-    linkedProfiles,
+    linkedProfiles = [],
     onRemove,
-  }) {
+  } = {}) {
     const profile0 = linkedProfiles[0] ? linkedProfiles[0].provider : '';
     const url0 = linkedProfiles[0] ? linkedProfiles[0].url : '';
     const profile1 = linkedProfiles[1] ? linkedProfiles[1].provider : '';
@@ -249,10 +306,16 @@ const FormikStudentRegistration = withFormik({
       .email('Email is not a valid email.')
       .required('Email is required for registration.'),
     rollNo: Yup.number('Roll number should be a number.')
-      .positive('Roll number cannot be a negative number')
-      .required('Roll number is required for registration'),
+      .positive('Roll number cannot be a negative number.')
+      .required('Roll number is required for registration.'),
     location: Yup.string(),
-    dateOfBirth: Yup.date(),
+    dateOfBirth: Yup.date().required('Date of birth is required.'),
+    admittedIn: Yup.date().required('Your Admission year is required.'),
+    branch: Yup.string().required('Branch is required.'),
+    gender: Yup.string().required('Gender is required.'),
+    bio: Yup.string()
+      .min(50)
+      .required('Bio is required (Min 50 charachters).'),
   }),
   handleSubmit(val, { props, setErrors, setSubmitting }) {
     const data = {
