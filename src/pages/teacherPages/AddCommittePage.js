@@ -7,11 +7,14 @@ import CommitteeForm from './../../components/TeacherDashBoard/CommitteeForm';
 // actios
 import { startAddCommittee } from './../../actions/teacherSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddCommitte = ({ addCommittee, history }) => (
-  <div>
+  <Page>
     <h2> Add Committe </h2>
     <CommitteeForm onSubmit={addCommittee} history={history} />
-  </div>
+  </Page>
 );
 
 const mapDispatchToProps = (dispatch) => ({

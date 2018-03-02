@@ -1,20 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import {
   NavCardFlex,
   NavItemFlex,
   NavItemFlexHeading,
+  StyledLink,
 } from './../Shared.styles';
 
-export default () => (
+export default ({ click }) => (
   <NavCardFlex>
     <NavItemFlexHeading>Time Table</NavItemFlexHeading>
     <NavItemFlex center>
-      <Link to="/timetable/odd">Odd</Link>
+      <StyledLink to="/timetable/odd" onClick={click}>
+        Odd
+      </StyledLink>
     </NavItemFlex>
     <NavItemFlex center>
-      <Link to="/timetable/even">Even</Link>
+      <StyledLink to="/timetable/even" onClick={click}>
+        Even
+      </StyledLink>
     </NavItemFlex>
   </NavCardFlex>
 );

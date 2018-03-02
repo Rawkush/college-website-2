@@ -2,10 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 //  Component
-import TimeTableList from './../../components/timeTable/TimeTableList';
+// eslint-disable-next-line
+import TimeTableList from 'components/timeTable/timeTableList';
+
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
 
 const TimeTablePage = ({ timeTableArray, match, isAdmin }) => (
-  <div>
+  <Page>
     <TimeTableList
       isAdmin={isAdmin}
       timeTableArray={timeTableArray.filter(
@@ -13,7 +17,7 @@ const TimeTablePage = ({ timeTableArray, match, isAdmin }) => (
       )}
       semester={match.params.semester}
     />
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state) => ({

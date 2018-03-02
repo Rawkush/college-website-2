@@ -6,7 +6,7 @@ export const adminlogin = () => ({
 
 export const startAdminLogin = ({ username, password }) => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/admin/login', {
+    .post('/s/admin/login', {
       username,
       password,
     })
@@ -23,7 +23,7 @@ export const adminLogout = () => ({
 
 export const startAdminLogout = () => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/admin/logout', {
+    .post('/s/admin/logout', {
       token: localStorage.getItem('adminToken'),
     })
     .then(() => {
@@ -39,7 +39,7 @@ export const studentlogin = () => ({
 
 export const startStudentLogin = ({ username, password }) => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/student/login', {
+    .post('/s/student/login', {
       username,
       password,
     })
@@ -56,7 +56,7 @@ export const studentLogout = () => ({
 
 export const startStudentLogout = () => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/student/logout', {
+    .post('/s/student/logout', {
       token: localStorage.getItem('studentToken'),
     })
     .then(() => {
@@ -72,7 +72,7 @@ export const teacherlogin = () => ({
 
 export const startTeacherLogin = ({ username, password }) => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/teacher/login', {
+    .post('/s/teacher/login', {
       username,
       password,
     })
@@ -89,7 +89,7 @@ export const teacherLogout = () => ({
 
 export const startTeacherLogout = () => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/teacher/logout', {
+    .post('/s/teacher/logout', {
       token: localStorage.getItem('teacherToken'),
     })
     .then(() => {

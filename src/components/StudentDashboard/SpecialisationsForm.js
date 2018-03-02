@@ -19,7 +19,7 @@ const SpecialisationForm = ({ isSubmitting, errors }) => (
 );
 
 const FormikSpecialisationForm = withFormik({
-  mapPropsToValues({ specialisation }) {
+  mapPropsToValues({ specialisation } = {}) {
     const [s1, s2, s3, s4, s5] = specialisation;
     return {
       s1: s1 || '',

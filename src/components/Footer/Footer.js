@@ -1,13 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+import media from 'theme/media';
 
-const Footer = ({ isAdminLoggedIn }) => (
-  <div>{!isAdminLoggedIn && <Link to="/admin/login">Admin Login</Link>}</div>
+//  Component
+import MadeBy from './MadeBy/MadeBy';
+import Social from './Social/Social';
+import Links from './Links/Links';
+
+const Div = styled.div`
+  ${media.phone`
+    margin-bottom: 50px;
+  `};
+`;
+
+const Footer = ({ admin }) => (
+  <Div>
+    <Links admin={admin} />
+    <Social />
+    <MadeBy />
+  </Div>
 );
 
 const mapStateToProps = (state) => ({
-  isAdminLoggedIn: state.auth.admin,
+  admin: state.auth.admin,
 });
 
 export default connect(mapStateToProps)(Footer);

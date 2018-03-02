@@ -9,7 +9,7 @@ export const setStudentSecondary = (studentSecondary) => ({
 export const startSetStudentSecondary = () => (dispatch) =>
   axios({
     method: 'post',
-    url: 'http://localhost:3000/s/student/getstudentsecondary',
+    url: '/s/student/getstudentsecondary',
     data: { token: localStorage.getItem('studentToken') },
     config: { headers: { 'Content-Type': 'application/json' } },
   }).then((res) => {
@@ -34,7 +34,7 @@ export const startAddAccomplishment = ({
   formdata.append('description', description);
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/student/addaccomplishment',
+    url: '/s/student/addaccomplishment',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -66,7 +66,7 @@ export const startEditAccomplishment = ({
   }
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/student/updateaccomplishment',
+    url: '/s/student/updateaccomplishment',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -80,7 +80,7 @@ export const startEditAccomplishment = ({
 export const startRemoveAccomplishment = (_id) => (dispatch) =>
   axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/student/removeaccomplishment',
+    url: '/s/student/removeaccomplishment',
     data: {
       token: localStorage.getItem('studentToken'),
       _id,
@@ -119,7 +119,7 @@ export const startAddProject = ({
   formdata.append('description', description);
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/student/addproject',
+    url: '/s/student/addproject',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -159,7 +159,7 @@ export const startEditProject = ({
   }
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/student/updateproject',
+    url: '/s/student/updateproject',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -173,7 +173,7 @@ export const startEditProject = ({
 export const startRemoveProject = (_id) => (dispatch) =>
   axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/student/removeproject',
+    url: '/s/student/removeproject',
     data: {
       token: localStorage.getItem('studentToken'),
       _id,
@@ -206,7 +206,7 @@ export const startUpdateSpecialisation = ({
 
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/student/updatespecialisation',
+    url: '/s/student/updatespecialisation',
     data: {
       token: localStorage.getItem('studentToken'),
       specialisation,
@@ -227,7 +227,7 @@ const markNotificationAsRead = (_id) => ({
 
 export const startMarkNotificationAsRead = (_id) => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/student/markasread', {
+    .post('/s/student/markasread', {
       _id,
       token: localStorage.getItem('studentToken'),
     })

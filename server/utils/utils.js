@@ -327,9 +327,22 @@ const giveAllSecondary = (Model) => async (_creator) => {
   }
 };
 
-const giveUser = (Model) => async (slug) => {
+const giveUserBySlugg = (Model) => async (slugg) => {
   try {
-    const user = await Model.findBySlug(slug);
+    const user = await Model.findBySlug(slugg);
+    return user;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const giveUserByName = (Model) => async (name) => {
+  try {
+    const user = await Model.find({
+      $text: {
+        $search: name,
+      },
+    });
     return user;
   } catch (error) {
     throw new Error(error);
@@ -366,11 +379,12 @@ module.exports = {
   pickSyllabus,
   pickTT,
   giveLatestThreeItem,
-  giveUser,
+  giveUserBySlugg,
   giveAll,
   giveAllSecondary,
   pickAdmin,
   loginAdmin,
   pickTeacherNotifications,
   pickCommittee,
+  giveUserByName,
 };

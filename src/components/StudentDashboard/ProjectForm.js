@@ -88,7 +88,7 @@ const FormikProjectForm = withFormik({
     _id = '',
     edit = '',
     removeProject = '',
-  }) {
+  } = {}) {
     return {
       title,
       photos,

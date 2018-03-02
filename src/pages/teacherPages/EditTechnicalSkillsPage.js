@@ -10,13 +10,16 @@ import {
   startRemoveTechnicalSkill,
 } from './../../actions/teacherSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const EditTechnicalSkill = ({
   editTechnicalSkill,
   removeTechnicalSkill,
   history,
   technicalSkill,
 }) => (
-  <div>
+  <Page>
     <h2> Edit TechnicalSkill </h2>
     {technicalSkill ? (
       <TechnicalSkillsForm
@@ -29,7 +32,7 @@ const EditTechnicalSkill = ({
     ) : (
       <p> edit tech </p>
     )}
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state, props) => ({

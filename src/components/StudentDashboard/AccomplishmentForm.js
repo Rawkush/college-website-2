@@ -78,7 +78,7 @@ const FormikAccomplishmentForm = withFormik({
     _id = '',
     edit = '',
     removeAccomplishment = '',
-  }) {
+  } = {}) {
     return {
       title,
       photo,

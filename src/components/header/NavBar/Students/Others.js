@@ -1,15 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { FlexCenter } from 'theme/Components';
+import { red } from 'theme/variable';
 
 import { NavCardFlex, NavItemFlex } from './../Shared.styles';
 
-export default () => (
+const Span = styled.div`
+  padding: 10px 0px;
+  text-align: center;
+`;
+
+const FlexCenterNav = FlexCenter.extend`
+  height: 100%;
+  transition: all 0.1s ease;
+  &: hover {
+    color: ${red};
+    transform: scale(1.3);
+  }
+`;
+
+export default ({ click }) => (
   <NavCardFlex>
     <NavItemFlex>
-      <Link to="/somestaticthing">Students List</Link>
+      <Link to="/studentList" onClick={click}>
+        <FlexCenterNav>
+          <Span>Student List</Span>
+        </FlexCenterNav>
+      </Link>
     </NavItemFlex>
     <NavItemFlex>
-      <Link to="/someexternallink">SBI Collect</Link>
+      <Link to="/someexternallink" onClick={click}>
+        <FlexCenterNav>
+          <Span>SBI Collect</Span>
+        </FlexCenterNav>
+      </Link>
     </NavItemFlex>
   </NavCardFlex>
 );

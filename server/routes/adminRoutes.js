@@ -24,11 +24,12 @@ const {
   editTimeTable,
   editSyllabus,
   editEvent,
-  adminRegister,
+  // adminRegister,
   adminLogin,
   adminLogout,
   registerTeacher,
   tokenAuthenticate,
+  giveAllTeachersList,
 } = require('./../controllers/adminController');
 
 // Initializing the Router
@@ -101,13 +102,15 @@ adminRoutes.patch(
 
 adminRoutes.delete('/deletett', tokenAuthenticate, deleteTimeTable);
 
-adminRoutes.post('/register', adminRegister);
+// adminRoutes.post('/register', adminRegister);
 
 adminRoutes.post('/login', adminLogin);
 
 adminRoutes.post('/logout', tokenAuthenticate, adminLogout);
 
 adminRoutes.post('/teacherregisteration', tokenAuthenticate, registerTeacher);
+
+adminRoutes.post('/giveallteacher', tokenAuthenticate, giveAllTeachersList);
 
 module.exports = {
   adminRoutes,

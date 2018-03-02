@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom';
 // Components
 import NotificationItem from './../../components/notifications/NotificationItem';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AdminNotificationPanel = ({ location, notifications, auth }) => (
-  <div>
+  <Page>
     <h1>Notifications</h1>
     {notifications.map((notification) => (
       <NotificationItem
@@ -17,7 +20,7 @@ const AdminNotificationPanel = ({ location, notifications, auth }) => (
       />
     ))}
     <Link to="/admin/notifications/add"> Add Notification</Link>
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state) => ({

@@ -6,11 +6,14 @@ import { startAddNotification } from './../../actions/teacherSecondary';
 // Component
 import NotificationForm from './../../components/TeacherDashBoard/NotificationForm';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddNotificationPage = ({ addNotification, history }) => (
-  <div>
+  <Page>
     <h2>Add Notification</h2>
     <NotificationForm onSubmit={addNotification} history={history} />
-  </div>
+  </Page>
 );
 
 const mapDispatchToProps = (dispatch) => ({

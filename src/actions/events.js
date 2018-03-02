@@ -31,7 +31,7 @@ export const startAddEvent = ({
   formdata.append('description', description);
   return axios({
     method: 'post',
-    url: 'http://localhost:3000/s/admin/addevent',
+    url: '/s/admin/addevent',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -48,7 +48,7 @@ export const setEvent = (event) => ({
 });
 
 export const startSetEvent = () => (dispatch) =>
-  axios.get('http://localhost:3000/s/visitor/getallevents').then((res) => {
+  axios.get('/s/visitor/getallevents').then((res) => {
     dispatch(setEvent(res.data));
   });
 
@@ -72,7 +72,7 @@ export const startEditEvent = (
   };
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/admin/editevent',
+    url: '/s/admin/editevent',
     data,
     config: { headers: { 'Content-Type': 'application/json' } },
   })
@@ -91,7 +91,7 @@ const removeEvent = (event) => ({
 export const startRemoveEvent = (_id) => (dispatch) =>
   axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/admin/deleteevent',
+    url: '/s/admin/deleteevent',
     data: {
       _id,
       token: localStorage.getItem('adminToken'),

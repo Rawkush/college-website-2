@@ -10,8 +10,11 @@ import {
   startRemoveWork,
 } from './../../actions/teacherSecondary';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const EditWork = ({ editWork, removeWork, history, work }) => (
-  <div>
+  <Page>
     <h2> Edit Work </h2>
     {work ? (
       <WorkForm
@@ -24,7 +27,7 @@ const EditWork = ({ editWork, removeWork, history, work }) => (
     ) : (
       <p>Loading</p>
     )}
-  </div>
+  </Page>
 );
 
 const mapStateToProps = (state, props) => ({

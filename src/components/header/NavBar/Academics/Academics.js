@@ -6,6 +6,7 @@ import TimeTableCard from './TimeTable';
 import AcademicCalendar from './AcademicCalendar';
 
 import media from './../../../../theme/media';
+import { VerticalLine } from './../Shared.styles';
 
 // Styled Components
 import { Flex, Container } from './../../../../theme/Components';
@@ -16,13 +17,16 @@ const NavFlex = Flex.extend`
   `};
 `;
 
-export default () => (
+export default ({ click }) => (
   <Container>
     <NavFlex>
-      <DepartmentsCard />
-      <SyllabusCard />
-      <TimeTableCard />
-      <AcademicCalendar />
+      <DepartmentsCard click={click} />
+      <VerticalLine />
+      <SyllabusCard click={click} />
+      <VerticalLine />
+      <TimeTableCard click={click} />
+      <VerticalLine />
+      <AcademicCalendar click={click} />
     </NavFlex>
   </Container>
 );

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import styled from 'styled-components';
+
 // Styled-Components
 import {
   Page,
@@ -8,6 +10,7 @@ import {
   FlexItem,
   Container,
   H3,
+  A,
 } from './../../theme/Components';
 
 import {
@@ -17,20 +20,37 @@ import {
 import { startSetTeacherSecondary } from './../../actions/teacherSecondary';
 
 import TeacherLoginForm from './../../components/adminDashboard/TeacherRegistrationForm';
+import LoginButtonLinks from './../../components/login/LoginButtonLinks';
+
+const LoginCard = styled.div`
+  background: grey;
+  margin: 0 auto;
+  width: 300px;
+  padding: 40px 10px;
+`;
+
+const LinksDiv = styled.div`
+  padding: 60px 10px;
+`;
 
 const LoginPage = ({ login, setProfile, setSecondary, history }) => (
   <Page p="10px">
     <Container>
-      <FlexCenter h="50vh">
+      <FlexCenter>
         <FlexItem>
-          <H3>Students Login or register using...</H3>
-          <br />
-          <a href="http://localhost:3000/s/student/auth/google">Google</a>
-          <br />
-          <a href="http://localhost:3000/s/student/auth/github">GitHub</a>
-          <br />
-          <a href="http://localhost:3000/s/student/auth/linkedin">LinkedIn</a>
-          <br />
+          <LoginCard>
+            <H3>Students Login or register using...</H3>
+            <LinksDiv>
+              <LoginButtonLinks link="/s/student/auth/google" name="Google" />
+              <br />
+              <LoginButtonLinks link="/s/student/auth/github" name="GitHub" />
+              <br />
+              <LoginButtonLinks
+                link="/s/student/auth/linkedin"
+                name="Linked In"
+              />
+            </LinksDiv>
+          </LoginCard>
         </FlexItem>
         <FlexItem>
           <H3>Login As Teacher.</H3>

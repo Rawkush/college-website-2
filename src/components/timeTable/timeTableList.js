@@ -1,7 +1,7 @@
 import React from 'react';
 
 //  Components
-import TimeTableListItem from './TimeTableListItem';
+import TimeTableListItem from './timeTableListItem';
 
 export default ({ timeTableArray, semester, isAdmin }) => (
   <div>

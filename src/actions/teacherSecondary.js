@@ -25,7 +25,7 @@ export const startAddNotification = ({
   formdata.append('token', localStorage.getItem('teacherToken'));
   return axios({
     method: 'post',
-    url: 'http://localhost:3000/s/teacher/addnotification',
+    url: '/s/teacher/addnotification',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -63,7 +63,7 @@ export const startEditNotification = ({
   formdata.append('_id', _id);
   return axios({
     method: 'post',
-    url: 'http://localhost:3000/s/teacher/updatenotification',
+    url: '/s/teacher/updatenotification',
     data: formdata,
     config: { headers: { 'Content-Type': 'multipart/form-data' } },
   })
@@ -86,7 +86,7 @@ export const startRemoveNotification = (_id = '') => (dispatch) => {
   };
   return axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/teacher/removenotification',
+    url: '/s/teacher/removenotification',
     data,
     config: { headers: { 'Content-Type': 'application/json' } },
   })
@@ -106,7 +106,7 @@ export const setTeacherSecondary = (secondary) => ({
 export const startSetTeacherSecondary = () => (dispatch) =>
   axios({
     method: 'post',
-    url: 'http://localhost:3000/s/teacher/getteachersecondary',
+    url: '/s/teacher/getteachersecondary',
     data: { token: localStorage.getItem('teacherToken') },
     config: { headers: { 'Content-Type': 'application/json' } },
   }).then((res) => {
@@ -128,7 +128,7 @@ export const startAddWork = ({ title = '', description = '' } = {}) => (
   };
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/teacher/addwork',
+    url: '/s/teacher/addwork',
     data,
     config: { header: { 'Content-Type': 'application/json' } },
   })
@@ -150,7 +150,7 @@ export const startEditWork = ({ title = '', _id = '', description = '' }) => (
   };
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/teacher/updatework',
+    url: '/s/teacher/updatework',
     data,
     config: { header: { 'Content-Type': 'application/json' } },
   })
@@ -164,7 +164,7 @@ export const startEditWork = ({ title = '', _id = '', description = '' }) => (
 export const startRemoveWork = (_id) => (dispatch) =>
   axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/teacher/removework',
+    url: '/s/teacher/removework',
     data: {
       token: localStorage.getItem('teacherToken'),
       _id,
@@ -194,7 +194,7 @@ export const startAddTechnicalSkill = ({
   };
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/teacher/updatetechnicalskill',
+    url: '/s/teacher/updatetechnicalskill',
     data,
     config: { headers: { 'Content-Type': 'application/json' } },
   })
@@ -219,7 +219,7 @@ export const startAddCommittee = ({
   };
   return axios({
     method: 'post',
-    url: 'http://localhost:3000/s/teacher/addcommittee',
+    url: '/s/teacher/addcommittee',
     data,
     config: { headers: { 'Content-Type': 'application/json' } },
   })
@@ -245,7 +245,7 @@ export const startEditCommittee = ({
   };
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/teacher/updatecommittee',
+    url: '/s/teacher/updatecommittee',
     data,
     config: { headers: { 'Content-Type': 'application/json' } },
   })
@@ -259,7 +259,7 @@ export const startEditCommittee = ({
 export const startRemoveCommittee = (_id) => (dispatch) =>
   axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/teacher/removecommittee',
+    url: '/s/teacher/removecommittee',
     data: {
       token: localStorage.getItem('teacherToken'),
       _id,
@@ -287,7 +287,7 @@ export const startUpdateSpecialisation = ({
 
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/teacher/updatespecialisation',
+    url: '/s/teacher/updatespecialisation',
     data: {
       token: localStorage.getItem('teacherToken'),
       specialisation,
@@ -314,7 +314,7 @@ export const startUpdateEducation = ({
 
   return axios({
     method: 'patch',
-    url: 'http://localhost:3000/s/teacher/updateeducation',
+    url: '/s/teacher/updateeducation',
     data: {
       token: localStorage.getItem('teacherToken'),
       education,

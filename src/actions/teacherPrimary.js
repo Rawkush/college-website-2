@@ -11,7 +11,7 @@ export const setTeacher = (teacher) => ({
 
 export const startLoginTeacher = ({ email, password }) => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/teacher/login', {
+    .post('/s/teacher/login', {
       email,
       password,
     })
@@ -29,7 +29,7 @@ export const teacherLogout = () => ({
 
 export const startTeacherLogout = () => (dispatch) =>
   axios
-    .post('http://localhost:3000/s/teacher/logout', {
+    .post('/s/teacher/logout', {
       token: localStorage.getItem('teacherToken'),
     })
     .then(() => {
@@ -57,7 +57,7 @@ export const startEditTeacher = ({
     data.password = password;
   }
   return axios
-    .patch('http://localhost:3000/s/teacher/updateprofile', { ...data })
+    .patch('/s/teacher/updateprofile', { ...data })
     .then((res) => {
       dispatch(setTeacher(res.data));
       return Promise.resolve();
@@ -70,7 +70,7 @@ export const startSetTeacher = () => (dispatch) => {
   if (token) {
     axios({
       method: 'post',
-      url: 'http://localhost:3000/s/teacher/getteacher',
+      url: '/s/teacher/getteacher',
       data: {
         token,
       },
@@ -93,7 +93,7 @@ const removeTeacher = () => ({
 export const startRemoveTeacher = () => (dispatch) =>
   axios({
     method: 'delete',
-    url: 'http://localhost:3000/s/teacher/deleteprofile',
+    url: '/s/teacher/deleteprofile',
     data: {
       token: localStorage.getItem('teacherToken'),
     },

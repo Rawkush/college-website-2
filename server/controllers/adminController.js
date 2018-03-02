@@ -17,6 +17,7 @@ const {
   loginAdmin,
   authTokenMinimal,
   removeTokenMinimal,
+  giveAll,
 } = require('./../utils/utils');
 
 // Initializing the functions
@@ -40,6 +41,8 @@ const deleteEventsMinimal = deleteMinimal(Event);
 const deleteSyllabusMinimal = deleteMinimal(Syllabus);
 const deleteTimeTableMinimal = deleteMinimal(TimeTable);
 
+const giveAllTeachers = giveAll(TeacherPrimary);
+
 // Controllers
 
 const registerTeacher = async (req, res) => {
@@ -53,9 +56,9 @@ const registerTeacher = async (req, res) => {
 };
 
 const deleteTeacher = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
   try {
-    const teacher = await deleteTeacherMinimal(id);
+    const teacher = await deleteTeacherMinimal(_id);
     res.send(teacher);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
@@ -244,6 +247,15 @@ const tokenAuthenticate = async (req, res, next) => {
   }
 };
 
+const giveAllTeachersList = async (req, res) => {
+  try {
+    const teachersList = await giveAllTeachers();
+    res.send(teachersList);
+  } catch (error) {
+    res.status(401).send(`Access Denied! ${error}`);
+  }
+};
+
 module.exports = {
   addNotifications,
   editNotifications,
@@ -263,4 +275,5 @@ module.exports = {
   adminLogout,
   tokenAuthenticate,
   registerTeacher,
+  giveAllTeachersList,
 };

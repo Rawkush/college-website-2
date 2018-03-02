@@ -1,22 +1,68 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { red } from 'theme/variable';
 
 import {
   NavCardFlex,
   FlexHorizontal,
   NavItemFlexHeading,
+  StyledLink,
 } from './../Shared.styles';
 
-export default () => (
+import media from 'theme/media';
+
+//  Images
+import culturalImage from 'images/cultural.jpg';
+import sportsImage from 'images/sports.jpg';
+
+const Image = styled.img`
+  display: block;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  transition: all 0.1s ease;
+  ${media.phone`
+    height: 80px;
+  `};
+`;
+
+const FlexHorizontalLong = FlexHorizontal.extend`
+  flex: 4;
+`;
+
+const Span = styled.div`
+  padding: 10px 0px;
+`;
+
+const HoverDiv = styled.div`
+  &:hover {
+    color: ${red};
+    > img {
+      transform: scale(1.05);
+    }
+  }
+`;
+
+export default ({ click }) => (
   <NavCardFlex>
     <NavItemFlexHeading>Events</NavItemFlexHeading>
-    <FlexHorizontal>
+    <FlexHorizontalLong>
       <NavItemFlexHeading>
-        <Link to="/events/cultural">Cultural Events</Link>
+        <StyledLink to="/events/cultural" onClick={click}>
+          <HoverDiv>
+            <Image src={culturalImage} alt="cultural" />
+            <Span> Cultural Events </Span>
+          </HoverDiv>
+        </StyledLink>
       </NavItemFlexHeading>
       <NavItemFlexHeading>
-        <Link to="/events/sports">Sports Events</Link>
+        <StyledLink to="/events/sports" onClick={click}>
+          <HoverDiv>
+            <Image src={sportsImage} alt="sports" />
+            <Span> Sports Events </Span>
+          </HoverDiv>
+        </StyledLink>
       </NavItemFlexHeading>
-    </FlexHorizontal>
+    </FlexHorizontalLong>
   </NavCardFlex>
 );

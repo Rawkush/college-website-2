@@ -6,6 +6,8 @@ import ScholarshipCard from './Scholarship';
 import OthersCard from './Others';
 import media from './../../../../theme/media';
 
+import { VerticalLine } from './../Shared.styles';
+
 // Styled Components
 import { Flex, Container } from './../../../../theme/Components';
 
@@ -15,13 +17,16 @@ const NavFlex = Flex.extend`
   `};
 `;
 
-export default () => (
+export default ({ click }) => (
   <Container>
     <NavFlex>
-      <CirriculumCard />
-      <EventsCard />
-      <ScholarshipCard />
-      <OthersCard />
+      <CirriculumCard click={click} />
+      <VerticalLine />
+      <EventsCard click={click} />
+      <VerticalLine />
+      <ScholarshipCard click={click} />
+      <VerticalLine />
+      <OthersCard click={click} />
     </NavFlex>
   </Container>
 );

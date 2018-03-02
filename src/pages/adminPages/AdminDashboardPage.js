@@ -4,8 +4,11 @@ import { connect } from 'react-redux';
 
 import { startAdminLogout } from './../../actions/auth';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AdminDashboardPage = ({ logout, history }) => (
-  <div>
+  <Page>
     <h1>Admin Dashboard</h1>
     <Link to="/admin/notifications"> Notifications </Link>
     <Link to="/admin/events"> Events </Link>
@@ -19,7 +22,7 @@ const AdminDashboardPage = ({ logout, history }) => (
     >
       Log Out
     </button>
-  </div>
+  </Page>
 );
 
 const mapDispatchToProps = (dispatch) => ({

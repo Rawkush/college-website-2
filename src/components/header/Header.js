@@ -1,9 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { lightBlack } from 'theme/variable';
 import media from '../../theme/media';
 
 import NavBar from './NavBar/NavBar';
+import LogoSVG from './LogoSVG';
 
 // Importing Styled Components
 import {
@@ -12,11 +14,10 @@ import {
   Button,
   Flex,
   FlexCenter,
-  Page,
+  Page, // eslint-disable-line
 } from './../../theme/Components';
 
 // Styles
-
 const FixedHeader = styled.header`
   position: fixed;
   width: 100%;
@@ -24,81 +25,31 @@ const FixedHeader = styled.header`
   background: #fff;
   z-index: 100;
   ${media.phone`
-    box-shadow: 0px 1px rgba(0, 0, 0, 0.2196078431372549);
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
     height: 10vh;
   `};
 `;
 
 const Title = H1.extend`
-  flex-grow: 1;
   ${media.phone`
     font-size: 5vw;
   `};
 `;
 
-const Links = () => (
-  <div>
-    <NavLink to="/" activeClassName="is-active" exact>
-      Home
-    </NavLink>
-    <br />
-    <NavLink to="/syllabus/new/it" activeClassName="is-active" exact>
-      Syllabus - I.T. (New)
-    </NavLink>
-    <br />
-    <NavLink to="/syllabus/new/civil" activeClassName="is-active" exact>
-      Syllabus - Civil (New)
-    </NavLink>
-    <br />
-    <NavLink to="/syllabus/new/env" activeClassName="is-active" exact>
-      Syllabus - Env (New)
-    </NavLink>
-    <br />
-    <NavLink to="/syllabus/old/it" activeClassName="is-active" exact>
-      Syllabus - I.T. (old)
-    </NavLink>
-    <br />
-    <NavLink to="/syllabus/old/civil" activeClassName="is-active" exact>
-      Syllabus - Civil (old)
-    </NavLink>
-    <br />
-    <NavLink to="/syllabus/old/env" activeClassName="is-active" exact>
-      Syllabus - Env (old)
-    </NavLink>
-    <br />
-    <NavLink to="/timetable/even" activeClassName="is-active" exact>
-      Time Table - Even
-    </NavLink>
-    <br />
-    <NavLink to="/timetable/odd" activeClassName="is-active" exact>
-      Time Table - Odd
-    </NavLink>
-    <br />
-    <NavLink to="/events" activeClassName="is-active" exact>
-      Events
-    </NavLink>
-    <br />
-    <NavLink to="/student/myprofile" activeClassName="is-active" exact>
-      My Profile
-    </NavLink>
-    <br />
-    <NavLink to="/teacher/register" activeClassName="is-active" exact>
-      Teacher Registeration
-    </NavLink>
-    <br />
-    <NavLink to="/teacher/login" activeClassName="is-active" exact>
-      Teacher Login
-    </NavLink>
-    <br />
-    <NavLink to="/admin/dashboard" activeClassName="is-active" exact>
-      Admin DB
-    </NavLink>
-    <br />
-    <NavLink to="/teacher/myprofile" activeClassName="is-active" exact>
-      Teacher Profile
-    </NavLink>
-  </div>
-);
+const StyledLink = styled(Link)`
+  color: ${lightBlack};
+  text-decoration: none;
+  flex-grow: 1;
+  ${media.phone`
+    font-size: 5vw;
+  `};
+  display: flex;
+  &:hover {
+    > svg {
+      transform: scale(1.07);
+    }
+  }
+`;
 
 const Header = () => (
   <div>
@@ -106,7 +57,10 @@ const Header = () => (
       <Container>
         <Flex>
           <FlexCenter>
-            <Title>Ch. Bramh Prakash Govt. Engg. College</Title>
+            <StyledLink to="/">
+              <LogoSVG />
+              <Title>Ch. Bramh Prakash Govt. Engg. College</Title>
+            </StyledLink>
           </FlexCenter>
           <FlexCenter>
             <NavLink to="/login">

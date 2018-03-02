@@ -7,11 +7,14 @@ import { startAddEvent } from './../../actions/events';
 // Component
 import EventForm from './../../components/adminDashboard/EventForm';
 
+// eslint-disable-next-line
+import { Page } from 'theme/Components';
+
 const AddEventPage = ({ addEvent, history }) => (
-  <div>
+  <Page>
     <h2>Add Event</h2>
     <EventForm onSubmit={addEvent} history={history} />
-  </div>
+  </Page>
 );
 const mapDispatchToProps = (dispatch) => ({
   addEvent: (val) => dispatch(startAddEvent(val)),
