@@ -8,12 +8,16 @@ import ProjectForm from './../../components/StudentDashboard/ProjectForm';
 import { startAddProject } from './../../actions/studentSecondary';
 
 // eslint-disable-next-line
-import { Page } from 'theme/Components';
+import { Page, Container, H3, FormWrapper } from 'theme/Components';
 
 const AddAccomplishment = ({ addProject, history }) => (
   <Page>
-    <h2>Add Project</h2>
-    <ProjectForm onSubmit={addProject} history={history} />
+    <Container>
+      <FormWrapper>
+        <H3>Add Project</H3>
+        <ProjectForm onSubmit={addProject} history={history} />
+      </FormWrapper>
+    </Container>
   </Page>
 );
 

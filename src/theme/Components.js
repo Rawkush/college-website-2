@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Form } from 'formik';
 import media from './media';
 import { red } from './variable';
 
@@ -88,6 +89,7 @@ const Page = styled.div`
   ${media.phone`
     margin-top: ${(props) => (props.mt ? props.mt : '68px')};    
   `};
+  min-height: calc(100vh - 93px);
 `;
 
 const A = styled.a`
@@ -135,6 +137,82 @@ const ButtonLink = styled(Link)`
   }
 `;
 
+const StyledForm = styled(Form)`
+  > label {
+    display: block;
+    padding: 15px 0px 5px 0px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  > input {
+    width: 100%;
+    padding: 7px;
+    ${media.phone`
+      padding: 5px 0px 5px 5px;
+      width: 97%;
+    `};
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    border: solid 1px rgba(0, 0, 0, 0.27);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    line-height: 1.5;
+    &:focus {
+      border: solid 1px red;
+      box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
+    }
+  }
+  > select {
+    width: 103%;
+    padding: 7px;
+    ${media.phone`
+      padding: 5px 0px;
+      width: 100%;
+    `};
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    border: solid 1px rgba(0, 0, 0, 0.27);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    line-height: 1.5;
+    &:focus {
+      border: solid 1px red;
+      box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
+    }
+  }
+  > button {
+    background: none;
+    border: solid 1px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    padding: 10px 50px;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 30px 0px;
+    margin-left: ${({ left }) => left || '0'};
+    border-radius: 3px;
+    transition: all 0.15s ease-in-out;
+    border: solid 1px rgba(179, 0, 0, 0.7);
+    color: rgba(179, 0, 0, 0.7);
+    &:hover {
+      color: white;
+      background: rgba(179, 0, 0, 0.7);
+    }
+  }
+`;
+
+const FormWrapper = styled.div`
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+`;
+
+const GiveHeight = styled.div`
+  min-height: 450px;
+`;
+
+const FormError = styled.p`
+  color: red;
+  font-family: 'Open Sans', sans-serif;
+`;
+
 export {
   H1,
   H2,
@@ -147,4 +225,8 @@ export {
   FlexItem,
   Page,
   ButtonLink,
+  StyledForm,
+  FormWrapper,
+  FormError,
+  GiveHeight,
 };
