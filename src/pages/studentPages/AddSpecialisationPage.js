@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Page, Container, H3, FormWrapper } from 'theme/Components';
 
 // Components
 import SpecialisationForm from './../../components/StudentDashboard/SpecialisationsForm';
@@ -7,21 +8,22 @@ import SpecialisationForm from './../../components/StudentDashboard/Specialisati
 // Actions
 import { startUpdateSpecialisation } from './../../actions/studentSecondary';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
 const AddSpecialisation = ({
   updateSpecialisation,
   history,
   specialisation,
 }) => (
   <Page>
-    <h2>Add Specialisation</h2>
-    <SpecialisationForm
-      onSubmit={updateSpecialisation}
-      history={history}
-      specialisation={specialisation}
-    />
+    <Container>
+      <FormWrapper>
+        <H3>Add Specialisation</H3>
+        <SpecialisationForm
+          onSubmit={updateSpecialisation}
+          history={history}
+          specialisation={specialisation}
+        />
+      </FormWrapper>
+    </Container>
   </Page>
 );
 

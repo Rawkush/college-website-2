@@ -14,6 +14,7 @@ const H2 = styled.h2`
   font-family: 'Noto Serif', serif;
   font-size: 1.6rem;
   font-weight: 400;
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
 `;
 
 const H3 = styled.h3`
@@ -157,6 +158,7 @@ const StyledForm = styled(Form)`
     border: solid 1px rgba(0, 0, 0, 0.27);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     line-height: 1.5;
+    margin-top: ${({ mtop }) => mtop || '0px'};
     &:focus {
       border: solid 1px red;
       box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
@@ -204,10 +206,6 @@ const FormWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const GiveHeight = styled.div`
-  min-height: 450px;
-`;
-
 const FormError = styled.p`
   color: red;
   font-family: 'Open Sans', sans-serif;
@@ -228,5 +226,4 @@ export {
   StyledForm,
   FormWrapper,
   FormError,
-  GiveHeight,
 };
