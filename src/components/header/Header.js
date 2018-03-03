@@ -51,6 +51,21 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const studentToken = localStorage.getItem('studentToken');
+const teacherToken = localStorage.getItem('teacherToken');
+const adminToken = localStorage.getItem('adminToken');
+
+const getLink = (student, teacher, admin) => {
+  if (student) {
+    return '/student/myprofile';
+  } else if (teacher) {
+    return '/teacher/myprofile';
+  } else if (admin) {
+    return '/admin/dashboard';
+  }
+  return null;
+};
+
 const Header = () => (
   <div>
     <FixedHeader>
@@ -63,9 +78,15 @@ const Header = () => (
             </StyledLink>
           </FlexCenter>
           <FlexCenter>
-            <NavLink to="/login">
-              <Button>Login</Button>
-            </NavLink>
+            {studentToken || teacherToken || adminToken ? (
+              <Link to={getLink(studentToken, teacherToken, adminToken)}>
+                My Profile
+              </Link>
+            ) : (
+              <NavLink to="/login">
+                <Button>Login</Button>
+              </NavLink>
+            )}
           </FlexCenter>
         </Flex>
       </Container>

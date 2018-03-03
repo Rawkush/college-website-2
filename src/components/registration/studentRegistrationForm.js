@@ -5,6 +5,34 @@ import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
 import media from 'theme/media';
 
+const Button = styled.button`
+  color: rgba(0, 0, 0, 0.8);
+  background: none;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  transition: all 0.1s;
+  margin-left: 20px;
+  &:hover {
+    cursor: pointer;
+    background: #c14545;
+    color: #fff;
+    border: 1px solid #c14545;
+  }
+
+  ${media.phone`
+    font-size: 4vw;
+  `};
+`;
+
+const Wrapper = styled.div`
+  display: inline-block;
+`;
+
 const StyledForm = styled(Form)`
   > label {
     display: block;
@@ -54,6 +82,7 @@ const StyledForm = styled(Form)`
     padding: 10px 50px;
     color: rgba(0, 0, 0, 0.6);
     margin: 30px 0px;
+    margin-left: ${({ left }) => left || '0'};
     border-radius: 3px;
     transition: all 0.15s ease-in-out;
     border: solid 1px rgba(179, 0, 0, 0.7);
@@ -68,6 +97,41 @@ const StyledForm = styled(Form)`
 const ErrorAlert = styled.p`
   color: red;
   font-family: 'Open Sans', sans-serif;
+`;
+
+const FeildWrapper = styled.div`
+  width: 103%;
+  ${media.phone`
+    width: 100%;  
+  `};
+  > p {
+    display: block;
+    padding: 15px 0px 5px 0px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  > div {
+    > input {
+      margin: 7px 3%;
+      width: 40%;
+      padding: 7px;
+      ${media.phone`
+      margin: 7px 0%;
+      padding: 5px 0px 5px 5px;
+      width: 97%;
+    `};
+      font-family: 'Open Sans', sans-serif;
+      border-radius: 3px;
+      border: solid 1px rgba(0, 0, 0, 0.27);
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      line-height: 1.5;
+      &:focus {
+        border: solid 1px red;
+        box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
+      }
+    }
+  }
 `;
 
 const StudentRegistration = ({
@@ -158,16 +222,14 @@ const StudentRegistration = ({
     {touched.bio && errors.bio && <ErrorAlert>{errors.bio}</ErrorAlert>}
     <Field type="textarea" name="bio" placeholder="Enter your Bio" id="bio" />
     {values.edit && (
-      <div>
+      <FeildWrapper>
         <p>Links:</p>
         <div>
-          <label htmlFor="provider">Name:</label>
           <Field
             type="text"
             name="profile0"
             placeholder="eg. Google, LinkedIn, Portfolio"
           />
-          <label htmlFor="url">Url:</label>
           <Field
             type="text"
             name="url0"
@@ -175,13 +237,11 @@ const StudentRegistration = ({
           />
         </div>
         <div>
-          <label htmlFor="provider">Name:</label>
           <Field
             type="text"
             name="profile1"
             placeholder="eg. Google, LinkedIn, Portfolio"
           />
-          <label htmlFor="url">Url:</label>
           <Field
             type="text"
             name="url1"
@@ -190,13 +250,11 @@ const StudentRegistration = ({
         </div>
 
         <div>
-          <label htmlFor="provider">Name:</label>
           <Field
             type="text"
             name="profile2"
             placeholder="eg. Google, LinkedIn, Portfolio"
           />
-          <label htmlFor="url">Url:</label>
           <Field
             type="text"
             name="url2"
@@ -205,13 +263,11 @@ const StudentRegistration = ({
         </div>
 
         <div>
-          <label htmlFor="provider">Name:</label>
           <Field
             type="text"
             name="profile3"
             placeholder="eg. Google, LinkedIn, Portfolio"
           />
-          <label htmlFor="url">Url:</label>
           <Field
             type="text"
             name="url3"
@@ -220,20 +276,24 @@ const StudentRegistration = ({
         </div>
 
         <div>
-          <label htmlFor="provider">Name:</label>
           <Field
             type="text"
             name="profile4"
             placeholder="eg. Google, LinkedIn, Portfolio"
           />
-          <label htmlFor="url">Url:</label>
           <Field
             type="text"
             name="url4"
             placeholder="www.example.com/myprofile"
           />
         </div>
-        <button
+      </FeildWrapper>
+    )}
+    <button disabled={!!isSubmitting}> Submit </button>
+    {values.edit && (
+      <Wrapper>
+        <Button
+          left="20px"
           type="button"
           onClick={() => {
             values
@@ -243,10 +303,11 @@ const StudentRegistration = ({
                 setErrors({ error: 'Cannot Delete' });
               });
           }}
-        />
-      </div>
+        >
+          Delete Profile
+        </Button>
+      </Wrapper>
     )}
-    <button disabled={!!isSubmitting}> Submit </button>
   </StyledForm>
 );
 
