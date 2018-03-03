@@ -12,6 +12,7 @@ const HomePage = () => (
     <Container>
       <Notification home />
       <Link to="/notification">See All</Link>
+      <Link to="/student/register">studen</Link>
     </Container>
   </Page>
 );

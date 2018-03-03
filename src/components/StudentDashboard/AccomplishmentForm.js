@@ -1,6 +1,16 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Field } from 'formik';
 import Yup from 'yup';
+import { StyledForm, FormError } from 'theme/Components';
+import styled from 'styled-components';
+
+const Image = styled.img`
+  display: block;
+  height: 150px;
+  width: auto;
+  margin: 0 auto;
+  padding: 20px 0px;
+`;
 
 const AccomplishmentForm = ({
   values,
@@ -9,48 +19,46 @@ const AccomplishmentForm = ({
   isSubmitting,
   setFieldValue,
 }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
-    <label htmlFor="title">
-      Title:
-      {touched.title && errors.title && <p>{errors.title}</p>}
-      <Field
-        type="text"
-        name="title"
-        placeholder="80% in DS Course of NPTEL."
-      />
-    </label>
-    <label htmlFor="description">
-      Description:
-      {touched.description && errors.description && <p>{errors.description}</p>}
-      <Field
-        type="text"
-        name="description"
-        placeholder="This exam is about Data Structures on of the core field etc..."
-      />
-    </label>
-    <label htmlFor="photo">
-      Photo:
-      {touched.photo && errors.photo && <p>{errors.photo}</p>}
-      <input
-        type="file"
-        name="photo"
-        id="photo"
-        onChange={(e) => {
-          setFieldValue('photo', e.currentTarget.files[0]);
-        }}
-      />
-    </label>
+  <StyledForm>
+    {errors.error && <FormError>{errors.error}</FormError>}
+    <label htmlFor="title">Title: </label>
+    {touched.title && errors.title && <FormError>{errors.title}</FormError>}
+    <Field
+      type="text"
+      name="title"
+      id="title"
+      placeholder="80% in DS Course of NPTEL."
+    />
+    <label htmlFor="description">Description: </label>
+    {touched.description &&
+      errors.description && <FormError>{errors.description}</FormError>}
+    <Field
+      type="text"
+      name="description"
+      placeholder="This exam is about Data Structures on of the core field etc..."
+      id="description"
+    />
+    <label htmlFor="photo">Photo: </label>
+    {touched.photo && errors.photo && <FormError>{errors.photo}</FormError>}
+    <input
+      type="file"
+      name="photo"
+      id="photo"
+      onChange={(e) => {
+        setFieldValue('photo', e.currentTarget.files[0]);
+      }}
+    />
     {values.edit &&
       values.photo &&
       !(values.photo instanceof Blob) && (
-        <img
+        <Image
           src={`http://localhost:3000/${values.photo}`}
           alt="accomplishment"
-          height="100px"
-          width="100px"
         />
       )}
+    <button disabled={!!isSubmitting} type="submit">
+      Submit
+    </button>{' '}
     {values.edit && (
       <button
         type="button"
@@ -63,10 +71,7 @@ const AccomplishmentForm = ({
         Remove
       </button>
     )}
-    <button disabled={!!isSubmitting} type="submit">
-      Submit
-    </button>
-  </Form>
+  </StyledForm>
 );
 
 const FormikAccomplishmentForm = withFormik({

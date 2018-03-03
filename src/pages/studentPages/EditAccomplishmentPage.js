@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Page, Container, FormWrapper, H3 } from 'theme/Components';
 
 // Components
 import AccomplishmentForm from './../../components/StudentDashboard/AccomplishmentForm';
@@ -10,9 +11,6 @@ import {
   startRemoveAccomplishment,
 } from './../../actions/studentSecondary';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
 const EditAccomplishment = ({
   editAccomplishment,
   removeAccomplishment,
@@ -20,18 +18,22 @@ const EditAccomplishment = ({
   accomplishment,
 }) => (
   <Page>
-    <h2>Edit Accomplishment</h2>
-    {accomplishment ? (
-      <AccomplishmentForm
-        onSubmit={editAccomplishment}
-        removeAccomplishment={removeAccomplishment}
-        history={history}
-        edit
-        {...accomplishment}
-      />
-    ) : (
-      <p>L</p>
-    )}
+    <Container>
+      <FormWrapper>
+        <H3>Edit Accomplishment</H3>
+        {accomplishment ? (
+          <AccomplishmentForm
+            onSubmit={editAccomplishment}
+            removeAccomplishment={removeAccomplishment}
+            history={history}
+            edit
+            {...accomplishment}
+          />
+        ) : (
+          <p>L</p>
+        )}
+      </FormWrapper>
+    </Container>
   </Page>
 );
 

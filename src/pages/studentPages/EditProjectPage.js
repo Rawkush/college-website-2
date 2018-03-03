@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { Page, Container, H3, FormWrapper } from 'theme/Components';
 // Components
 import ProjectForm from './../../components/StudentDashboard/ProjectForm';
 
@@ -10,9 +10,6 @@ import {
   startRemoveProject,
 } from './../../actions/studentSecondary';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
 const EditAccomplishment = ({
   editProject,
   removeProject,
@@ -20,18 +17,22 @@ const EditAccomplishment = ({
   project,
 }) => (
   <Page>
-    <h2>Edit Accomplishment</h2>
-    {project ? (
-      <ProjectForm
-        onSubmit={editProject}
-        removeProject={removeProject}
-        history={history}
-        edit
-        {...project}
-      />
-    ) : (
-      <p>L</p>
-    )}
+    <Container>
+      <FormWrapper>
+        <H3>Edit Accomplishment</H3>
+        {project ? (
+          <ProjectForm
+            onSubmit={editProject}
+            removeProject={removeProject}
+            history={history}
+            edit
+            {...project}
+          />
+        ) : (
+          <p>Loading...</p>
+        )}
+      </FormWrapper>
+    </Container>
   </Page>
 );
 
