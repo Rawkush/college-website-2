@@ -41,7 +41,7 @@ const HR = styled.hr`
 export default ({ title, photo, description, _id, edit } = {}) => (
   <div>
     <Title>{title}</Title>
-    <Image src={`http://localhost:3000/${photo}`} alt="accomplishment" />
+    <Image src={`/${photo}`} alt="accomplishment" />
     <Description>{description}</Description>
     {edit && (
       <Wrapper1>

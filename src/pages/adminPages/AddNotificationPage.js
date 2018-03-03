@@ -7,13 +7,16 @@ import { startAddNotification } from './../../actions/notifications';
 // Component
 import NotificationForm from './../../components/adminDashboard/NotificationForm';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
+import { Page, Container, FormWrapper, H3 } from 'theme/Components';
 
 const AddNotificationPage = ({ addNotification, history }) => (
   <Page>
-    <h2>Add Notification</h2>
-    <NotificationForm onSubmit={addNotification} history={history} />
+    <Container>
+      <FormWrapper>
+        <H3>Add Notification</H3>
+        <NotificationForm onSubmit={addNotification} history={history} />
+      </FormWrapper>
+    </Container>
   </Page>
 );
 const mapDispatchToProps = (dispatch) => ({

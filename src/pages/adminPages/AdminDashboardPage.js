@@ -1,27 +1,46 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {
+  Page,
+  H2,
+  Container,
+  FlexResponsiveStack,
+  FlexHorizontal,
+  Button,
+  AlignCenter,
+} from 'theme/Components';
 
 import { startAdminLogout } from './../../actions/auth';
-
-import { Page, H2, Container } from 'theme/Components';
+import Notifications from './../../components/adminDashboard/NotificationComponent';
+import Syllabus from './../../components/adminDashboard/SyllabusComponent';
+import Events from './../../components/adminDashboard/EventsComponent';
+import Teacher from './../../components/adminDashboard/TeachersComponent';
+import TimeTable from './../../components/adminDashboard/TimeTableComponent';
 
 const AdminDashboardPage = ({ logout, history }) => (
   <Page>
     <Container>
       <H2 center>Admin Dashboard</H2>
-      <Link to="/admin/notifications"> Notifications </Link>
-      <Link to="/admin/events"> Events </Link>
-      <Link to="/admin/timetable"> Time Table </Link>
-      <Link to="/admin/syllabus"> Syllabus </Link>
-      <Link to="/admin/registerteacher"> Register Teacher </Link>
-      <button
-        onClick={() => {
-          logout().then(() => history.push('/'));
-        }}
-      >
-        Log Out
-      </button>
+      <FlexResponsiveStack>
+        <FlexHorizontal>
+          <Notifications />
+          <TimeTable />
+          <Events />
+        </FlexHorizontal>
+        <FlexHorizontal>
+          <Syllabus />
+          <Teacher />
+        </FlexHorizontal>
+      </FlexResponsiveStack>
+      <AlignCenter m="0px 0px 20px 0px">
+        <Button
+          onClick={() => {
+            logout().then(() => history.push('/'));
+          }}
+        >
+          Log Out
+        </Button>
+      </AlignCenter>
     </Container>
   </Page>
 );

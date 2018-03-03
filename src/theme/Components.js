@@ -22,6 +22,15 @@ const H3 = styled.h3`
   font-size: 1.4rem;
   font-weight: 400;
   margin: ${({ margin }) => margin || '0px'};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
+`;
+
+const H4 = styled.h4`
+  font-family: 'Alegreya Sans', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: ${({ margin }) => margin || '0px'};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
 `;
 
 const Container = styled.div`
@@ -88,7 +97,7 @@ const Page = styled.div`
   padding-bottom: ${(props) => (props.pb ? props.pb : 0)};
   padding: ${(props) => (props.p ? props.p : 0)};
   ${media.phone`
-    margin-top: ${(props) => (props.mt ? props.mt : '68px')};    
+    margin-top: ${(props) => (props.mt ? props.mt : '90px')};    
   `};
   min-height: calc(100vh - 93px);
 `;
@@ -123,6 +132,7 @@ const A = styled.a`
 `;
 
 const ButtonLink = styled(Link)`
+  margin: ${({ m }) => m || '0px'};
   right: 0;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.8);
@@ -197,6 +207,9 @@ const StyledForm = styled(Form)`
       color: white;
       background: rgba(179, 0, 0, 0.7);
     }
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 `;
 
@@ -211,11 +224,36 @@ const FormError = styled.p`
   font-family: 'Open Sans', sans-serif;
 `;
 
+const FlexHorizontal = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+`;
+
+const AlignCenter = styled.div`
+  text-align: center;
+  margin: ${({ m }) => m || '0 px'};
+`;
+
+const HR = styled.hr`
+  width: ${({ w }) => w || '50vw'};
+  margin: ${({ m }) => m || '0 auto'};
+`;
+
+const FlexResponsiveStack = Flex.extend`
+  ${media.phone`
+    flex-direction: column;
+  `};
+`;
+
 export {
   H1,
   H2,
   H3,
+  H4,
   A,
+  HR,
   Container,
   Button,
   Flex,
@@ -226,4 +264,7 @@ export {
   StyledForm,
   FormWrapper,
   FormError,
+  FlexHorizontal,
+  AlignCenter,
+  FlexResponsiveStack,
 };
