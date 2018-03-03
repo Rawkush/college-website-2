@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import AccomplishmentForm from './../../components/StudentDashboard/AccomplishmentForm';
 
 // eslint-disable-next-line
-import { Page } from 'theme/Components';
+import { Page, Container, H3, FormWrapper } from 'theme/Components';
 
 // Actions
 import { startAddAccomplishment } from './../../actions/studentSecondary';
@@ -13,8 +13,12 @@ import { startAddAccomplishment } from './../../actions/studentSecondary';
 const AddAccomplishment = ({ addAccomplishment, history }) => (
   <div>
     <Page>
-      <h2>Add Accomplishment</h2>
-      <AccomplishmentForm onSubmit={addAccomplishment} history={history} />
+      <Container>
+        <FormWrapper>
+          <H3>Add Accomplishment</H3>
+          <AccomplishmentForm onSubmit={addAccomplishment} history={history} />
+        </FormWrapper>
+      </Container>
     </Page>
   </div>
 );
