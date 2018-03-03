@@ -5,6 +5,7 @@ injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Noto+Serif');
   @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:400');
   @import url('https://fonts.googleapis.com/css?family=Roboto');
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
   body: {
     margin: 0;
     padding: 0;

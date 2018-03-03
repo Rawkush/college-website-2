@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import jwt from 'jsonwebtoken';
 
@@ -9,7 +10,14 @@ import FormikStudentRegistrationForm from './../../components/registration/stude
 import { startAddStudent } from './../../actions/studentPrimary';
 
 // eslint-disable-next-line
-import { Page } from 'theme/Components';
+import { Page, Container, H3 } from 'theme/Components';
+
+//  Styled Components
+const Wrapper = styled.div`
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+`;
 
 const StudentRegistrationPage = ({ addStudent, history }) => {
   function getCookieValue(cname) {
@@ -33,15 +41,19 @@ const StudentRegistrationPage = ({ addStudent, history }) => {
   const token = getCookieValue('token');
   document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   const data = jwt.decode(token);
-
   return token ? (
     <Page>
-      <FormikStudentRegistrationForm
-        {...data.userData}
-        token={data.token}
-        onSubmit={addStudent}
-        history={history}
-      />
+      <Container>
+        <Wrapper>
+          <H3>Student Registration </H3>
+          <FormikStudentRegistrationForm
+            {...data.userData}
+            token={data.token}
+            onSubmit={addStudent}
+            history={history}
+          />
+        </Wrapper>
+      </Container>
     </Page>
   ) : (
     <Page>
