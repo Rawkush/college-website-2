@@ -1,7 +1,8 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Field } from 'formik';
 import Yup from 'yup';
 import moment from 'moment';
+import { StyledForm, FormError } from 'theme/Components';
 
 const SyllabusForm = ({
   values,
@@ -12,59 +13,54 @@ const SyllabusForm = ({
   handleChange,
   setFieldValue,
 }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
-    <label htmlFor="title">
-      Title:
-      {touched.title && errors.title && <p>{errors.title}</p>}
-      <Field
-        type="text"
-        name="title"
-        id="title"
-        placeholder="Enter the title."
-      />
-    </label>
-    <label htmlFor="wef">
-      With Effective from:
-      {touched.wef && errors.wef && <p>{errors.wef}</p>}
-      <Field type="date" name="wef" id="wef" />
-    </label>
-    <hr />
-    <label htmlFor="semester ">
-      Semester:
-      {touched.semester && errors.semester && <p>{errors.semester}</p>}
-      <select
-        name="semester"
-        id="semester"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.semester}
-      >
-        <option value="" disabled>
-          Select the semester.
-        </option>
-        <option value="odd">Odd</option>
-        <option value="even">Even</option>
-      </select>
-    </label>
-    <hr />
+  <StyledForm>
+    {errors.error && <FormError>{errors.error}</FormError>}
+    <label htmlFor="title"> Title: </label>
+    {touched.title && errors.title && <FormError>{errors.title}</FormError>}
+    <Field
+      type="text"
+      name="title"
+      id="title"
+      placeholder="Enter the title."
+      id="title"
+    />
+
+    <label htmlFor="wef">With Effective from: </label>
+    {touched.wef && errors.wef && <FormError>{errors.wef}</FormError>}
+    <Field type="date" name="wef" id="wef" />
+
+    <label htmlFor="semester "> Semester: </label>
+    {touched.semester &&
+      errors.semester && <FormError>{errors.semester}</FormError>}
+    <select
+      name="semester"
+      id="semester"
+      onChange={handleChange}
+      onBlur={handleBlur}
+      value={values.semester}
+    >
+      <option value="" disabled>
+        Select the semester.
+      </option>
+      <option value="odd">Odd</option>
+      <option value="even">Even</option>
+    </select>
     {values.file &&
       values.edit && (
         <a href={values.file} target="_blank">
           Preview already uploaded file.
         </a>
       )}
-    <label htmlFor="file">
-      File:
-      <input
-        type="file"
-        name="file"
-        id="file"
-        onChange={(e) => {
-          setFieldValue('file', e.currentTarget.files[0]);
-        }}
-      />
-    </label>
+    <label htmlFor="file">File: </label>
+    <input
+      type="file"
+      name="file"
+      id="file"
+      onChange={(e) => {
+        setFieldValue('file', e.currentTarget.files[0]);
+      }}
+    />
+
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
@@ -81,7 +77,7 @@ const SyllabusForm = ({
           Remove
         </button>
       )}
-  </Form>
+  </StyledForm>
 );
 
 const FormikSyllabusForm = withFormik({

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Page, Container, FormWrapper, H3 } from 'theme/Components';
 
 // Actions
 import { startAddSyllabus } from './../../actions/syllabus';
@@ -7,13 +8,14 @@ import { startAddSyllabus } from './../../actions/syllabus';
 // Component
 import SyllabusForm from './../../components/adminDashboard/SyllabusForm';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
 const AddSyllabusPage = ({ addNotification, history }) => (
   <Page>
-    <h2>Add Syllabus</h2>
-    <SyllabusForm history={history} onSubmit={addNotification} />
+    <Container>
+      <FormWrapper>
+        <H3>Add Syllabus</H3>
+        <SyllabusForm history={history} onSubmit={addNotification} />
+      </FormWrapper>
+    </Container>
   </Page>
 );
 const mapDispatchToProps = (dispatch) => ({

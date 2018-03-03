@@ -77,7 +77,12 @@ module.exports = (env) => {
       publicPath: '/dist/',
       hot: true,
       proxy: {
-        '/s/*': {
+        '/s/': {
+          target: 'http://localhost:3000/',
+          secure: 'false',
+          changeOrigin: true,
+        },
+        '/uploads/': {
           target: 'http://localhost:3000/',
           secure: 'false',
           changeOrigin: true,

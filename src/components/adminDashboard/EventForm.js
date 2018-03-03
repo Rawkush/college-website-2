@@ -1,5 +1,6 @@
 import React from 'react';
 import { withFormik, Form, Field } from 'formik';
+import { StyledForm, HR, FormError } from 'theme/Components';
 import Yup from 'yup';
 import moment from 'moment';
 
@@ -12,41 +13,28 @@ const NotificationForm = ({
   isSubmitting,
   setFieldValue,
 }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
-    <label htmlFor="name">
-      Name:
-      {touched.name && errors.name && <p>{errors.name}</p>}
-      <Field
-        type="text"
-        name="name"
-        placeholder="Enter the name of the event."
-      />
-    </label>
-    <label htmlFor="date">
-      Date:
-      {touched.date && errors.date && <p>{errors.date}</p>}
-      <Field
-        type="date"
-        name="date"
-        placeholder="When this event took place."
-      />
-    </label>
-    <label htmlFor="place">
-      Place:
-      {touched.place && errors.place && <p>{errors.place}</p>}
-      <Field
-        type="text"
-        name="place"
-        placeholder="Where this event took place."
-      />
-    </label>
-    <label htmlFor="description">
-      Description:
-      {touched.description && errors.description && <p>{errors.description}</p>}
-      <Field type="text" name="description" placeholder="Description" />
-    </label>
-    <hr />
+  <StyledForm>
+    {errors.error && <FormError>{errors.error}</FormError>}
+    <label htmlFor="name">Name: </label>
+    {touched.name && errors.name && <FormError>{errors.name}</FormError>}
+    <Field type="text" name="name" placeholder="Enter the name of the event." />
+
+    <label htmlFor="date">Date: </label>
+    {touched.date && errors.date && <FormError>{errors.date}</FormError>}
+    <Field type="date" name="date" placeholder="When this event took place." />
+
+    <label htmlFor="place">Place: </label>
+    {touched.place && errors.place && <FormError>{errors.place}</FormError>}
+    <Field
+      type="text"
+      name="place"
+      placeholder="Where this event took place."
+    />
+    <label htmlFor="description">Description:</label>
+    {touched.description &&
+      errors.description && <FormError>{errors.description}</FormError>}
+    <Field type="text" name="description" placeholder="Description" />
+    <label htmlFor="type">Type: </label>
     <select
       name="type"
       id="type"
@@ -58,74 +46,59 @@ const NotificationForm = ({
         Select the type of the Event
       </option>
       <option value="cultural">Cultural Event</option>
-      <option value="tech">Tech Event</option>
+      {/* <option value="tech">Tech Event</option> */}
       <option value="sports">Sports Event</option>
     </select>
-    <hr />
     {!values.edit && (
-      <div>
-        {' '}
-        <label htmlFor="mainPhoto">
-          Main photo:
-          <input
-            type="file"
-            name="mainPhoto"
-            id="mainPhoto"
-            onChange={(e) => {
-              setFieldValue('mainPhoto', e.currentTarget.files[0]);
-            }}
-          />
-        </label>
-        <hr />
-        <label htmlFor="photo1">
-          Photo 1:
-          <input
-            type="file"
-            name="photo1"
-            id="photo1"
-            onChange={(e) => {
-              setFieldValue('photo1', e.currentTarget.files[0]);
-            }}
-          />
-        </label>
-        <hr />
-        <label htmlFor="photo2">
-          Photo 2:
-          <input
-            type="file"
-            name="photo2"
-            id="photo2"
-            onChange={(e) => {
-              setFieldValue('photo2', e.currentTarget.files[0]);
-            }}
-          />
-        </label>
-        <hr />
-        <label htmlFor="photo3">
-          Photo 3:
-          <input
-            type="file"
-            name="photo3"
-            id="photo3"
-            onChange={(e) => {
-              setFieldValue('photo3', e.currentTarget.files[0]);
-            }}
-          />
-        </label>
-        <hr />
-        <label htmlFor="photo4">
-          Photo 4:
-          <input
-            type="file"
-            name="photo4"
-            id="photo4"
-            onChange={(e) => {
-              setFieldValue('photo4', e.currentTarget.files[0]);
-            }}
-          />
-        </label>
-        <hr />
-      </div>
+      <StyledForm>
+        <HR w="25vw" m="30px auto 0px auto" />
+        <label htmlFor="mainPhoto">Main photo:</label>
+        <input
+          type="file"
+          name="mainPhoto"
+          id="mainPhoto"
+          onChange={(e) => {
+            setFieldValue('mainPhoto', e.currentTarget.files[0]);
+          }}
+        />
+
+        <label htmlFor="photo1">Photo 1:</label>
+        <input
+          type="file"
+          name="photo1"
+          id="photo1"
+          onChange={(e) => {
+            setFieldValue('photo1', e.currentTarget.files[0]);
+          }}
+        />
+        <label htmlFor="photo2">Photo 2:</label>
+        <input
+          type="file"
+          name="photo2"
+          id="photo2"
+          onChange={(e) => {
+            setFieldValue('photo2', e.currentTarget.files[0]);
+          }}
+        />
+        <label htmlFor="photo3">Photo 3:</label>
+        <input
+          type="file"
+          name="photo3"
+          id="photo3"
+          onChange={(e) => {
+            setFieldValue('photo3', e.currentTarget.files[0]);
+          }}
+        />
+        <label htmlFor="photo4">Photo 4:</label>
+        <input
+          type="file"
+          name="photo4"
+          id="photo4"
+          onChange={(e) => {
+            setFieldValue('photo4', e.currentTarget.files[0]);
+          }}
+        />
+      </StyledForm>
     )}
     <button disabled={!!isSubmitting} type="submit">
       Submit
@@ -142,7 +115,7 @@ const NotificationForm = ({
         Remove
       </button>
     )}
-  </Form>
+  </StyledForm>
 );
 
 const FormikNotificationForm = withFormik({

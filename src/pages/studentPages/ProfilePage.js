@@ -74,7 +74,7 @@ const StudentProfilePage = ({
   logout,
   history,
 }) => (
-  <Page>
+  <Page mt="68px">
     <Background>
       <Container>
         <Wrapper1>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Page, FormWrapper, Container, H3 } from 'theme/Components';
 
 // Component
 import SyllabusForm from './../../components/adminDashboard/SyllabusForm';
@@ -10,9 +11,6 @@ import {
   startRemoveSyllabus,
 } from './../../actions/syllabus';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
 const EditSyllabusPage = ({
   syllabus,
   history,
@@ -20,16 +18,20 @@ const EditSyllabusPage = ({
   deleteSyllabus,
 }) => (
   <div>
-    <h2>Edit Syllabus</h2>
     {syllabus ? (
       <Page>
-        <SyllabusForm
-          {...syllabus}
-          history={history}
-          onSubmit={editSyllabus}
-          deleteSyllabus={deleteSyllabus}
-          edit
-        />
+        <Container>
+          <FormWrapper>
+            <H3>Edit Syllabus</H3>
+            <SyllabusForm
+              {...syllabus}
+              history={history}
+              onSubmit={editSyllabus}
+              deleteSyllabus={deleteSyllabus}
+              edit
+            />
+          </FormWrapper>
+        </Container>
       </Page>
     ) : (
       <p>L</p>

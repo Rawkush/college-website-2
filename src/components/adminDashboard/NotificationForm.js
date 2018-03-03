@@ -1,6 +1,8 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Field } from 'formik';
 import Yup from 'yup';
+
+import { StyledForm } from 'theme/Components';
 
 const NotificationForm = ({
   values,
@@ -9,82 +11,53 @@ const NotificationForm = ({
   isSubmitting,
   setFieldValue,
 }) => (
-  <Form>
+  <StyledForm>
     {errors.error && <p>{errors.error}</p>}
-    Title:
+    <label htmlFor="title">Title</label>
     {touched.title && errors.title && <p>{errors.title}</p>}
     <Field type="text" name="title" placeholder="Title" />
-    Description:
+    <label htmlFor="description">Description</label>
     {touched.description && errors.description && <p>{errors.description}</p>}
     <Field type="text" name="description" placeholder="Description" />
-    Link:
+    <label htmlFor="link">Link</label>
     {touched.link && errors.link && <p>{errors.link}</p>}
     <Field type="text" name="link" placeholder="URL (If any.)" />
-    <hr />
-    <label htmlFor="teacher">
-      Teacher:
-      {touched.teacher && errors.teacher && <p>{errors.teacher}</p>}
-      <Field type="checkbox" name="teacher" checked={values.teacher} />
-    </label>
-    <label htmlFor="student">
-      Student:
-      {touched.student && errors.student && <p>{errors.student}</p>}
-      <Field type="checkbox" name="student" checked={values.student} />
-    </label>
-    <hr />
-    <label htmlFor="googleForm">
-      Google Form:
-      {touched.googleForm && errors.googleForm && <p>{errors.googleForm}</p>}
-      <Field type="checkbox" name="googleForm" checked={values.googleForm} />
-    </label>
-    <label htmlFor="pdf">
-      PDF:
-      {touched.pdf && errors.pdf && <p>{errors.pdf}</p>}
-      <Field type="checkbox" name="pdf" checked={values.pdf} />
-    </label>
-    <label htmlFor="external">
-      External Link:
-      {touched.external && errors.external && <p>{errors.external}</p>}
-      <Field type="checkbox" name="external" checked={values.external} />
-    </label>
-    <hr />
-    <label htmlFor="iyear">
-      First Year:
-      {touched.iyear && errors.iyear && <p>{errors.iyear}</p>}
-      <Field type="checkbox" name="iyear" checked={values.iyear} />
-    </label>
-    <label htmlFor="iiyear">
-      Second Year:
-      {touched.iiyear && errors.iiyear && <p>{errors.iiyear}</p>}
-      <Field type="checkbox" name="iiyear" checked={values.iiyear} />
-    </label>
-    <label htmlFor="iiiyear">
-      Third Year:
-      {touched.iiiyear && errors.iiiyear && <p>{errors.iiiyear}</p>}
-      <Field type="checkbox" name="iiiyear" checked={values.iiiyear} />
-    </label>
-    <label htmlFor="ivyear">
-      Fourth Year:
-      {touched.ivyear && errors.ivyear && <p>{errors.ivyear}</p>}
-      <Field type="checkbox" name="ivyear" checked={values.ivyear} />
-    </label>
-    <hr />
-    <label htmlFor="it">
-      I.T.:
-      {touched.it && errors.it && <p>{errors.it}</p>}
-      <Field type="checkbox" name="it" checked={values.it} />
-    </label>
-    <label htmlFor="civil">
-      Civil:
-      {touched.civil && errors.civil && <p>{errors.civil}</p>}
-      <Field type="checkbox" name="civil" checked={values.civil} />
-    </label>
-    <label htmlFor="env">
-      Environment:
-      {touched.env && errors.env && <p>{errors.env}</p>}
-      <Field type="checkbox" name="env" checked={values.env} />
-    </label>
-    <hr />
+    <label htmlFor="teacher">Teacher: </label>
+    {touched.teacher && errors.teacher && <p>{errors.teacher}</p>}
+    <Field type="checkbox" name="teacher" checked={values.teacher} />
+    <label htmlFor="student">Student: </label>
+    {touched.student && errors.student && <p>{errors.student}</p>}
+    <Field type="checkbox" name="student" checked={values.student} />
+    <label htmlFor="googleForm">Google Form: </label>
+    {touched.googleForm && errors.googleForm && <p>{errors.googleForm}</p>}
+    <Field type="checkbox" name="googleForm" checked={values.googleForm} />
+    <label htmlFor="pdf">PDF: </label>
+    {touched.pdf && errors.pdf && <p>{errors.pdf}</p>}
+    <Field type="checkbox" name="pdf" checked={values.pdf} />
+    <label htmlFor="external">External Link: </label>
+    {touched.external && errors.external && <p>{errors.external}</p>}
+    <Field type="checkbox" name="external" checked={values.external} />
+    <label htmlFor="iyear">First Year: </label>
+    {touched.iyear && errors.iyear && <p>{errors.iyear}</p>}
+    <Field type="checkbox" name="iyear" checked={values.iyear} />
+    <label htmlFor="iiyear">Second Year: </label>
+    {touched.iiyear && errors.iiyear && <p>{errors.iiyear}</p>}
+    <Field type="checkbox" name="iiyear" checked={values.iiyear} />
+    <label htmlFor="iiiyear">Third Year: </label>
+    {touched.iiiyear && errors.iiiyear && <p>{errors.iiiyear}</p>}
+    <Field type="checkbox" name="iiiyear" checked={values.iiiyear} />
+    <label htmlFor="ivyear">Fourth Year: </label>
+    {touched.ivyear && errors.ivyear && <p>{errors.ivyear}</p>}
+    <Field type="checkbox" name="ivyear" checked={values.ivyear} />
+    <label htmlFor="it">I.T.: </label>
+    {touched.it && errors.it && <p>{errors.it}</p>}
+    <Field type="checkbox" name="it" checked={values.it} />
+    <label htmlFor="civil">Civil: </label>
+    {touched.civil && errors.civil && <p>{errors.civil}</p>}
+    <Field type="checkbox" name="civil" checked={values.civil} />
+    <label htmlFor="env">Environment: </label>
+    {touched.env && errors.env && <p>{errors.env}</p>}
+    <Field type="checkbox" name="env" checked={values.env} />
     {values.file &&
       values.edit && (
         <label htmlFor="removeFile">
@@ -103,17 +76,15 @@ const NotificationForm = ({
           Preview already uploaded file.
         </a>
       )}
-    <label htmlFor="file">
-      File:
-      <input
-        type="file"
-        name="file"
-        id="file"
-        onChange={(e) => {
-          setFieldValue('file', e.currentTarget.files[0]);
-        }}
-      />
-    </label>
+    <label htmlFor="file">File: </label>
+    <input
+      type="file"
+      name="file"
+      id="file"
+      onChange={(e) => {
+        setFieldValue('file', e.currentTarget.files[0]);
+      }}
+    />
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
@@ -130,7 +101,7 @@ const NotificationForm = ({
           Remove
         </button>
       )}
-  </Form>
+  </StyledForm>
 );
 
 const FormikNotificationForm = withFormik({

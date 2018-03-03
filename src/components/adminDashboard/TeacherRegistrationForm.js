@@ -1,26 +1,32 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Field } from 'formik';
 import Yup from 'yup';
+import { StyledForm, FormError } from 'theme/Components';
 
-const TeacherRegistrationForm = ({ isSubmitting, errors }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
-    <label htmlFor="email">
-      Email:
-      <br />
-      <Field type="text" name="email" placeholder="email of the teacher." />
-    </label>
-    <br />
-    <label htmlFor="password">
-      Password:
-      <br />
-      <Field type="password" name="password" placeholder="Password" />
-    </label>
-    <br />
+const TeacherRegistrationForm = ({ isSubmitting, errors, touched }) => (
+  <StyledForm>
+    {errors.error && <FormError>{errors.error}</FormError>}
+    <label htmlFor="email">Email:</label>
+    {touched.email && errors.email && <FormError>{errors.email}</FormError>}
+    <Field
+      type="text"
+      name="email"
+      placeholder="Email of the teacher."
+      id="email"
+    />
+    <label htmlFor="password">Password:</label>
+    {touched.password &&
+      errors.password && <FormError>{errors.password}</FormError>}
+    <Field
+      type="password"
+      name="password"
+      placeholder="Password"
+      id="password"
+    />
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-  </Form>
+  </StyledForm>
 );
 
 const FormikSpecialisationForm = withFormik({

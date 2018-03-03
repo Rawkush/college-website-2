@@ -1,21 +1,21 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Field } from 'formik';
+import { StyledForm, FormError } from 'theme/Components';
 
 const SpecialisationForm = ({ isSubmitting, errors }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
-    <label htmlFor="title">
-      Specialisations:
-      <Field type="text" name="s1" placeholder="JavaScript" />
-      <Field type="text" name="s2" placeholder="NodeJS" />
-      <Field type="text" name="s3" placeholder="ReactJS" />
-      <Field type="text" name="s4" placeholder="MongoDB" />
-      <Field type="text" name="s5" placeholder="ExressJS" />
-    </label>
+  <StyledForm mtop="20px">
+    {errors.error && <FormError>{errors.error}</FormError>}
+    <label htmlFor="title">Specialisations: </label>
+    <Field type="text" name="s1" placeholder="JavaScript" />
+    <Field type="text" name="s2" placeholder="NodeJS" />
+    <Field type="text" name="s3" placeholder="ReactJS" />
+    <Field type="text" name="s4" placeholder="MongoDB" />
+    <Field type="text" name="s5" placeholder="ExressJS" />
+
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-  </Form>
+  </StyledForm>
 );
 
 const FormikSpecialisationForm = withFormik({

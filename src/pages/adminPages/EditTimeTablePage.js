@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Page, Container, FormWrapper, H3 } from 'theme/Components';
 
 // Actions
 import {
@@ -10,9 +11,6 @@ import {
 // Component
 import TimeTableForm from './../../components/adminDashboard/TimeTableForm';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
 const EditTimeTablePage = ({
   timeTable,
   editTimeTable,
@@ -20,14 +18,18 @@ const EditTimeTablePage = ({
   history,
 }) => (
   <Page>
-    <h2>Edit Time Table</h2>
-    <TimeTableForm
-      {...timeTable}
-      history={history}
-      onSubmit={editTimeTable}
-      deleteTimeTable={removeTimeTable}
-      edit
-    />
+    <Container>
+      <FormWrapper>
+        <H3>Edit Time Table</H3>
+        <TimeTableForm
+          {...timeTable}
+          history={history}
+          onSubmit={editTimeTable}
+          deleteTimeTable={removeTimeTable}
+          edit
+        />
+      </FormWrapper>
+    </Container>
   </Page>
 );
 
