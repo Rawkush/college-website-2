@@ -19,7 +19,7 @@ const Image = styled.img`
 
 const Description = styled.p`
   font-family: 'Open Sans', sans-serif;
-  padding: 20px 0px;
+  padding: 15px 0px;
   display: block;
   max-width: 500px;
   margin: 0 auto;

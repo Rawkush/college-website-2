@@ -1,26 +1,62 @@
 import React from 'react';
 import moment from 'moment';
+import { StyledForm, FormError,Container, H2 } from 'theme/Components';
 
 import { withFormik, Form, Field } from 'formik';
-import Yup from 'yup';
+import Yup from 'yup'; 
+import styled from 'styled-components';
+
+
+const Label = styled.span`
+font-family: 'Alegreya Sans', serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+`;
+
+const H3 = H2.extend`
+font-size: 1.3;
+text-align: center;
+padding: 15px;
+`
+
+// const labels = StyledForm.extend`
+// > input {
+// width: 50%;
+// }
+// `
 
 const TeacherRegistration = ({ values, errors, touched, isSubmitting }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
+  <Container>
+    <H3> Edit Primary  </H3>
+  <StyledForm>
+    
+    {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="name">
-      Name:
-      {touched.name && errors.name && <p>{errors.name}</p>}
-      <Field type="text" name="name" placeholder="Enter your name here..." />
-    </label>
+     <Label> Name: </Label>
+      </label>
+      {touched.name && errors.name && <FormError>{errors.name}</FormError>}
+      <Field type="text"  id="name" name="name" placeholder="Enter your name here..." />
+    
     <label htmlFor="dateOfBirth">
-      Date of Birth:
-      {touched.dateOfBirth && errors.dateOfBirth && <p>{errors.dateOfBirth}</p>}
-      <Field type="date" name="dateOfBirth" placeholder="Date of Birth" />
-    </label>
+      <Label>Date of Birth: </Label>
+      </label>
+      {touched.dateOfBirth && errors.dateOfBirth && <FormError>{errors.dateOfBirth}</FormError>}
+      <Field type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Date of Birth" />
+      <label htmlFor="gender">
+      <Label>Gender: </Label>
+      </label>
+      {touched.gender && errors.gender && <FormError>{errors.gender}</FormError>}
+     <select name="gender" >
+       <option value="Male" > Male </option>
+       <option value="Female" > Female </option>
+       <option value="Others" > Others </option>
+        </select>
+  
 
-    {values.edit && (
+     {values.edit && (
       <label htmlFor="currentPosition">
         Current Position:
+        
         {touched.currentPosition &&
           errors.currentPosition && <p>{errors.currentPosition}</p>}
         <Field
@@ -30,35 +66,36 @@ const TeacherRegistration = ({ values, errors, touched, isSubmitting }) => (
         />
       </label>
     )}
-    <label htmlFor="gender">
-      Gender:
-      {touched.gender && errors.gender && <p>{errors.gender}</p>}
-      <Field type="text" name="gender" placeholder="Gender" />
-    </label>
+   
     <label htmlFor="email">
-      Email:
-      {touched.email && errors.email && <p>{errors.email}</p>}
+     <Label> Email: </Label>
+      </label>
+      {touched.email && errors.email && <FormError>{errors.email}</FormError>}
       <Field type="email" name="email" placeholder="Email" />
-    </label>
+
     <label htmlFor="password">
-      Password:
-      {touched.Password && errors.password && <p>{errors.password} </p>}
+     <Label> Password: </Label>
+      </label>
+      {touched.Password && errors.password && <FormError>{errors.password} </FormError>}
       <Field type="password" name="password" placeholder="Password" />
-    </label>
+   
     <label htmlFor="confirmPassword">
-      Confirm Password:
+     <Label> Confirm Password: </Label>
+      </label>
       {touched.confirmPassword &&
-        errors.confirmPassword && <p>{errors.confirmPassword} </p>}
+        errors.confirmPassword && <FormError>{errors.confirmPassword} </FormError>}
       <Field
-        type="confirmPassword"
+        type="password"
         name="confirmPassword"
         placeholder="Confirm your password."
       />
-    </label>
+   
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-  </Form>
+  
+  </StyledForm>
+  </Container>
 );
 
 const FormikTeacherRegistration = withFormik({

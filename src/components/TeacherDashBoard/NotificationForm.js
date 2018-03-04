@@ -2,6 +2,23 @@ import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import Yup from 'yup';
 
+import { StyledForm, FormError } from 'theme/Components';
+
+import styled from 'styled-components';
+
+const Label = styled.span`
+font-family: 'Alegreya Sans', serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+`;
+const Container = styled.div`
+  width: 60%;
+  max-width: 1170px;
+  margin: 0 auto;
+ 
+`;
+
+
 const TeacherNotificationForm = ({
   values,
   errors,
@@ -11,21 +28,22 @@ const TeacherNotificationForm = ({
   isSubmitting,
   setFieldValue,
 }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
-    Title:
-    {touched.title && errors.title && <p>{errors.title}</p>}
-    <Field type="text" name="title" placeholder="Title" />
-    Description:
-    {touched.description && errors.description && <p>{errors.description}</p>}
-    <Field type="text" name="description" placeholder="Description" />
-    Link:
-    {touched.link && errors.link && <p>{errors.link}</p>}
-    <Field type="text" name="link" placeholder="URL (If any.)" />
-    <hr />
+  <Container>
+  <StyledForm>
+    {errors.error && <FormError>{errors.error}</FormError>}
+    <label htmlFor="title" > <Label> Title: </Label> </label>
+    {touched.title && errors.title && <FormError>{errors.title}</FormError>}
+    <Field type="text" id="title" name="title" placeholder="Title" />
+     <label htmlFor="description" > <Label> Description: </Label> </label>
+    {touched.description && errors.description && <FormError>{errors.description}</FormError>}
+    <Field type="text" id="description" name="description" placeholder="Description" />
+    <label htmlFor="link" >  <Label>  Link: </Label> </label> 
+    {touched.link && errors.link && <FormError>{errors.link}</FormError>}
+    <Field type="text" id="link" name="link" placeholder="URL (If any.)" />
     <label htmlFor="branch">
-      Branch:
-      {touched.branch && errors.branch && <p>{errors.branch}</p>}
+     <Label> Branch: </Label>
+     </label>
+      {touched.branch && errors.branch && <FormError>{errors.branch}</FormError>}
       <select
         name="branch"
         id="branch"
@@ -41,10 +59,12 @@ const TeacherNotificationForm = ({
         <option value="env">Environment Engineering</option>
         <option value="">All Branches</option>
       </select>
-    </label>
+   
     <label htmlFor="year">
-      {touched.year && errors.year && <p>{errors.year}</p>}
-      Year:
+     
+      <Label> Year: </Label> </label>
+
+      {touched.year && errors.year && <FormError>{errors.year}</FormError>}
       <select
         name="year"
         id="year"
@@ -61,20 +81,20 @@ const TeacherNotificationForm = ({
         <option value="ivyear">Fourth Year</option>
         <option value="">All years</option>
       </select>
-    </label>
     <label htmlFor="rollNo">
-      {touched.rollNo && errors.rollNo && <p>{errors.rollNo}</p>}
-      Roll Number:
+      {touched.rollNo && errors.rollNo && <FormError>{errors.rollNo}</FormError>}
+    <Label>  Roll Number: </Label>
+      </label>
       <Field
         type="text"
         name="rollNo"
         placeholder="Enter the students roll number"
       />
-    </label>
+    
     {!values.edit && (
       <label htmlFor="file">
         File:
-        <input
+        <Field
           type="file"
           name="file"
           id="file"
@@ -100,7 +120,8 @@ const TeacherNotificationForm = ({
           Remove
         </button>
       )}
-  </Form>
+  </StyledForm>
+  </Container>
 );
 
 const FormikTeacherNotificationForm = withFormik({

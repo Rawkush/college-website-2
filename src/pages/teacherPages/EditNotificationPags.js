@@ -1,6 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
+const H3 = styled.h2`
+font-size: 1.3;
+text-align: center;
+padding: 15px;
+`;
 // Actions
 import {
   startEditNotification,
@@ -19,7 +25,7 @@ const AddNotificationPage = ({
   removeNotification,
 }) => (
   <Page>
-    <h2>Add Notification</h2>
+   {editNotification ?<H3>Edit Notifications</H3>:<H3>Add Notifications</H3>  } 
     <NotificationForm
       onSubmit={editNotification}
       history={history}
