@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Page, Container, FormWrapper, H3 } from 'theme/Components';
+import FormikAdminLoginForm from 'components/adminLogin/AdminLoginForm';
 
 import { startAdminLogin } from './../../actions/auth';
-
-import FormikAdminLoginForm from './../../components/adminLogin/AdminLoginForm';
-
-// eslint-disable-next-line
-import { Page, Container, FormWrapper, H3 } from 'theme/Components';
 
 const AdminLoginPage = ({ startLogin, history }) => (
   <div>

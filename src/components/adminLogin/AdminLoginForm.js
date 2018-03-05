@@ -32,10 +32,10 @@ const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
 );
 
 const FormikAdminLoginForm = withFormik({
-  mapPropsToValues() {
+  mapPropsToValues({ username = '', password = '' } = {}) {
     return {
-      username: '',
-      password: '',
+      username,
+      password,
     };
   },
   validationSchema: Yup.object().shape({

@@ -1,20 +1,31 @@
 import React from 'react';
-
+import styled from 'styled-components';
+import { H4 } from 'theme/Components';
 import SyllabusListItemTable from './syllabusListItemTable';
 
-const SyllabusListItem = ({ syllabus, auth }) => {
+const Wrapper = styled.div`
+  display: block;
+  padding: ${({ active }) => (active ? '15px' : '0 15px')};
+  border: none;
+  ${({ active }) => (active ? 'border: solid 1px rgba(0, 0, 0, 0.08);' : null)};
+  height: ${({ active }) => (active ? 'auto' : '0')};
+  overflow: hidden;
+  transition: height 0.3s linear, padding 0.1s linear;
+`;
+
+const SyllabusListItem = ({ syllabus, auth, active }) => {
   const thoerySyllabus = syllabus.filter((item) => item.type === 'theory');
   const practicalSyllabus = syllabus.filter(
     (item) => item.type === 'practical'
   );
 
   return (
-    <div>
-      <h3>Theory</h3>
+    <Wrapper active={active}>
+      <H4 margin="0px 0px 10px 0px">Theory</H4>
       <SyllabusListItemTable syllabus={thoerySyllabus} auth={auth} />
-      <h3>Practical / Viva Voce</h3>
+      <H4 margin="15px 0px 10px 0px">Practical / Viva Voce</H4>
       <SyllabusListItemTable syllabus={practicalSyllabus} auth={auth} />
-    </div>
+    </Wrapper>
   );
 };
 
