@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import styled from 'styled-components';
-
 // Styled-Components
 import {
   Page,
   FlexCenter,
+  FormWrapper,
   FlexItem,
+  FlexResponsiveStack,
   Container,
   H3,
-  A,
+  Wrapper,
 } from './../../theme/Components';
 
 import {
@@ -21,49 +21,61 @@ import { startSetTeacherSecondary } from './../../actions/teacherSecondary';
 
 import TeacherLoginForm from './../../components/adminDashboard/TeacherRegistrationForm';
 import LoginButtonLinks from './../../components/login/LoginButtonLinks';
+import GoogleSVG from './../../components/login/GoogleButtonSVG';
+import GithubSVG from './../../components/login/GithubSVG';
+import LinkedInSVG from './../../components/login/LinkedInSVG';
 
-const LoginCard = styled.div`
-  background: grey;
-  margin: 0 auto;
-  width: 300px;
-  padding: 40px 10px;
-`;
-
-const LinksDiv = styled.div`
-  padding: 60px 10px;
+const FlexExtended = FlexResponsiveStack.extend`
+  height: 65vh;
+  align-items: center;
 `;
 
 const LoginPage = ({ login, setProfile, setSecondary, history }) => (
   <Page p="10px">
     <Container>
-      <FlexCenter>
+      <FlexExtended>
         <FlexItem>
-          <LoginCard>
-            <H3>Students Login or register using...</H3>
-            <LinksDiv>
-              <LoginButtonLinks link="/s/student/auth/google" name="Google" />
-              <br />
-              <LoginButtonLinks link="/s/student/auth/github" name="GitHub" />
-              <br />
-              <LoginButtonLinks
-                link="/s/student/auth/linkedin"
-                name="Linked In"
+          <FlexCenter>
+            <Wrapper>
+              <H3 center>Student&apos;s Login or Register.</H3>
+              <Wrapper w="250px" m="50px auto">
+                <LoginButtonLinks
+                  link="/s/student/auth/google"
+                  name="Login using Google"
+                  SVG={GoogleSVG}
+                />
+                <br />
+                <LoginButtonLinks
+                  link="/s/student/auth/github"
+                  name="Login using Github"
+                  SVG={GithubSVG}
+                />
+                <br />
+                <LoginButtonLinks
+                  link="/s/student/auth/linkedin"
+                  name="Login using LinkedIn"
+                  SVG={LinkedInSVG}
+                />
+              </Wrapper>
+            </Wrapper>
+          </FlexCenter>
+        </FlexItem>
+        <FlexItem>
+          <Wrapper>
+            <H3 center>Teacher&apos;s Login.</H3>
+            <FormWrapper>
+              <TeacherLoginForm
+                onSubmit={login}
+                history={history}
+                redirect="/teacher/myprofile"
+                setProfile={setProfile}
+                setSecondary={setSecondary}
+                login
               />
-            </LinksDiv>
-          </LoginCard>
+            </FormWrapper>
+          </Wrapper>
         </FlexItem>
-        <FlexItem>
-          <H3>Login As Teacher.</H3>
-          <TeacherLoginForm
-            onSubmit={login}
-            history={history}
-            redirect="/teacher/myprofile"
-            setProfile={setProfile}
-            setSecondary={setSecondary}
-            login
-          />
-        </FlexItem>
-      </FlexCenter>
+      </FlexExtended>
     </Container>
   </Page>
 );

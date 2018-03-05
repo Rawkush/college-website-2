@@ -253,6 +253,12 @@ const FlexResponsiveStack = Flex.extend`
   `};
 `;
 
+const SVG = styled.svg`
+  height: ${({ height }) => height || '45px'};
+  padding: ${({ padding }) => padding || '0px'};
+  width: auto;
+`;
+
 export {
   H1,
   H2,
@@ -274,4 +280,5 @@ export {
   AlignCenter,
   FlexResponsiveStack,
   Wrapper,
+  SVG,
 };
