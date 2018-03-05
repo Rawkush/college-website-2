@@ -1,7 +1,8 @@
 import React from 'react';
 import { withFormik, Form, Field } from 'formik';
+import media from 'theme/media';
 
-import { StyledForm, FormError, H2 } from 'theme/Components';
+import { StyledForm, FormError, H2, } from 'theme/Components';
 
 import styled from 'styled-components';
 
@@ -12,17 +13,31 @@ font-family: 'Alegreya Sans', serif;
 `;
 
 
-const StyledForms = StyledForm.extend` 
+const StyledForms = StyledForm.extend`  
 > input {
   margin: 5px;
-  width: 70%;
+  width: 100%;
+}
+> label {
+  text-align: left;
+}
+> button {
+ display: flex;
+ ${
+   media.phone`
+   display: inline-block;
+   margin: 0 auto;
+   margin-top: 15px;
+   `
+ }
+
 }
 `
 const Container = styled.div`
   width: 60%;
   max-width: 1170px;
   margin: 0 auto;
- 
+  text-align: center;
 `;
 
 const EducationForm = ({ isSubmitting, errors }) => (

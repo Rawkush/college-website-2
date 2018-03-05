@@ -1,28 +1,28 @@
 import React from 'react';
 import { withFormik, Field } from 'formik';
-import { StyledForm, FormError, H2, media } from 'theme/Components';
-
 import styled from 'styled-components';
 
+import { StyledForm, FormError, } from './../../theme/Components';
+
 const Label = styled.span`
-  font-family: 'Alegreya Sans', serif;
+font-family: 'Alegreya Sans', serif;
   font-size: 1.3rem;
   font-weight: 800;
 `;
-
-const StyledForms = StyledForm.extend`
-  > input {
-    margin: 5px;
-    width: 70%;
-  }
-`;
-
 const Container = styled.div`
   width: 60%;
   max-width: 1170px;
   margin: 0 auto;
- 
 `;
+const StyledForms = StyledForm.extend`
+> input {
+  margin: 5px;
+  width: 100%;
+}
+> label {
+  text-align: left;
+}
+`
 
 const SpecialisationForm = ({ isSubmitting, errors }) => (
   <Container>

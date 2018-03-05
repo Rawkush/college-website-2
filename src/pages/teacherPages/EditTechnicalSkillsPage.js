@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 // components
 import TechnicalSkillsForm from './../../components/TeacherDashBoard/TechnicalSkillsForm';
@@ -13,6 +14,14 @@ import {
 // eslint-disable-next-line
 import { Page } from 'theme/Components';
 
+const Title = styled.h4`
+  padding: 16px;
+  margin: 50px 0px;
+  font-size: 20px;
+  font-family: 'Noto Serif', serif;
+  text-align: center;
+  `;
+
 const EditTechnicalSkill = ({
   editTechnicalSkill,
   removeTechnicalSkill,
@@ -20,7 +29,7 @@ const EditTechnicalSkill = ({
   technicalSkill,
 }) => (
   <Page>
-    <h2> Edit TechnicalSkill </h2>
+    <Title> Edit TechcalSkills </Title>
     {technicalSkill ? (
       <TechnicalSkillsForm
         onSubmit={editTechnicalSkill}

@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import media from 'theme/media';
 
 import {A}  from './../../theme/Components';
 
 const HR = styled.hr`
 width: 50vw;
 margin: 0 auto;
+opacity: 0.3
 `;
 const P = styled.p`
   font-family: 'Open Sans', sans-serif;
@@ -30,24 +32,31 @@ const H3 = styled.h3`
 `;
 
 const WrapperEnd = styled.div`
-display: flex;
-justify-content: space-between;
-width: 80%;
+width: 75%;
 margin: 0 auto;
+text-align: right;
+${ media.phone`
+text-align: center;
+line-height: 50px;
+`}
 `;
 
 const B = styled(Link)`
-  text-decoration: none;
-  border: solid 1px rgba(0, 0, 0, 0.27);
-  padding: 5px 10px;
-  display: inline-block;
-  color: rgba(0, 0, 0, 0.8);
-  border-radius: 3px;
-  transition: all 0.1s ease;
-  &:hover {
-    color: rgba(136, 0, 0, 0.8);
-    border: solid 0.5px rgba(136, 0, 0, 0.8);
-  }
+background: none;
+text-decoration: none;
+border: solid 1px rgba(0, 0, 0, 0.3); 
+cursor: pointer;
+padding: 5px 20px;
+color: rgba(0, 0, 0, 0.6);
+margin: 30px 0px;
+border-radius: 4px;
+transition: all 0.15s ease-in-out;
+border: solid 1px rgba(179, 0, 0, 0.7);
+color: rgba(179, 0, 0, 0.7);
+&:hover {
+  color: white;
+  background: rgba(179, 0, 0, 0.7);
+}
 `;
 
 export default ({
@@ -70,7 +79,6 @@ export default ({
     {file && <P>Download File</P>}
    
     <WrapperEnd>
-    <B to="/teacher/addNotification">Add Notification</B>
     {edit && (<B to={`/teacher/editnotification/${_id}`}>Update</B>)}
   
     </WrapperEnd>

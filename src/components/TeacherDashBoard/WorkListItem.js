@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import media from 'theme/media';
+
 
 const WrapperEnd = styled.div`
-display: flex;
-justify-content: flex-end;
-width: 70%;
+width: 75%;
 margin: 0 auto;
-`
-
-const Wrapper = styled.div`
-  text-align: center;
-  margin-bottom: 40px;
+text-align: right;
+${ media.phone`
+text-align: center;
+line-height: 50px;
+`}
 `;
 
 const P = styled.p`
@@ -30,32 +30,35 @@ const Title = P.extend`
 `;
 
 const B = styled(Link)`
-  display: flex;
-  justify-content: flex-end;
-  text-decoration: none;
-  border: solid 1px rgba(0, 0, 0, 0.27);
-  padding: 5px 10px;
-  display: inline-block;
-  color: rgba(0, 0, 0, 0.8);
-  border-radius: 3px;
-  transition: all 0.1s ease;
-  &:hover {
-    color: rgba(136, 0, 0, 0.8);
-    border: solid 0.5px rgba(136, 0, 0, 0.8);
-  }
+background: none;
+text-decoration: none;
+border: solid 1px rgba(0, 0, 0, 0.3);
+cursor: pointer;
+padding: 5px 20px;
+color: rgba(0, 0, 0, 0.6);
+margin: 30px 0px;
+border-radius: 4px;
+transition: all 0.15s ease-in-out;
+border: solid 1px rgba(179, 0, 0, 0.7);
+color: rgba(179, 0, 0, 0.7);
+&:hover {
+  color: white;
+  background: rgba(179, 0, 0, 0.7);
+}
 `;
 const HR = styled.hr`
-  width: 50vw;
+  width: 30vw;
   margin: 0 auto;
+  opacity: 0.3;
 `;
 
 export default ({ title, _id, edit, description }) => (
   <div>
-    <Wrapper>
+    
     <Title>{title}</Title>
     <P>{description}</P>
-    </Wrapper>
-    <WrapperEnd>{edit && <B to={`/teacher/editwork/${_id}`}>Edit</B>} </WrapperEnd >
+   
+    <WrapperEnd>{edit && <B to={`/teacher/editwork/${_id}`}>Update</B>} </WrapperEnd >
    <HR />
   </div>
 );

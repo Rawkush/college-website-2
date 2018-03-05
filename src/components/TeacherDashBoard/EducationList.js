@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import media from 'theme/media';
 
 const Title = styled.h4`
   margin: 50px 0px;
@@ -19,22 +20,30 @@ const HR = styled.hr`
 `;
 
 const WrapperEnd = styled.div`
-display: flex;
-justify-content: flex-end;
-`
+width: 75%;
+margin: 0 auto;
+text-align: right;
+${ media.phone`
+text-align: center;
+line-height: 50px;
+`}
+`;
 const B = styled(Link)`
- margin-right: 9%;
-  text-decoration: none;
-  border: solid 1px rgba(0, 0, 0, 0.27);
-  padding: 5px 10px;
-  display: inline-block;
-  color: rgba(0, 0, 0, 0.8);
-  border-radius: 3px;
-  transition: all 0.1s ease;
-  &:hover {
-    color: rgba(136, 0, 0, 0.8);
-    border: solid 0.5px rgba(136, 0, 0, 0.8);
-  }
+background: none;
+text-decoration: none;
+border: solid 1px rgba(0, 0, 0, 0.3);
+cursor: pointer;
+padding: 5px 20px;
+color: rgba(0, 0, 0, 0.6);
+margin: 30px 0px;
+border-radius: 4px;
+transition: all 0.15s ease-in-out;
+border: solid 1px rgba(179, 0, 0, 0.7);
+color: rgba(179, 0, 0, 0.7);
+&:hover {
+  color: white;
+  background: rgba(179, 0, 0, 0.7);
+}
 `;
 const P = styled.p`
   font-family: 'Open Sans', sans-serif;
@@ -46,13 +55,13 @@ const P = styled.p`
   word-wrap: break-word;
   hyphens: auto;
 `;
-export default ({ education }) => (
+export default ({ education }) => ( 
   <div>
     <Wrapper>
     <Title>Education</Title>
     {education.map((elem) => <P key={elem}>{elem}</P>)}
     </Wrapper>
-    <WrapperEnd> 
+    <WrapperEnd>
     <B to="/teacher/addeducation">Update</B>
       </WrapperEnd>
 <HR />

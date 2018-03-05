@@ -1,6 +1,8 @@
 import React from 'react';
 import { withFormik, Field } from 'formik';
 import Yup from 'yup';
+import media from 'theme/media';
+
 import { StyledForm, FormError, H2 } from 'theme/Components';
 
 import styled from 'styled-components';
@@ -11,20 +13,41 @@ const Label = styled.span`
   font-weight: 800;
 `;
 
+const Container = styled.div`
+  width: 60%;
+  max-width: 1170px;
+  margin: 0 auto;
+  text-align: center;
+`;
+
 const H3 = H2.extend`
   font-size: 1.3;
   text-align: center;
   padding: 15px;
 `;
 
-const StyledForms = StyledForm.extend`
-  > input {
-    margin: 5px;
-    width: 70%;
-  }
-`;
+const StyledForms = StyledForm.extend`  
+> input {
+  margin: 5px;
+  width: 100%;
+}
+> label {
+  text-align: left;
+}
+> button {
+ display: flex;
+ ${
+   media.phone`
+   display: inline-block;
+   margin: 0 auto;
+   margin-top: 15px;
+   `
+ }
+ }
+`
 
 const SkillForm = ({ errors, touched, isSubmitting }) => (
+  <Container>
   <StyledForms>
     {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="skill">
@@ -41,6 +64,7 @@ const SkillForm = ({ errors, touched, isSubmitting }) => (
       Submit
     </button>
   </StyledForms>
+  </Container>
 );
 
 const FormikSkillForm = withFormik({

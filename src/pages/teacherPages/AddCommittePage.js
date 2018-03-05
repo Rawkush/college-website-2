@@ -8,11 +8,17 @@ import CommitteeForm from './../../components/TeacherDashBoard/CommitteeForm';
 import { startAddCommittee } from './../../actions/teacherSecondary';
 
 // eslint-disable-next-line
-import { Page } from 'theme/Components';
+import { Page,H2 } from 'theme/Components';
+
+const H3 = H2.extend`
+font-size: 1.3;
+text-align: center;
+padding: 15px;
+`;
 
 const AddCommitte = ({ addCommittee, history }) => (
   <Page>
-    <h2> Add Committe </h2>
+    <H3> Add Committe </H3>
     <CommitteeForm onSubmit={addCommittee} history={history} />
   </Page>
 );

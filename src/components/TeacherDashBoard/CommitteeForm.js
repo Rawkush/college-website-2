@@ -1,10 +1,11 @@
 import React from 'react';
 import { withFormik, Field } from 'formik';
 import Yup from 'yup';
+import media from 'theme/media';
 
 import { StyledForm, FormError, H2 } from 'theme/Components';
 
-import styled from 'styled-components';
+import styled from 'styled-components'; 
 
 const Label = styled.span`
   font-family: 'Alegreya Sans', serif;
@@ -12,14 +13,36 @@ const Label = styled.span`
   font-weight: 800;
 `;
 
-const H3 = H2.extend`
-  font-size: 1.3;
+const StyledForms = StyledForm.extend`
+> input {
+  margin: 5px;
+  width: 100%;
+}
+> label {
+  text-align: left;
+}
+> button {
+ display: flex;
+ ${
+   media.phone`
+   display: inline-block;
+   margin: 0 auto;
+   margin-top: 15px;
+   `
+ }
+ }
+`
+const Container = styled.div`
+  width: 60%;
+  max-width: 1170px;
+  margin: 0 auto;
   text-align: center;
-  padding: 15px;
 `;
 
+
 const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
-  <StyledForm>
+  <Container>
+  <StyledForms>
     {errors.error && <FormError>{errors.error} </FormError>}
     <label htmlFor="name">
       <Label> Committe Name: </Label>
@@ -67,7 +90,8 @@ const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-  </StyledForm>
+  </StyledForms>
+  </Container>
 );
 
 const FormikCommitteForm = withFormik({

@@ -1,14 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 //  Styled default components
-import { Page, Container, ButtonLink } from './../../theme/Components';
+import { Page } from './../../theme/Components';
 import media from 'theme/media';
 
+const B = styled(Link)`
+  background: none;
+  text-decoration: none;
+  border: solid 1px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  padding: 5px 20px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 30px 0px;
+  border-radius: 4px;
+  transition: all 0.15s ease-in-out;
+  border: solid 1px rgba(179, 0, 0, 0.7);
+  color: rgba(179, 0, 0, 0.7);
+  &:hover {
+    color: white;
+    background: rgba(179, 0, 0, 0.7);
+  }
+`;
+
 //  Components
-import TeacherPhoto from './../../components/TeacherDashBoard/Photo';
+  import TeacherPhoto from './../../components/TeacherDashBoard/Photo';
 import TeacherPrimaryInfo from './../../components/TeacherDashBoard/PrimaryInfo';
 import WorkList from './../../components/TeacherDashBoard/WorkList';
 import TechnicalList from './../../components/TeacherDashBoard/TechnicalList';
@@ -38,6 +56,9 @@ const StudentProfilePage = ({ teacher, history, secondary, logout }) => (
         <CommitteList {...secondary} edit />
         <SpecialisationList {...secondary} />
         <NotificationList {...secondary} />
+        <B to="/teacher/addwork">Add Work </B>
+        <B to="/teacher/addcommitte">Add Committe </B>
+        <B to="/teacher/addNotification">Add Notification</B>
         <button
           onClick={() => {
             logout().then(() => history.push('/'));
