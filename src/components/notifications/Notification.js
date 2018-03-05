@@ -16,6 +16,10 @@ const NotificationDiv = styled.div`
   text-align: center;
 `;
 
+const FlexMod = Flex.extend`
+  flex-direction: ${({ notification }) => (notification ? 'column' : 'row')};
+`;
+
 const TextFilterComponent = ({ changeHandler }) => (
   <div>
     <input type="text" onChange={(e) => changeHandler(e)} />
@@ -126,7 +130,7 @@ class Notification extends Component {
             />
           </div>
         )}
-        <Flex>
+        <FlexMod>
           {this.state.notifications ? (
             this.state.notifications
               .filter(
@@ -146,7 +150,7 @@ class Notification extends Component {
           ) : (
             <p> Loading... </p>
           )}
-        </Flex>
+        </FlexMod>
       </NotificationDiv>
     );
   }

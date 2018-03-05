@@ -205,7 +205,7 @@ const FormikSyllabusForm = withFormik({
         .then(() => {
           resetForm();
           setSubmitting(false);
-          props.history.push('/admin/syllabus');
+          props.history.push('/admin/dashboard');
         })
         .catch(() => {
           setErrors({ error: 'Something Went Wrong!' });

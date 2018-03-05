@@ -51,10 +51,7 @@ const AccomplishmentForm = ({
     {values.edit &&
       values.photo &&
       !(values.photo instanceof Blob) && (
-        <Image
-          src={`http://localhost:3000/${values.photo}`}
-          alt="accomplishment"
-        />
+        <Image src={`/${values.photo}`} alt="accomplishment" />
       )}
     <button disabled={!!isSubmitting} type="submit">
       Submit

@@ -106,7 +106,7 @@ const A = styled.a`
   color: ${red};
   text-decoration: none;
   font-family: 'Alegreya Sans', sans-serif;
-  padding: 1px 1px 3px 1px;
+  padding: ${({ padding }) => padding || '1px 1px 3px 1px'};
   margin: 5px 0px 0px 7px;
   display: inline-block;
   transition: color 0.02s cubic-bezier(0.4, 0.18, 0.76, 0.34);
@@ -219,6 +219,12 @@ const FormWrapper = styled.div`
   margin: 0 auto;
 `;
 
+const Wrapper = styled.div`
+  width: 100%;
+  max-width: ${({ w }) => w || '500px'};
+  margin: ${({ m }) => m || '0px auto'};
+`;
+
 const FormError = styled.p`
   color: red;
   font-family: 'Open Sans', sans-serif;
@@ -267,4 +273,5 @@ export {
   FlexHorizontal,
   AlignCenter,
   FlexResponsiveStack,
+  Wrapper,
 };
