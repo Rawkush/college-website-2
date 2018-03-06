@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 //  Styled-Components
-import { Flex, FlexItem } from 'theme/Components';
+import { Flex, FlexItem, Wrapper, H2 } from 'theme/Components';
+import media from 'theme/media';
 
 //  Actions
 import { startSetAllNotification } from 'actions/notifications';
@@ -16,45 +17,91 @@ const NotificationDiv = styled.div`
   text-align: center;
 `;
 
+const Input = styled.input`
+  width: 70%;
+  padding: 7px;
+  ${media.phone`
+      padding: 5px 0px 5px 5px;
+      width: 97%;
+    `};
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  border: solid 1px rgba(0, 0, 0, 0.27);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  line-height: 1.5;
+  margin-top: ${({ mtop }) => mtop || '0px'};
+  &:focus {
+    border: solid 1px red;
+    box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
+  }
+`;
+
+const Select = styled.select`
+  width: 24%;
+  padding: 7px;
+  margin-left: 20px;
+  ${media.phone`
+      padding: 5px 0px;
+      width: 100%;
+    `};
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  border: solid 1px rgba(0, 0, 0, 0.27);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  line-height: 1.5;
+  &:focus {
+    border: solid 1px red;
+    box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
+  }
+`;
+
 const FlexMod = Flex.extend`
   flex-direction: ${({ notification }) => (notification ? 'column' : 'row')};
+  height: ${({ notification }) => (notification ? '500px' : 'auto')};
+  width: ${({ notification }) => (notification ? '700px' : 'auto')};
+  margin: ${({ notification }) => (notification ? '20px auto' : 'auto')};
+  overflow-y: ${({ notification }) => (notification ? 'scroll' : 'none')};
+`;
+
+const Span = styled.div`
+  border: ${({ notification }) => (notification ? 'solid 1px #ddd' : 'auto')};
+  width: ${({ notification }) => (notification ? '700px' : 'auto')};
+  margin: ${({ notification }) => (notification ? '0 auto' : 'auto')};
+  border-radius: ${({ notification }) => (notification ? '5px' : 'auto')};
+  padding: ${({ notification }) => (notification ? '15px 10px' : 'auto')};
 `;
 
 const TextFilterComponent = ({ changeHandler }) => (
-  <div>
-    <input type="text" onChange={(e) => changeHandler(e)} />
-  </div>
+  <Input type="text" onChange={(e) => changeHandler(e)} placeholder="search" />
 );
 
 const SelectFilterComponent = ({ changeHandler }) => (
-  <div>
-    <select
-      name="filter"
-      id="filter"
-      placeholder="Filter"
-      onChange={(e) => changeHandler(e)}
-    >
-      <option value="" hidden>
-        Filter
-      </option>
-      <option value="">None</option>
-      <option value="it">I.T.</option>
-      <option value="civil">Civil</option>
-      <option value="env">Environment</option>
-      <hr />
-      <option value="iyear">1st Year</option>
-      <option value="iiyear">2nd Year</option>
-      <option value="iiiyear">3rd Year</option>
-      <option value="ivyear">4th Year</option>
-      <hr />
-      <option value="teacher">Teachers</option>
-      <option value="student">Students</option>
-      <hr />
-      <option value="pdf">PDFs</option>
-      <option value="googleForm">Google Form</option>
-      <option value="external">External Link</option>
-    </select>
-  </div>
+  <Select
+    name="filter"
+    id="filter"
+    placeholder="Filter"
+    onChange={(e) => changeHandler(e)}
+  >
+    <option value="" hidden>
+      Filter
+    </option>
+    <option value="">None</option>
+    <option value="it">I.T.</option>
+    <option value="civil">Civil</option>
+    <option value="env">Environment</option>
+    <hr />
+    <option value="iyear">1st Year</option>
+    <option value="iiyear">2nd Year</option>
+    <option value="iiiyear">3rd Year</option>
+    <option value="ivyear">4th Year</option>
+    <hr />
+    <option value="teacher">Teachers</option>
+    <option value="student">Students</option>
+    <hr />
+    <option value="pdf">PDFs</option>
+    <option value="googleForm">Google Form</option>
+    <option value="external">External Link</option>
+  </Select>
 );
 
 const latestSort = (array) =>
@@ -121,36 +168,39 @@ class Notification extends Component {
   render() {
     return (
       <NotificationDiv>
-        <h2>Notifications</h2>
-        {this.state.notification && (
-          <div>
-            <TextFilterComponent changeHandler={this.filterChangeHandler} />
-            <SelectFilterComponent
-              changeHandler={this.filterSelectChangeHandler}
-            />
-          </div>
-        )}
-        <FlexMod>
-          {this.state.notifications ? (
-            this.state.notifications
-              .filter(
-                (n, i) => (this.state.home && i < 3) || this.state.notification
-              )
-              .map(({ title, createdAt, tags, link, _id, file }) => (
-                <FlexItem key={_id}>
-                  <NotificationItem
-                    title={title}
-                    createdAt={createdAt}
-                    tags={tags}
-                    link={link}
-                    file={file}
-                  />
-                </FlexItem>
-              ))
-          ) : (
-            <p> Loading... </p>
+        <H2 center>Notifications</H2>
+        <Span notification={this.state.notification}>
+          {this.state.notification && (
+            <Wrapper w="700px">
+              <TextFilterComponent changeHandler={this.filterChangeHandler} />
+              <SelectFilterComponent
+                changeHandler={this.filterSelectChangeHandler}
+              />
+            </Wrapper>
           )}
-        </FlexMod>
+          <FlexMod notification={this.state.notification}>
+            {this.state.notifications ? (
+              this.state.notifications
+                .filter(
+                  (n, i) =>
+                    (this.state.home && i < 3) || this.state.notification
+                )
+                .map(({ title, createdAt, tags, link, _id, file }) => (
+                  <FlexItem key={_id}>
+                    <NotificationItem
+                      title={title}
+                      createdAt={createdAt}
+                      tags={tags}
+                      link={link}
+                      file={file}
+                    />
+                  </FlexItem>
+                ))
+            ) : (
+              <p> Loading... </p>
+            )}
+          </FlexMod>
+        </Span>
       </NotificationDiv>
     );
   }

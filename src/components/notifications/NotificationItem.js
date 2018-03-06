@@ -16,8 +16,6 @@ const DateDiv = styled.div`
   color: white;
 `;
 
-const SpanDate1 = styled.span``;
-
 const NotificationItem = ({
   title,
   tags,
