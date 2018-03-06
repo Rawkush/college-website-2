@@ -1,100 +1,113 @@
 import React from 'react';
 import moment from 'moment';
-import { StyledForm, FormError,Container, H2 } from 'theme/Components';
+import { withFormik, Field } from 'formik';
 
-import { withFormik, Form, Field } from 'formik';
-import Yup from 'yup'; 
+import Yup from 'yup';
 import styled from 'styled-components';
 
+import { StyledForm, FormError } from './../../theme/Components';
 
 const Label = styled.span`
-font-family: 'Alegreya Sans', serif;
+  font-family: 'Alegreya Sans', serif;
   font-size: 1.3rem;
   font-weight: 800;
 `;
-
-const H3 = H2.extend`
-font-size: 1.3;
-text-align: center;
-padding: 15px;
-`
-
-// const labels = StyledForm.extend`
-// > input {
-// width: 50%;
-// }
-// `
-
+const Container = styled.div`
+  width: 60%;
+  max-width: 1170px;
+  margin: 0 auto;
+`;
+const StyledForms = StyledForm.extend`
+  > input {
+    margin: 5px;
+    width: 100%;
+  }
+  > label {
+    text-align: left;
+  }
+`;
+const H3 = styled.h3`
+  font-family: 'Alegreya Sans', serif;
+  font-size: 1.7rem;
+  text-align: center;
+  font-weight: 200;
+`;
 const TeacherRegistration = ({ values, errors, touched, isSubmitting }) => (
   <Container>
-    <H3> Edit Primary  </H3>
-  <StyledForm>
-    
-    {errors.error && <FormError>{errors.error}</FormError>}
-    <label htmlFor="name">
-     <Label> Name: </Label>
+    <H3> Edit Primary </H3>
+    <StyledForms>
+      {errors.error && <FormError>{errors.error}</FormError>}
+      <label htmlFor="name">
+        <Label> Name: </Label>
       </label>
       {touched.name && errors.name && <FormError>{errors.name}</FormError>}
-      <Field type="text"  id="name" name="name" placeholder="Enter your name here..." />
-    
-    <label htmlFor="dateOfBirth">
-      <Label>Date of Birth: </Label>
+      <Field
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter your name here..."
+      />
+      <label htmlFor="dateOfBirth">
+        <Label>Date of Birth: </Label>
       </label>
-      {touched.dateOfBirth && errors.dateOfBirth && <FormError>{errors.dateOfBirth}</FormError>}
-      <Field type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Date of Birth" />
+      {touched.dateOfBirth &&
+        errors.dateOfBirth && <FormError>{errors.dateOfBirth}</FormError>}
+      <Field
+        type="date"
+        id="dateOfBirth"
+        name="dateOfBirth"
+        placeholder="Date of Birth"
+      />
       <label htmlFor="gender">
-      <Label>Gender: </Label>
+        <Label>Gender: </Label>
       </label>
-      {touched.gender && errors.gender && <FormError>{errors.gender}</FormError>}
-     <select name="gender" >
-       <option value="Male" > Male </option>
-       <option value="Female" > Female </option>
-       <option value="Others" > Others </option>
-        </select>
-  
-
-     {values.edit && (
-      <label htmlFor="currentPosition">
-        Current Position:
-        
-        {touched.currentPosition &&
-          errors.currentPosition && <p>{errors.currentPosition}</p>}
-        <Field
-          type="text"
-          name="currentPosition"
-          placeholder="currentPosition"
-        />
-      </label>
-    )}
-   
-    <label htmlFor="email">
-     <Label> Email: </Label>
+      {touched.gender &&
+        errors.gender && <FormError>{errors.gender}</FormError>}
+      <select name="gender">
+        <option value="Male"> Male </option>
+        <option value="Female"> Female </option>
+        <option value="Others"> Others </option>
+      </select>
+      {values.edit && (
+        <label htmlFor="currentPosition">
+          Current Position:
+          {touched.currentPosition &&
+            errors.currentPosition && <p>{errors.currentPosition}</p>}
+          <Field
+            type="text"
+            name="currentPosition"
+            placeholder="currentPosition"
+          />
+        </label>
+      )}
+      <label htmlFor="email">
+        <Label> Email: </Label>
       </label>
       {touched.email && errors.email && <FormError>{errors.email}</FormError>}
       <Field type="email" name="email" placeholder="Email" />
 
-    <label htmlFor="password">
-     <Label> Password: </Label>
+      <label htmlFor="password">
+        <Label> Password: </Label>
       </label>
-      {touched.Password && errors.password && <FormError>{errors.password} </FormError>}
+      {touched.Password &&
+        errors.password && <FormError>{errors.password} </FormError>}
       <Field type="password" name="password" placeholder="Password" />
-   
-    <label htmlFor="confirmPassword">
-     <Label> Confirm Password: </Label>
+      <label htmlFor="confirmPassword">
+        <Label> Confirm Password: </Label>
       </label>
       {touched.confirmPassword &&
-        errors.confirmPassword && <FormError>{errors.confirmPassword} </FormError>}
+        errors.confirmPassword &&
+          <FormError>{errors.confirmPassword} </FormError>
+        }
       <Field
         type="password"
         name="confirmPassword"
         placeholder="Confirm your password."
       />
-   
-    <button disabled={!!isSubmitting} type="submit">
-      Submit
-    </button>
-  
-  </StyledForm>
+      <button disabled={!!isSubmitting} type="submit">
+        Submit
+      </button>
+    </StyledForms>
   </Container>
 );
 
