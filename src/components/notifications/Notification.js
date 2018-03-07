@@ -10,11 +10,17 @@ import media from 'theme/media';
 import { startSetAllNotification } from 'actions/notifications';
 
 //  Components
+import NotificationItem2 from './NotificationItem2';
 import NotificationItem from './NotificationItem';
 
 // Styled Components
 const NotificationDiv = styled.div`
   text-align: center;
+  margin-bottom: 10px;
+`;
+
+const FlexItemModded = FlexItem.extend`
+  flex: ${({ notification }) => (notification ? '0' : '1')};
 `;
 
 const Input = styled.input`
@@ -42,7 +48,9 @@ const Select = styled.select`
   margin-left: 20px;
   ${media.phone`
       padding: 5px 0px;
-      width: 100%;
+      width: 99%;
+      margin-left: 0px;
+      margin-top: 16px
     `};
   font-family: 'Open Sans', sans-serif;
   border-radius: 3px;
@@ -55,17 +63,27 @@ const Select = styled.select`
   }
 `;
 
+const padding = '16px auto -6px auto';
+
 const FlexMod = Flex.extend`
   flex-direction: ${({ notification }) => (notification ? 'column' : 'row')};
   height: ${({ notification }) => (notification ? '500px' : 'auto')};
-  width: ${({ notification }) => (notification ? '700px' : 'auto')};
-  margin: ${({ notification }) => (notification ? '20px auto' : 'auto')};
+  width: ${({ notification }) => (notification ? 'auto' : 'auto')};
+  margin: ${({ notification }) => (notification ? padding : 'auto')};
   overflow-y: ${({ notification }) => (notification ? 'scroll' : 'none')};
+  overflow-x: ${({ notification }) => (notification ? 'none' : 'scroll')};
+  border: ${({ notification }) => (notification ? '1px solid #ddd' : 'none')};
+  padding: ${({ notification }) => (notification ? '0px 10px' : 'none')};
+  border-radius: 3px;
+  ${media.phone`
+    padding: ${({ notification }) => (notification ? '15px 10px' : 'auto')};    
+  `};
 `;
 
 const Span = styled.div`
   border: ${({ notification }) => (notification ? 'solid 1px #ddd' : 'auto')};
-  width: ${({ notification }) => (notification ? '700px' : 'auto')};
+  width: ${({ notification }) => (notification ? 'auto' : 'auto')};
+  max-width: ${({ notification }) => (notification ? '700px' : 'auto')};
   margin: ${({ notification }) => (notification ? '0 auto' : 'auto')};
   border-radius: ${({ notification }) => (notification ? '5px' : 'auto')};
   padding: ${({ notification }) => (notification ? '15px 10px' : 'auto')};
@@ -186,15 +204,29 @@ class Notification extends Component {
                     (this.state.home && i < 3) || this.state.notification
                 )
                 .map(({ title, createdAt, tags, link, _id, file }) => (
-                  <FlexItem key={_id}>
-                    <NotificationItem
-                      title={title}
-                      createdAt={createdAt}
-                      tags={tags}
-                      link={link}
-                      file={file}
-                    />
-                  </FlexItem>
+                  <FlexItemModded
+                    notification={this.state.notification}
+                    key={_id}
+                  >
+                    {this.state.home && (
+                      <NotificationItem
+                        title={title}
+                        createdAt={createdAt}
+                        tags={tags}
+                        link={link}
+                        file={file}
+                      />
+                    )}
+                    {this.state.notification && (
+                      <NotificationItem2
+                        title={title}
+                        createdAt={createdAt}
+                        tags={tags}
+                        link={link}
+                        file={file}
+                      />
+                    )}
+                  </FlexItemModded>
                 ))
             ) : (
               <p> Loading... </p>
