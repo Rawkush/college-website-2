@@ -258,6 +258,7 @@ const AlignCenter = styled.div`
 const HR = styled.hr`
   width: ${({ w }) => w || '50vw'};
   margin: ${({ m }) => m || '0 auto'};
+  opacity: ${({ opa }) => opa || '1'};
 `;
 
 const FlexResponsiveStack = Flex.extend`
@@ -273,10 +274,16 @@ const SVG = styled.svg`
   border-radius: ${({ circle }) => circle || '0px'};
   background: ${({ bg }) => bg || 'none'};
   box-shadow: ${({ bs }) => bs || 'none'};
+  fill: ${({ fill }) => fill || 'auto'};
   transition: all 0.3s ease;
   &:hover {
     box-shadow: ${({ hovBs }) => hovBs || 'auto'};
   }
+`;
+
+const FlexEnd = Flex.extend`
+  justify-content: flex-end;
+  width: 100%;
 `;
 
 export {
@@ -291,6 +298,7 @@ export {
   Flex,
   FlexCenter,
   FlexItem,
+  FlexEnd,
   Page,
   ButtonLink,
   StyledForm,
