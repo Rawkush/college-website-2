@@ -2,42 +2,43 @@ import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
+// Components
+import Header from 'components/header/Header';
+import Footer from 'components/Footer/Footer';
+import AdminNotifications from 'pages/adminPages/AdminNotifications';
+import Syllabus from 'pages/publicPages/SyllabusPage';
+import NotFound from 'components/notFound/NotFound';
+
+// Public Pages
+import HomePage from 'pages/publicPages/HomePage';
+import NotificationPage from 'pages/publicPages/NotificationPage';
+import StudentLoginPage from 'pages/publicPages/StudentLoginPage';
+
+// Pages
+import AddSyllabusPage from 'pages/adminPages/AddSyllabusPage';
+import StudentRegistrationPage from 'pages/publicPages/StudentRegistrationPage';
+import AdminLoginPage from 'pages/publicPages/AdminLoginPage';
+import AdminDashboardPage from 'pages/adminPages/AdminDashboardPage';
+import EditNotificationPage from 'pages/adminPages/EditNotificaitonPage';
+import AddNotificationPage from 'pages/adminPages/AddNotificationPage';
+import AdminSyllabusPage from 'pages/adminPages/AdminSyllabusPage';
+import EditSyllabusPage from 'pages/adminPages/EditSyllabusPage';
+import AdminTimeTablePage from 'pages/adminPages/AdminTimeTablePage';
+import AddTimeTablePage from 'pages/adminPages/AddTimeTablePage';
+import TimeTablePage from 'pages/publicPages/TimeTablePage';
+import EditTimeTablePage from 'pages/adminPages/EditTimeTablePage';
+import AddEventsPage from 'pages/adminPages/AddEventsPage';
+import AdminEventsPage from 'pages/adminPages/AdminEventsPage';
+import EditEventPage from 'pages/adminPages/EditEventPage';
+import EventsOptionPage from 'pages/publicPages/EventsOptionPage';
+import EventsPage from 'pages/publicPages/EventsPage';
+import TeacherRegistrationPage from 'pages/adminPages/AddTeacherPage';
+import TeacherListPage from 'pages/adminPages/TeachersListPage';
+
 // Route restrictions
 import AdminRoute from './AdminRoute';
 import StudentRoute from './StudentRoute';
 import TeacherRoute from './TeacherRoute';
-
-// Components
-import Header from './../components/header/Header';
-import Footer from './../components/Footer/Footer';
-import AdminNotifications from './../pages/adminPages/AdminNotifications';
-import Syllabus from './../pages/publicPages/SyllabusPage';
-import NotFound from './../components/notFound/NotFound';
-
-// Public Pages
-import HomePage from './../pages/publicPages/HomePage';
-import NotificationPage from './../pages/publicPages/NotificationPage';
-import StudentLoginPage from './../pages/publicPages/StudentLoginPage';
-
-// Pages
-import AddSyllabusPage from './../pages/adminPages/AddSyllabusPage';
-import StudentRegistrationPage from './../pages/publicPages/StudentRegistrationPage';
-import AdminLoginPage from '../pages/publicPages/AdminLoginPage';
-import AdminDashboardPage from './../pages/adminPages/AdminDashboardPage';
-import EditNotificationPage from '../pages/adminPages/EditNotificaitonPage';
-import AddNotificationPage from './../pages/adminPages/AddNotificationPage';
-import AdminSyllabusPage from './../pages/adminPages/AdminSyllabusPage';
-import EditSyllabusPage from './../pages/adminPages/EditSyllabusPage';
-import AdminTimeTablePage from './../pages/adminPages/AdminTimeTablePage';
-import AddTimeTablePage from './../pages/adminPages/AddTimeTablePage';
-import TimeTablePage from './../pages/publicPages/TimeTablePage';
-import EditTimeTablePage from './../pages/adminPages/EditTimeTablePage';
-import AddEventsPage from './../pages/adminPages/AddEventsPage';
-import AdminEventsPage from './../pages/adminPages/AdminEventsPage';
-import EditEventPage from './../pages/adminPages/EditEventPage';
-import EventsOptionPage from './../pages/publicPages/EventsOptionPage';
-import EventsPage from './../pages/publicPages/EventsPage';
-import TeacherRegistrationPage from './../pages/adminPages/AddTeacherPage';
 
 // Student Page
 import StudentProfilePage from './../pages/studentPages/ProfilePage';
@@ -47,6 +48,7 @@ import EditAccomplishmentPage from './../pages/studentPages/EditAccomplishmentPa
 import AddProjectPage from './../pages/studentPages/AddProjectPage';
 import EditProjectPage from './../pages/studentPages/EditProjectPage';
 import UpdateSpecialisationPage from './../pages/studentPages/AddSpecialisationPage';
+import StudentNotificationPage from './../pages/studentPages/StudentNotificationPage';
 
 // Teachers Page
 // import TeacherRegistrationPage from './../pages/publicPages/TeacherRegistrationPage';
@@ -96,10 +98,11 @@ const AppRouter = () => (
           exact
         />
         <AdminRoute
-          path="/admin/notifications/add"
-          component={AddNotificationPage}
+          path="/admin/notifications"
+          component={AdminNotifications}
           exact
         />
+        <AdminRoute path="/admin/teacher" component={TeacherListPage} exact />
         <AdminRoute
           path="/admin/syllabus"
           component={AdminSyllabusPage}
@@ -175,6 +178,11 @@ const AppRouter = () => (
         <StudentRoute
           path="/student/myprofile/updatespecialisation"
           component={UpdateSpecialisationPage}
+          exact
+        />
+        <StudentRoute
+          path="/student/notification"
+          component={StudentNotificationPage}
           exact
         />
         <Route

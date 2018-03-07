@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { lightBlack } from 'theme/variable';
@@ -6,6 +7,7 @@ import media from '../../theme/media';
 
 import NavBar from './NavBar/NavBar';
 import LogoSVG from './LogoSVG';
+import { MaleAvatar, FemaleAvatar } from './Avatar';
 
 // Importing Styled Components
 import {
@@ -36,6 +38,17 @@ const Title = H1.extend`
   `};
 `;
 
+const Image = styled.img`
+  height: 45px;
+  width: auto;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.2s ease;
+  &:hover {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  }
+`;
+
 const StyledLink = styled(Link)`
   color: ${lightBlack};
   text-decoration: none;
@@ -51,48 +64,113 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const studentToken = localStorage.getItem('studentToken');
-const teacherToken = localStorage.getItem('teacherToken');
-const adminToken = localStorage.getItem('adminToken');
+const RoundDiv = styled.div`
+  border-radius: 50%;
+`;
 
-const getLink = (student, teacher, admin) => {
-  if (student) {
-    return '/student/myprofile';
-  } else if (teacher) {
-    return '/teacher/myprofile';
-  } else if (admin) {
-    return '/admin/dashboard';
-  }
-  return null;
-};
-
-const Header = () => (
-  <div>
-    <FixedHeader>
-      <Container>
-        <Flex>
-          <FlexCenter>
-            <StyledLink to="/">
-              <LogoSVG />
-              <Title>Ch. Bramh Prakash Govt. Engg. College</Title>
-            </StyledLink>
-          </FlexCenter>
-          <FlexCenter>
-            {studentToken || teacherToken || adminToken ? (
-              <Link to={getLink(studentToken, teacherToken, adminToken)}>
-                My Profile
-              </Link>
-            ) : (
-              <NavLink to="/login">
-                <Button>Login</Button>
-              </NavLink>
-            )}
-          </FlexCenter>
-        </Flex>
-      </Container>
-    </FixedHeader>
-    <NavBar />
-  </div>
+const DisplayAvatar = ({ SVG }) => (
+  <RoundDiv>
+    <SVG />
+  </RoundDiv>
 );
 
-export default Header;
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth: this.props.auth,
+      photo: this.props.photo,
+      gender: this.props.gender,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(() => ({
+      auth: nextProps.auth,
+      photo: nextProps.photo,
+      gender: nextProps.gender,
+    }));
+  }
+
+  giveAuthStatus = (
+    { student = false, admin = false, teacher = false } = {},
+    { studentPhoto = '', teacherPhoto = '' } = {},
+    { studentGender = 'female', teacherGender = 'female' } = {}
+  ) => {
+    if (student) {
+      return {
+        link: '/student/myprofile',
+        photo: studentPhoto,
+        gender:
+          studentGender === ('male' || 'other') ? MaleAvatar : FemaleAvatar,
+      };
+    }
+    if (teacher) {
+      return {
+        link: '/teacher/myprofile',
+        photo: teacherPhoto,
+        SVG: teacherGender === ('male' || 'other') ? MaleAvatar : FemaleAvatar,
+      };
+    }
+    if (admin) {
+      return { link: '/admin/dashboard', text: 'Dashboard' };
+    }
+    return null;
+  };
+
+  render() {
+    const authentication = this.giveAuthStatus(
+      this.state.auth,
+      this.state.photo,
+      this.state.gender
+    );
+    return (
+      <div>
+        <FixedHeader>
+          <Container>
+            <Flex>
+              <FlexCenter>
+                <StyledLink to="/">
+                  <LogoSVG />
+                  <Title>Ch. Bramh Prakash Govt. Engg. College</Title>
+                </StyledLink>
+              </FlexCenter>
+              <FlexCenter>
+                {authentication ? (
+                  <Link to={authentication.link}>
+                    {(authentication.photo && (
+                      <Image src={authentication.photo} />
+                    )) ||
+                      (authentication.SVG && (
+                        <DisplayAvatar SVG={authentication.SVG} />
+                      )) ||
+                      (authentication.text && <p>{authentication.text}</p>)}
+                  </Link>
+                ) : (
+                  <NavLink to="/login">
+                    <Button>Login</Button>
+                  </NavLink>
+                )}
+              </FlexCenter>
+            </Flex>
+          </Container>
+        </FixedHeader>
+        <NavBar />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  photo: {
+    studentPhoto: state.studentPrimary ? state.studentPrimary.photo : null,
+    teacherPhoto: state.studentPrimary ? state.teacherPrimary.photo : null,
+  },
+  gender: {
+    studentGender: state.studentPrimary ? state.studentPrimary.gender : null,
+    teacherGender: state.studentPrimary ? state.teacherPrimary.gender : null,
+  },
+});
+
+export default connect(mapStateToProps)(Header);

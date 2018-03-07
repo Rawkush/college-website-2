@@ -17,7 +17,8 @@
       {
         "functions": "never",
         "objects": "always-multiline",
-        "arrays": "always-multiline"
+        "arrays": "always-multiline",
+        "imports": "always-multiline"
       }
     ],
     "quotes": ["error", "single"],
@@ -31,7 +32,7 @@
     "no-underscore-dangle": [
       "error",
       {
-        "allow": ["_id", "_creator", "_ref"]
+        "allow": ["_id", "_creator", "_ref", "_json"]
       }
     ],
     "prettier/prettier": "error",
@@ -47,6 +48,16 @@
         "components": ["Link"],
         "specialLink": ["hrefLeft", "hrefRight"],
         "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "components": ["Label"],
+        "required": {
+          "every": ["id"]
+        },
+        "allowChildren": false
       }
     ]
   },

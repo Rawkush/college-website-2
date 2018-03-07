@@ -34,7 +34,6 @@ const gitHubOptions = {
 
 const callbackFunction = (req, accessToken, refreshToken, profile, done) => {
   const body = _.pick(profile, [
-    // eslint-disable-line
     'provider',
     'id',
     'profileUrl',
@@ -55,11 +54,10 @@ const callbackFunction = (req, accessToken, refreshToken, profile, done) => {
   const token = jwt.sign(payload, process.env.JWT_SECRET_2).toString();
 
   const giveLocation = (object) => {
-    // eslint-disable-next-line
     if (object._json.location) {
-      return object._json.location.name // eslint-disable-line
-        ? object._json.location.name // eslint-disable-line
-        : object._json.location; // eslint-disable-line
+      return object._json.location.name
+        ? object._json.location.name
+        : object._json.location;
     }
     return null;
   };
@@ -69,13 +67,13 @@ const callbackFunction = (req, accessToken, refreshToken, profile, done) => {
     email: body.emails ? body.emails[0].value : null,
     gender: body.gender,
     photo: body.photos[0] ? body.photos[0].value : null,
-    bio: body._json.bio || body._json.headline, // eslint-disable-line
+    bio: body._json.bio || body._json.headline,
     location: giveLocation(body),
     linkedProfiles: [
       {
         provider: body.provider,
         linkedId: body.id,
-        url: body.profileUrl || body._json.url || body._json.publicProfileUrl, // eslint-disable-line
+        url: body.profileUrl || body._json.url || body._json.publicProfileUrl,
       },
     ],
   };
