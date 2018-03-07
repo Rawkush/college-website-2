@@ -54,6 +54,7 @@ const Button = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.22);
   flex-grow: 1;
   transition: all 0.1s;
+  width: ${({ w }) => w || 'auto'};
   &:hover {
     background: #fff;
     cursor: pointer;
@@ -69,6 +70,7 @@ const Button = styled.button`
 
 const Flex = styled.div`
   display: flex;
+  justify-content: ${({ end }) => (end ? 'flex-end' : 'flex-start')};
 `;
 
 const FlexCenter = styled.div`
@@ -225,6 +227,17 @@ const Wrapper = styled.div`
   margin: ${({ m }) => m || '0px auto'};
 `;
 
+const BorderWrapper = styled.div`
+  width: 100%;
+  max-width: ${({ w }) => w || '500px'};
+  margin: ${({ m }) => m || '0px auto'};
+  padding: ${({ p }) => p || '0px'};
+  border: ${({ bor }) => bor || '1px solid #ddd'};
+  overflow-x: ${({ oflowx }) => oflowx || 'none'};
+  overflow-y: ${({ oflowy }) => oflowy || 'none'};
+  height: ${({ h }) => h || 'auto'};
+`;
+
 const FormError = styled.p`
   color: red;
   font-family: 'Open Sans', sans-serif;
@@ -257,6 +270,13 @@ const SVG = styled.svg`
   height: ${({ height }) => height || '45px'};
   padding: ${({ padding }) => padding || '0px'};
   width: auto;
+  border-radius: ${({ circle }) => circle || '0px'};
+  background: ${({ bg }) => bg || 'none'};
+  box-shadow: ${({ bs }) => bs || 'none'};
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: ${({ hovBs }) => hovBs || 'auto'};
+  }
 `;
 
 export {
@@ -280,5 +300,6 @@ export {
   AlignCenter,
   FlexResponsiveStack,
   Wrapper,
+  BorderWrapper,
   SVG,
 };
