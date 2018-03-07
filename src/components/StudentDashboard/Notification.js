@@ -10,8 +10,7 @@ import media from 'theme/media';
 import { startSetAllNotification } from 'actions/notifications';
 
 //  Components
-import NotificationItem2 from './NotificationItem2';
-import NotificationItem from './NotificationItem';
+import NotificationItem2 from './../notifications/NotificationItem2';
 
 // Styled Components
 const NotificationDiv = styled.div`
@@ -208,15 +207,6 @@ class Notification extends Component {
                     notification={this.state.notification}
                     key={_id}
                   >
-                    {this.state.home && (
-                      <NotificationItem
-                        title={title}
-                        createdAt={createdAt}
-                        tags={tags}
-                        link={link}
-                        file={file}
-                      />
-                    )}
                     {this.state.notification && (
                       <NotificationItem2
                         title={title}

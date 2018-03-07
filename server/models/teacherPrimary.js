@@ -6,6 +6,7 @@ const {
   findByToken,
   findByCredentials,
   checkPassword,
+  checkPassword2,
   removeToken,
   slugGen,
   findBySlug,
@@ -77,6 +78,7 @@ TeacherPrimarySchema.statics.findByToken = findByToken;
 TeacherPrimarySchema.statics.findByCredentials = findByCredentials;
 TeacherPrimarySchema.statics.findBySlug = findBySlug;
 TeacherPrimarySchema.pre('save', checkPassword);
+TeacherPrimarySchema.pre('findOneAndUpdate', checkPassword2);
 TeacherPrimarySchema.pre('save', slugGen);
 
 const TeacherPrimary = mongoose.model('TeacherPrimary', TeacherPrimarySchema);

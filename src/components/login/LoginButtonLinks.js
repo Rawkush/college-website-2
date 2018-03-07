@@ -13,6 +13,7 @@ const StyledA = styled.a`
   font-family: 'OpenSans', sans-serif;
   color: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
+  border-radius: 3px;
   &:hover {
     box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.3);
   }

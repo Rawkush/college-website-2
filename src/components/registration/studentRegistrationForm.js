@@ -134,6 +134,53 @@ const FeildWrapper = styled.div`
   }
 `;
 
+const thisYearStart = moment()
+  .startOf('year')
+  .add(7, 'months');
+
+const giveAddmissionYear = (thisYear) => {
+  const now = moment();
+  if (now < thisYear) {
+    return {
+      firYear: moment()
+        .startOf('year')
+        .add(7, 'months')
+        .subtract(1, 'year'),
+      secYear: moment()
+        .startOf('year')
+        .add(7, 'months')
+        .subtract(2, 'year'),
+      thirdYear: moment()
+        .startOf('year')
+        .add(7, 'months')
+        .subtract(3, 'year'),
+      forthYear: moment()
+        .startOf('year')
+        .add(7, 'months')
+        .subtract(4, 'year'),
+    };
+  }
+  return {
+    firYear: moment()
+      .startOf('year')
+      .add(7, 'months'),
+    secYear: moment()
+      .startOf('year')
+      .add(7, 'months')
+      .subtract(1, 'year'),
+    thirdYear: moment()
+      .startOf('year')
+      .add(7, 'months')
+      .subtract(2, 'year'),
+    forthYear: moment()
+      .startOf('year')
+      .add(7, 'months')
+      .subtract(3, 'year'),
+  };
+};
+
+const admissionYearStart = giveAddmissionYear(thisYearStart);
+
 const StudentRegistration = ({
   values,
   errors,
@@ -176,14 +223,34 @@ const StudentRegistration = ({
     <label htmlFor="admittedIn">Admitted in:</label>
     {touched.admittedIn &&
       errors.admittedIn && <ErrorAlert>{errors.admittedIn}</ErrorAlert>}
-    <input
+    <select
+      name="addmittedIn"
+      id="addmittedIn"
+      onChange={handleChange}
+      onBlur={handleBlur}
+      value={values.admittedIn}
+    >
+      <option value={admissionYearStart.firYear}>
+        {moment(admissionYearStart.firYear).format('YYYY')}
+      </option>
+      <option value={admissionYearStart.secYear}>
+        {moment(admissionYearStart.secYear).format('YYYY')}
+      </option>
+      <option value={admissionYearStart.thirdYear}>
+        {moment(admissionYearStart.thirdYear).format('YYYY')}
+      </option>
+      <option value={admissionYearStart.forthYear}>
+        {moment(admissionYearStart.forthYear).format('YYYY')}
+      </option>
+    </select>
+    {/* <input
       type="month"
       name="admittedIn"
       id="admittedIn"
       value={values.admittedIn}
       onChange={handleChange}
       onBlur={handleBlur}
-    />
+    /> */}
     <label htmlFor="branch">Branch :</label>
     {touched.branch &&
       errors.branch && <ErrorAlert>{errors.branch}</ErrorAlert>}
@@ -195,7 +262,7 @@ const StudentRegistration = ({
       value={values.branch}
     >
       <option value="" disabled>
-        Select the in which you are admitted.
+        Select the branch.
       </option>
       <option value="it">I.T.</option>
       <option value="civil">Civil</option>
@@ -314,17 +381,17 @@ const StudentRegistration = ({
 const FormikStudentRegistration = withFormik({
   mapPropsToValues({
     edit,
-    name,
-    rollNo,
-    email,
-    location,
-    dateOfBirth,
-    gender,
-    bio,
-    branch,
-    admittedIn,
+    name = '',
+    rollNo = '',
+    email = '',
+    location = '',
+    dateOfBirth = '',
+    gender = '',
+    bio = '',
+    branch = '',
+    admittedIn = '',
     linkedProfiles = [],
-    onRemove,
+    onRemove = '',
   } = {}) {
     const profile0 = linkedProfiles[0] ? linkedProfiles[0].provider : '';
     const url0 = linkedProfiles[0] ? linkedProfiles[0].url : '';
@@ -346,7 +413,7 @@ const FormikStudentRegistration = withFormik({
       gender: gender || '',
       bio: bio || '',
       branch: branch || '',
-      admittedIn: admittedIn ? moment(admittedIn).format('YYYY-MM') : '',
+      admittedIn: admittedIn || '',
       edit: edit || '',
       profile0,
       url0,
