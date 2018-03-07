@@ -5,7 +5,6 @@ import createHistory from 'history/createBrowserHistory';
 // Components
 import Header from 'components/header/Header';
 import Footer from 'components/Footer/Footer';
-import AdminNotifications from 'pages/adminPages/AdminNotifications';
 import Syllabus from 'pages/publicPages/SyllabusPage';
 import NotFound from 'components/notFound/NotFound';
 
@@ -93,13 +92,8 @@ const AppRouter = () => (
           exact
         />
         <AdminRoute
-          path="/admin/notifications"
-          component={AdminNotifications}
-          exact
-        />
-        <AdminRoute
-          path="/admin/notifications"
-          component={AdminNotifications}
+          path="/admin/notifications/add"
+          component={AddNotificationPage}
           exact
         />
         <AdminRoute path="/admin/teacher" component={TeacherListPage} exact />

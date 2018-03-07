@@ -3,12 +3,12 @@ import { withFormik, Field } from 'formik';
 import Yup from 'yup';
 import { StyledForm, FromError } from 'theme/Components';
 
-const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
+const AdminLoginForm = ({ errors, /* touched, */ isSubmitting }) => (
   <StyledForm>
     {errors.error && <FromError>{errors.error}</FromError>}
     <label htmlFor="username">Username: </label>
-    {touched.username &&
-      errors.username && <FromError>{errors.username}</FromError>}
+    {/* {touched.username &&
+      errors.username && <FromError>{errors.username}</FromError>} */}
     <Field
       type="text"
       name="username"
@@ -18,8 +18,8 @@ const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
     />
 
     <label htmlFor="password">Password: </label>
-    {touched.password &&
-      errors.password && <FromError>{errors.password}</FromError>}
+    {/* {touched.password &&
+      errors.password && <FromError>{errors.password}</FromError>} */}
     <Field
       type="password"
       name="password"
@@ -31,7 +31,7 @@ const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
   </StyledForm>
 );
 
-const FormikAdminLoginForm = withFormik({
+export default withFormik({
   mapPropsToValues({ username = '', password = '' } = {}) {
     return {
       username,
@@ -56,5 +56,3 @@ const FormikAdminLoginForm = withFormik({
       });
   },
 })(AdminLoginForm);
-
-export default FormikAdminLoginForm;

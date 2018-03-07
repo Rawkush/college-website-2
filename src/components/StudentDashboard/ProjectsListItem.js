@@ -65,27 +65,27 @@ export default ({ title, description, link, _id, edit, photos = [] } = {}) => (
     <ImageFlex>
       {photos[0] && (
         <Div>
-          <Image src={`http://localhost:3000/${photos[0]}`} alt="project" />
+          <Image src={`/${photos[0]}`} alt="project" />
         </Div>
       )}
       {photos[1] && (
         <Div>
-          <Image src={`http://localhost:3000/${photos[1]}`} alt="project" />
+          <Image src={`/${photos[1]}`} alt="project" />
         </Div>
       )}
       {photos[2] && (
         <Div>
-          <Image src={`http://localhost:3000/${photos[2]}`} alt="project" />
+          <Image src={`/${photos[2]}`} alt="project" />
         </Div>
       )}
       {photos[3] && (
         <Div>
-          <Image src={`http://localhost:3000/${photos[3]}`} alt="project" />
+          <Image src={`/${photos[3]}`} alt="project" />
         </Div>
       )}
       {photos[4] && (
         <Div>
-          <Image src={`http://localhost:3000/${photos[4]}`} alt="project" />
+          <Image src={`/${photos[4]}`} alt="project" />
         </Div>
       )}
     </ImageFlex>

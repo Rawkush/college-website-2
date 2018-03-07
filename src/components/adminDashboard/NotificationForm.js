@@ -132,7 +132,7 @@ const FormikNotificationForm = withFormik({
   },
   validationSchema: Yup.object().shape({
     title: Yup.string().required('Title is required.'),
-    description: Yup.string(),
+    description: Yup.string().min(50),
     student: Yup.boolean(),
     teacher: Yup.boolean(),
     iyear: Yup.boolean(),
