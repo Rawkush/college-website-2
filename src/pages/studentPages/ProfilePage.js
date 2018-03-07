@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 //  Styled default components
-import { Page, Container, ButtonLink } from 'theme/Components';
+import { Page, Container, ButtonLink, FlexEnd } from 'theme/Components';
 import media from 'theme/media';
+import { red } from 'theme/variable';
 
 //  Actions
 import { startStudentLogout } from './../../actions/studentPrimary';
@@ -22,6 +24,7 @@ import LinksList from './../../components/StudentDashboard/LinksList';
 import AccomplishmentsList from './../../components/StudentDashboard/AccomplishmentsList';
 import ProjectList from './../../components/StudentDashboard/ProjectsList';
 import SpecialisationList from './../../components/StudentDashboard/SpecialisationList';
+import BellIconSVG from './BellIcon';
 // import NotificationList from './../../components/StudentDashboard/NotificationList';
 
 const Background = styled.div`
@@ -69,6 +72,44 @@ const Button = styled.button`
   `};
 `;
 
+const FlexBell = FlexEnd.extend`
+  height: 50vh;
+  width: 92vh;
+  padding: 20px 0px 0px 0px;
+  ${media.phone`
+    order: -1;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+  `};
+`;
+
+const HoverDiv = styled.div`
+  &:hover {
+    > div {
+      left: 26px;
+      bottom: 8px;
+      transform: scale(1.5);
+    }
+  }
+`;
+
+const Num = styled.div`
+  border-radius: 50%;
+  background: ${red};
+  font-family: 'Noto Serif', sans-serif;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  padding: 2px 0px 0px 1px;
+  color: white;
+  position: relative;
+  left: 13px;
+  bottom: -4px;
+  transition: all 0.2s ease;
+`;
+
 const StudentProfilePage = ({
   student,
   secondary,
@@ -82,13 +123,24 @@ const StudentProfilePage = ({
         <Wrapper1>
           <StudentPhoto {...student} />
           <StudentPrimaryInfo {...student} />
+          <FlexBell>
+            <Link to="/student/notification">
+              <HoverDiv>
+                <Num>5</Num>
+                <BellIconSVG />
+              </HoverDiv>
+            </Link>
+          </FlexBell>
         </Wrapper1>
         <LinksList {...student} />
         <WrapperEnd center>
           <ButtonLink to="/student/myprofile/edit"> Edit Profile</ButtonLink>
           <Button
             onClick={() => {
-              logout().then(() => history.push('/'));
+              logout().then(() => {
+                setStudentSecondary({});
+                history.push('/');
+              });
             }}
           >
             Logout
@@ -126,10 +178,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   markAsRead: (_id) => dispatch(startMarkAsRead(_id)),
-  logout: () => {
-    dispatch(startStudentLogout());
-    dispatch(setStudentSecondary({}));
-  },
+  logout: () => dispatch(startStudentLogout()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentProfilePage);
