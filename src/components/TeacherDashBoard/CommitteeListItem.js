@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import media from 'theme/media';
 
 const WrapperEnd = styled.div`
-width: 75%;
-margin: 0 auto;
-text-align: right;
-${ media.phone`
+  width: 75%;
+  margin: 0 auto;
+  text-align: right;
+  ${media.phone`
 text-align: center;
 line-height: 50px;
-`}
+`};
 `;
 
 const P = styled.p`
@@ -29,21 +29,21 @@ const Title = P.extend`
 `;
 
 const B = styled(Link)`
-background: none;
-text-decoration: none;
-border: solid 1px rgba(0, 0, 0, 0.3); 
-cursor: pointer;
-padding: 5px 20px;
-color: rgba(0, 0, 0, 0.6);
-margin: 30px 0px;
-border-radius: 4px;
-transition: all 0.15s ease-in-out;
-border: solid 1px rgba(179, 0, 0, 0.7);
-color: rgba(179, 0, 0, 0.7);
-&:hover {
-  color: white;
-  background: rgba(179, 0, 0, 0.7);
-}
+  background: none;
+  text-decoration: none;
+  border: solid 1px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  padding: 5px 20px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 30px 0px;
+  border-radius: 4px;
+  transition: all 0.15s ease-in-out;
+  border: solid 1px rgba(179, 0, 0, 0.7);
+  color: rgba(179, 0, 0, 0.7);
+  &:hover {
+    color: white;
+    background: rgba(179, 0, 0, 0.7);
+  }
 `;
 const HR = styled.hr`
   width: 50vw;
@@ -58,7 +58,7 @@ export default ({ name, designation, status, _id, edit }) => (
     <P>{status}</P>
     {edit && (
       <WrapperEnd>
-        <B to={`/teacher/myprofile/editcommitte/${_id}`}>Update</B>
+        <B to={`/teacher/editcommittee/${_id}`}>Update</B>
       </WrapperEnd>
     )}
     <HR />

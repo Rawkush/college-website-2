@@ -16,6 +16,11 @@ const NotificationDiv = styled.div`
   text-align: center;
 `;
 
+const Flexed = Flex.extend`
+width: 80%;
+margin: 0 auto;
+`
+
 const TextFilterComponent = ({ changeHandler }) => (
   <div>
     <input type="text" onChange={(e) => changeHandler(e)} />
@@ -126,7 +131,7 @@ class Notification extends Component {
             />
           </div>
         )}
-        <Flex>
+        <Flexed>
           {this.state.notifications ? (
             this.state.notifications
               .filter(
@@ -146,7 +151,7 @@ class Notification extends Component {
           ) : (
             <p> Loading... </p>
           )}
-        </Flex>
+        </Flexed>
       </NotificationDiv>
     );
   }
