@@ -26,7 +26,7 @@ import GithubSVG from './../../components/login/GithubSVG';
 import LinkedInSVG from './../../components/login/LinkedInSVG';
 
 const FlexExtended = FlexResponsiveStack.extend`
-  height: 65vh;
+  min-height: 65vh;
   align-items: center;
 `;
 

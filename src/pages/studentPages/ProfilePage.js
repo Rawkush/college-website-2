@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 //  Styled default components
@@ -9,7 +8,10 @@ import media from 'theme/media';
 
 //  Actions
 import { startStudentLogout } from './../../actions/studentPrimary';
-import { startMarkNotificationAsRead as startMarkAsRead } from './../../actions/studentSecondary';
+import {
+  startMarkNotificationAsRead as startMarkAsRead,
+  setStudentSecondary,
+} from './../../actions/studentSecondary';
 
 import { WrapperEnd } from './../../components/StudentDashboard/Shared.styles';
 
@@ -20,7 +22,7 @@ import LinksList from './../../components/StudentDashboard/LinksList';
 import AccomplishmentsList from './../../components/StudentDashboard/AccomplishmentsList';
 import ProjectList from './../../components/StudentDashboard/ProjectsList';
 import SpecialisationList from './../../components/StudentDashboard/SpecialisationList';
-import NotificationList from './../../components/StudentDashboard/NotificationList';
+// import NotificationList from './../../components/StudentDashboard/NotificationList';
 
 const Background = styled.div`
   background: #efefef;
@@ -70,7 +72,7 @@ const Button = styled.button`
 const StudentProfilePage = ({
   student,
   secondary,
-  markAsRead,
+  // markAsRead,
   logout,
   history,
 }) => (
@@ -124,7 +126,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   markAsRead: (_id) => dispatch(startMarkAsRead(_id)),
-  logout: () => dispatch(startStudentLogout()),
+  logout: () => {
+    dispatch(startStudentLogout());
+    dispatch(setStudentSecondary({}));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentProfilePage);
