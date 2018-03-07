@@ -38,6 +38,7 @@ import EditEventPage from './../pages/adminPages/EditEventPage';
 import EventsOptionPage from './../pages/publicPages/EventsOptionPage';
 import EventsPage from './../pages/publicPages/EventsPage';
 import TeacherRegistrationPage from './../pages/adminPages/AddTeacherPage';
+import TeacherListPage from 'pages/adminPages/TeachersListPage';
 
 // Student Page
 import StudentProfilePage from './../pages/studentPages/ProfilePage';
@@ -96,10 +97,11 @@ const AppRouter = () => (
           exact
         />
         <AdminRoute
-          path="/admin/notifications/add"
-          component={AddNotificationPage}
+          path="/admin/notifications"
+          component={AdminNotifications}
           exact
         />
+        <AdminRoute path="/admin/teacher" component={TeacherListPage} exact />
         <AdminRoute
           path="/admin/syllabus"
           component={AdminSyllabusPage}
