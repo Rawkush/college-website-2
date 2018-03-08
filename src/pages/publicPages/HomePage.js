@@ -3,30 +3,35 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Styled-Components
-import { Page, Container } from './../../theme/Components';
+import { Page, Container, FlexCenter, H2Res } from 'theme/Components';
+import media from 'theme/media';
 
 // Defined components import
 import Notification from './../../components/notifications/Notification';
-import Event from './../../components/Events/EventsListItem';
-import GetToKnow from './../../components/Body/GetToKnow';
+// import Event from './../../components/Events/EventsListItem';
+// import GetToKnow from './../../components/Body/GetToKnow';
 // import Map from './../../components/Body/map';
 
-const NotificationButton = styled.button`
-  margin-top: 85px;
-  text-align: center;
+const NotificationLink = styled(Link)`
   background: none;
   cursor: pointer;
   text-decoration: none;
   padding: 10px 50px;
   color: rgba(0, 0, 0, 0.6);
-  margin: 30px 0px;
+  margin: 55px auto;
   transition: all 0.15s ease-in-out;
-  border: solid 1.4px rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  border-radius: 3px;
+  border: solid 2.4px rgba(0, 0, 0, 0.5);
   font-weight: 400;
   &:hover {
     color: white;
     background: rgba(43, 42, 42, 0.7);
+    border: solid 2.4px rgba(43, 42, 42, 0.7);
   }
+  ${media.phone`
+    margin: 20px auto;    
+  `};
 `;
 
 const I = styled.i`
@@ -45,21 +50,33 @@ const Div = styled.div`
   text-align: center;
 `;
 
+const NotificationBg = styled.div`
+  background: rgba(221, 221, 221, 0.3);
+`;
+
 const HomePage = () => (
   <Page>
     <Container>
-      <Notification home />
-      <Div>
-        <Link to="/notification">
-          <NotificationButton>
-            More
+      <H2Res center margin="115px 0px 50px 0px" marginRes="100px 0px 20px 0px">
+        Notifications
+      </H2Res>
+    </Container>
+    <NotificationBg>
+      <Container>
+        <Notification home />
+        <FlexCenter>
+          <NotificationLink to="/notification">
+            See More
             <I />
-          </NotificationButton>
-        </Link>
-      </Div>
+          </NotificationLink>
+        </FlexCenter>
+      </Container>
+    </NotificationBg>
+    <Container>
+      <Div />
       {/* <Link to="/student/register">studen</Link> */}
-      <Event />
-      <GetToKnow />
+      {/* <Event />
+      <GetToKnow /> */}
 
       {/* <Map /> */}
     </Container>

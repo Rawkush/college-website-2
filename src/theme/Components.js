@@ -15,6 +15,18 @@ const H2 = styled.h2`
   font-size: 1.6rem;
   font-weight: 400;
   text-align: ${({ center }) => (center ? 'center' : 'left')};
+  margin: ${({ margin }) => margin || 'auto'};
+`;
+
+const H2Res = styled.h2`
+  font-family: 'Noto Serif', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
+  margin: ${({ margin }) => margin || 'auto'};
+  ${media.phone`
+    margin: ${({ marginRes }) => marginRes || 'auto'};
+  `};
 `;
 
 const H3 = styled.h3`
@@ -89,7 +101,7 @@ const FlexItem = styled.div`
 
 const Page = styled.div`
   font-family: 'roboto', sans-serif;
-  margin-top: ${(props) => (props.mt ? props.mt : '110px')};
+  margin-top: ${(props) => (props.mt ? props.mt : '93px')};
   margin-bottom: ${(props) => (props.mb ? props.b : 0)};
   margin-right: ${(props) => (props.mr ? props.mr : 0)};
   margin-left: ${(props) => (props.ml ? props.ml : 0)};
@@ -280,6 +292,7 @@ const SVG = styled.svg`
   transition: all 0.3s ease;
   &:hover {
     box-shadow: ${({ hovBs }) => hovBs || 'auto'};
+    transform: ${({ hovTransform }) => hovTransform || 'auto'};
   }
 `;
 
@@ -291,6 +304,7 @@ const FlexEnd = Flex.extend`
 export {
   H1,
   H2,
+  H2Res,
   H3,
   H4,
   A,

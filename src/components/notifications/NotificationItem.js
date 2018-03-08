@@ -2,64 +2,92 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import styled from 'styled-components';
-import { lightGrey, darkGrey } from 'theme/variable';
+import { darkGrey } from 'theme/variable';
+import { FlexCenter } from 'theme/Components';
+import media from 'theme/media';
+
+import DownloadIconSVG from './DownloadIconSVG';
 
 const NotificationDiv = styled.div`
-  background-color: ${lightGrey};
+  background-color: rgb(208, 208, 208);
   padding: 10px;
-  min-width: 150px;
-  max-width: 250px;
-  min-height: 220px;
-  max-height: 300px;
-  margin: 10px;
-  margin-top: 80px;
+  width: 250px;
+  margin: 50px auto 26px auto;
   text-align: center;
-  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 10px 11px rgba(0, 0, 0, 0.1);
+  }
+  ${media.phone`
+    margin: 50px 10px 26px 10px;
+  `};
 `;
 
 const DateDiv = styled.div`
   background: ${darkGrey};
   display: inline-block;
-  padding: 30px 5px;
+  padding: 27px 6px 10px 6px;
   color: white;
-  margin-top: -14%;
-  margin-left: -60%;
+  margin-top: -17%;
+  margin-left: -63%;
 `;
 
 const Span1 = styled.span`
   font-family: 'roboto', sans-serif;
-  font-size: 1.1em;
+  font-size: 1.3em;
 `;
 
 const Span2 = styled.span`
   font-family: 'roboto', sans-serif;
-  font-size: 0.8em;
+  font-size: 1em;
+  padding: 10px 0px;
+  text-align: right;
+  display: block;
 `;
 
 const Title = styled.a`
   text-align: center;
   text-decoration: none;
   color: black;
-  font-family: 'roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.2rem;
+  transition: all 0.2s ease;
   &:hover {
-    font-weight: 500;
-    text-shadow: 1px 1px 1px #000000;
+    text-decoration: underline;
   }
 `;
 
 const TitleDiv = styled.div`
-  margin-top: 50px;
+  margin-top: 18px;
   width: 100%;
+  min-height: 100px;
 `;
 
-const Download = Title.extend`
-  text-align: left;
+const Download = styled.a`
+  flex: 1;
 `;
 
-const DownloadDiv = styled.div`
-  text-align: left;
+const Tags = styled.div`
+  flex: 5;
+  display: flex;
+  justify-content: flex-end;
 `;
+
+const Tag = styled.span`
+  font-family: 'Noto Serif', sans-serif;
+  font-size: 14px;
+  padding: 0px 2px;
+`;
+
+const MiddleDot = styled.span`
+  &::after {
+    content: '\00B7';
+  }
+`;
+
 const NotificationItem = ({
   title,
   tags,
@@ -73,22 +101,29 @@ const NotificationItem = ({
   <NotificationDiv>
     <div>
       <DateDiv>
-        <Span1>{moment(createdAt).format('DD-MMM')}</Span1> 
+        <Span1>{moment(createdAt).format('DD-MMM')}</Span1>
         <br />
         <Span2>{moment(createdAt).format('YYYY')}</Span2>
       </DateDiv>
-    </div>
+    </div>{' '}
+    -{' '}
     <TitleDiv>
-      <Title href={link}>
-        {title}
-        {/* {tags.map((tag) => <p key={tag}>{tag}</p>)} */}
-      </Title>
+      <Title href={link}>{title}</Title>
     </TitleDiv>
-    <DownloadDiv>
+    <FlexCenter>
       <Download href={file} target="_blank">
-        D
+        <DownloadIconSVG />
       </Download>
-    </DownloadDiv>
+      <Tags>
+        {tags.map((tag) => (
+          <Tag key={tag}>
+            {tag}
+            {'  '}
+            <MiddleDot />
+          </Tag>
+        ))}
+      </Tags>
+    </FlexCenter>
     {location === '/admin/notifications' &&
       auth && <Link to={`/admin/notifications/edit/${_id}`}>Edit</Link>}
   </NotificationDiv>

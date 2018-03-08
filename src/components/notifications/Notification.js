@@ -21,6 +21,8 @@ const NotificationDiv = styled.div`
 
 const FlexItemModded = FlexItem.extend`
   flex: ${({ notification }) => (notification ? '0' : '1')};
+  display: ${({ home }) => (home ? 'flex' : 'auto')};
+  align-items: ${({ home }) => (home ? 'center' : 'auto')};
 `;
 
 const Input = styled.input`
@@ -70,8 +72,8 @@ const FlexMod = Flex.extend`
   height: ${({ notification }) => (notification ? '500px' : 'auto')};
   width: ${({ notification }) => (notification ? 'auto' : 'auto')};
   margin: ${({ notification }) => (notification ? padding : 'auto')};
-  overflow-y: ${({ notification }) => (notification ? 'scroll' : 'none')};
-  overflow-x: ${({ notification }) => (notification ? 'none' : 'scroll')};
+  overflow-y: ${({ notification }) => (notification ? 'scroll' : 'hidden')};
+  overflow-x: ${({ notification }) => (notification ? 'hidden' : 'auto')};
   border: ${({ notification }) => (notification ? '1px solid #ddd' : 'none')};
   padding: ${({ notification }) => (notification ? '0px 10px' : 'none')};
   border-radius: 3px;
@@ -88,11 +90,6 @@ const Span = styled.div`
   border-radius: ${({ notification }) => (notification ? '5px' : 'auto')};
   padding: ${({ notification }) => (notification ? '15px 10px' : 'auto')};
 `;
-
-const Flexed = Flex.extend`
-width: 80%;
-margin: 0 auto;
-`
 
 const TextFilterComponent = ({ changeHandler }) => (
   <Input type="text" onChange={(e) => changeHandler(e)} placeholder="search" />
@@ -135,6 +132,7 @@ class Notification extends Component {
     super(props);
     this.state = {
       notifications: this.props.notifications,
+      auth: this.props.auth,
       home: this.props.home,
       notification: this.props.notification,
     };
@@ -151,6 +149,7 @@ class Notification extends Component {
       notifications: nextProps.notifications,
       home: nextProps.home,
       notification: nextProps.notification,
+      auth: nextProps.auth,
     }));
   }
 
@@ -191,7 +190,6 @@ class Notification extends Component {
   render() {
     return (
       <NotificationDiv>
-        <H2 center>Notifications</H2>
         <Span notification={this.state.notification}>
           {this.state.notification && (
             <Wrapper w="700px">
@@ -212,6 +210,7 @@ class Notification extends Component {
                   <FlexItemModded
                     notification={this.state.notification}
                     key={_id}
+                    home={this.state.home}
                   >
                     {this.state.home && (
                       <NotificationItem
@@ -229,6 +228,8 @@ class Notification extends Component {
                         tags={tags}
                         link={link}
                         file={file}
+                        _id={_id}
+                        auth={this.state.auth}
                       />
                     )}
                   </FlexItemModded>
@@ -245,6 +246,7 @@ class Notification extends Component {
 
 const mapStateToProps = (state) => ({
   notifications: latestSort(state.notifications),
+  auth: state.auth.admin,
 });
 
 const mapDispatchToProps = (dispatch) => ({
