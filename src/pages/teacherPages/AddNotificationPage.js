@@ -7,11 +7,17 @@ import { startAddNotification } from './../../actions/teacherSecondary';
 import NotificationForm from './../../components/TeacherDashBoard/NotificationForm';
 
 // eslint-disable-next-line
-import { Page } from 'theme/Components';
+import { Page, H2 } from 'theme/Components';
+
+const H3 = H2.extend`
+font-size: 1.3;
+text-align: center;
+padding: 15px;
+`;
 
 const AddNotificationPage = ({ addNotification, history }) => (
   <Page>
-    <h2>Add Notification</h2>
+    <H3>Add Notifications</H3>
     <NotificationForm onSubmit={addNotification} history={history} />
   </Page>
 );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 // Components
 import WorkForm from './../../components/TeacherDashBoard/WorkForm';
@@ -13,11 +14,18 @@ import {
 // eslint-disable-next-line
 import { Page } from 'theme/Components';
 
+const Title = styled.h4`
+  padding: 16px;
+  margin: 50px 0px;
+  font-size: 20px;
+  font-family: 'Noto Serif', serif;
+  text-align: center;
+  `;
 const EditWork = ({ editWork, removeWork, history, work }) => (
   <Page>
-    <h2> Edit Work </h2>
+    <Title> Edit Work </Title>
     {work ? (
-      <WorkForm
+      <WorkForm 
         onSubmit={editWork}
         remove={removeWork}
         history={history}

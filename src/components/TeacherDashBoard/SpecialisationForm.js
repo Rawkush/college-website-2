@@ -1,21 +1,46 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Field } from 'formik';
+import styled from 'styled-components';
+
+import { StyledForm, FormError, } from './../../theme/Components';
+
+const Label = styled.span`
+font-family: 'Alegreya Sans', serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+`;
+const Container = styled.div`
+  width: 60%;
+  max-width: 1170px;
+  margin: 0 auto;
+`;
+const StyledForms = StyledForm.extend`
+> input {
+  margin: 5px;
+  width: 100%;
+}
+> label {
+  text-align: left;
+}
+`
 
 const SpecialisationForm = ({ isSubmitting, errors }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
+  <Container>
+  <StyledForms>
+    {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="title">
-      Specialisations:
-      <Field type="text" name="sp1" placeholder="any" />
-      <Field type="text" name="sp2" placeholder="any" />
-      <Field type="text" name="sp3" placeholder="any" />
-      <Field type="text" name="sp4" placeholder="any" />
-      <Field type="text" name="sp5" placeholder="any" />
+      <Label> Specialisations: </Label>
     </label>
+    <Field type="text" id="title" name="sp1" placeholder="any" />
+    <Field type="text" id="title" name="sp2" placeholder="any" />
+    <Field type="text" id="title" name="sp3" placeholder="any" />
+    <Field type="text" id="title" name="sp4" placeholder="any" />
+    <Field type="text" id="title" name="sp5" placeholder="any" /> <br />
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-  </Form>
+  </StyledForms>
+  </Container>
 );
 
 const FormikSpecialisationForm = withFormik({

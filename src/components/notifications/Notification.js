@@ -89,6 +89,11 @@ const Span = styled.div`
   padding: ${({ notification }) => (notification ? '15px 10px' : 'auto')};
 `;
 
+const Flexed = Flex.extend`
+width: 80%;
+margin: 0 auto;
+`
+
 const TextFilterComponent = ({ changeHandler }) => (
   <Input type="text" onChange={(e) => changeHandler(e)} placeholder="search" />
 );

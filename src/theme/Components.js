@@ -241,6 +241,8 @@ const BorderWrapper = styled.div`
 const FormError = styled.p`
   color: red;
   font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
 `;
 
 const FlexHorizontal = styled.div`

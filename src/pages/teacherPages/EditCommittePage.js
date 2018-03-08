@@ -11,7 +11,14 @@ import {
 } from './../../actions/teacherSecondary';
 
 // eslint-disable-next-line
-import { Page } from 'theme/Components';
+import { Page,H2 } from 'theme/Components';
+
+const H3 = H2.extend`
+font-size: 1.3;
+text-align: center;
+padding: 15px;
+`;
+
 
 const EditCommitte = ({
   editCommittee,
@@ -20,7 +27,7 @@ const EditCommitte = ({
   committee,
 }) => (
   <Page>
-    <h2> Edit Committe </h2>
+    <H3> Edit Committe </H3>
     {committee ? (
       <CommitteeForm
         onSubmit={editCommittee}

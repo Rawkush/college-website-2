@@ -1,21 +1,63 @@
 import React from 'react';
 import { withFormik, Form, Field } from 'formik';
+import media from 'theme/media';
+
+import { StyledForm, FormError, H2, } from 'theme/Components';
+
+import styled from 'styled-components';
+
+const Label = styled.span`
+font-family: 'Alegreya Sans', serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+`;
+
+
+const StyledForms = StyledForm.extend`  
+> input {
+  margin: 5px;
+  width: 100%;
+}
+> label {
+  text-align: left;
+}
+> button {
+ display: flex;
+ ${
+   media.phone`
+   display: inline-block;
+   margin: 0 auto;
+   margin-top: 15px;
+   `
+ }
+
+}
+`
+const Container = styled.div`
+  width: 60%;
+  max-width: 1170px;
+  margin: 0 auto;
+  text-align: center;
+`;
 
 const EducationForm = ({ isSubmitting, errors }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
+  <Container>
+  <StyledForms>
+    {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="title">
-      Education:
-      <Field type="text" name="e1" placeholder="any" />
-      <Field type="text" name="e2" placeholder="any" />
-      <Field type="text" name="e3" placeholder="any" />
-      <Field type="text" name="e4" placeholder="any" />
-      <Field type="text" name="e5" placeholder="any" />
-    </label>
+    <Label>  Education: </Label>
+      </label>
+      <Field type="text" id="title" name="e1" placeholder="any" />
+      <Field type="text" id="title" name="e2" placeholder="any" />
+      <Field type="text" id="title" name="e3" placeholder="any" />
+      <Field type="text" id="title" name="e4" placeholder="any" />
+      <Field type="text" id="title" name="e5" placeholder="any" /> <br />
+    
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-  </Form>
+  </StyledForms>
+  </Container>
 );
 
 const FormikEducationForm = withFormik({
