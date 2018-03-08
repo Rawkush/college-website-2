@@ -1,34 +1,41 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Field } from 'formik';
 import Yup from 'yup';
+import { StyledForm, FromError } from 'theme/Components';
 
-const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
-  <Form>
-    {errors.error && <p>{errors.error}</p>}
-    <label htmlFor="username">
-      Username:
-      {touched.username && errors.username && <p>{errors.username}</p>}
-      <Field
-        type="text"
-        name="username"
-        placeholder="Enter the username name here..."
-        autoFocus
-      />
-    </label>
-    <label htmlFor="password">
-      Password:
-      {touched.password && errors.password && <p>{errors.password}</p>}
-      <Field type="password" name="password" placeholder="password" />
-    </label>
+const AdminLoginForm = ({ errors, /* touched, */ isSubmitting }) => (
+  <StyledForm>
+    {errors.error && <FromError>{errors.error}</FromError>}
+    <label htmlFor="username">Username: </label>
+    {/* {touched.username &&
+      errors.username && <FromError>{errors.username}</FromError>} */}
+    <Field
+      type="text"
+      name="username"
+      placeholder="Enter the username name here..."
+      autoFocus
+      id="username"
+    />
+
+    <label htmlFor="password">Password: </label>
+    {/* {touched.password &&
+      errors.password && <FromError>{errors.password}</FromError>} */}
+    <Field
+      type="password"
+      name="password"
+      placeholder="password"
+      id="password"
+    />
+
     <button disabled={!!isSubmitting}> Login </button>
-  </Form>
+  </StyledForm>
 );
 
-const FormikAdminLoginForm = withFormik({
-  mapPropsToValues() {
+export default withFormik({
+  mapPropsToValues({ username = '', password = '' } = {}) {
     return {
-      username: '',
-      password: '',
+      username,
+      password,
     };
   },
   validationSchema: Yup.object().shape({
@@ -49,5 +56,3 @@ const FormikAdminLoginForm = withFormik({
       });
   },
 })(AdminLoginForm);
-
-export default FormikAdminLoginForm;

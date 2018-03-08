@@ -60,7 +60,6 @@ const Download = Title.extend`
 const DownloadDiv = styled.div`
   text-align: left;
 `;
-
 const NotificationItem = ({
   title,
   tags,

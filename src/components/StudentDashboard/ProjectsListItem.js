@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ButtonLink, A, Flex } from 'theme/Components';
+import media from 'theme/media';
 import { WrapperEnd, HR } from './Shared.styles';
 
 const Description = styled.p`
@@ -28,13 +29,28 @@ const Wrapper1 = styled.div`
 const ImageFlex = Flex.extend`
   flex-wrap: wrap;
   max-width: 100%;
+  justify-content: center;
+  ${media.phone`
+    flex-direction: column;
+  `};
 `;
 
 const Image = styled.img`
-  display: block;
-  height: 0.25vh;
+  max-height: 250px;
   width: auto;
-  max-width: 25%;
+  max-width: 100%;
+  margin: 0 auto;
+  ${media.phone`
+    width: auto;
+    height: 30vh;
+  `};
+`;
+
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 10px 0px;
+  padding: 0px 10px;
 `;
 
 export default ({ title, description, link, _id, edit, photos = [] } = {}) => (
@@ -48,19 +64,29 @@ export default ({ title, description, link, _id, edit, photos = [] } = {}) => (
     </Wrapper1>
     <ImageFlex>
       {photos[0] && (
-        <Image src={`http://localhost:3000/${photos[0]}`} alt="project" />
+        <Div>
+          <Image src={`/${photos[0]}`} alt="project" />
+        </Div>
       )}
       {photos[1] && (
-        <Image src={`http://localhost:3000/${photos[1]}`} alt="project" />
+        <Div>
+          <Image src={`/${photos[1]}`} alt="project" />
+        </Div>
       )}
       {photos[2] && (
-        <Image src={`http://localhost:3000/${photos[2]}`} alt="project" />
+        <Div>
+          <Image src={`/${photos[2]}`} alt="project" />
+        </Div>
       )}
       {photos[3] && (
-        <Image src={`http://localhost:3000/${photos[3]}`} alt="project" />
+        <Div>
+          <Image src={`/${photos[3]}`} alt="project" />
+        </Div>
       )}
       {photos[4] && (
-        <Image src={`http://localhost:3000/${photos[4]}`} alt="project" />
+        <Div>
+          <Image src={`/${photos[4]}`} alt="project" />
+        </Div>
       )}
     </ImageFlex>
     <Description>{description}</Description>

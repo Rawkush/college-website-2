@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Page, Container, FormWrapper, H3 } from 'theme/Components';
 
 // Component
 import NotificationForm from './../../components/adminDashboard/NotificationForm';
@@ -10,9 +11,6 @@ import {
   startRemoveNotification,
 } from './../../actions/notifications';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
 const EditNotificationPage = ({
   notification,
   history,
@@ -20,16 +18,20 @@ const EditNotificationPage = ({
   deleteNotification,
 }) => (
   <div>
-    <h2>Edit Notifications</h2>
     {notification ? (
       <Page>
-        <NotificationForm
-          {...notification}
-          history={history}
-          onSubmit={editNotification}
-          deleteNotification={deleteNotification}
-          edit
-        />
+        <Container>
+          <FormWrapper>
+            <H3>Edit Notifications</H3>
+            <NotificationForm
+              {...notification}
+              history={history}
+              onSubmit={editNotification}
+              deleteNotification={deleteNotification}
+              edit
+            />
+          </FormWrapper>
+        </Container>
       </Page>
     ) : (
       <p>L</p>

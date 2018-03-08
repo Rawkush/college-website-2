@@ -14,6 +14,7 @@ const H2 = styled.h2`
   font-family: 'Noto Serif', serif;
   font-size: 1.6rem;
   font-weight: 400;
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
 `;
 
 const H3 = styled.h3`
@@ -21,6 +22,15 @@ const H3 = styled.h3`
   font-size: 1.4rem;
   font-weight: 400;
   margin: ${({ margin }) => margin || '0px'};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
+`;
+
+const H4 = styled.h4`
+  font-family: 'Alegreya Sans', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: ${({ margin }) => margin || '0px'};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
 `;
 
 const Container = styled.div`
@@ -44,6 +54,7 @@ const Button = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.22);
   flex-grow: 1;
   transition: all 0.1s;
+  width: ${({ w }) => w || 'auto'};
   &:hover {
     background: #fff;
     cursor: pointer;
@@ -59,6 +70,7 @@ const Button = styled.button`
 
 const Flex = styled.div`
   display: flex;
+  justify-content: ${({ end }) => (end ? 'flex-end' : 'flex-start')};
 `;
 
 const FlexCenter = styled.div`
@@ -87,7 +99,7 @@ const Page = styled.div`
   padding-bottom: ${(props) => (props.pb ? props.pb : 0)};
   padding: ${(props) => (props.p ? props.p : 0)};
   ${media.phone`
-    margin-top: ${(props) => (props.mt ? props.mt : '68px')};    
+    margin-top: ${(props) => (props.mt ? props.mt : '90px')};    
   `};
   min-height: calc(100vh - 93px);
 `;
@@ -96,7 +108,7 @@ const A = styled.a`
   color: ${red};
   text-decoration: none;
   font-family: 'Alegreya Sans', sans-serif;
-  padding: 1px 1px 3px 1px;
+  padding: ${({ padding }) => padding || '1px 1px 3px 1px'};
   margin: 5px 0px 0px 7px;
   display: inline-block;
   transition: color 0.02s cubic-bezier(0.4, 0.18, 0.76, 0.34);
@@ -122,6 +134,7 @@ const A = styled.a`
 `;
 
 const ButtonLink = styled(Link)`
+  margin: ${({ m }) => m || '0px'};
   right: 0;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.8);
@@ -157,6 +170,7 @@ const StyledForm = styled(Form)`
     border: solid 1px rgba(0, 0, 0, 0.27);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     line-height: 1.5;
+    margin-top: ${({ mtop }) => mtop || '0px'};
     &:focus {
       border: solid 1px red;
       box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
@@ -195,6 +209,9 @@ const StyledForm = styled(Form)`
       color: white;
       background: rgba(179, 0, 0, 0.7);
     }
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 `;
 
@@ -204,8 +221,21 @@ const FormWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const GiveHeight = styled.div`
-  min-height: 450px;
+const Wrapper = styled.div`
+  width: 100%;
+  max-width: ${({ w }) => w || '500px'};
+  margin: ${({ m }) => m || '0px auto'};
+`;
+
+const BorderWrapper = styled.div`
+  width: 100%;
+  max-width: ${({ w }) => w || '500px'};
+  margin: ${({ m }) => m || '0px auto'};
+  padding: ${({ p }) => p || '0px'};
+  border: ${({ bor }) => bor || '1px solid #ddd'};
+  overflow-x: ${({ oflowx }) => oflowx || 'none'};
+  overflow-y: ${({ oflowy }) => oflowy || 'none'};
+  height: ${({ h }) => h || 'auto'};
 `;
 
 const FormError = styled.p`
@@ -215,20 +245,71 @@ const FormError = styled.p`
   font-weight: 300;
 `;
 
+const FlexHorizontal = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+`;
+
+const AlignCenter = styled.div`
+  text-align: center;
+  margin: ${({ m }) => m || '0 px'};
+`;
+
+const HR = styled.hr`
+  width: ${({ w }) => w || '50vw'};
+  margin: ${({ m }) => m || '0 auto'};
+  opacity: ${({ opa }) => opa || '1'};
+`;
+
+const FlexResponsiveStack = Flex.extend`
+  ${media.phone`
+    flex-direction: column;
+  `};
+`;
+
+const SVG = styled.svg`
+  height: ${({ height }) => height || '45px'};
+  padding: ${({ padding }) => padding || '0px'};
+  width: auto;
+  border-radius: ${({ circle }) => circle || '0px'};
+  background: ${({ bg }) => bg || 'none'};
+  box-shadow: ${({ bs }) => bs || 'none'};
+  fill: ${({ fill }) => fill || 'auto'};
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: ${({ hovBs }) => hovBs || 'auto'};
+  }
+`;
+
+const FlexEnd = Flex.extend`
+  justify-content: flex-end;
+  width: 100%;
+`;
+
 export {
   H1,
   H2,
   H3,
+  H4,
   A,
+  HR,
   Container,
   Button,
   Flex,
   FlexCenter,
   FlexItem,
+  FlexEnd,
   Page,
   ButtonLink,
   StyledForm,
   FormWrapper,
   FormError,
-  GiveHeight,
+  FlexHorizontal,
+  AlignCenter,
+  FlexResponsiveStack,
+  Wrapper,
+  BorderWrapper,
+  SVG,
 };

@@ -20,6 +20,7 @@ function toJSON() {
     'bio',
     'photo',
     'linkedProfiles',
+    'currentPosition',
   ]);
 }
 
@@ -66,9 +67,10 @@ function decodeProviderAndId(token) {
 
 function checkPassword(next) {
   const user = this;
+  const { password } = user;
   if (user.isModified('password')) {
     bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(user.password, salt, (error, hash) => {
+      bcrypt.hash(password, salt, (error, hash) => {
         user.password = hash;
         next();
       });
@@ -76,6 +78,26 @@ function checkPassword(next) {
   } else {
     next();
   }
+}
+
+function checkPassword2(next) {
+  const user = this;
+  const { password } = this.getUpdate().$set;
+  if (!password) {
+    next();
+    return;
+  }
+  bcrypt.genSalt(10, (err, salt) =>
+    bcrypt.hash(password, salt, (error, hash) => {
+      user.update(
+        {},
+        {
+          $set: { password: hash },
+        }
+      );
+      next();
+    })
+  );
 }
 
 function checkPasswordStonger(next) {
@@ -232,6 +254,7 @@ module.exports = {
   decodeProviderAndId,
   findByCredentials,
   checkPassword,
+  checkPassword2,
   checkPasswordStonger,
   removeToken,
   findByProviderAndId,
