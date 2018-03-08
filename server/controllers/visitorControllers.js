@@ -9,7 +9,7 @@ const { TimeTable } = require('./../models/timeTable');
 
 const {
   giveLatestThreeItem,
-  // giveUser,
+  findUser,
   giveAll,
   giveAllSecondary,
 } = require('./../utils/utils');
@@ -18,7 +18,8 @@ const {
 const giveLatestThreeNotifications = giveLatestThreeItem(Notifications);
 const giveAllNotifications = giveAll(Notifications);
 const giveLatestThreeEvents = giveLatestThreeItem(Event);
-// const giveStudent = giveUser(StudentPrimary);
+const findStudentByName = findUser(StudentPrimary, 'name');
+const findStudentByRollNo = findUser(StudentPrimary, 'rollNo');
 // const giveTeacher = giveUser(TeacherPrimary);
 const giveAllSyllabus = giveAll(Syllabus);
 const giveAllTimeTable = giveAll(TimeTable);
@@ -63,13 +64,13 @@ const getStudent = async (req, res) => {
 };
 
 const getTeacher = async (req, res) => {
-  const { slugg } = req.body;
-  try {
-    const teacher = await giveTeacher(slugg);
-    res.send(teacher);
-  } catch (error) {
-    res.send(`Something Went Wrong: ${error}`);
-  }
+  // const { slugg } = req.body;
+  // try {
+  //   const teacher = await giveTeacher(slugg);
+  //   res.send(teacher);
+  // } catch (error) {
+  //   res.send(`Something Went Wrong: ${error}`);
+  // }
 };
 
 const getSyllabus = async (req, res) => {
@@ -109,15 +110,25 @@ const getAllStudentSecondaryData = async (req, res) => {
   }
 };
 
-// const searchStudents = async (req, res) => {
-//   const { name } = req.body;
-//   try {
-//     const searchResults = await findStudents(name);
-//   } catch (error){
-//     res.status(401).send(`Some error happened: ${error}`);
+const searchStudentsByName = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const searchResults = await findStudentByName(name);
+    res.send(searchResults);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
 
-//   }
-// };
+const searchStudentsByRollNo = async (req, res) => {
+  const { rollNo } = req.body;
+  try {
+    const searchResults = await findStudentByRollNo(rollNo);
+    res.send(searchResults);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
 
 module.exports = {
   getLatestNotifications,
@@ -129,5 +140,6 @@ module.exports = {
   getTimeTable,
   getAllEvents,
   getAllStudentSecondaryData,
-  // searchStudents,
+  searchStudentsByName,
+  searchStudentsByRollNo,
 };

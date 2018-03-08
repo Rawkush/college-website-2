@@ -354,6 +354,17 @@ const pickAdmin = (req) => {
   return body;
 };
 
+const findUser = (Model, field) => async (searchField) => {
+  try {
+    const results = await Model.find({
+      [field]: new RegExp(searchField),
+    });
+    return results;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 module.exports = {
   pickBody,
   pickTeacher,
@@ -387,4 +398,5 @@ module.exports = {
   pickTeacherNotifications,
   pickCommittee,
   giveUserByName,
+  findUser,
 };
