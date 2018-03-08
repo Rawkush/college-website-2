@@ -25,7 +25,7 @@ const NotificationLink = styled(Link)`
   font-weight: 400;
   box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
-  box-shadow &:hover {
+  &:hover {
     color: white;
     background: rgba(43, 42, 42, 0.7);
     border: solid 2.4px rgba(43, 42, 42, 0.7);
