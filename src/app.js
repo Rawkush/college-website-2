@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 // Style related Imports
 import 'normalize.css/normalize.css';
 import './theme/globalStyles';
+import './styles/transition.css';
 
 // Configuring the store
 import configureStore from './store/configureStore';
