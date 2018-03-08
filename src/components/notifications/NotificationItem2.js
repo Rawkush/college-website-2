@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { red } from 'theme/variable';
 import { A as StyledA, HR, ButtonLink } from 'theme/Components';
 
+import TagMapper from './Utils';
+
 const NotificationDiv = styled.div`
   text-align: left;
 `;
@@ -48,7 +50,7 @@ const NotificationItem = ({
     </A>
     <div>
       <DateSpan>{moment(createdAt).format('DD MMM, YYYY')} | </DateSpan>
-      {tags.map((tag) => (
+      {TagMapper(tags).map((tag) => (
         <Tag key={tag}>
           {tag} <MiddleDot />
         </Tag>

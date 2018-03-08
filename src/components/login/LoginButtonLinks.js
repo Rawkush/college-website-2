@@ -16,6 +16,7 @@ const StyledA = styled.a`
   border-radius: 3px;
   &:hover {
     box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
   }
 `;
 

@@ -19,15 +19,18 @@ const NotificationLink = styled(Link)`
   padding: 10px 50px;
   color: rgba(0, 0, 0, 0.6);
   margin: 55px auto;
-  transition: all 0.15s ease-in-out;
   font-size: 20px;
   border-radius: 3px;
   border: solid 2.4px rgba(0, 0, 0, 0.5);
   font-weight: 400;
-  &:hover {
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  box-shadow &:hover {
     color: white;
     background: rgba(43, 42, 42, 0.7);
     border: solid 2.4px rgba(43, 42, 42, 0.7);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 11px rgba(0, 0, 0, 0.3);
   }
   ${media.phone`
     margin: 20px auto;    

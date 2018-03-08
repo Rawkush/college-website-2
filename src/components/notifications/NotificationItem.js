@@ -7,6 +7,7 @@ import { FlexCenter } from 'theme/Components';
 import media from 'theme/media';
 
 import DownloadIconSVG from './DownloadIconSVG';
+import TagMapper from './Utils';
 
 const NotificationDiv = styled.div`
   background-color: rgb(208, 208, 208);
@@ -31,8 +32,10 @@ const DateDiv = styled.div`
   display: inline-block;
   padding: 27px 6px 10px 6px;
   color: white;
+  border-radius: 3px;
   margin-top: -17%;
   margin-left: -63%;
+  box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const Span1 = styled.span`
@@ -115,7 +118,7 @@ const NotificationItem = ({
         <DownloadIconSVG />
       </Download>
       <Tags>
-        {tags.map((tag) => (
+        {TagMapper(tags).map((tag) => (
           <Tag key={tag}>
             {tag}
             {'  '}
