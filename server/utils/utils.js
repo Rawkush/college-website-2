@@ -336,6 +336,15 @@ const giveUserBySlugg = (Model) => async (slugg) => {
   }
 };
 
+const giveUserSecondary = (Model) => async ({ _id }) => {
+  try {
+    const secondary = await Model.findOne({ _creator: _id });
+    return secondary;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const giveUserByName = (Model) => async (name) => {
   try {
     const user = await Model.find({
@@ -357,9 +366,17 @@ const pickAdmin = (req) => {
 const findUser = (Model, field) => async (searchField) => {
   try {
     const results = await Model.find({
-      [field]: new RegExp(searchField),
+      [field]: new RegExp(searchField, 'i'),
     });
     return results;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const giveUser = (Model) => async (slugg) => {
+  try {
+    return await Model.findOne({ slugg });
   } catch (error) {
     throw new Error(error);
   }
@@ -389,6 +406,8 @@ module.exports = {
   pickEvent,
   pickSyllabus,
   pickTT,
+  giveUser,
+  giveUserSecondary,
   giveLatestThreeItem,
   giveUserBySlugg,
   giveAll,

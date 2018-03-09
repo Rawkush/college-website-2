@@ -15,7 +15,7 @@ const Span = styled.div`
 const FlexCenterNav = FlexCenter.extend`
   height: 100%;
   transition: all 0.1s ease;
-  &: hover {
+  &:hover {
     color: ${red};
     transform: scale(1.3);
   }
@@ -34,6 +34,13 @@ export default ({ click }) => (
       <Link to="/someexternallink" onClick={click}>
         <FlexCenterNav>
           <Span>SBI Collect</Span>
+        </FlexCenterNav>
+      </Link>
+    </NavItemFlex>
+    <NavItemFlex>
+      <Link to="/search" onClick={click}>
+        <FlexCenterNav>
+          <Span>Search Profiles</Span>
         </FlexCenterNav>
       </Link>
     </NavItemFlex>

@@ -13,6 +13,8 @@ import NotFound from 'components/notFound/NotFound';
 import HomePage from 'pages/publicPages/HomePage';
 import NotificationPage from 'pages/publicPages/NotificationPage';
 import StudentLoginPage from 'pages/publicPages/StudentLoginPage';
+import SearchPage from 'pages/publicPages/SearchPage';
+import ProfilePage from 'pages/publicPages/ProfilePage';
 
 // Pages
 import AddSyllabusPage from 'pages/adminPages/AddSyllabusPage';
@@ -97,6 +99,7 @@ const AppRouter = () => (
                 <Route path="/timetable/:semester" component={TimeTablePage} />
                 <Route path="/events" component={EventsOptionPage} exact />
                 <Route path="/events/:type" component={EventsPage} exact />
+                <Route path="/search" component={SearchPage} />
                 <AdminRoute
                   path="/admin/dashboard"
                   component={AdminDashboardPage}
@@ -207,6 +210,7 @@ const AppRouter = () => (
                   component={StudentNotificationPage}
                   exact
                 />
+                <Route path="/student/:slugg" component={ProfilePage} />
                 <Route
                   path="/teacher/register"
                   component={TeacherRegistrationPage}

@@ -3,15 +3,16 @@ const { Event } = require('./../models//events');
 const { Notifications } = require('./../models/notification');
 const { StudentPrimary } = require('./../models/studentPrimary');
 const { StudentSecondry } = require('./../models/studentsSecondry');
-const { TeacherPrimary } = require('./../models/teacherPrimary');
+// const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { Syllabus } = require('./../models/syllabus');
 const { TimeTable } = require('./../models/timeTable');
 
 const {
   giveLatestThreeItem,
   findUser,
+  giveUser,
   giveAll,
-  giveAllSecondary,
+  giveUserSecondary,
 } = require('./../utils/utils');
 
 // Initializing the Instances of Model
@@ -20,11 +21,11 @@ const giveAllNotifications = giveAll(Notifications);
 const giveLatestThreeEvents = giveLatestThreeItem(Event);
 const findStudentByName = findUser(StudentPrimary, 'name');
 const findStudentByRollNo = findUser(StudentPrimary, 'rollNo');
-// const giveTeacher = giveUser(TeacherPrimary);
+const giveStudent = giveUser(StudentPrimary);
 const giveAllSyllabus = giveAll(Syllabus);
 const giveAllTimeTable = giveAll(TimeTable);
 const giveAllEvents = giveAll(Event);
-const giveAllStudentSecondary = giveAllSecondary(StudentSecondry);
+const giveStudentSecondary = giveUserSecondary(StudentSecondry);
 
 const getLatestNotifications = async (req, res) => {
   try {
@@ -57,7 +58,9 @@ const getStudent = async (req, res) => {
   const { slugg } = req.body;
   try {
     const student = await giveStudent(slugg);
-    res.send(student);
+
+    const studentsSeconadry = await giveStudentSecondary(student.toJSON());
+    res.send({ ...student.toJSON(), ...studentsSeconadry.toJSON() });
   } catch (error) {
     res.send(`Something Went Wrong: ${error}`);
   }
@@ -100,15 +103,15 @@ const getAllEvents = async (req, res) => {
   }
 };
 
-const getAllStudentSecondaryData = async (req, res) => {
-  const { _creator } = req.body;
-  try {
-    const secondarydata = await giveAllStudentSecondary(_creator);
-    res.send(secondarydata);
-  } catch (error) {
-    res.status(401).send(`Some error happened: ${error}`);
-  }
-};
+// const getAllStudentSecondaryData = async (req, res) => {
+//   const { _creator } = req.body;
+//   try {
+//     const secondarydata = await giveAllStudentSecondary(_creator);
+//     res.send(secondarydata);
+//   } catch (error) {
+//     res.status(401).send(`Some error happened: ${error}`);
+//   }
+// };
 
 const searchStudentsByName = async (req, res) => {
   const { name } = req.body;
@@ -139,7 +142,6 @@ module.exports = {
   getSyllabus,
   getTimeTable,
   getAllEvents,
-  getAllStudentSecondaryData,
   searchStudentsByName,
   searchStudentsByRollNo,
 };

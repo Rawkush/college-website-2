@@ -151,7 +151,7 @@ const StudentProfilePage = ({
     <Container>
       {student ? (
         <div>
-          <SpecialisationList {...secondary} />
+          <SpecialisationList {...secondary} edit/>
           <AccomplishmentsList {...secondary} edit />
           <ProjectList {...secondary} edit />
           {/* <NotificationList {...secondary} markAsRead={markAsRead} /> */}
