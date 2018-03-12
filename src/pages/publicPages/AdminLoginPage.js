@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Page, Container, FormWrapper, H3 } from 'theme/Components';
+import { Page, Container, FormWrapper, H2ResAuto } from 'theme/Components';
 import FormikAdminLoginForm from 'components/adminLogin/AdminLoginForm';
 
 import { startAdminLogin } from './../../actions/auth';
@@ -10,7 +10,7 @@ const AdminLoginPage = ({ startLogin, history }) => (
     <Page>
       <Container>
         <FormWrapper>
-          <H3>Admin login page.</H3>
+          <H2ResAuto>Admin login page.</H2ResAuto>
           <FormikAdminLoginForm startLogin={startLogin} history={history} />
         </FormWrapper>
       </Container>

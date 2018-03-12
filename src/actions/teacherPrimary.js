@@ -45,19 +45,29 @@ export const startEditTeacher = ({
   gender = '',
   password = '',
   currentPosition = '',
+  photo,
 }) => (dispatch) => {
-  const data = {
-    name,
-    dateOfBirth,
-    gender,
-    currentPosition,
-    token: localStorage.getItem('teacherToken'),
-  };
+  console.log(gender);
+  console.log(photo);
+  const formdata = new FormData();
+  formdata.append('name', name);
+  formdata.append('dateOfBirth', dateOfBirth);
+  formdata.append('gender', gender);
+  formdata.append('currentPosition', currentPosition);
+  formdata.append('token', localStorage.getItem('teacherToken'));
   if (password) {
-    data.password = password;
+    formdata.append('password', password);
   }
-  return axios
-    .patch('/s/teacher/updateprofile', { ...data })
+  if (photo instanceof Blob) {
+    formdata.append('photo', photo);
+  }
+
+  return axios({
+    method: 'patch',
+    url: '/s/teacher/updateprofile',
+    data: formdata,
+    config: { headers: { 'Content-Type': 'multipart/form-data' } },
+  })
     .then((res) => {
       dispatch(setTeacher(res.data));
       return Promise.resolve();

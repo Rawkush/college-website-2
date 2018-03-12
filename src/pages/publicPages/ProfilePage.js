@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import Lightbox from 'react-images';
 
 //  Styled default components
 import { Page, Container } from 'theme/Components';
@@ -36,6 +37,7 @@ class StudentProfilePage extends Component {
       data: null,
       error: null,
       slugg: this.props.match.params.slugg,
+      lightboxIsOpen: false,
     };
   }
 
@@ -46,14 +48,36 @@ class StudentProfilePage extends Component {
       .catch((error) => this.setState(() => ({ error })));
   }
 
+  openImage = () => {
+    this.setState(() => ({ lightboxIsOpen: true }));
+  };
+
+  closeImage = () => {
+    this.setState(() => ({ lightboxIsOpen: false }));
+  };
+
   render() {
     return (
       <Page mt="68px">
         {this.state.error && <p>{this.state.error}</p>}
+        {this.state.data && (
+          <Lightbox
+            images={[
+              {
+                src: this.state.data.photo,
+              },
+            ]}
+            isOpen={this.state.lightboxIsOpen}
+            onClose={this.closeImage}
+          />
+        )}
         <Background>
           <Container>
             <Wrapper1>
-              <StudentPhoto {...this.state.data} />
+              <StudentPhoto
+                {...this.state.data}
+                clickHandler={this.openImage}
+              />
               <StudentPrimaryInfo {...this.state.data} />
             </Wrapper1>
             <LinksList {...this.state.data} />

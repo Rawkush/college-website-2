@@ -28,8 +28,10 @@ const pickTeacher = (req) => {
     'gender',
     'status',
     'currentPosition',
-    'photo',
   ]);
+  if (req.file) {
+    return { ...body, photo: req.file.path };
+  }
   return body;
 };
 
@@ -339,7 +341,10 @@ const giveUserBySlugg = (Model) => async (slugg) => {
 const giveUserSecondary = (Model) => async ({ _id }) => {
   try {
     const secondary = await Model.findOne({ _creator: _id });
-    return secondary;
+    if (!secondary) {
+      return {};
+    }
+    return secondary.toJSON();
   } catch (error) {
     throw new Error(error);
   }
@@ -376,7 +381,11 @@ const findUser = (Model, field) => async (searchField) => {
 
 const giveUser = (Model) => async (slugg) => {
   try {
-    return await Model.findOne({ slugg });
+    const student = await Model.findOne({ slugg });
+    if (!student) {
+      return {};
+    }
+    return student.toJSON();
   } catch (error) {
     throw new Error(error);
   }

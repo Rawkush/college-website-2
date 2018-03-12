@@ -23,6 +23,7 @@ const NavItemFlexResponsive = NavItemFlex.extend`
   &:hover {
     > img {
       transform: scale(1.1);
+      transform: translateY(-3px);
       box-shadow: 4px 3px 9px #00000075;
     }
   }

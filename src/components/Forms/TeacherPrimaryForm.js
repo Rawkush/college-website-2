@@ -1,22 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 import { withFormik, Field } from 'formik';
-
 import Yup from 'yup';
-import styled from 'styled-components';
+import { StyledForm, FormError } from 'theme/Components';
 
-import { StyledForm, FormError } from './../../theme/Components';
+//  Components
+import Image from './../TeacherDashBoard/Photo';
 
-const Label = styled.span`
-  font-family: 'Alegreya Sans', serif;
-  font-size: 1.3rem;
-  font-weight: 800;
-`;
-const Container = styled.div`
-  width: 60%;
-  max-width: 1170px;
-  margin: 0 auto;
-`;
 const StyledForms = StyledForm.extend`
   > input {
     margin: 5px;
@@ -26,109 +16,116 @@ const StyledForms = StyledForm.extend`
     text-align: left;
   }
 `;
-const H3 = styled.h3`
-  font-family: 'Alegreya Sans', serif;
-  font-size: 1.7rem;
-  text-align: center;
-  font-weight: 200;
-`;
-const TeacherRegistration = ({ values, errors, touched, isSubmitting }) => (
-  <Container>
-    <H3> Edit Primary </H3>
-    <StyledForms>
-      {errors.error && <FormError>{errors.error}</FormError>}
-      <label htmlFor="name">
-        <Label> Name: </Label>
-      </label>
-      {touched.name && errors.name && <FormError>{errors.name}</FormError>}
-      <Field
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Enter your name here..."
-      />
-      <label htmlFor="dateOfBirth">
-        <Label>Date of Birth: </Label>
-      </label>
-      {touched.dateOfBirth &&
-        errors.dateOfBirth && <FormError>{errors.dateOfBirth}</FormError>}
-      <Field
-        type="date"
-        id="dateOfBirth"
-        name="dateOfBirth"
-        placeholder="Date of Birth"
-      />
-      <label htmlFor="gender">
-        <Label>Gender: </Label>
-      </label>
-      {touched.gender &&
-        errors.gender && <FormError>{errors.gender}</FormError>}
-      <select name="gender">
-        <option value="Male"> Male </option>
-        <option value="Female"> Female </option>
-        <option value="Others"> Others </option>
-      </select>
-      {values.edit && (
-        <label htmlFor="currentPosition">
-          Current Position:
-          {touched.currentPosition &&
-            errors.currentPosition && <p>{errors.currentPosition}</p>}
-          <Field
-            type="text"
-            name="currentPosition"
-            placeholder="currentPosition"
-          />
-        </label>
-      )}
-      <label htmlFor="email">
-        <Label> Email: </Label>
-      </label>
-      {touched.email && errors.email && <FormError>{errors.email}</FormError>}
-      <Field type="email" name="email" placeholder="Email" />
 
-      <label htmlFor="password">
-        <Label> Password: </Label>
-      </label>
-      {touched.Password &&
-        errors.password && <FormError>{errors.password} </FormError>}
-      <Field type="password" name="password" placeholder="Password" />
-      <label htmlFor="confirmPassword">
-        <Label> Confirm Password: </Label>
-      </label>
-      {touched.confirmPassword &&
-        errors.confirmPassword &&
-          <FormError>{errors.confirmPassword} </FormError>
-        }
-      <Field
-        type="password"
-        name="confirmPassword"
-        placeholder="Confirm your password."
-      />
-      <button disabled={!!isSubmitting} type="submit">
-        Submit
-      </button>
-    </StyledForms>
-  </Container>
+const TeacherRegistration = ({
+  values,
+  errors,
+  touched,
+  isSubmitting,
+  setFieldValue,
+  handleChange,
+  handleBlur,
+}) => (
+  <StyledForms>
+    {values.photo && <Image photo={values.photo} />}
+    {errors.error && <FormError>{errors.error}</FormError>}
+    <label htmlFor="photo">Photo:</label>
+    {touched.photo && errors.photo && <FormError>{errors.photo}</FormError>}
+    <input
+      type="file"
+      id="photo"
+      name="photo"
+      onChange={(e) => {
+        setFieldValue('photo', e.currentTarget.files[0]);
+      }}
+    />
+    <label htmlFor="name">Name:</label>
+    {touched.name && errors.name && <FormError>{errors.name}</FormError>}
+    <Field
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Enter your name here..."
+    />
+    <label htmlFor="dateOfBirth">Date of Birth:</label>
+    {touched.dateOfBirth &&
+      errors.dateOfBirth && <FormError>{errors.dateOfBirth}</FormError>}
+    <Field
+      type="date"
+      id="dateOfBirth"
+      name="dateOfBirth"
+      placeholder="Date of Birth"
+    />
+    <label htmlFor="gender">Gender:</label>
+    {touched.gender && errors.gender && <FormError>{errors.gender}</FormError>}
+    <select
+      name="gender"
+      id="gender"
+      onChange={handleChange}
+      onBlur={handleBlur}
+      value={values.gender}
+    >
+      <option disabled> Select Your Gender</option>
+      <option value="male"> Male </option>
+      <option value="female"> Female </option>
+      <option value="others"> Others </option>
+    </select>
+    {values.edit && (
+      <StyledForm>
+        <label htmlFor="currentPosition">Current Position:</label>
+        {touched.currentPosition &&
+          errors.currentPosition && <p>{errors.currentPosition}</p>}
+        <Field
+          type="text"
+          name="currentPosition"
+          placeholder="currentPosition"
+        />
+      </StyledForm>
+    )}
+    <label htmlFor="email">Email:</label>
+    {touched.email && errors.email && <FormError>{errors.email}</FormError>}
+    <Field type="email" name="email" placeholder="Email" />
+
+    <label htmlFor="password">Password:</label>
+    {touched.Password &&
+      errors.password && <FormError>{errors.password} </FormError>}
+    <Field type="password" name="password" placeholder="Password" />
+    <label htmlFor="confirmPassword">Confirm Password:</label>
+    {touched.confirmPassword &&
+      errors.confirmPassword && (
+        <FormError>{errors.confirmPassword} </FormError>
+      )}
+    <Field
+      type="password"
+      name="confirmPassword"
+      placeholder="Confirm your password."
+    />
+    <button disabled={!!isSubmitting} type="submit">
+      Submit
+    </button>
+  </StyledForms>
 );
 
 const FormikTeacherRegistration = withFormik({
   mapPropsToValues({
-    name,
-    email,
-    dateOfBirth,
-    gender,
-    currentPosition,
-    edit,
+    name = '',
+    email = '',
+    photo = '',
+    dateOfBirth = '',
+    gender = '',
+    currentPosition = '',
+    edit = '',
   } = {}) {
     return {
-      name: name || '',
-      email: email || '',
+      name,
+      email,
+      photo,
       dateOfBirth: dateOfBirth ? moment(dateOfBirth).format('YYYY-MM-DD') : '',
-      gender: gender || '',
-      currentPosition: currentPosition || '',
+      gender,
+      currentPosition,
       password: '',
       confirmPassword: '',
-      edit: edit || '',
+      edit,
     };
   },
   validationSchema: Yup.object().shape({

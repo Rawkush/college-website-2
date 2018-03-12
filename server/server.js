@@ -6,6 +6,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const cors = require('cors');
+const expressStaticGzip = require('express-static-gzip');
 
 //  Generated Imports
 const { adminRoutes } = require('./routes/adminRoutes');
@@ -38,6 +39,7 @@ app.use('/s/admin/', adminRoutes);
 app.use('/s/teacher/', teacherRoutes);
 app.use('/s/student/', studentRoutes);
 app.use('/s/visitor/', visitorRoutes);
+app.use('/', expressStaticGzip(path.join(__dirname, 'public/')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });

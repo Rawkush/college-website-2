@@ -59,8 +59,8 @@ const getStudent = async (req, res) => {
   try {
     const student = await giveStudent(slugg);
 
-    const studentsSeconadry = await giveStudentSecondary(student.toJSON());
-    res.send({ ...student.toJSON(), ...studentsSeconadry.toJSON() });
+    const studentsSeconadry = await giveStudentSecondary(student);
+    res.send({ ...student, ...studentsSeconadry });
   } catch (error) {
     res.send(`Something Went Wrong: ${error}`);
   }

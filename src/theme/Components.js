@@ -29,6 +29,17 @@ const H2Res = styled.h2`
   `};
 `;
 
+const H2ResAuto = styled.h2`
+  font-family: 'Noto Serif', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-align: ${({ left }) => (left ? 'left' : 'center')};
+  margin: ${({ margin }) => margin || '115px 0px 20px 0px'};
+  ${media.phone`
+    margin: ${({ marginRes }) => marginRes || '94px 0px 20px 0px'};
+  `};
+`;
+
 const H3 = styled.h3`
   font-family: 'Alegreya Sans', serif;
   font-size: 1.4rem;
@@ -235,8 +246,10 @@ const FormWrapper = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
+  text-align: ${({ center }) => (center ? 'center' : 'auto')};
   max-width: ${({ w }) => w || '500px'};
   margin: ${({ m }) => m || '0px auto'};
+  padding: ${({ padding }) => padding || 'auto'};
 `;
 
 const BorderWrapper = styled.div`
@@ -326,4 +339,5 @@ export {
   Wrapper,
   BorderWrapper,
   SVG,
+  H2ResAuto,
 };

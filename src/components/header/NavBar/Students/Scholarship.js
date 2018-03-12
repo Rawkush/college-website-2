@@ -29,6 +29,8 @@ const HoverDiv = styled.div`
     color: ${red};
     > img {
       transform: scale(1.1);
+      transform: translateY(-3px);
+      box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
     }
   }
 `;

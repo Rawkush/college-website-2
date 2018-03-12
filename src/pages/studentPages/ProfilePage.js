@@ -45,6 +45,9 @@ const Wrapper2 = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 50px;
+  ${media.phone`
+    padding: 30px 0px;
+  `};
 `;
 
 const Button = styled.button`
@@ -151,7 +154,7 @@ const StudentProfilePage = ({
     <Container>
       {student ? (
         <div>
-          <SpecialisationList {...secondary} edit/>
+          <SpecialisationList {...secondary} edit />
           <AccomplishmentsList {...secondary} edit />
           <ProjectList {...secondary} edit />
           {/* <NotificationList {...secondary} markAsRead={markAsRead} /> */}
