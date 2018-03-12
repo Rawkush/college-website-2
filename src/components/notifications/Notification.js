@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 //  Styled-Components
-import { Flex, FlexItem, Wrapper, H2 } from 'theme/Components';
+import { Flex, FlexItem, Wrapper } from 'theme/Components';
 import media from 'theme/media';
 
 //  Actions
@@ -243,6 +243,9 @@ class Notification extends Component {
     );
   }
 }
+
+const notificationsComp = (notifications) =>
+  notifications.map(({ read, _id, _ref }) => ({ read, ..._ref, _id }));
 
 const mapStateToProps = (state) => ({
   notifications: latestSort(state.notifications),

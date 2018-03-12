@@ -10,10 +10,7 @@ import { red } from 'theme/variable';
 
 //  Actions
 import { startStudentLogout } from './../../actions/studentPrimary';
-import {
-  startMarkNotificationAsRead as startMarkAsRead,
-  setStudentSecondary,
-} from './../../actions/studentSecondary';
+import { setStudentSecondary } from './../../actions/studentSecondary';
 
 import { WrapperEnd } from './../../components/StudentDashboard/Shared.styles';
 
@@ -113,13 +110,10 @@ const Num = styled.div`
   transition: all 0.2s ease;
 `;
 
-const StudentProfilePage = ({
-  student,
-  secondary,
-  // markAsRead,
-  logout,
-  history,
-}) => (
+const calculateNotifications = ({ notifications }) =>
+  notifications.filter((notification) => notification.read === false).length;
+
+const StudentProfilePage = ({ student, secondary, logout, history }) => (
   <Page mt="68px">
     <Background>
       <Container>
@@ -129,7 +123,7 @@ const StudentProfilePage = ({
           <FlexBell>
             <Link to="/student/notification">
               <HoverDiv>
-                <Num>5</Num>
+                <Num>{calculateNotifications({ ...secondary })}</Num>
                 <BellIconSVG />
               </HoverDiv>
             </Link>
@@ -180,7 +174,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  markAsRead: (_id) => dispatch(startMarkAsRead(_id)),
   logout: () => dispatch(startStudentLogout()),
 });
 

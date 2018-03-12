@@ -4,7 +4,7 @@ import React from 'react';
 import { Page, Container, H2Res } from './../../theme/Components';
 
 // Defined components import
-import Notification from './../../components/notifications/Notification';
+import Notification from './../../components/StudentDashboard/Notification';
 
 const NotificationPage = () => (
   <Page>
