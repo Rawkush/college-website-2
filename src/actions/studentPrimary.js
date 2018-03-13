@@ -1,5 +1,35 @@
 import axios from 'axios';
 
+export const studentlogin = () => ({
+  type: 'STUDENT_LOGIN',
+});
+
+export const startStudentLogin = (token) => (dispatch) =>
+  axios
+    .post('/s/student/login', { token })
+    .then((res) => {
+      localStorage.setItem('studentToken', res.data.token);
+      dispatch(studentlogin());
+      return Promise.resolve('success');
+    })
+    .catch((err) => Promise.reject(err));
+
+export const studentLogout = () => ({
+  type: 'STUDENT_LOGOUT',
+});
+
+export const startStudentLogout = () => (dispatch) =>
+  axios
+    .post('/s/student/logout', {
+      token: localStorage.getItem('studentToken'),
+    })
+    .then(() => {
+      localStorage.removeItem('studentToken');
+      dispatch(studentLogout());
+      return Promise.resolve();
+    })
+    .catch(() => Promise.reject());
+
 export const addstudent = (student) => ({
   type: 'ADD_STUDENT',
   student,
@@ -119,36 +149,8 @@ export const startRemoveStudent = () => (dispatch) =>
   })
     .then(() => {
       dispatch(removeStudent());
-      return Promise.resolve();
-    })
-    .catch((err) => Promise.reject(err));
-
-export const studentlogin = () => ({
-  type: 'STUDENT_LOGIN',
-});
-
-export const startStudentLogin = (token) => (dispatch) =>
-  axios
-    .post('/s/student/login', { token })
-    .then((res) => {
-      localStorage.setItem('studentToken', res.data.token);
-      dispatch(studentlogin());
-      return Promise.resolve('success');
-    })
-    .catch((err) => Promise.reject(err));
-
-export const studentLogout = () => ({
-  type: 'STUDENT_LOGOUT',
-});
-
-export const startStudentLogout = () => (dispatch) =>
-  axios
-    .post('/s/student/logout', {
-      token: localStorage.getItem('studentToken'),
-    })
-    .then(() => {
       localStorage.removeItem('studentToken');
-      dispatch(studentLogout());
+      studentLogout();
       return Promise.resolve();
     })
-    .catch(() => Promise.reject());
+    .catch((err) => Promise.reject(err));

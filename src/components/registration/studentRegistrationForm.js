@@ -358,8 +358,8 @@ const StudentRegistration = ({
             values
               .onRemove()
               .then(() => values.history.push('/'))
-              .catch(() => {
-                setErrors({ error: 'Cannot Delete' });
+              .catch((err) => {
+                setErrors({ error: `Cannot Delete ${err}` });
               });
           }}
         >
@@ -447,6 +447,7 @@ const FormikStudentRegistration = withFormik({
       .then(() => props.setPrimary())
       .then(() => props.setSecondary())
       .then(() => {
+        props.login();
         setSubmitting(false);
         props.history.push('/student/myprofile');
       })
