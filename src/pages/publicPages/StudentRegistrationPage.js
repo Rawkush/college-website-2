@@ -7,7 +7,13 @@ import jwt from 'jsonwebtoken';
 import FormikStudentRegistrationForm from './../../components/registration/studentRegistrationForm';
 
 // Actions
-import { startAddStudent } from './../../actions/studentPrimary';
+import {
+  startAddStudent,
+  startStudentLogin,
+  startSetStudent,
+} from './../../actions/studentPrimary';
+
+import { startSetStudentSecondary } from './../../actions/studentSecondary';
 
 // eslint-disable-next-line
 import { Page, Container, H2ResAuto } from 'theme/Components';
@@ -19,7 +25,13 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const StudentRegistrationPage = ({ addStudent, history }) => {
+const StudentRegistrationPage = ({
+  addStudent,
+  history,
+  login,
+  setPrimary,
+  setSecondary,
+}) => {
   function getCookieValue(cname) {
     const name = `${cname}=`;
     const decodedCookie = decodeURIComponent(document.cookie);
@@ -51,6 +63,9 @@ const StudentRegistrationPage = ({ addStudent, history }) => {
             token={data.token}
             onSubmit={addStudent}
             history={history}
+            login={login}
+            setPrimary={setPrimary}
+            setSecondary={setSecondary}
           />
         </Wrapper>
       </Container>
@@ -64,6 +79,9 @@ const StudentRegistrationPage = ({ addStudent, history }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   addStudent: (data) => dispatch(startAddStudent(data)),
+  login: (data) => dispatch(startStudentLogin(data)),
+  setPrimary: () => dispatch(startSetStudent()),
+  setSecondary: () => dispatch(startSetStudentSecondary()),
 });
 
 export default connect(undefined, mapDispatchToProps)(StudentRegistrationPage);

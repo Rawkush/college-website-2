@@ -444,6 +444,8 @@ const FormikStudentRegistration = withFormik({
     };
     props
       .onSubmit(data)
+      .then(() => props.setPrimary())
+      .then(() => props.setSecondary())
       .then(() => {
         setSubmitting(false);
         props.history.push('/student/myprofile');
