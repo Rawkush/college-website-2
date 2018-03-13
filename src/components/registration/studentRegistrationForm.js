@@ -463,7 +463,10 @@ const FormikStudentRegistration = withFormik({
         return Promise.resolve();
       })
       .then(() => {
-        if (!props.edit) return props.login();
+        if (!props.edit) {
+          props.login();
+          return props.history.push('/student/myprofile');
+        }
         setSubmitting(false);
         return props.history.push('/student/myprofile');
       })
