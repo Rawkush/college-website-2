@@ -148,9 +148,8 @@ export const startRemoveStudent = () => (dispatch) =>
     },
   })
     .then(() => {
-      dispatch(removeStudent());
       localStorage.removeItem('studentToken');
-      studentLogout();
+      dispatch(removeStudent());
       return Promise.resolve();
     })
     .catch((err) => Promise.reject(err));

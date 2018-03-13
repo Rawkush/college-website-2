@@ -357,7 +357,11 @@ const StudentRegistration = ({
           onClick={() => {
             values
               .onRemove()
-              .then(() => values.history.push('/'))
+              .then(() => {
+                values.history.push('/');
+                values.logout();
+                values.setSecondary();
+              })
               .catch((err) => {
                 setErrors({ error: `Cannot Delete ${err}` });
               });
@@ -384,6 +388,9 @@ const FormikStudentRegistration = withFormik({
     admittedIn = '',
     linkedProfiles = [],
     onRemove = '',
+    history = '',
+    logout = '',
+    setSecondary = '',
   } = {}) {
     const profile0 = linkedProfiles[0] ? linkedProfiles[0].provider : '';
     const url0 = linkedProfiles[0] ? linkedProfiles[0].url : '';
@@ -418,6 +425,9 @@ const FormikStudentRegistration = withFormik({
       profile4,
       url4,
       onRemove: onRemove || '',
+      history,
+      logout,
+      setSecondary,
     };
   },
   validationSchema: Yup.object().shape({
@@ -444,12 +454,18 @@ const FormikStudentRegistration = withFormik({
     };
     props
       .onSubmit(data)
-      .then(() => props.setPrimary())
-      .then(() => props.setSecondary())
       .then(() => {
-        props.login();
+        if (!props.edit) return props.setPrimary();
+        return Promise.resolve();
+      })
+      .then(() => {
+        if (!props.edit) return props.setSecondary();
+        return Promise.resolve();
+      })
+      .then(() => {
+        if (!props.edit) return props.login();
         setSubmitting(false);
-        props.history.push('/student/myprofile');
+        return props.history.push('/student/myprofile');
       })
       .catch((err) => {
         setErrors({ error: `Something Went wrong ${err}` });

@@ -10,7 +10,10 @@ import FormikStudentRegistrationForm from './../../components/registration/stude
 import {
   startEditStudent,
   startRemoveStudent,
+  studentLogout,
 } from './../../actions/studentPrimary';
+
+import { setStudentSecondary } from './../../actions/studentSecondary';
 
 //  Styled Components
 const Wrapper = styled.div`
@@ -22,6 +25,8 @@ const Wrapper = styled.div`
 const StudentEditProfilePage = ({
   student,
   editStudent,
+  logout,
+  setSecondary,
   deleteStudent,
   history,
 }) => (
@@ -34,6 +39,8 @@ const StudentEditProfilePage = ({
             edit
             {...student}
             onSubmit={editStudent}
+            logout={logout}
+            setSecondary={setSecondary}
             onRemove={deleteStudent}
             history={history}
           />
@@ -49,6 +56,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   editStudent: (data) => dispatch(startEditStudent(data)),
+  logout: () => dispatch(studentLogout()),
+  setSecondary: () => dispatch(setStudentSecondary({})),
   deleteStudent: () => dispatch(startRemoveStudent()),
 });
 
