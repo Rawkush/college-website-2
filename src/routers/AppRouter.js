@@ -23,7 +23,6 @@ import AdminLoginPage from 'pages/publicPages/AdminLoginPage';
 import AdminDashboardPage from 'pages/adminPages/AdminDashboardPage';
 import EditNotificationPage from 'pages/adminPages/EditNotificaitonPage';
 import AddNotificationPage from 'pages/adminPages/AddNotificationPage';
-import AdminSyllabusPage from 'pages/adminPages/AdminSyllabusPage';
 import EditSyllabusPage from 'pages/adminPages/EditSyllabusPage';
 import AdminTimeTablePage from 'pages/adminPages/AdminTimeTablePage';
 import AddTimeTablePage from 'pages/adminPages/AddTimeTablePage';
@@ -53,7 +52,6 @@ import UpdateSpecialisationPage from './../pages/studentPages/AddSpecialisationP
 import StudentNotificationPage from './../pages/studentPages/StudentNotificationPage';
 
 // Teachers Page
-// import TeacherRegistrationPage from './../pages/publicPages/TeacherRegistrationPage';
 import AddTeacherNotificationPage from './../pages/teacherPages/AddNotificationPage';
 import LoginPage from './../pages/publicPages/LoginPage';
 import TeacherProfilePage from './../pages/teacherPages/ProfilePage';
@@ -129,11 +127,6 @@ const AppRouter = () => (
                     <AdminRoute
                       path="/admin/teacher"
                       component={TeacherListPage}
-                      exact
-                    />
-                    <AdminRoute
-                      path="/admin/syllabus"
-                      component={AdminSyllabusPage}
                       exact
                     />
                     <AdminRoute

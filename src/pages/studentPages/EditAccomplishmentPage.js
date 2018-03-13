@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Page, Container, FormWrapper, H3 } from 'theme/Components';
+import { Page, Container, FormWrapper, H2ResAuto } from 'theme/Components';
 
 // Components
 import AccomplishmentForm from './../../components/StudentDashboard/AccomplishmentForm';
@@ -20,7 +20,7 @@ const EditAccomplishment = ({
   <Page>
     <Container>
       <FormWrapper>
-        <H3>Edit Accomplishment</H3>
+        <H2ResAuto>Edit Accomplishment</H2ResAuto>
         {accomplishment ? (
           <AccomplishmentForm
             onSubmit={editAccomplishment}

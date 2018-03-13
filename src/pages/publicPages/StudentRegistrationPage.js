@@ -10,7 +10,7 @@ import FormikStudentRegistrationForm from './../../components/registration/stude
 import { startAddStudent } from './../../actions/studentPrimary';
 
 // eslint-disable-next-line
-import { Page, Container, H3 } from 'theme/Components';
+import { Page, Container, H2ResAuto } from 'theme/Components';
 
 //  Styled Components
 const Wrapper = styled.div`
@@ -45,7 +45,7 @@ const StudentRegistrationPage = ({ addStudent, history }) => {
     <Page>
       <Container>
         <Wrapper>
-          <H3>Student Registration </H3>
+          <H2ResAuto>Student Registration </H2ResAuto>
           <FormikStudentRegistrationForm
             {...data.userData}
             token={data.token}

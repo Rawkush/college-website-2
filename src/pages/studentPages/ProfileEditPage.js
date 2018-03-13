@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { Page, Container, H2ResAuto } from 'theme/Components';
 
 // Component
 import FormikStudentRegistrationForm from './../../components/registration/studentRegistrationForm';
-
-// eslint-disable-next-line
-import { Page, Container, H3 } from 'theme/Components';
 
 // Actions
 import {
@@ -31,7 +29,7 @@ const StudentEditProfilePage = ({
     <Page>
       <Container>
         <Wrapper>
-          <H3>Edit Profile</H3>
+          <H2ResAuto>Edit Profile</H2ResAuto>
           <FormikStudentRegistrationForm
             edit
             {...student}

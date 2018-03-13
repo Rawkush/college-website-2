@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Page, Container, FormWrapper, H3 } from 'theme/Components';
+import { Page, Container, FormWrapper, H2ResAuto } from 'theme/Components';
 
 // Component
 import NotificationForm from './../../components/adminDashboard/NotificationForm';
@@ -22,7 +22,7 @@ const EditNotificationPage = ({
       <Page>
         <Container>
           <FormWrapper>
-            <H3>Edit Notifications</H3>
+            <H2ResAuto>Edit Notification</H2ResAuto>
             <NotificationForm
               {...notification}
               history={history}

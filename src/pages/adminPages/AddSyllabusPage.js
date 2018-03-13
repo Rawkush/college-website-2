@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Page, Container, FormWrapper, H3 } from 'theme/Components';
+import { Page, Container, FormWrapper, H2ResAuto } from 'theme/Components';
 
 // Actions
 import { startAddSyllabus } from './../../actions/syllabus';
@@ -12,7 +12,7 @@ const AddSyllabusPage = ({ addNotification, history }) => (
   <Page>
     <Container>
       <FormWrapper>
-        <H3>Add Syllabus</H3>
+        <H2ResAuto>Add Syllabus</H2ResAuto>
         <SyllabusForm history={history} onSubmit={addNotification} />
       </FormWrapper>
     </Container>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Page, Container, FormWrapper, H3 } from 'theme/Components';
+import { Page, Container, FormWrapper, H2ResAuto } from 'theme/Components';
 
 // Component
 import EventForm from './../../components/adminDashboard/EventForm';
@@ -14,7 +14,7 @@ const EditEventPage = ({ event, history, editEvent, deleteEvent }) => (
       <Page>
         <Container>
           <FormWrapper>
-            <H3>Edit Events</H3>
+            <H2ResAuto>Edit Events</H2ResAuto>
             <EventForm
               {...event}
               history={history}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Page, FormWrapper, Container, H3 } from 'theme/Components';
+import { Page, FormWrapper, Container, H2ResAuto } from 'theme/Components';
 
 // Component
 import SyllabusForm from './../../components/adminDashboard/SyllabusForm';
@@ -22,7 +22,7 @@ const EditSyllabusPage = ({
       <Page>
         <Container>
           <FormWrapper>
-            <H3>Edit Syllabus</H3>
+            <H2ResAuto>Edit Syllabus</H2ResAuto>
             <SyllabusForm
               {...syllabus}
               history={history}
