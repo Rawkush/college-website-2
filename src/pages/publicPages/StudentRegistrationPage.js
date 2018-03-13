@@ -8,8 +8,8 @@ import FormikStudentRegistrationForm from './../../components/registration/stude
 
 // Actions
 import {
+  studentlogin,
   startAddStudent,
-  startStudentLogin,
   startSetStudent,
 } from './../../actions/studentPrimary';
 
@@ -79,7 +79,7 @@ const StudentRegistrationPage = ({
 
 const mapDispatchToProps = (dispatch) => ({
   addStudent: (data) => dispatch(startAddStudent(data)),
-  login: (data) => dispatch(startStudentLogin(data)),
+  login: () => dispatch(studentlogin()),
   setPrimary: () => dispatch(startSetStudent()),
   setSecondary: () => dispatch(startSetStudentSecondary()),
 });
