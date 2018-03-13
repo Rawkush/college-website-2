@@ -110,7 +110,7 @@ const Num = styled.div`
   transition: all 0.2s ease;
 `;
 
-const calculateNotifications = ({ notifications }) =>
+const calculateNotifications = ({ notifications = [] } = {}) =>
   notifications.filter((notification) => notification.read === false).length;
 
 const StudentProfilePage = ({ student, secondary, logout, history }) => (
