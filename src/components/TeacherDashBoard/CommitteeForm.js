@@ -1,30 +1,11 @@
 import React from 'react';
 import { withFormik, Field } from 'formik';
 import Yup from 'yup';
-import media from 'theme/media';
 
 import { StyledForm, FormError } from 'theme/Components';
 
-const StyledForms = StyledForm.extend`
-  > input {
-    margin: 5px;
-    width: 100%;
-  }
-  > label {
-    text-align: left;
-  }
-  > button {
-    display: flex;
-    ${media.phone`
-   display: inline-block;
-   margin: 0 auto;
-   margin-top: 15px;
-   `};
-  }
-`;
-
 const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
-  <StyledForms>
+  <StyledForm>
     {errors.error && <FormError>{errors.error} </FormError>}
     <label htmlFor="name">Committe Name:</label>
     {touched.name && errors.name && <FormError>{errors.name}</FormError>}
@@ -67,7 +48,7 @@ const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-  </StyledForms>
+  </StyledForm>
 );
 
 const FormikCommitteForm = withFormik({

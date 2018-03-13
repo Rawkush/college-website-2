@@ -14,6 +14,13 @@ const Image = styled.img`
   `};
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export default ({ photo = '', clickHandler = () => {} } = {}) => (
-  <Image onClick={clickHandler} src={`/${photo}`} alt="Student" />
+  <Wrapper>
+    <Image onClick={clickHandler} src={`/${photo}`} alt="Student" />
+  </Wrapper>
 );

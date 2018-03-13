@@ -57,43 +57,58 @@ class StudentProfilePage extends Component {
   };
 
   render() {
+    if (!this.state.data) {
+      return (
+        <Page>
+          <Container>
+            <p>Loading ...</p>
+          </Container>
+        </Page>
+      );
+    }
     return (
       <Page mt="68px">
-        {this.state.error && <p>{this.state.error}</p>}
-        {this.state.data && (
-          <Lightbox
-            images={[
-              {
-                src: this.state.data.photo,
-              },
-            ]}
-            isOpen={this.state.lightboxIsOpen}
-            onClose={this.closeImage}
-          />
-        )}
-        <Background>
-          <Container>
-            <Wrapper1>
-              <StudentPhoto
-                {...this.state.data}
-                clickHandler={this.openImage}
+        {this.state.data ? (
+          <div>
+            {this.state.error && <p>{this.state.error}</p>}
+            {this.state.data && (
+              <Lightbox
+                images={[
+                  {
+                    src: this.state.data.photo,
+                  },
+                ]}
+                isOpen={this.state.lightboxIsOpen}
+                onClose={this.closeImage}
               />
-              <StudentPrimaryInfo {...this.state.data} />
-            </Wrapper1>
-            <LinksList {...this.state.data} />
-          </Container>
-        </Background>
-        <Container>
-          {this.state.data ? (
-            <div>
-              <SpecialisationList {...this.state.data} />
-              <AccomplishmentsList {...this.state.data} />
-              <ProjectList {...this.state.data} />
-            </div>
-          ) : (
-            <p>Loading ...</p>
-          )}
-        </Container>
+            )}
+            <Background>
+              <Container>
+                <Wrapper1>
+                  <StudentPhoto
+                    {...this.state.data}
+                    clickHandler={this.openImage}
+                  />
+                  <StudentPrimaryInfo {...this.state.data} />
+                </Wrapper1>
+                <LinksList {...this.state.data} />
+              </Container>
+            </Background>
+            <Container>
+              {this.state.data ? (
+                <div>
+                  <SpecialisationList {...this.state.data} />
+                  <AccomplishmentsList {...this.state.data} />
+                  <ProjectList {...this.state.data} />
+                </div>
+              ) : (
+                <p>Loading ...</p>
+              )}
+            </Container>
+          </div>
+        ) : (
+          <p>Loading ...</p>
+        )}
       </Page>
     );
   }

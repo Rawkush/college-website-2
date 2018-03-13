@@ -17,6 +17,7 @@ import EducationList from './../../components/TeacherDashBoard/EducationList';
 
 //  Actions
 import { startTeacherLogout } from './../../actions/teacherPrimary';
+import { setTeacherSecondary } from './../../actions/teacherSecondary';
 
 const Wrapper1 = styled.div`
   display: flex;
@@ -74,8 +75,20 @@ const Button = styled.button`
   `};
 `;
 
-const StudentProfilePage = ({ teacher, history, secondary, logout }) => (
-  <Page>
+const PageMod = Page.extend`
+  ${media.phone`
+    margin-top: 68px;
+  `};
+`;
+
+const StudentProfilePage = ({
+  teacher,
+  history,
+  secondary,
+  setSecondary,
+  logout,
+}) => (
+  <PageMod>
     {teacher ? (
       <div>
         <Background>
@@ -88,7 +101,10 @@ const StudentProfilePage = ({ teacher, history, secondary, logout }) => (
               <ButtonLink to="/teacher/editprofile">Edit Profile</ButtonLink>
               <Button
                 onClick={() => {
-                  logout().then(() => history.push('/'));
+                  logout().then(() => {
+                    setSecondary();
+                    history.push('/');
+                  });
                 }}
               >
                 Logout
@@ -97,7 +113,8 @@ const StudentProfilePage = ({ teacher, history, secondary, logout }) => (
           </Container>
         </Background>
         <Wrapper center padding="20px 0px 0px 0px">
-          <ButtonLink to="/teacher/addNotification">
+          <ButtonLink to="/teacher/notification">View Notifications</ButtonLink>
+          <ButtonLink m="0px 0px 0px 20px" to="/teacher/addNotification">
             Add Notification
           </ButtonLink>
         </Wrapper>
@@ -117,7 +134,7 @@ const StudentProfilePage = ({ teacher, history, secondary, logout }) => (
     ) : (
       <p>Loading ...</p>
     )}
-  </Page>
+  </PageMod>
 );
 
 const mapStateToProps = (state) => ({
@@ -127,6 +144,17 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(startTeacherLogout()),
+  setSecondary: () =>
+    dispatch(
+      setTeacherSecondary({
+        notifications: [],
+        work: [],
+        education: [],
+        specialisation: [],
+        technicalSkills: [],
+        committee: [],
+      })
+    ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentProfilePage);

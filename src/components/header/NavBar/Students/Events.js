@@ -32,7 +32,7 @@ const FlexHorizontalLong = FlexHorizontal.extend`
 
 const Span = styled.div`
   padding: 10px 0px;
-  font-weight: 400px;
+  font-weight: 400;
 `;
 
 const HoverDiv = styled.div`

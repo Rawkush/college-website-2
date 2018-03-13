@@ -7,16 +7,6 @@ import { StyledForm, FormError } from 'theme/Components';
 //  Components
 import Image from './../TeacherDashBoard/Photo';
 
-const StyledForms = StyledForm.extend`
-  > input {
-    margin: 5px;
-    width: 100%;
-  }
-  > label {
-    text-align: left;
-  }
-`;
-
 const TeacherRegistration = ({
   values,
   errors,
@@ -26,7 +16,7 @@ const TeacherRegistration = ({
   handleChange,
   handleBlur,
 }) => (
-  <StyledForms>
+  <StyledForm>
     {values.photo && <Image photo={values.photo} />}
     {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="photo">Photo:</label>
@@ -65,7 +55,9 @@ const TeacherRegistration = ({
       onBlur={handleBlur}
       value={values.gender}
     >
-      <option disabled> Select Your Gender</option>
+      <option disabled value="">
+        Select Your Gender
+      </option>
       <option value="male"> Male </option>
       <option value="female"> Female </option>
       <option value="others"> Others </option>
@@ -103,7 +95,7 @@ const TeacherRegistration = ({
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-  </StyledForms>
+  </StyledForm>
 );
 
 const FormikTeacherRegistration = withFormik({

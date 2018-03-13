@@ -58,10 +58,11 @@ const FixedCover = styled.div`
   }
   @media (max-width: 700px) {
     position: fixed;
-    bottom: 0px;
+    bottom: -0.6px;
   }
   ${media.phone`
     box-shadow: 0px -1px rgba(0,0,0,0.2196078431372549);
+    height: 57px;
   `};
 `;
 
@@ -75,11 +76,14 @@ const Div = styled.div`
   z-index: 90;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.09);
   ${media.phone`
-    top: ${(props) => (props.active ? '10vh' : '20vh')};    
+    top: ${(props) => (props.active ? '67px' : '20vh')};    
     opacity: ${(props) => (props.active ? '100' : '0')};
-    height: 82vh;
+    height: calc(100vh - 116px);
     overflow-y: auto;
     pointer-events: ${(props) => (props.active ? 'auto' : 'none')};
+    width: 101%;
+    overflow-x: hidden;
+    left: -1px;
   `};
 `;
 

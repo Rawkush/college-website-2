@@ -81,7 +81,7 @@ const getSyllabus = async (req, res) => {
     const syllabus = await giveAllSyllabus();
     res.send(syllabus);
   } catch (error) {
-    res.send(404).send(`Something Went Wrong: ${error}`);
+    res.status(404).send(`Something Went Wrong: ${error}`);
   }
 };
 

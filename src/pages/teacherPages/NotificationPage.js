@@ -1,16 +1,13 @@
 import React from 'react';
-
-//  Styled Components
 import { Page, Container, H2ResAuto } from 'theme/Components';
 
-//  Components
-import Search from 'components/search/Search';
+import Notifications from './../../components/TeacherDashBoard/Notification';
 
 export default () => (
   <Page>
     <Container>
-      <H2ResAuto>Search Profiles</H2ResAuto>
-      <Search />
+      <H2ResAuto>Your Notification&apos;s</H2ResAuto>
+      <Notifications notification />
     </Container>
   </Page>
 );

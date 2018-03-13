@@ -5,8 +5,8 @@ import { StyledForm, FormError } from './../../theme/Components';
 
 const StyledForms = StyledForm.extend`
   > input {
-    margin: 5px;
-    width: 100%;
+    width: 99%;
+    margin: 10px 0px;
   }
 `;
 

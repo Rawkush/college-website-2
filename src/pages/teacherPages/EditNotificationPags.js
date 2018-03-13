@@ -1,22 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 
-const H3 = styled.h2`
-font-size: 1.3;
-text-align: center;
-padding: 15px;
-`;
+import { Page, Container, FormWrapper, H2ResAuto } from 'theme/Components';
 // Actions
 import {
   startEditNotification,
   startRemoveNotification,
 } from './../../actions/teacherSecondary';
+
 // Component
 import NotificationForm from './../../components/TeacherDashBoard/NotificationForm';
-
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
 
 const AddNotificationPage = ({
   editNotification,
@@ -25,14 +18,18 @@ const AddNotificationPage = ({
   removeNotification,
 }) => (
   <Page>
-   {editNotification ?<H3>Edit Notifications</H3>:<H3>Add Notifications</H3>  } 
-    <NotificationForm
-      onSubmit={editNotification}
-      history={history}
-      edit
-      {...notification}
-      remove={removeNotification}
-    />
+    <Container>
+      <H2ResAuto>Edit Notification</H2ResAuto>
+      <FormWrapper>
+        <NotificationForm
+          onSubmit={editNotification}
+          history={history}
+          edit
+          {...notification}
+          remove={removeNotification}
+        />
+      </FormWrapper>
+    </Container>
   </Page>
 );
 

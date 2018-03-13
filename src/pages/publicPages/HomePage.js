@@ -33,7 +33,9 @@ const NotificationLink = styled(Link)`
     box-shadow: 0 10px 11px rgba(0, 0, 0, 0.3);
   }
   ${media.phone`
-    margin: 20px auto;    
+    margin: 10px auto 20px auto;
+    font-size: 19px;
+    padding: 10px 44px;   
   `};
 `;
 

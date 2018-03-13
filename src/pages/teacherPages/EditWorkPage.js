@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 
 // Components
+import { Page, Container, FormWrapper, H2ResAuto } from 'theme/Components';
 import WorkForm from './../../components/TeacherDashBoard/WorkForm';
 
 // actions
@@ -11,30 +11,24 @@ import {
   startRemoveWork,
 } from './../../actions/teacherSecondary';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
-const Title = styled.h4`
-  padding: 16px;
-  margin: 50px 0px;
-  font-size: 20px;
-  font-family: 'Noto Serif', serif;
-  text-align: center;
-  `;
 const EditWork = ({ editWork, removeWork, history, work }) => (
   <Page>
-    <Title> Edit Work </Title>
-    {work ? (
-      <WorkForm 
-        onSubmit={editWork}
-        remove={removeWork}
-        history={history}
-        edit
-        {...work}
-      />
-    ) : (
-      <p>Loading</p>
-    )}
+    <Container>
+      <H2ResAuto> Edit Work </H2ResAuto>
+      <FormWrapper>
+        {work ? (
+          <WorkForm
+            onSubmit={editWork}
+            remove={removeWork}
+            history={history}
+            edit
+            {...work}
+          />
+        ) : (
+          <p>Loading</p>
+        )}
+      </FormWrapper>
+    </Container>
   </Page>
 );
 

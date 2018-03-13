@@ -224,33 +224,25 @@ const StudentRegistration = ({
     {touched.admittedIn &&
       errors.admittedIn && <ErrorAlert>{errors.admittedIn}</ErrorAlert>}
     <select
-      name="addmittedIn"
-      id="addmittedIn"
+      name="admittedIn"
+      id="admittedIn"
       onChange={handleChange}
       onBlur={handleBlur}
       value={values.admittedIn}
     >
-      <option value={admissionYearStart.firYear}>
+      <option value={new Date(admissionYearStart.firYear)}>
         {moment(admissionYearStart.firYear).format('YYYY')}
       </option>
-      <option value={admissionYearStart.secYear}>
+      <option value={new Date(admissionYearStart.secYear)}>
         {moment(admissionYearStart.secYear).format('YYYY')}
       </option>
-      <option value={admissionYearStart.thirdYear}>
+      <option value={new Date(admissionYearStart.thirdYear)}>
         {moment(admissionYearStart.thirdYear).format('YYYY')}
       </option>
-      <option value={admissionYearStart.forthYear}>
+      <option value={new Date(admissionYearStart.forthYear)}>
         {moment(admissionYearStart.forthYear).format('YYYY')}
       </option>
     </select>
-    {/* <input
-      type="month"
-      name="admittedIn"
-      id="admittedIn"
-      value={values.admittedIn}
-      onChange={handleChange}
-      onBlur={handleBlur}
-    /> */}
     <label htmlFor="branch">Branch :</label>
     {touched.branch &&
       errors.branch && <ErrorAlert>{errors.branch}</ErrorAlert>}
@@ -413,7 +405,7 @@ const FormikStudentRegistration = withFormik({
       gender: gender || '',
       bio: bio || '',
       branch: branch || '',
-      admittedIn: admittedIn || '',
+      admittedIn: admittedIn ? new Date(moment(admittedIn)) : '',
       edit: edit || '',
       profile0,
       url0,

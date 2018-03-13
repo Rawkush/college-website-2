@@ -115,7 +115,7 @@ const NotificationItem = ({
     </TitleDiv>
     <FlexCenter>
       <Download href={file} target="_blank">
-        <DownloadIconSVG />
+        <DownloadIconSVG file={file} />
       </Download>
       <Tags>
         {TagMapper(tags).map((tag) => (

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   Page,
-  H2,
+  H2ResAuto,
   Container,
   FlexResponsiveStack,
   FlexHorizontal,
@@ -20,7 +20,7 @@ import TimeTable from './../../components/adminDashboard/TimeTableComponent';
 const AdminDashboardPage = ({ logout, history }) => (
   <Page>
     <Container>
-      <H2 center>Admin Dashboard</H2>
+      <H2ResAuto>Admin Dashboard</H2ResAuto>
       <FlexResponsiveStack>
         <FlexHorizontal>
           <Notifications />
