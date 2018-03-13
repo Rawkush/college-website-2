@@ -233,7 +233,7 @@ class Notification extends Component {
   }
 }
 
-const mapNotifications = (notifications) =>
+const mapNotifications = (notifications = []) =>
   notifications.map(({ _id, _ref, read }) => ({ ..._ref, _id, read }));
 
 const mapStateToProps = (state) => ({
