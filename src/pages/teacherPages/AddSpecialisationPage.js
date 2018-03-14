@@ -8,26 +8,24 @@ import SpecialisationForm from './../../components/TeacherDashBoard/Specialisati
 import { startUpdateSpecialisation } from './../../actions/teacherSecondary';
 
 // eslint-disable-next-line
-import { Page,H2 } from 'theme/Components';
-
-const H3 = H2.extend`
-font-size: 1.3;
-text-align: center;
-padding: 15px;
-`;
+import { Page, H2ResAuto, FormWrapper, Container } from 'theme/Components';
 
 const AddSpecialisation = ({
   updateSpecialisation,
   history,
   specialisation,
 }) => (
-  <Page> 
-    <H3>Add Specialisation</H3>
-    <SpecialisationForm
-      onSubmit={updateSpecialisation}
-      history={history}
-      specialisation={specialisation}
-    />
+  <Page>
+    <Container>
+      <H2ResAuto>Add Specialisation</H2ResAuto>
+      <FormWrapper>
+        <SpecialisationForm
+          onSubmit={updateSpecialisation}
+          history={history}
+          specialisation={specialisation}
+        />
+      </FormWrapper>
+    </Container>
   </Page>
 );
 

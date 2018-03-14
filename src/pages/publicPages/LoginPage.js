@@ -67,7 +67,7 @@ const LoginPage = ({ login, setProfile, setSecondary, history }) => (
               <TeacherLoginForm
                 onSubmit={login}
                 history={history}
-                redirect="/teacher/myprofile"
+                redirect="/teacher/login"
                 setProfile={setProfile}
                 setSecondary={setSecondary}
                 login

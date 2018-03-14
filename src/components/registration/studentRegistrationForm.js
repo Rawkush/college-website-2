@@ -224,33 +224,25 @@ const StudentRegistration = ({
     {touched.admittedIn &&
       errors.admittedIn && <ErrorAlert>{errors.admittedIn}</ErrorAlert>}
     <select
-      name="addmittedIn"
-      id="addmittedIn"
+      name="admittedIn"
+      id="admittedIn"
       onChange={handleChange}
       onBlur={handleBlur}
       value={values.admittedIn}
     >
-      <option value={admissionYearStart.firYear}>
+      <option value={new Date(admissionYearStart.firYear)}>
         {moment(admissionYearStart.firYear).format('YYYY')}
       </option>
-      <option value={admissionYearStart.secYear}>
+      <option value={new Date(admissionYearStart.secYear)}>
         {moment(admissionYearStart.secYear).format('YYYY')}
       </option>
-      <option value={admissionYearStart.thirdYear}>
+      <option value={new Date(admissionYearStart.thirdYear)}>
         {moment(admissionYearStart.thirdYear).format('YYYY')}
       </option>
-      <option value={admissionYearStart.forthYear}>
+      <option value={new Date(admissionYearStart.forthYear)}>
         {moment(admissionYearStart.forthYear).format('YYYY')}
       </option>
     </select>
-    {/* <input
-      type="month"
-      name="admittedIn"
-      id="admittedIn"
-      value={values.admittedIn}
-      onChange={handleChange}
-      onBlur={handleBlur}
-    /> */}
     <label htmlFor="branch">Branch :</label>
     {touched.branch &&
       errors.branch && <ErrorAlert>{errors.branch}</ErrorAlert>}
@@ -365,9 +357,13 @@ const StudentRegistration = ({
           onClick={() => {
             values
               .onRemove()
-              .then(() => values.history.push('/'))
-              .catch(() => {
-                setErrors({ error: 'Cannot Delete' });
+              .then(() => {
+                values.history.push('/');
+                values.logout();
+                values.setSecondary();
+              })
+              .catch((err) => {
+                setErrors({ error: `Cannot Delete ${err}` });
               });
           }}
         >
@@ -392,6 +388,9 @@ const FormikStudentRegistration = withFormik({
     admittedIn = '',
     linkedProfiles = [],
     onRemove = '',
+    history = '',
+    logout = '',
+    setSecondary = '',
   } = {}) {
     const profile0 = linkedProfiles[0] ? linkedProfiles[0].provider : '';
     const url0 = linkedProfiles[0] ? linkedProfiles[0].url : '';
@@ -413,7 +412,7 @@ const FormikStudentRegistration = withFormik({
       gender: gender || '',
       bio: bio || '',
       branch: branch || '',
-      admittedIn: admittedIn || '',
+      admittedIn: admittedIn ? new Date(moment(admittedIn)) : '',
       edit: edit || '',
       profile0,
       url0,
@@ -426,6 +425,9 @@ const FormikStudentRegistration = withFormik({
       profile4,
       url4,
       onRemove: onRemove || '',
+      history,
+      logout,
+      setSecondary,
     };
   },
   validationSchema: Yup.object().shape({
@@ -453,8 +455,20 @@ const FormikStudentRegistration = withFormik({
     props
       .onSubmit(data)
       .then(() => {
+        if (!props.edit) return props.setPrimary();
+        return Promise.resolve();
+      })
+      .then(() => {
+        if (!props.edit) return props.setSecondary();
+        return Promise.resolve();
+      })
+      .then(() => {
+        if (!props.edit) {
+          props.login();
+          return props.history.push('/student/myprofile');
+        }
         setSubmitting(false);
-        props.history.push('/student/myprofile');
+        return props.history.push('/student/myprofile');
       })
       .catch((err) => {
         setErrors({ error: `Something Went wrong ${err}` });

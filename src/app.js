@@ -3,21 +3,19 @@ import { Provider } from 'react-redux';
 // Style related Imports
 import 'normalize.css/normalize.css';
 import './theme/globalStyles';
+import './styles/transition.css';
 
 // Configuring the store
 import configureStore from './store/configureStore';
 
 // Actions
-import {
-  startSetNotification,
-  startSetAllNotification,
-} from './actions/notifications';
+import { startSetNotification } from './actions/notifications';
 import { startSetSyllabus } from './actions/syllabus';
 import { startSetTimeTable } from './actions/timeTable';
 import { startSetEvent } from './actions/events';
 import { startSetStudent, studentlogin } from './actions/studentPrimary';
 import { startSetStudentSecondary } from './actions/studentSecondary';
-import { teacherLogin } from './actions/teacherPrimary';
+import { teacherLogin, startSetTeacher } from './actions/teacherPrimary';
 import { startSetTeacherSecondary } from './actions/teacherSecondary';
 
 // Components
@@ -42,9 +40,7 @@ if (studentToken) {
 
 if (teacherToken) {
   store.dispatch(teacherLogin());
-  // TODO: Make all the things required.
-  // store.dispatch(startSetStudent());
-  // store.dispatch(startSetStudentSecondary());
+  store.dispatch(startSetTeacher());
   store.dispatch(startSetTeacherSecondary());
 }
 

@@ -75,7 +75,7 @@ export const startEditNotification = ({
 };
 
 export const removeNotification = (notification) => ({
-  type: 'EDIT_TEACHER_NOTIFICATION',
+  type: 'REMOVE_TEACHER_NOTIFICATION',
   notification,
 });
 

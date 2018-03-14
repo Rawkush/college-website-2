@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Page, Container, FormWrapper, H3 } from 'theme/Components';
+import { Page, Container, FormWrapper, H2ResAuto } from 'theme/Components';
 
 // Actions
 import { startAddEvent } from './../../actions/events';
@@ -12,7 +12,7 @@ const AddEventPage = ({ addEvent, history }) => (
   <Page>
     <Container>
       <FormWrapper>
-        <H3>Add Event</H3>
+        <H2ResAuto>Add Event</H2ResAuto>
         <EventForm onSubmit={addEvent} history={history} />
       </FormWrapper>
     </Container>

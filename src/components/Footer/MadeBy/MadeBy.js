@@ -34,7 +34,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   transition: color 0.02s cubic-bezier(0.4, 0.18, 0.76, 0.34);
   position: relative;
-  z-index: 100;
+  z-index: 10;
   padding: 1px;
   &:after {
     content: ' ';

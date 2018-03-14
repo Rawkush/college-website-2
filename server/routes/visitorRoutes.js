@@ -11,7 +11,8 @@ const {
   getStudent,
   getSyllabus,
   getTimeTable,
-  getAllStudentSecondaryData,
+  searchStudentsByName,
+  searchStudentsByRollNo,
 } = require('./../controllers/visitorControllers');
 
 // Initializing the Router
@@ -34,6 +35,8 @@ visitorRoutes.post('/getteacher', getTeacher);
 
 visitorRoutes.post('/getstudent', getStudent);
 
-visitorRoutes.post('/getstudentsecondary', getAllStudentSecondaryData);
+visitorRoutes.post('/searchstudentbyname', searchStudentsByName);
+
+visitorRoutes.post('/searchstudentbyrollno', searchStudentsByRollNo);
 
 module.exports = { visitorRoutes };

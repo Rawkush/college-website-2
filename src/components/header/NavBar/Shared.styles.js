@@ -33,6 +33,7 @@ const NavItemFlexHeading = FlexItem.extend`
   padding: 15px 0px;
   font-family: 'Alegreya Sans', sans-serif;
   flex: 1;
+  font-weight: bold;
 `;
 
 const NavItemFlexSubHeading = FlexItem.extend`

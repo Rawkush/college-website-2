@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // component
+import { Page, H2ResAuto, FormWrapper, Container } from 'theme/Components';
 import CommitteeForm from './../../components/TeacherDashBoard/CommitteeForm';
 
 // action
@@ -10,16 +11,6 @@ import {
   startRemoveCommittee,
 } from './../../actions/teacherSecondary';
 
-// eslint-disable-next-line
-import { Page,H2 } from 'theme/Components';
-
-const H3 = H2.extend`
-font-size: 1.3;
-text-align: center;
-padding: 15px;
-`;
-
-
 const EditCommitte = ({
   editCommittee,
   removeCommittee,
@@ -27,18 +18,22 @@ const EditCommitte = ({
   committee,
 }) => (
   <Page>
-    <H3> Edit Committe </H3>
-    {committee ? (
-      <CommitteeForm
-        onSubmit={editCommittee}
-        remove={removeCommittee}
-        history={history}
-        edit
-        {...committee}
-      />
-    ) : (
-      <p> editing committe </p>
-    )}
+    <Container>
+      <H2ResAuto> Edit Committee </H2ResAuto>
+      <FormWrapper>
+        {committee ? (
+          <CommitteeForm
+            onSubmit={editCommittee}
+            remove={removeCommittee}
+            history={history}
+            edit
+            {...committee}
+          />
+        ) : (
+          <p> Loading... </p>
+        )}
+      </FormWrapper>
+    </Container>
   </Page>
 );
 

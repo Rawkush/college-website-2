@@ -23,12 +23,20 @@ import {
 const FixedHeader = styled.header`
   position: fixed;
   width: 100%;
-  top: 0;
+  top: -0.6px;
   background: #fff;
   z-index: 100;
   ${media.phone`
     box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
-    height: 10vh;
+    height: 70px;
+  `};
+`;
+
+const ContainerMod = Container.extend`
+  ${media.phone`
+    height: 100%;
+    display: flex;
+    align-items: center;
   `};
 `;
 
@@ -108,7 +116,7 @@ class Header extends Component {
     if (teacher) {
       return {
         link: '/teacher/myprofile',
-        photo: teacherPhoto,
+        photo: teacherPhoto ? `/${teacherPhoto}` : null,
         SVG: teacherGender === ('male' || 'other') ? MaleAvatar : FemaleAvatar,
       };
     }
@@ -127,7 +135,7 @@ class Header extends Component {
     return (
       <div>
         <FixedHeader>
-          <Container>
+          <ContainerMod>
             <Flex>
               <FlexCenter>
                 <StyledLink to="/">
@@ -153,7 +161,7 @@ class Header extends Component {
                 )}
               </FlexCenter>
             </Flex>
-          </Container>
+          </ContainerMod>
         </FixedHeader>
         <NavBar />
       </div>

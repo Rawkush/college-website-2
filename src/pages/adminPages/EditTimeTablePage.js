@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Page, Container, FormWrapper, H3 } from 'theme/Components';
+import { Page, Container, FormWrapper, H2ResAuto } from 'theme/Components';
 
 // Actions
 import {
@@ -20,7 +20,7 @@ const EditTimeTablePage = ({
   <Page>
     <Container>
       <FormWrapper>
-        <H3>Edit Time Table</H3>
+        <H2ResAuto>Edit Time Table</H2ResAuto>
         <TimeTableForm
           {...timeTable}
           history={history}

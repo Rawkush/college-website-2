@@ -1,14 +1,14 @@
 import React from 'react';
 import { withFormik, Field } from 'formik';
 import Yup from 'yup';
-import { StyledForm, FromError } from 'theme/Components';
+import { StyledForm, FormError } from 'theme/Components';
 
-const AdminLoginForm = ({ errors, /* touched, */ isSubmitting }) => (
+const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
   <StyledForm>
-    {errors.error && <FromError>{errors.error}</FromError>}
+    {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="username">Username: </label>
-    {/* {touched.username &&
-      errors.username && <FromError>{errors.username}</FromError>} */}
+    {touched.username &&
+      errors.username && <FormError>{errors.username}</FormError>}
     <Field
       type="text"
       name="username"
@@ -18,8 +18,8 @@ const AdminLoginForm = ({ errors, /* touched, */ isSubmitting }) => (
     />
 
     <label htmlFor="password">Password: </label>
-    {/* {touched.password &&
-      errors.password && <FromError>{errors.password}</FromError>} */}
+    {touched.password &&
+      errors.password && <FormError>{errors.password}</FormError>}
     <Field
       type="password"
       name="password"

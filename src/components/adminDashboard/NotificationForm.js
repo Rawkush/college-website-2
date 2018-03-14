@@ -152,7 +152,7 @@ const FormikNotificationForm = withFormik({
       .then(() => {
         resetForm();
         setSubmitting(false);
-        props.history.push('/admin/notifications');
+        props.history.push('/admin/dashboard');
       })
       .catch(() => {
         setErrors({ error: 'Something Went Wrong!' });

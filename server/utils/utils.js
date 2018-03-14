@@ -28,8 +28,10 @@ const pickTeacher = (req) => {
     'gender',
     'status',
     'currentPosition',
-    'photo',
   ]);
+  if (req.file) {
+    return { ...body, photo: req.file.path };
+  }
   return body;
 };
 
@@ -336,6 +338,18 @@ const giveUserBySlugg = (Model) => async (slugg) => {
   }
 };
 
+const giveUserSecondary = (Model) => async ({ _id }) => {
+  try {
+    const secondary = await Model.findOne({ _creator: _id });
+    if (!secondary) {
+      return {};
+    }
+    return secondary.toJSON();
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const giveUserByName = (Model) => async (name) => {
   try {
     const user = await Model.find({
@@ -352,6 +366,29 @@ const giveUserByName = (Model) => async (name) => {
 const pickAdmin = (req) => {
   const body = _.pick(req.body, ['username', 'password', 'email']);
   return body;
+};
+
+const findUser = (Model, field) => async (searchField) => {
+  try {
+    const results = await Model.find({
+      [field]: new RegExp(searchField, 'i'),
+    });
+    return results;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const giveUser = (Model) => async (slugg) => {
+  try {
+    const student = await Model.findOne({ slugg });
+    if (!student) {
+      return {};
+    }
+    return student.toJSON();
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 module.exports = {
@@ -378,6 +415,8 @@ module.exports = {
   pickEvent,
   pickSyllabus,
   pickTT,
+  giveUser,
+  giveUserSecondary,
   giveLatestThreeItem,
   giveUserBySlugg,
   giveAll,
@@ -387,4 +426,5 @@ module.exports = {
   pickTeacherNotifications,
   pickCommittee,
   giveUserByName,
+  findUser,
 };

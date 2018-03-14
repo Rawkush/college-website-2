@@ -44,10 +44,10 @@ export default ({ name, rollNo, branch, admittedIn, bio, location } = {}) => {
   } else if (branch === 'civil') {
     showBranch = 'Civil Engineering';
   }
-  const date = Date.now() - new Date(admittedIn);
-  const year = date / 31556952000;
   const getYearString = (y) => {
-    const yearOfStudent = Math.floor(y) + 1;
+    const date = Date.now() - new Date(y);
+    const year = date / 31556952000;
+    const yearOfStudent = Math.floor(year) + 1;
     switch (yearOfStudent) {
       case 1:
         return '1st Year';
@@ -56,7 +56,7 @@ export default ({ name, rollNo, branch, admittedIn, bio, location } = {}) => {
       case 3:
         return '3rd Year';
       case 4:
-        return '4rt Year';
+        return '4th Year';
       default:
         break;
     }
@@ -67,7 +67,7 @@ export default ({ name, rollNo, branch, admittedIn, bio, location } = {}) => {
       <Wrapper1>
         <Name>{name}</Name>
         <RollNo>{rollNo}</RollNo>
-        <Year>{getYearString(year)}</Year>
+        <Year>{getYearString(admittedIn)}</Year>
         <Branch>{showBranch}</Branch>
         <Bio>{bio}</Bio>
         <p>{location}</p>

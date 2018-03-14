@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Component
+import { Page, FormWrapper, Container, H2ResAuto } from 'theme/Components';
 import TeacherProfileForm from './../../components/Forms/TeacherPrimaryForm';
 
 // Actions
@@ -10,9 +11,6 @@ import {
   startRemoveTeacher,
 } from './../../actions/teacherPrimary';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
 const TeacherEditProfilePage = ({
   teacher,
   editTeacher,
@@ -20,14 +18,19 @@ const TeacherEditProfilePage = ({
   history,
 }) => (
   <Page>
-    <TeacherProfileForm
-      edit
-      {...teacher}
-      onSubmit={editTeacher}
-      onRemove={deleteStudent}
-      history={history}
-      redirect="/teacher/myprofile"
-    />
+    <Container>
+      <H2ResAuto>Edit Profile</H2ResAuto>
+      <FormWrapper>
+        <TeacherProfileForm
+          edit
+          {...teacher}
+          onSubmit={editTeacher}
+          onRemove={deleteStudent}
+          history={history}
+          redirect="/teacher/myprofile"
+        />
+      </FormWrapper>
+    </Container>
   </Page>
 );
 

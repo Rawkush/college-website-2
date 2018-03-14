@@ -21,6 +21,7 @@ function toJSON() {
     'photo',
     'linkedProfiles',
     'currentPosition',
+    'slugg',
   ]);
 }
 

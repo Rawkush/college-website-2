@@ -19,8 +19,11 @@ const CalendarImage = styled.img`
 const HoverDiv = styled.div`
   &:hover {
     color: ${red};
-    > img {
-      transform: scale(1.5);
+    > div {
+      > img {
+        transform: scale(1.1);
+        transform: translateY(-3px);
+      }
     }
   }
 `;

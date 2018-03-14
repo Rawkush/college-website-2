@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
+import { Page, Container, FormWrapper, H2ResAuto } from 'theme/Components';
 
 // components
 import TechnicalSkillsForm from './../../components/TeacherDashBoard/TechnicalSkillsForm';
@@ -11,17 +11,6 @@ import {
   startRemoveTechnicalSkill,
 } from './../../actions/teacherSecondary';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
-const Title = styled.h4`
-  padding: 16px;
-  margin: 50px 0px;
-  font-size: 20px;
-  font-family: 'Noto Serif', serif;
-  text-align: center;
-  `;
-
 const EditTechnicalSkill = ({
   editTechnicalSkill,
   removeTechnicalSkill,
@@ -29,18 +18,22 @@ const EditTechnicalSkill = ({
   technicalSkill,
 }) => (
   <Page>
-    <Title> Edit TechcalSkills </Title>
-    {technicalSkill ? (
-      <TechnicalSkillsForm
-        onSubmit={editTechnicalSkill}
-        removeTechnicalSkill={removeTechnicalSkill}
-        history={history}
-        edit
-        {...technicalSkill}
-      />
-    ) : (
-      <p> edit tech </p>
-    )}
+    <Container>
+      <H2ResAuto> Edit TechcalSkills </H2ResAuto>
+      <FormWrapper>
+        {technicalSkill ? (
+          <TechnicalSkillsForm
+            onSubmit={editTechnicalSkill}
+            removeTechnicalSkill={removeTechnicalSkill}
+            history={history}
+            edit
+            {...technicalSkill}
+          />
+        ) : (
+          <p> edit tech </p>
+        )}
+      </FormWrapper>
+    </Container>
   </Page>
 );
 

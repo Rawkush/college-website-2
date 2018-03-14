@@ -1,62 +1,22 @@
 import React from 'react';
 import { withFormik, Field } from 'formik';
 import Yup from 'yup';
-import media from 'theme/media';
 
-import { StyledForm, FormError, H2 } from 'theme/Components';
-
-import styled from 'styled-components'; 
-
-const Label = styled.span`
-  font-family: 'Alegreya Sans', serif;
-  font-size: 1.3rem;
-  font-weight: 800;
-`;
-
-const StyledForms = StyledForm.extend`
-> input {
-  margin: 5px;
-  width: 100%;
-}
-> label {
-  text-align: left;
-}
-> button {
- display: flex;
- ${
-   media.phone`
-   display: inline-block;
-   margin: 0 auto;
-   margin-top: 15px;
-   `
- }
- }
-`
-const Container = styled.div`
-  width: 60%;
-  max-width: 1170px;
-  margin: 0 auto;
-  text-align: center;
-`;
-
+import { StyledForm, FormError } from 'theme/Components';
 
 const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
-  <Container>
-  <StyledForms>
+  <StyledForm>
     {errors.error && <FormError>{errors.error} </FormError>}
-    <label htmlFor="name">
-      <Label> Committe Name: </Label>
-    </label>
+    <label htmlFor="name">Committe Name:</label>
     {touched.name && errors.name && <FormError>{errors.name}</FormError>}
     <Field
+      autoFocus
       type="text"
       id="Name"
       name="name"
       placeholder="enter the committe name"
     />
-    <label htmlFor="designation">
-      <Label> Designation: </Label>
-    </label>
+    <label htmlFor="designation">Designation:</label>
     {touched.designation &&
       errors.designation && <FormError>{errors.designation}</FormError>}
     <Field
@@ -65,9 +25,7 @@ const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
       name="designation"
       placeholder="enter the designation"
     />
-    <label htmlFor="status">
-      <Label> Status: </Label>
-    </label>
+    <label htmlFor="status">Status:</label>
     {touched.status && errors.status && <FormError>{errors.status}</FormError>}
     <Field
       type="text"
@@ -90,8 +48,7 @@ const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
-  </StyledForms>
-  </Container>
+  </StyledForm>
 );
 
 const FormikCommitteForm = withFormik({

@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { Page, Container, H2ResAuto } from 'theme/Components';
 
 // Component
 import FormikStudentRegistrationForm from './../../components/registration/studentRegistrationForm';
-
-// eslint-disable-next-line
-import { Page, Container, H3 } from 'theme/Components';
 
 // Actions
 import {
   startEditStudent,
   startRemoveStudent,
+  studentLogout,
 } from './../../actions/studentPrimary';
+
+import { setStudentSecondary } from './../../actions/studentSecondary';
 
 //  Styled Components
 const Wrapper = styled.div`
@@ -24,6 +25,8 @@ const Wrapper = styled.div`
 const StudentEditProfilePage = ({
   student,
   editStudent,
+  logout,
+  setSecondary,
   deleteStudent,
   history,
 }) => (
@@ -31,11 +34,13 @@ const StudentEditProfilePage = ({
     <Page>
       <Container>
         <Wrapper>
-          <H3>Edit Profile</H3>
+          <H2ResAuto>Edit Profile</H2ResAuto>
           <FormikStudentRegistrationForm
             edit
             {...student}
             onSubmit={editStudent}
+            logout={logout}
+            setSecondary={setSecondary}
             onRemove={deleteStudent}
             history={history}
           />
@@ -51,6 +56,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   editStudent: (data) => dispatch(startEditStudent(data)),
+  logout: () => dispatch(studentLogout()),
+  setSecondary: () => dispatch(setStudentSecondary({})),
   deleteStudent: () => dispatch(startRemoveStudent()),
 });
 

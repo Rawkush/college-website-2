@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   margin-bottom: 40px;
 `;
 
-export default ({ specialisation } = {}) => (
+export default ({ specialisation, edit } = {}) => (
   <div>
     <Wrapper>
       <Title>Specialisation</Title>
@@ -19,11 +19,13 @@ export default ({ specialisation } = {}) => (
         <p>Loading...</p>
       )}
     </Wrapper>
-    <WrapperEnd>
-      <ButtonLink to="/student/myprofile/updatespecialisation">
-        Update
-      </ButtonLink>
-    </WrapperEnd>
+    {edit && (
+      <WrapperEnd>
+        <ButtonLink to="/student/myprofile/updatespecialisation">
+          Update
+        </ButtonLink>
+      </WrapperEnd>
+    )}
     <HR />
   </div>
 );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Page, Container, H3, FormWrapper } from 'theme/Components';
+import { Page, Container, H2ResAuto, FormWrapper } from 'theme/Components';
 
 // Components
 import SpecialisationForm from './../../components/StudentDashboard/SpecialisationsForm';
@@ -16,7 +16,7 @@ const AddSpecialisation = ({
   <Page>
     <Container>
       <FormWrapper>
-        <H3>Add Specialisation</H3>
+        <H2ResAuto>Add Specialisation</H2ResAuto>
         <SpecialisationForm
           onSubmit={updateSpecialisation}
           history={history}

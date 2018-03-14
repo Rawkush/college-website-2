@@ -1,23 +1,8 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Field } from 'formik';
 import Yup from 'yup';
 
 import { StyledForm, FormError } from 'theme/Components';
-
-import styled from 'styled-components';
-
-const Label = styled.span`
-font-family: 'Alegreya Sans', serif;
-  font-size: 1.3rem;
-  font-weight: 800;
-`;
-const Container = styled.div`
-  width: 60%;
-  max-width: 1170px;
-  margin: 0 auto;
- 
-`;
-
 
 const TeacherNotificationForm = ({
   values,
@@ -28,82 +13,83 @@ const TeacherNotificationForm = ({
   isSubmitting,
   setFieldValue,
 }) => (
-  <Container>
   <StyledForm>
     {errors.error && <FormError>{errors.error}</FormError>}
-    <label htmlFor="title" > <Label> Title: </Label> </label>
+    <label htmlFor="title">Title:</label>
     {touched.title && errors.title && <FormError>{errors.title}</FormError>}
     <Field type="text" id="title" name="title" placeholder="Title" />
-     <label htmlFor="description" > <Label> Description: </Label> </label>
-    {touched.description && errors.description && <FormError>{errors.description}</FormError>}
-    <Field type="text" id="description" name="description" placeholder="Description" />
-    <label htmlFor="link" >  <Label>  Link: </Label> </label> 
+    <label htmlFor="description">Description:</label>
+    {touched.description &&
+      errors.description && <FormError>{errors.description}</FormError>}
+    <Field
+      type="text"
+      id="description"
+      name="description"
+      placeholder="Description"
+    />
+    <label htmlFor="link">Link:</label>
     {touched.link && errors.link && <FormError>{errors.link}</FormError>}
     <Field type="text" id="link" name="link" placeholder="URL (If any.)" />
-    <label htmlFor="branch">
-     <Label> Branch: </Label>
-     </label>
-      {touched.branch && errors.branch && <FormError>{errors.branch}</FormError>}
-      <select
-        name="branch"
-        id="branch"
-        value={values.branch}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      >
-        <option value="" disabled>
-          Select the Branch
-        </option>
-        <option value="it">Information Technology</option>
-        <option value="civil">Civil Engineering</option>
-        <option value="env">Environment Engineering</option>
-        <option value="">All Branches</option>
-      </select>
-   
-    <label htmlFor="year">
-     
-      <Label> Year: </Label> </label>
+    <label htmlFor="branch">Branch:</label>
+    {touched.branch && errors.branch && <FormError>{errors.branch}</FormError>}
+    <select
+      name="branch"
+      id="branch"
+      value={values.branch}
+      onChange={handleChange}
+      onBlur={handleBlur}
+    >
+      <option value="" disabled>
+        Select the Branch
+      </option>
+      <option value="it">Information Technology</option>
+      <option value="civil">Civil Engineering</option>
+      <option value="env">Environment Engineering</option>
+      <option value="">All Branches</option>
+    </select>
 
-      {touched.year && errors.year && <FormError>{errors.year}</FormError>}
-      <select
-        name="year"
-        id="year"
-        value={values.year}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      >
-        <option value="" disabled>
-          Select the year
-        </option>
-        <option value="iyear">First Year</option>
-        <option value="iiyear">Second Year</option>
-        <option value="iiiyear">Third Year</option>
-        <option value="ivyear">Fourth Year</option>
-        <option value="">All years</option>
-      </select>
+    <label htmlFor="year">Year:</label>
+
+    {touched.year && errors.year && <FormError>{errors.year}</FormError>}
+    <select
+      name="year"
+      id="year"
+      value={values.year}
+      onChange={handleChange}
+      onBlur={handleBlur}
+    >
+      <option value="" disabled>
+        Select the year
+      </option>
+      <option value="iyear">First Year</option>
+      <option value="iiyear">Second Year</option>
+      <option value="iiiyear">Third Year</option>
+      <option value="ivyear">Fourth Year</option>
+      <option value="">All years</option>
+    </select>
     <label htmlFor="rollNo">
-      {touched.rollNo && errors.rollNo && <FormError>{errors.rollNo}</FormError>}
-    <Label>  Roll Number: </Label>
-      </label>
-      <Field
-        type="text"
-        name="rollNo"
-        placeholder="Enter the students roll number"
-      />
-    
+      {touched.rollNo &&
+        errors.rollNo && <FormError>{errors.rollNo}</FormError>}
+      Roll Number:
+    </label>
+    <Field
+      type="text"
+      name="rollNo"
+      placeholder="Enter the students roll number"
+    />
+
+    {!values.edit && <label htmlFor="file">File:</label>}
     {!values.edit && (
-      <label htmlFor="file">
-        File:
-        <Field
-          type="file"
-          name="file"
-          id="file"
-          onChange={(e) => {
-            setFieldValue('file', e.currentTarget.files[0]);
-          }}
-        />
-      </label>
+      <input
+        type="file"
+        name="file"
+        id="file"
+        onChange={(e) => {
+          setFieldValue('file', e.currentTarget.files[0]);
+        }}
+      />
     )}
+
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>
@@ -121,7 +107,6 @@ const TeacherNotificationForm = ({
         </button>
       )}
   </StyledForm>
-  </Container>
 );
 
 const FormikTeacherNotificationForm = withFormik({

@@ -12,7 +12,7 @@ const Title = styled.h4`
   text-align: center;
 `;
 
-export default ({ accomplishments } = {}) => (
+export default ({ accomplishments, edit } = {}) => (
   <div>
     {accomplishments ? (
       <div>
@@ -21,7 +21,7 @@ export default ({ accomplishments } = {}) => (
           <AccomplishmentsListItem
             key={accomplishment._id}
             {...accomplishment}
-            edit
+            edit={edit}
           />
         ))}
       </div>

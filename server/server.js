@@ -6,6 +6,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const cors = require('cors');
+const expressStaticGzip = require('express-static-gzip');
 
 //  Generated Imports
 const { adminRoutes } = require('./routes/adminRoutes');
@@ -29,6 +30,8 @@ app.use(cors());
 
 // For uploaded files
 app.use('/uploads/', express.static(path.join(__dirname, 'uploads')));
+app.use('/images/', express.static(path.join(__dirname, 'public/images')));
+app.use('/manifest.json', express.static(path.join(__dirname, 'public/')));
 
 //  Routing
 app.get('/', (req, res) => res.render('index'));
@@ -36,6 +39,7 @@ app.use('/s/admin/', adminRoutes);
 app.use('/s/teacher/', teacherRoutes);
 app.use('/s/student/', studentRoutes);
 app.use('/s/visitor/', visitorRoutes);
+app.use('/', expressStaticGzip(path.join(__dirname, 'public/')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });

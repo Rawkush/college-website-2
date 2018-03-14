@@ -1,37 +1,20 @@
 import React from 'react';
 import { withFormik, Field } from 'formik';
-import styled from 'styled-components';
 
-import { StyledForm, FormError, } from './../../theme/Components';
+import { StyledForm, FormError } from './../../theme/Components';
 
-const Label = styled.span`
-font-family: 'Alegreya Sans', serif;
-  font-size: 1.3rem;
-  font-weight: 800;
-`;
-const Container = styled.div`
-  width: 60%;
-  max-width: 1170px;
-  margin: 0 auto;
-`;
 const StyledForms = StyledForm.extend`
-> input {
-  margin: 5px;
-  width: 100%;
-}
-> label {
-  text-align: left;
-}
-`
+  > input {
+    width: 99%;
+    margin: 10px 0px;
+  }
+`;
 
 const SpecialisationForm = ({ isSubmitting, errors }) => (
-  <Container>
   <StyledForms>
     {errors.error && <FormError>{errors.error}</FormError>}
-    <label htmlFor="title">
-      <Label> Specialisations: </Label>
-    </label>
-    <Field type="text" id="title" name="sp1" placeholder="any" />
+    <label htmlFor="title">Specialisations:</label>
+    <Field autoFocus type="text" id="title" name="sp1" placeholder="any" />
     <Field type="text" id="title" name="sp2" placeholder="any" />
     <Field type="text" id="title" name="sp3" placeholder="any" />
     <Field type="text" id="title" name="sp4" placeholder="any" />
@@ -40,7 +23,6 @@ const SpecialisationForm = ({ isSubmitting, errors }) => (
       Submit
     </button>
   </StyledForms>
-  </Container>
 );
 
 const FormikSpecialisationForm = withFormik({

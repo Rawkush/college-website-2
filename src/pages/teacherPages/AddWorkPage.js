@@ -1,28 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 
 // Components
+import { Page, Container, H2ResAuto, FormWrapper } from 'theme/Components';
 import WorkForm from './../../components/TeacherDashBoard/WorkForm';
 
 // Actions
 import { startAddWork } from './../../actions/teacherSecondary';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
-
-const Title = styled.h4`
-  padding: 16px;
-  margin: 50px 0px;
-  font-size: 20px;
-  font-family: 'Noto Serif', serif;
-  text-align: center;
-  `;
-
-const AddWork = ({ addWork, history }) => ( 
+const AddWork = ({ addWork, history }) => (
   <Page>
-    <Title>Add Work</Title> 
-    <WorkForm onSubmit={addWork} history={history} />
+    <Container>
+      <H2ResAuto>Add Work</H2ResAuto>
+      <FormWrapper>
+        <WorkForm onSubmit={addWork} history={history} />
+      </FormWrapper>
+    </Container>
   </Page>
 );
 

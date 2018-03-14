@@ -8,6 +8,7 @@ const uploadTeacherNotification = multerConfig(
   'uploads/teacherNotification',
   /pdf|jpg|jpeg|png/
 );
+const uploadProfilePic = multerConfig('uploads/teachers', /png|jpg|jpeg/);
 
 // Initializing the Router
 const teacherRoutes = express.Router();
@@ -48,7 +49,12 @@ teacherRoutes.post('/login', teacherLogin);
 
 teacherRoutes.post('/logout', tokenTeacherAuthenticate, teacherLogout);
 
-teacherRoutes.patch('/updateprofile', tokenTeacherAuthenticate, teacherUpdate);
+teacherRoutes.patch(
+  '/updateprofile',
+  uploadProfilePic.single('photo'),
+  tokenTeacherAuthenticate,
+  teacherUpdate
+);
 
 teacherRoutes.patch('/addwork', tokenTeacherAuthenticate, addWork);
 

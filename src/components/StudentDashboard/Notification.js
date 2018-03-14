@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 //  Styled-Components
-import { Flex, FlexItem, Wrapper, H2 } from 'theme/Components';
+import { Flex, FlexItem, Wrapper } from 'theme/Components';
 import media from 'theme/media';
 
 //  Actions
 import { startSetAllNotification } from 'actions/notifications';
+import { startMarkNotificationAsRead as startMarkAsRead } from 'actions/studentSecondary';
 
 //  Components
-import NotificationItem2 from './../notifications/NotificationItem2';
+import NotificationItem2 from './NotificationItem2';
 
 // Styled Components
 const NotificationDiv = styled.div`
@@ -23,7 +24,7 @@ const FlexItemModded = FlexItem.extend`
 `;
 
 const Input = styled.input`
-  width: 70%;
+  width: 95%;
   padding: 7px;
   ${media.phone`
       padding: 5px 0px 5px 5px;
@@ -41,26 +42,26 @@ const Input = styled.input`
   }
 `;
 
-const Select = styled.select`
-  width: 24%;
-  padding: 7px;
-  margin-left: 20px;
-  ${media.phone`
-      padding: 5px 0px;
-      width: 99%;
-      margin-left: 0px;
-      margin-top: 16px
-    `};
-  font-family: 'Open Sans', sans-serif;
-  border-radius: 3px;
-  border: solid 1px rgba(0, 0, 0, 0.27);
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  line-height: 1.5;
-  &:focus {
-    border: solid 1px red;
-    box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
-  }
-`;
+// const Select = styled.select`
+//   width: 24%;
+//   padding: 7px;
+//   margin-left: 20px;
+//   ${media.phone`
+//       padding: 5px 0px;
+//       width: 99%;
+//       margin-left: 0px;
+//       margin-top: 16px
+//     `};
+//   font-family: 'Open Sans', sans-serif;
+//   border-radius: 3px;
+//   border: solid 1px rgba(0, 0, 0, 0.27);
+//   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+//   line-height: 1.5;
+//   &:focus {
+//     border: solid 1px red;
+//     box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
+//   }
+// `;
 
 const padding = '16px auto -6px auto';
 
@@ -92,7 +93,7 @@ const TextFilterComponent = ({ changeHandler }) => (
   <Input type="text" onChange={(e) => changeHandler(e)} placeholder="search" />
 );
 
-const SelectFilterComponent = ({ changeHandler }) => (
+/* const SelectFilterComponent = ({ changeHandler }) => (
   <Select
     name="filter"
     id="filter"
@@ -119,7 +120,7 @@ const SelectFilterComponent = ({ changeHandler }) => (
     <option value="googleForm">Google Form</option>
     <option value="external">External Link</option>
   </Select>
-);
+); */
 
 const latestSort = (array) =>
   array.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
@@ -131,6 +132,7 @@ class Notification extends Component {
       notifications: this.props.notifications,
       home: this.props.home,
       notification: this.props.notification,
+      markAsRead: this.props.markAsRead,
     };
   }
 
@@ -185,14 +187,13 @@ class Notification extends Component {
   render() {
     return (
       <NotificationDiv>
-        <H2 center>Notifications</H2>
         <Span notification={this.state.notification}>
           {this.state.notification && (
             <Wrapper w="700px">
               <TextFilterComponent changeHandler={this.filterChangeHandler} />
-              <SelectFilterComponent
+              {/* <SelectFilterComponent
                 changeHandler={this.filterSelectChangeHandler}
-              />
+              /> */}
             </Wrapper>
           )}
           <FlexMod notification={this.state.notification}>
@@ -202,18 +203,22 @@ class Notification extends Component {
                   (n, i) =>
                     (this.state.home && i < 3) || this.state.notification
                 )
-                .map(({ title, createdAt, tags, link, _id, file }) => (
+                .map(({ title, createdAt, tags, link, _id, file, read }) => (
                   <FlexItemModded
                     notification={this.state.notification}
                     key={_id}
                   >
                     {this.state.notification && (
                       <NotificationItem2
+                        key={_id}
                         title={title}
                         createdAt={createdAt}
                         tags={tags}
                         link={link}
                         file={file}
+                        _id={_id}
+                        read={read}
+                        markAsRead={this.state.markAsRead}
                       />
                     )}
                   </FlexItemModded>
@@ -228,11 +233,17 @@ class Notification extends Component {
   }
 }
 
+const mapNotifications = (notifications = []) =>
+  notifications.map(({ _id, _ref, read }) => ({ ..._ref, _id, read }));
+
 const mapStateToProps = (state) => ({
-  notifications: latestSort(state.notifications),
+  notifications: latestSort(
+    mapNotifications(state.studentSecondary.notifications)
+  ),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  markAsRead: (_id) => dispatch(startMarkAsRead(_id)),
   getNotifications: () => dispatch(startSetAllNotification()),
 });
 

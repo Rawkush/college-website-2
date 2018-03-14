@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 import styled from 'styled-components';
 import { red } from 'theme/variable';
-import { A as StyledA, HR } from 'theme/Components';
+import { A as StyledA, HR, ButtonLink } from 'theme/Components';
+
+import TagMapper from './Utils';
 
 const NotificationDiv = styled.div`
   text-align: left;
@@ -41,7 +42,6 @@ const NotificationItem = ({
   link,
   file,
   _id,
-  location,
   auth,
 }) => (
   <NotificationDiv>
@@ -50,7 +50,7 @@ const NotificationItem = ({
     </A>
     <div>
       <DateSpan>{moment(createdAt).format('DD MMM, YYYY')} | </DateSpan>
-      {tags.map((tag) => (
+      {TagMapper(tags).map((tag) => (
         <Tag key={tag}>
           {tag} <MiddleDot />
         </Tag>
@@ -61,8 +61,11 @@ const NotificationItem = ({
         </StyledA>
       )}
     </div>
-    {location === '/admin/notifications' &&
-      auth && <Link to={`/admin/notifications/edit/${_id}`}>Edit</Link>}
+    {auth && (
+      <ButtonLink m="10px 0px 0px 0px" to={`/admin/notifications/edit/${_id}`}>
+        Edit
+      </ButtonLink>
+    )}
     <HR w="100%" m="14px auto 0px auto" opa="0.6" />
   </NotificationDiv>
 );

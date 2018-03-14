@@ -14,4 +14,6 @@ const Image = styled.img`
   `};
 `;
 
-export default ({ photo } = {}) => <Image src={photo} alt="Student" />;
+export default ({ photo, clickHandler } = {}) => (
+  <Image onClick={clickHandler} src={photo} alt="Student" />
+);
