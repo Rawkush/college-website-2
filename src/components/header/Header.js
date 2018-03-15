@@ -75,6 +75,16 @@ const StyledLink = styled(Link)`
 const RoundDiv = styled.div`
   border-radius: 50%;
 `;
+const Span = styled.span`
+color: black;
+text-decoration: none;
+font-size: 1.2rem;
+font-family: 'Alegreya Sans', serif;
+&:hover{
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  font-size: 1.3rem;
+}
+`;
 
 const DisplayAvatar = ({ SVG }) => (
   <RoundDiv>
@@ -121,7 +131,7 @@ class Header extends Component {
       };
     }
     if (admin) {
-      return { link: '/admin/dashboard', text: 'Dashboard' };
+      return { link: '/admin/dashboard', text: <Span> DashBoard </Span> };
     }
     return null;
   };

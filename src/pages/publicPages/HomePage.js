@@ -58,7 +58,6 @@ const Div = styled.div`
 const NotificationBg = styled.div`
   background: rgba(221, 221, 221, 0.3);
 `;
-
 const HomePage = () => (
   <Page>
     <Container>
@@ -82,7 +81,6 @@ const HomePage = () => (
       {/* <Link to="/student/register">studen</Link> */}
       {/* <Event />
       <GetToKnow /> */}
-
       {/* <Map /> */}
     </Container>
   </Page>

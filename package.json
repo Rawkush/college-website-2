@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.2.1",
     "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -69,6 +70,8 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
+    "sendgrid": "^5.2.3",
+    "sendotp": "^1.2.8",
     "slug": "^0.9.1",
     "slugify": "^1.2.9",
     "style-loader": "^0.20.1",
