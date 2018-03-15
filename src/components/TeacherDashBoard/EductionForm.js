@@ -14,10 +14,10 @@ const EducationForm = ({ isSubmitting, errors }) => (
   <StyledForms>
     {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="title">Education:</label>
-    <Field autoFocus type="text" id="title" name="e1" placeholder="any" />
-    <Field type="text" id="title" name="e2" placeholder="any" />
-    <Field type="text" id="title" name="e3" placeholder="any" />
-    <Field type="text" id="title" name="e4" placeholder="any" />
+    <Field autoFocus type="text" id="title" name="e1" placeholder="schooling" />
+    <Field type="text" id="title" name="e2" placeholder="graduate" />
+    <Field type="text" id="title" name="e3" placeholder="masters" />
+    <Field type="text" id="title" name="e4" placeholder="phd" />
     <Field type="text" id="title" name="e5" placeholder="any" /> <br />
     <button disabled={!!isSubmitting} type="submit">
       Submit

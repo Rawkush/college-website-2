@@ -12,7 +12,7 @@ const WorkForm = ({ values, errors, touched, isSubmitting }) => (
       type="text"
       id="title"
       name="title"
-      placeholder="Enter what is your work."
+      placeholder="what is your work."
     />
     <label htmlFor="description">Description</label>
     {touched.description &&
