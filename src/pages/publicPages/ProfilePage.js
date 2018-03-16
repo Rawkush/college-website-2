@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Lightbox from 'react-images';
 
 //  Styled default components
-import { Page, Container } from 'theme/Components';
+import { Page, Container, Warn, Loader } from 'theme/Components';
 import media from 'theme/media';
 
 //  Components
@@ -14,7 +14,6 @@ import LinksList from './../../components/StudentDashboard/LinksList';
 import AccomplishmentsList from './../../components/StudentDashboard/AccomplishmentsList';
 import ProjectList from './../../components/StudentDashboard/ProjectsList';
 import SpecialisationList from './../../components/StudentDashboard/SpecialisationList';
-// import NotificationList from './../../components/StudentDashboard/NotificationList';
 
 const Background = styled.div`
   background: #efefef;
@@ -61,7 +60,7 @@ class StudentProfilePage extends Component {
       return (
         <Page>
           <Container>
-            <p>Loading ...</p>
+            <Loader>Loading ...</Loader>
           </Container>
         </Page>
       );
@@ -97,17 +96,25 @@ class StudentProfilePage extends Component {
             <Container>
               {this.state.data ? (
                 <div>
-                  <SpecialisationList {...this.state.data} />
-                  <AccomplishmentsList {...this.state.data} />
-                  <ProjectList {...this.state.data} />
+                  {this.state.data.accomplishments.length ||
+                  this.state.data.specialisation.length ||
+                  this.state.data.projects.length ? (
+                    <div>
+                      <SpecialisationList {...this.state.data} />
+                      <AccomplishmentsList {...this.state.data} />
+                      <ProjectList {...this.state.data} />
+                    </div>
+                  ) : (
+                    <Warn padding="50px 0px"> Nothing to show here.</Warn>
+                  )}
                 </div>
               ) : (
-                <p>Loading ...</p>
+                <Loader>Loading ...</Loader>
               )}
             </Container>
           </div>
         ) : (
-          <p>Loading ...</p>
+          <Loader>Loading ...</Loader>
         )}
       </Page>
     );

@@ -314,6 +314,25 @@ const FlexEnd = Flex.extend`
   width: 100%;
 `;
 
+const Loader = styled.div`
+  height: 100%;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.7);
+`;
+
+const Warn = styled.div`
+  height: 100%;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.7);
+  padding: ${({ padding }) => padding || 'auto'};
+`;
+
 export {
   H1,
   H2,
@@ -340,4 +359,6 @@ export {
   BorderWrapper,
   SVG,
   H2ResAuto,
+  Loader,
+  Warn,
 };
