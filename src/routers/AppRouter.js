@@ -72,10 +72,10 @@ export const history = createHistory();
 const AppRouter = () => (
   <BrowserRouter>
     <ScrollTop>
+      <Header />
       <Route
         render={({ location }) => (
           <div>
-            <Header />
             <TransitionGroup>
               <CSSTransition timeout={300} classNames="fade" key={location.key}>
                 <div>
@@ -290,10 +290,10 @@ const AppRouter = () => (
                 </div>
               </CSSTransition>
             </TransitionGroup>
-            <Footer />
           </div>
         )}
       />
+      <Footer />
     </ScrollTop>
   </BrowserRouter>
 );

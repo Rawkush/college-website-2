@@ -26,6 +26,7 @@ const FixedHeader = styled.header`
   top: -0.6px;
   background: #fff;
   z-index: 100;
+  backface-visibility: hidden;
   ${media.phone`
     box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
     height: 70px;

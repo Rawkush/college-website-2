@@ -20,7 +20,7 @@ const NavContainer = styled.div`
   z-index: 100;
   ${media.phone`
     width: 100%;
-    height: 8vh;
+    height: 60px;
     padding-bottom: 0px;
   `};
 `;
@@ -87,6 +87,10 @@ const Div = styled.div`
   `};
 `;
 
+const Wrapper = styled.div`
+  backface-visibility: hidden;
+`;
+
 class NavBar extends Component {
   state = {
     active1: false,
@@ -115,7 +119,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <FixedCover>
           <Container>
             <NavContainer>
@@ -144,7 +148,7 @@ class NavBar extends Component {
         <Div active={this.state.active2}>
           <StudentsNav click={this.navClick} />
         </Div>
-      </div>
+      </Wrapper>
     );
   }
 }
