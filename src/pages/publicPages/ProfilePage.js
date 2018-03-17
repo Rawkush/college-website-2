@@ -96,9 +96,12 @@ class StudentProfilePage extends Component {
             <Container>
               {this.state.data ? (
                 <div>
-                  {this.state.data.accomplishments.length ||
-                  this.state.data.specialisation.length ||
-                  this.state.data.projects.length ? (
+                  {(this.state.data.accomplishments &&
+                    this.state.data.accomplishments.length) ||
+                  (this.state.data.specialisation &&
+                    this.state.data.specialisation.length) ||
+                  (this.state.data.projects &&
+                    this.state.data.projects.length) ? (
                     <div>
                       <SpecialisationList {...this.state.data} />
                       <AccomplishmentsList {...this.state.data} />
