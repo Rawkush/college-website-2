@@ -84,6 +84,18 @@ const SVG = styled.svg`
   `};
 `;
 
+const SVG2 = styled.svg`
+  display: block;
+  background: ${({ bg }) => bg || 'none'};
+  height: ${({ height }) => height || '80px'};
+  margin: 0 auto;
+  border-radius: 50%;
+  transition: all 0.1s ease;
+  ${media.phone`
+    height: 70px;
+  `};
+`;
+
 export {
   NavCardFlex,
   NavItemFlex,
@@ -93,4 +105,5 @@ export {
   StyledLink,
   VerticalLine,
   SVG,
+  SVG2,
 };

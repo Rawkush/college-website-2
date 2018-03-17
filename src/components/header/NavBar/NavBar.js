@@ -80,7 +80,7 @@ const Div = styled.div`
   ${media.phone`
     top: ${(props) => (props.active ? '67px' : '20vh')};
     transform: ${(props) =>
-      (props.active ? 'translateY(0px)' : 'translateY(100px)')};    
+      (props.active ? 'translateY(0px)' : 'translateY(40px)')};    
     opacity: ${(props) => (props.active ? '100' : '0')};
     height: calc(100vh - 116px);
     overflow-y: auto;

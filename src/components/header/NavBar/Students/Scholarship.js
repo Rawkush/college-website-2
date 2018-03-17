@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import elImage from 'images/el.jpg';
-import scholarshipImage from 'images/scholarships.jpg';
 import media from 'theme/media';
 import { red } from 'theme/variable';
+import EducationLoanIcon from './Icons/EducationLoan';
+import ScholarshipIcon from './Icons/Scholarship';
 
 import { NavCardFlex, NavItemFlex, StyledLink } from './../Shared.styles';
 
@@ -25,9 +25,10 @@ const Span = styled.div`
 `;
 
 const HoverDiv = styled.div`
+  transition: all 0.2s ease-in-out;
   &:hover {
     color: ${red};
-    > img {
+    > svg {
       transform: scale(1.1);
       transform: translateY(-3px);
       box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
@@ -40,7 +41,7 @@ export default ({ click }) => (
     <NavItemFlex>
       <StyledLink to="/scholarships" onClick={click}>
         <HoverDiv>
-          <Image src={scholarshipImage} />
+          <ScholarshipIcon />
           <Span>Scholarships</Span>
         </HoverDiv>
       </StyledLink>
@@ -48,7 +49,7 @@ export default ({ click }) => (
     <NavItemFlex>
       <StyledLink to="/educationloan" onClick={click}>
         <HoverDiv>
-          <Image src={elImage} />
+          <EducationLoanIcon />
           <Span>Education Loan</Span>
         </HoverDiv>
       </StyledLink>
