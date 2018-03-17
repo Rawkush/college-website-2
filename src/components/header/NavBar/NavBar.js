@@ -74,7 +74,7 @@ const Div = styled.div`
   transform: ${(props) =>
     props.active ? 'translateY(340px)' : 'translateY(0px)'};
   top: -250px;
-  transition: all cubic-bezier(0.46, 0.22, 0.5, 0.93) 0.3s;
+  transition: all ease 0.3s;
   z-index: 90;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.09);
   ${media.phone`
