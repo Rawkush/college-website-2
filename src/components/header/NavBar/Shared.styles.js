@@ -73,6 +73,17 @@ const VerticalLine = styled.div`
   `};
 `;
 
+const SVG = styled.svg`
+  background: ${({ bg }) => bg || 'auto'};
+  border-radius: 50%;
+  height: 42px;
+  width: auto;
+  transition: all 0.1s ease;
+  ${media.phone`
+    height: 40px;
+  `};
+`;
+
 export {
   NavCardFlex,
   NavItemFlex,
@@ -81,4 +92,5 @@ export {
   FlexHorizontal,
   StyledLink,
   VerticalLine,
+  SVG,
 };

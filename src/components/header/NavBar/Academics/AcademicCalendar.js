@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import calendarImage from 'images/calendar.jpg';
 import { FlexCenter } from 'theme/Components';
 import { red } from 'theme/variable';
 
@@ -11,16 +10,13 @@ import {
   StyledLink,
 } from './../Shared.styles';
 
-const CalendarImage = styled.img`
-  transition: all 0.1s ease;
-  width: 100px;
-`;
+import CalendarIcon from './Icons/Calendar';
 
 const HoverDiv = styled.div`
   &:hover {
     color: ${red};
     > div {
-      > img {
+      > svg {
         transform: scale(1.1);
         transform: translateY(-3px);
       }
@@ -38,7 +34,7 @@ export default ({ click }) => (
     <StyledLink2 to="/somestaticthing" onClick={click}>
       <HoverDiv>
         <FlexCenter>
-          <CalendarImage src={calendarImage} />
+          <CalendarIcon />
         </FlexCenter>
         <NavItemFlex center>Download</NavItemFlex>
       </HoverDiv>
