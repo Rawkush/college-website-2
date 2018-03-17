@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { H3 } from 'theme/Components';
 import Map from './map';
+import alliedImage from 'images/college-main.jpg';
+
 
 const GTK = styled.div`
   background: #F0F0F0;
@@ -12,30 +14,42 @@ const GTK = styled.div`
 
 const Head = H3.extend`
   padding: 30px;
+  text-align: center;
+  font-family: 'Noto Serif',serif;
+  font-size: 1.6rem;
+  font-weight: 400;
 `;
 
 const About = styled.div`
-  background: white;
+  //  background: white;
   display: flex;
   flex: 1;
   width: 75%;
   margin: 0 auto;
   margin-bottom: 80px;
-`;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &: hover{
+    box-shadow: none;
+  }
+  `;
 const Img = styled.img`
   width: 380px;
-  height: 150px;
-  padding: 20px;
-  border: solid black;
+  height: 250px;
+  margin: 20px;
+  &: hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 `;
 const Text = styled.div`
   // background: blue;
+  font-weight: 300;
+  font-size: 1.3rem;
   font-family: 'Alegreya Sans', serif;
-  width: 200px;
+  width: 250px;
   margin-left: 25px;
   text-align: center;
   padding: 10px;
-  margin-top: 40px;
+  margin-top: 70px;
 `;
 
 const Text1 = Text.extend`
@@ -48,9 +62,9 @@ const Locate = styled.h3`
 
 const GetToKnow = () => (
   <GTK>
-    <Head> GET TO KNOW </Head>
+    <Head> Get To Know </Head>
     <About>
-      <Img src="a.PNG" alt="about us" />
+      <Img src={alliedImage} alt="about us" />
       <div>
         <Text>
           fgdfyh gfdh gfhdgf hjf dgdf sgdfsgdf sgdf gdsfgdsfg hvh hdf hhf
