@@ -38,6 +38,6 @@ export default ({ specialisation, edit } = {}) => (
         </ButtonLink>
       </WrapperEnd>
     )}
-    {!!specialisation.length && <HR />}
+    {specialisation && !!specialisation.length && <HR />}
   </div>
 );
