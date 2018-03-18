@@ -333,6 +333,25 @@ const Warn = styled.div`
   padding: ${({ padding }) => padding || 'auto'};
 `;
 
+const StyledInput = styled.input`
+  width: 100%;
+  padding: 7px;
+  ${media.phone`
+    padding: 5px 0px 5px 5px;
+    width: 97%;
+  `};
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  border: solid 1px rgba(0, 0, 0, 0.27);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  line-height: 1.5;
+  margin-top: ${({ mtop }) => mtop || '0px'};
+  &:focus {
+    border: solid 1px red;
+    box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
+  }
+`;
+
 export {
   H1,
   H2,
@@ -361,4 +380,5 @@ export {
   H2ResAuto,
   Loader,
   Warn,
+  StyledInput,
 };
