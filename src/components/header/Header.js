@@ -77,6 +77,10 @@ const RoundDiv = styled.div`
   border-radius: 50%;
 `;
 
+const Text = styled.p`
+  font-family: 'Noto Serif', sans-serif;
+`;
+
 const DisplayAvatar = ({ SVG }) => (
   <RoundDiv>
     <SVG />
@@ -153,7 +157,9 @@ class Header extends Component {
                       (authentication.SVG && (
                         <DisplayAvatar SVG={authentication.SVG} />
                       )) ||
-                      (authentication.text && <p>{authentication.text}</p>)}
+                      (authentication.text && (
+                        <Text>{authentication.text}</Text>
+                      ))}
                   </Link>
                 ) : (
                   <NavLink to="/login">
