@@ -14,11 +14,11 @@ const SpecialisationForm = ({ isSubmitting, errors }) => (
   <StyledForms>
     {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="title">Specialisations:</label>
-    <Field autoFocus type="text" id="title" name="sp1" placeholder="any" />
-    <Field type="text" id="title" name="sp2" placeholder="any" />
-    <Field type="text" id="title" name="sp3" placeholder="any" />
-    <Field type="text" id="title" name="sp4" placeholder="any" />
-    <Field type="text" id="title" name="sp5" placeholder="any" /> <br />
+    <Field autoFocus type="text" id="title" name="sp1" placeholder="Express" />
+    <Field type="text" id="title" name="sp2" placeholder="nodejs" />
+    <Field type="text" id="title" name="sp3" placeholder="reactjs" />
+    <Field type="text" id="title" name="sp4" placeholder="javascript" />
+    <Field type="text" id="title" name="sp5" placeholder="mongoDB" /> <br />
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>

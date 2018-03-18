@@ -1,8 +1,13 @@
+const nodemailer = require('nodemailer');
+var otpGenerator = require('otp-generator')
+require('dotenv').config();
 // Defined Module Import
+
 const { Event } = require('./../models//events');
 const { Notifications } = require('./../models/notification');
 const { StudentPrimary } = require('./../models/studentPrimary');
 const { StudentSecondry } = require('./../models/studentsSecondry');
+const {Email} =  require('./../models/email');
 // const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { Syllabus } = require('./../models/syllabus');
 const { TimeTable } = require('./../models/timeTable');
@@ -26,6 +31,7 @@ const giveAllSyllabus = giveAll(Syllabus);
 const giveAllTimeTable = giveAll(TimeTable);
 const giveAllEvents = giveAll(Event);
 const giveStudentSecondary = giveUserSecondary(StudentSecondry);
+const findEmail = findUser(Email, 'email');
 
 const getLatestNotifications = async (req, res) => {
   try {
@@ -133,6 +139,43 @@ const searchStudentsByRollNo = async (req, res) => {
   }
 };
 
+const searchEmail = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const searchResults = await findEmail(email);
+    const otp = otpGenerator.generate(6, { upperCase: false, specialChars: false });
+    if (searchResults) {
+      nodemailer.createTestAccount((err) => {
+        let transporter = nodemailer.createTransport({
+          service: 'Gmail',
+          auth: {
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PASSWORD,
+          },
+        });
+        let mailOptions = {
+          from: '< dhruvyadav2494@gmail.com>', // sender address
+          to: searchResults, // list of receivers
+          subject: 'verify email', // Subject line
+          html:  <p>otp : {otp} </p>  // html body
+        };
+          // send mail with defined transport object
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            return console.log(error);
+          }
+           // herekfjrghtfj hfguhrtuyghu yhuhggreguhurhgre gfyure  
+
+
+          });
+      });
+      
+    } // res.send(searchResults);
+  } catch (error) {
+    res.status(400).send(`Some error happened: ${error}`);
+  }
+};
+
 module.exports = {
   getLatestNotifications,
   getAllNotifications,
@@ -144,4 +187,5 @@ module.exports = {
   getAllEvents,
   searchStudentsByName,
   searchStudentsByRollNo,
+  searchEmail,
 };

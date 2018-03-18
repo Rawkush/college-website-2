@@ -24,7 +24,7 @@ const ProjectForm = ({
     <Field
       type="text"
       name="title"
-      placeholder="80% in DS Course of NPTEL."
+      placeholder="made/working over some project like:making website"
       id="title"
     />
 
@@ -34,7 +34,7 @@ const ProjectForm = ({
     <Field
       type="text"
       name="description"
-      placeholder="This exam is about Data Structures on of the core field etc..."
+      placeholder="made the website with react and node"
       id="description"
     />
 

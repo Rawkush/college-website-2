@@ -31,7 +31,10 @@ export default ({ click }) => (
       </Link>
     </NavItemFlex>
     <NavItemFlex>
-      <Link to="/someexternallink" onClick={click}>
+      <Link
+        to="https://www.onlinesbi.com/prelogin/icollecthome.htm"
+        onClick={click}
+      >
         <FlexCenterNav>
           <Span>SBI Collect</Span>
         </FlexCenterNav>

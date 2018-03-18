@@ -21,12 +21,12 @@ const SkillForm = ({ errors, touched, isSubmitting }) => (
       type="text"
       name="ts1"
       id="skill"
-      placeholder="Enter ur skills"
+      placeholder="Enter ur skill:database Managment"
     />
-    <Field type="text" name="ts2" id="skill" placeholder="Enter ur skills" />
-    <Field type="text" name="ts3" id="skill" placeholder="Enter ur skills" />
-    <Field type="text" name="ts4" id="skill" placeholder="Enter ur skills" />
-    <Field type="text" name="ts5" id="skill" placeholder="Enter ur skills" />
+    <Field type="text" name="ts2" id="skill" placeholder="Enter ur skill:" />
+    <Field type="text" name="ts3" id="skill" placeholder="Enter ur skill" />
+    <Field type="text" name="ts4" id="skill" placeholder="Enter ur skill" />
+    <Field type="text" name="ts5" id="skill" placeholder="Enter ur skill" />
     <button disabled={!!isSubmitting} type="submit">
       Submit
     </button>

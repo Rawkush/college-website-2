@@ -14,7 +14,7 @@ const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
       type="text"
       id="Name"
       name="name"
-      placeholder="enter the committe name"
+      placeholder="enter the committe name like:cultural"
     />
     <label htmlFor="designation">Designation:</label>
     {touched.designation &&

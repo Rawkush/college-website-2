@@ -13,6 +13,7 @@ const {
   getTimeTable,
   searchStudentsByName,
   searchStudentsByRollNo,
+  searchEmail,
 } = require('./../controllers/visitorControllers');
 
 // Initializing the Router
@@ -38,5 +39,7 @@ visitorRoutes.post('/getstudent', getStudent);
 visitorRoutes.post('/searchstudentbyname', searchStudentsByName);
 
 visitorRoutes.post('/searchstudentbyrollno', searchStudentsByRollNo);
+
+visitorRoutes.post('/searchemail', searchEmail);
 
 module.exports = { visitorRoutes };

@@ -92,23 +92,40 @@ const RelatedLinks = () => (
     <H3>Related Links</H3>
     <InnerCard1>
       <InnerCard2>
-        <A href="http://ipu.ac.in">University</A>
+        <A href="http://ipu.ac.in" target="_blank">
+          University
+        </A>
         <br />
-        <A href="https://onlinecourses.nptel.ac.in/">NPTEL</A>
+        <A href="https://onlinecourses.nptel.ac.in/" target="_blank">
+          NPTEL
+        </A>
         <br />
         <A href="">Gazzette Notifications</A>
         <br />
-        <A href="">National Scholarships</A>
+        <A href="https://scholarships.gov.in/" target="_blank">
+          National Scholarships Portal
+        </A>
         <br />
-        <A href="">DTTE</A>
+        <A
+          href="http://www.delhi.gov.in/wps/wcm/connect/DOIT_TT/training+and+technical+education/home"
+          target="_blank"
+        >
+          DTTE
+        </A>
         <br />
       </InnerCard2>
       <InnerCard2>
-        <A href="">Github</A>
+        <A href="https://github.com/" target="_blank">
+          Github
+        </A>
         <br />
-        <A href="">Hackerrank</A>
+        <A href="https://www.hackerrank.com/" target="_blank">
+          Hackerrank
+        </A>
         <br />
-        <A href="">Education Loans</A>
+        <A href="https://www.vidyalakshmi.co.in/Students/" target="_blank">
+          Education Loans
+        </A>
       </InnerCard2>
     </InnerCard1>
   </Card>
@@ -119,28 +136,28 @@ const HelpfullLinks = () => (
     <H3>Helpfull Links</H3>
     <InnerCard1>
       <InnerCard2>
-        <A href="">Regulations On Ragging</A>
+        <A href="/regulationOnRagging">Regulations On Ragging</A>
         <br />
-        <A href="">Mandatory Disclosure</A>
+        <A href="/mandatoryDisclosure">Mandatory Disclosure</A>
         <br />
-        <A href="">Forms & Performa</A>
+        <A href="/formsAndPerforma">Forms & Performa</A>
         <br />
-        <A href="">Budget Report</A>
+        <A href="budgetReport">Budget Report</A>
         <br />
-        <A href="">Disclaimer</A>
+        <A href="/disclaimer">Disclaimer</A>
         <br />
-        <A href="">Tenders</A>
+        <A href="/tender">Tenders</A>
       </InnerCard2>
       <InnerCard2>
         <A href="">Location</A>
         <br />
-        <A href="">Credits</A>
+        <A href="/credits">Credits</A>
         <br />
-        <A href="">Committee</A>
+        <A href="/committee">Committee</A>
         <br />
-        <A href="">Contact Us</A>
+        <A href="/contactUs">Contact Us</A>
         <br />
-        <A href="">RTI</A>
+        <A href="/rti">RTI</A>
       </InnerCard2>
     </InnerCard1>
   </Card>

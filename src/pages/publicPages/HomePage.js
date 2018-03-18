@@ -9,7 +9,7 @@ import media from 'theme/media';
 // Defined components import
 import Notification from './../../components/notifications/Notification';
 // import Event from './../../components/Events/EventsListItem';
-// import GetToKnow from './../../components/Body/GetToKnow';
+import GetToKnow from './../../components/Body/GetToKnow';
 // import Map from './../../components/Body/map';
 
 const NotificationLink = styled(Link)`
@@ -50,6 +50,10 @@ const I = styled.i`
   -webkit-transform: rotate(-45deg);
 `;
 
+const Contained = Container.extend`
+width: 100%;
+`
+
 const Div = styled.div`
   margin-top: 50px;
   text-align: center;
@@ -58,7 +62,6 @@ const Div = styled.div`
 const NotificationBg = styled.div`
   background: rgba(221, 221, 221, 0.3);
 `;
-
 const HomePage = () => (
   <Page>
     <Container>
@@ -77,14 +80,11 @@ const HomePage = () => (
         </FlexCenter>
       </Container>
     </NotificationBg>
-    <Container>
-      <Div />
-      {/* <Link to="/student/register">studen</Link> */}
-      {/* <Event />
-      <GetToKnow /> */}
-
+    <Div />
+    <Contained>
+      <GetToKnow />
       {/* <Map /> */}
-    </Container>
+    </Contained>
   </Page>
 );
 
