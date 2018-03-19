@@ -8,7 +8,7 @@ const secondaryDefaultState = {
 export default (state = secondaryDefaultState, action) => {
   switch (action.type) {
     case 'SET_STUDENT_SECONDARY':
-      return { ...action.studentSecondary };
+      return { ...state, ...action.studentSecondary };
     case 'ADD_ACCOMPLISHMENT':
       return { ...state, accomplishments: action.accomplishment };
     case 'ADD_PROJECT':
