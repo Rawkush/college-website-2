@@ -42,15 +42,15 @@ export default ({
   admittedIn,
   branch,
   bio,
-  photo,
+  photo = '',
   linkedProfiles,
   slugg,
-}) => (
+} = {}) => (
   <Wrapper1>
     <Box>
       <Wrapper3>
         <StyledLink to={`/student/${slugg}`}>
-          <Image src={photo} />
+          <Image src={photo.replace(/sz=50/, 'sz=500')} />
         </StyledLink>
         <Links links={linkedProfiles} />
       </Wrapper3>

@@ -152,7 +152,9 @@ class Header extends Component {
                 {authentication ? (
                   <Link to={authentication.link}>
                     {(authentication.photo && (
-                      <Image src={authentication.photo} />
+                      <Image
+                        src={authentication.photo.replace(/sz=50/, 'sz=500')}
+                      />
                     )) ||
                       (authentication.SVG && (
                         <DisplayAvatar SVG={authentication.SVG} />

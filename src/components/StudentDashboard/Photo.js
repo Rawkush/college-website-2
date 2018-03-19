@@ -14,6 +14,10 @@ const Image = styled.img`
   `};
 `;
 
-export default ({ photo, clickHandler } = {}) => (
-  <Image onClick={clickHandler} src={photo} alt="Student" />
+export default ({ photo = '', clickHandler } = {}) => (
+  <Image
+    onClick={clickHandler}
+    src={photo.replace(/sz=50/, 'sz=500')}
+    alt="Student"
+  />
 );
