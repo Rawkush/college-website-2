@@ -78,11 +78,11 @@ const Div = styled.div`
   z-index: 90;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.09);
   ${media.phone`
-    top: ${(props) => (props.active ? '67px' : '20vh')};
+    top: 67px;
     transform: ${(props) =>
       (props.active ? 'translateY(0px)' : 'translateY(40px)')};    
-    opacity: ${(props) => (props.active ? '100' : '0')};
-    height: calc(100vh - 116px);
+    opacity: ${(props) => (props.active ? '1' : '0')};
+    height: calc(100% - 116px);
     overflow-y: auto;
     pointer-events: ${(props) => (props.active ? 'auto' : 'none')};
     width: 101%;
