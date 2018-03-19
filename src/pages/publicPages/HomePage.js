@@ -8,8 +8,8 @@ import media from 'theme/media';
 
 // Defined components import
 import Notification from './../../components/notifications/Notification';
-// import Event from './../../components/Events/EventsListItem';
-import GetToKnow from './../../components/Body/GetToKnow';
+// import Events from './../../components/Events/EventsListHome';
+// import GetToKnow from './../../components/Body/GetToKnow';
 // import Map from './../../components/Body/map';
 
 const NotificationLink = styled(Link)`
@@ -47,16 +47,6 @@ const I = styled.i`
   margin-left: 3px;
   margin-bottom: 2px;
   transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-`;
-
-const Contained = Container.extend`
-width: 100%;
-`
-
-const Div = styled.div`
-  margin-top: 50px;
-  text-align: center;
 `;
 
 const NotificationBg = styled.div`
@@ -80,11 +70,7 @@ const HomePage = () => (
         </FlexCenter>
       </Container>
     </NotificationBg>
-    <Div />
-    <Contained>
-      <GetToKnow />
-      {/* <Map /> */}
-    </Contained>
+    {/* <Events /> */}
   </Page>
 );
 
