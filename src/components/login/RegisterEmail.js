@@ -4,10 +4,9 @@ import { Wrapper } from 'theme/Components';
 import RegisterEmailForm from './RegisterEmailForm';
 
 class RegisterEmail extends Component {
-  state = { error: false, success: false };
+  state = { success: false };
 
-  submitHandler = ({ email }) => {
-    this.setState(() => ({ error: false }));
+  submitHandler = ({ email }) =>
     axios
       .post('/s/visitor/verifyemail', { email })
       .then(() => {
@@ -17,13 +16,11 @@ class RegisterEmail extends Component {
         }));
         return Promise.resolve();
       })
-      .catch((error) => Promise.reject(error));
-  };
+      .catch(({ response }) => Promise.reject(response));
 
   render() {
     return (
       <Wrapper padding="20px 0px">
-        {this.state.error && <p>Oops! Something wrong happened.</p>}
         {this.state.success && <p>{this.state.success}</p>}
         <RegisterEmailForm onSubmit={this.submitHandler} />
       </Wrapper>

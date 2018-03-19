@@ -144,8 +144,10 @@ const verifyEmail = async (req, res) => {
   const { email } = req.body;
   try {
     const result = await findEmailExist(email);
-    if (!result.email) {
-      res.send('Sorry there is no email that matches the email you gave.');
+    if (!result) {
+      res
+        .status(400)
+        .send('Sorry there is no email that matches the email you gave.');
       return;
     }
     const otp = otpGenerator.generate(6, {

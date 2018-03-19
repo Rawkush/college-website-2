@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 //  Defined Modules Import
 const { StudentPrimary } = require('../models/studentPrimary');
 const { StudentSecondry } = require('./../models/studentsSecondry');
+const { EmailOtp } = require('./../models/email&otp');
 
 const {
   pickBody,
@@ -66,7 +67,7 @@ const studentLinkedInAuthentication = passport.authenticate('linkedin', {
 //  Student Registration Controller
 const studentRegistration = async (req, res) => {
   const body = pickBody(req);
-  const { token } = req.body;
+  const { token, email, otp } = req.body;
   let decodedToken;
   try {
     decodedToken = await decodeStudentAuthToken(token);
@@ -85,6 +86,11 @@ const studentRegistration = async (req, res) => {
   };
 
   try {
+    const verification = await EmailOtp.find({ email, otp });
+    if (verification && verification.length === 0) {
+      throw Error('Verification Error');
+    }
+    await EmailOtp.deleteOne({ email, otp });
     const data = await saveStudentMinimal(newBody);
     res.send(data);
   } catch (error) {

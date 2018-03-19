@@ -3,9 +3,9 @@ import { StyledForm, FormError } from 'theme/Components';
 import { Field, withFormik } from 'formik';
 import Yup from 'yup';
 
-const TeacherRegistration = ({ errors, touched, isSubmitting }) => (
+const TeacherRegistration = ({ errors, isSubmitting }) => (
   <StyledForm>
-    {touched.errors && errors.error && <FormError>{errors.error}</FormError>}
+    {errors.error && <FormError>{errors.error}</FormError>}
     <Field type="email" name="email" placeholder="Enter your email here..." />
     <button disabled={!!isSubmitting} type="submit">
       Submit
@@ -28,8 +28,8 @@ const FormikTeacherRegistration = withFormik({
       .then(() => {
         setSubmitting(false);
       })
-      .catch((err) => {
-        setErrors({ error: `Something Went wrong ${err}` });
+      .catch(({ data }) => {
+        setErrors({ error: data });
         setSubmitting(false);
       });
   },
