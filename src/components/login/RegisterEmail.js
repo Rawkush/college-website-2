@@ -6,11 +6,10 @@ import RegisterEmailForm from './RegisterEmailForm';
 class RegisterEmail extends Component {
   state = { error: false, success: false };
 
-  submitHandler = (email) => {
-    console.log(email);
+  submitHandler = ({ email }) => {
     this.setState(() => ({ error: false }));
     axios
-      .post('/s/registeremail', { email })
+      .post('/s/visitor/verifyemail', { email })
       .then(() => {
         this.setState(() => ({
           success:
@@ -18,10 +17,7 @@ class RegisterEmail extends Component {
         }));
         return Promise.resolve();
       })
-      .catch((error) => {
-        console.log(error);
-        return Promise.reject();
-      });
+      .catch((error) => Promise.reject(error));
   };
 
   render() {

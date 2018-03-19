@@ -1,14 +1,7 @@
 const mongoose = require('mongoose');
-const _ = require('lodash');
 const validator = require('validator');
 
-function toJSON() {
-  const user = this;
-  const userObject = user.toObject();
-  return _.pick(userObject, ['email']);
-}
-
-const EmailSchema = new mongoose.Schema({
+const EmailOtpSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
@@ -22,12 +15,19 @@ const EmailSchema = new mongoose.Schema({
       },
     ],
   },
+  otp: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    minlength: 6,
+  },
 });
 
-EmailSchema.methods.toJSON = toJSON;
+EmailOtpSchema.index({ email: 1, otp: 1 }, { expires: 60 });
 
-const Email = mongoose.model('Email', EmailSchema);
+const EmailOtp = mongoose.model('EmailOtp', EmailOtpSchema);
 
 module.exports = {
-  Email,
+  EmailOtp,
 };
