@@ -40,17 +40,11 @@ module.exports = (env) => {
           exclude: /node_modules/,
         },
         {
-          test: /\.s?css$/,
+          test: /\.css$/,
           use: CSSExtract.extract({
             use: [
               {
                 loader: 'css-loader',
-                options: {
-                  sourceMap: true,
-                },
-              },
-              {
-                loader: 'sass-loader',
                 options: {
                   sourceMap: true,
                 },
@@ -67,18 +61,7 @@ module.exports = (env) => {
         },
       ],
     },
-    plugins: [CSSExtract],
+    plugins: [CSSExtract, Compress],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
-    devServer: {
-      contentBase: path.join(__dirname, 'public'),
-      historyApiFallback: true,
-      publicPath: '/dist/',
-      proxy: {
-        '/s/': {
-          target: 'http://localhost:3000',
-          secure: false,
-        },
-      },
-    },
   };
 };

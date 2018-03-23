@@ -4,8 +4,8 @@ import { Container } from 'theme/Components';
 import media from 'theme/media';
 
 //  Components
-import Map from './Map';
-import FaceBook from './FaceBook';
+import Map from './MapIframe';
+import FaceBook from './FaceBookIframe';
 import CollegeImage from './CollegeImage';
 
 const Background = styled.div`
