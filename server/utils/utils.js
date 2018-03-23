@@ -257,11 +257,14 @@ const pickEvent = (req) => {
     'description',
   ]);
   const photos = req.files ? req.files.map((file) => file.path) : null;
-  const newBody = {
-    ...body,
-    photos,
-  };
-  return newBody;
+  if (photos) {
+    const newBody = {
+      ...body,
+      photos,
+    };
+    return newBody;
+  }
+  return body;
 };
 
 const pickSyllabus = (req) => {
