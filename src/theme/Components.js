@@ -34,7 +34,7 @@ const H2ResAuto = styled.h2`
   font-size: 1.6rem;
   font-weight: 400;
   text-align: ${({ left }) => (left ? 'left' : 'center')};
-  margin: ${({ margin }) => margin || '115px 0px 20px 0px'};
+  margin: ${({ margin }) => margin || '115px 0px 25px 0px'};
   ${media.phone`
     margin: ${({ marginRes }) => marginRes || '94px 0px 20px 0px'};
   `};
@@ -94,6 +94,7 @@ const Button = styled.button`
 const Flex = styled.div`
   display: flex;
   justify-content: ${({ end }) => (end ? 'flex-end' : 'flex-start')};
+  flex-wrap: ${({ wrap }) => (wrap ? 'wrap' : 'none')};
 `;
 
 const FlexCenter = styled.div`
