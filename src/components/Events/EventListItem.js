@@ -3,6 +3,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import media from 'theme/media';
+import { ButtonLink, Flex } from 'theme/Components';
 
 const Background = styled.div`
   background: ${({ image }) => `url(${image.replace(/\\/g, '/')})`} center
@@ -63,6 +64,7 @@ export default ({
   date = '',
   photos = [],
   _id,
+  auth,
 } = {}) => (
   <Wrapper>
     <StyledLink to={`/event/${_id}`}>
@@ -73,5 +75,14 @@ export default ({
         <DateDiv>{moment(date).format('DD MMMM, YYYY')}</DateDiv>
       </Wrapper2>
     </StyledLink>
+    <Wrapper2>
+      <Flex end>
+        {auth && (
+          <ButtonLink m="0px 0px 10px 0px" to={`/admin/events/edit/${_id}`}>
+            Edit
+          </ButtonLink>
+        )}
+      </Flex>
+    </Wrapper2>
   </Wrapper>
 );

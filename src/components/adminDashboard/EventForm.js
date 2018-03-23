@@ -1,5 +1,5 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Field } from 'formik';
 import { StyledForm, HR, FormError } from 'theme/Components';
 import Yup from 'yup';
 import moment from 'moment';
@@ -15,6 +15,12 @@ const NotificationForm = ({
 }) => (
   <StyledForm>
     {errors.error && <FormError>{errors.error}</FormError>}
+    {values.edit && (
+      <p>
+        Note: You cannot update pictures. If you want to update the pictures,
+        you have to delete this instance of event and create a new one.
+      </p>
+    )}
     <label htmlFor="name">Name: </label>
     {touched.name && errors.name && <FormError>{errors.name}</FormError>}
     <Field type="text" name="name" placeholder="Enter the name of the event." />

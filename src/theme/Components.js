@@ -224,7 +224,6 @@ const StyledForm = styled(Form)`
     padding: 10px 50px;
     color: rgba(0, 0, 0, 0.6);
     margin: 30px 0px;
-    margin-left: ${({ left }) => left || '0'};
     border-radius: 3px;
     transition: all 0.15s ease-in-out;
     border: solid 1px rgba(179, 0, 0, 0.7);
@@ -236,6 +235,9 @@ const StyledForm = styled(Form)`
     &:disabled {
       opacity: 0.5;
     }
+  }
+  > button[type='button'] {
+    margin-left: 20px;
   }
 `;
 

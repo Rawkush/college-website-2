@@ -15,6 +15,7 @@ import NotificationPage from 'pages/publicPages/NotificationPage';
 import StudentLoginPage from 'pages/publicPages/StudentLoginPage';
 import SearchPage from 'pages/publicPages/SearchPage';
 import ProfilePage from 'pages/publicPages/ProfilePage';
+import EventPage from 'pages/publicPages/EventPage';
 
 // Pages
 import AddSyllabusPage from 'pages/adminPages/AddSyllabusPage';
@@ -32,7 +33,7 @@ import AddEventsPage from 'pages/adminPages/AddEventsPage';
 import AdminEventsPage from 'pages/adminPages/AdminEventsPage';
 import EditEventPage from 'pages/adminPages/EditEventPage';
 import EventsOptionPage from 'pages/publicPages/EventsOptionPage';
-// import EventsPage from 'pages/publicPages/EventsPage';
+import EventsPage from 'pages/publicPages/EventsPage';
 import TeacherRegistrationPage from 'pages/adminPages/AddTeacherPage';
 import TeacherListPage from 'pages/adminPages/TeachersListPage';
 
@@ -107,7 +108,8 @@ const AppRouter = () => (
                       component={TimeTablePage}
                     />
                     <Route path="/events" component={EventsOptionPage} exact />
-                    {/* <Route path="/events/:type" component={EventsPage} exact /> */}
+                    <Route path="/events/:type" component={EventsPage} exact />
+                    <Route path="/event/:_id" component={EventPage} exact />
                     <Route path="/search" component={SearchPage} />
                     <AdminRoute
                       path="/admin/dashboard"
