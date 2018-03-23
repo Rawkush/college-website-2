@@ -15,6 +15,7 @@ import NotificationPage from 'pages/publicPages/NotificationPage';
 import StudentLoginPage from 'pages/publicPages/StudentLoginPage';
 import SearchPage from 'pages/publicPages/SearchPage';
 import ProfilePage from 'pages/publicPages/ProfilePage';
+import EventPage from 'pages/publicPages/EventPage';
 
 // Pages
 import AddSyllabusPage from 'pages/adminPages/AddSyllabusPage';
@@ -72,10 +73,10 @@ export const history = createHistory();
 const AppRouter = () => (
   <BrowserRouter>
     <ScrollTop>
+      <Header />
       <Route
         render={({ location }) => (
           <div>
-            <Header />
             <TransitionGroup>
               <CSSTransition timeout={300} classNames="fade" key={location.key}>
                 <div>
@@ -108,6 +109,7 @@ const AppRouter = () => (
                     />
                     <Route path="/events" component={EventsOptionPage} exact />
                     <Route path="/events/:type" component={EventsPage} exact />
+                    <Route path="/event/:_id" component={EventPage} exact />
                     <Route path="/search" component={SearchPage} />
                     <AdminRoute
                       path="/admin/dashboard"
@@ -290,10 +292,10 @@ const AppRouter = () => (
                 </div>
               </CSSTransition>
             </TransitionGroup>
-            <Footer />
           </div>
         )}
       />
+      <Footer />
     </ScrollTop>
   </BrowserRouter>
 );

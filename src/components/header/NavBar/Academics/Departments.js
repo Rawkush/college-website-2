@@ -1,13 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import media from 'theme/media';
-import { lightBlack, red } from 'theme/variable';
-import itImage from 'images/it.jpg';
-import civilImage from 'images/civil.jpg';
-import envImage from 'images/env.jpg';
-import appliedImage from 'images/applied.jpg';
-import alliedImage from 'images/allied.png';
+import { FlexCenter } from 'theme/Components';
 
 import {
   NavCardFlex,
@@ -16,15 +9,20 @@ import {
   StyledLink,
 } from './../Shared.styles';
 
-import { FlexCenter } from 'theme/Components';
+//  SVG Icons
+import ITIcon from './Icons/IT';
+import CivilIcon from './Icons/Civil';
+import EnvIcon from './Icons/Environment';
+import AlliedIcon from './Icons/Allied';
+import AppliedIcon from './Icons/Applied';
 
 const NavItemFlexResponsive = NavItemFlex.extend`
   display: flex;
   &:hover {
-    > img {
+    > svg {
       transform: scale(1.1);
       transform: translateY(-3px);
-      box-shadow: 4px 3px 9px #00000075;
+      box-shadow: 4px 3px 9px rgba(0, 0, 0, 0.2);
     }
   }
   ${media.phone`
@@ -33,16 +31,6 @@ const NavItemFlexResponsive = NavItemFlex.extend`
   `};
 
   padding: 4px;
-`;
-
-const DepartmentImage = styled.img`
-  border-radius: 50%;
-  height: 42px;
-  width: auto;
-  transition: all 0.1s ease;
-  ${media.phone`
-    height: 40px;
-  `};
 `;
 
 const NavFlexCenter = FlexCenter.extend`
@@ -55,31 +43,31 @@ export default ({ click }) => (
     <NavItemFlexHeading>Departments</NavItemFlexHeading>
     <StyledLink to="/department/it" onClick={click}>
       <NavItemFlexResponsive>
-        <DepartmentImage src={itImage} alt="information technology icon" />
+        <ITIcon />
         <NavFlexCenter>Information Techonology</NavFlexCenter>
       </NavItemFlexResponsive>
     </StyledLink>
     <StyledLink to="/department/civil" onClick={click}>
       <NavItemFlexResponsive>
-        <DepartmentImage src={civilImage} alt="civil icon" />
+        <CivilIcon />
         <NavFlexCenter>Civil Engineering</NavFlexCenter>
       </NavItemFlexResponsive>
     </StyledLink>
     <StyledLink to="/department/env" onClick={click}>
       <NavItemFlexResponsive>
-        <DepartmentImage src={envImage} alt="environment icon" />
+        <EnvIcon />
         <NavFlexCenter>Environment</NavFlexCenter>
       </NavItemFlexResponsive>
     </StyledLink>
     <StyledLink to="/department/allied" onClick={click}>
       <NavItemFlexResponsive>
-        <DepartmentImage src={alliedImage} alt="allied icon" />
+        <AlliedIcon />
         <NavFlexCenter>Allied</NavFlexCenter>
       </NavItemFlexResponsive>
     </StyledLink>
     <StyledLink to="/department/apploed" onClick={click}>
       <NavItemFlexResponsive>
-        <DepartmentImage src={appliedImage} alt="apllied icon" />
+        <AppliedIcon />
         <NavFlexCenter>Applied Science and Humanities</NavFlexCenter>
       </NavItemFlexResponsive>
     </StyledLink>

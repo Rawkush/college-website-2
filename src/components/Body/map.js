@@ -1,28 +1,26 @@
-// import React from 'react';
-// module.exports = React.createClass({
+import React from 'react';
+import styled from 'styled-components';
+import media from 'theme/media';
 
-//     componentDidMount: function() {
-//         // Connect the initMap() function within this class to the global window context,
-//         // so Google Maps can invoke it
-//         window.initMap = this.initMap;
-//         // Asynchronously load the Google Maps script, passing in the callback reference
-//         loadJS('https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap')
-//     },
-//     initMap: function() {
-//         map = new google.maps.Map(this.refs.map.getDOMNode(), {  });
-//     },
+const Iframe = styled.iframe`
+  border: 0;
+  height: 350px;
+  width: 100%;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+  ${media.phone`
+    height: 255px;    
+  `};
+`;
 
-//     render: function() {
-//             return (
-//             <p ref="map" style="height: '500px', width: '500px'" />
-//             );
-//     }
-// });
+const Map = () => (
+  <Iframe
+    title="maps"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.1826232840444!2d76.90643951446539!3d28.594297692562495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0df86e89be95%3A0xa130bbe36203a873!2sCh.Brahm+Prakash+Government+Engineering+College!5e0!3m2!1sen!2sin!4v1521742883593&zoom=4"
+    width="600"
+    height="450"
+    frameBorder="0"
+    allowFullScreen
+  />
+);
 
-// function loadJS(src) {
-//     var ref = window.document.getElementsByTagName("script")[0];
-//     var script = window.document.createElement("script");
-//     script.src = src;
-//     script.async = true;
-//     ref.parentNode.insertBefore(script, ref);
-// }
+export default Map;

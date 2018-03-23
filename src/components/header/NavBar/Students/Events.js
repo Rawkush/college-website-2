@@ -5,8 +5,8 @@ import { red } from 'theme/variable';
 import media from 'theme/media';
 
 //  Images
-import culturalImage from 'images/cultural.jpg';
-import sportsImage from 'images/sports.jpg';
+import SportsIcon from './Icons/Sports';
+import CulturalIcon from './Icons/Cultural';
 
 import {
   NavCardFlex,
@@ -36,9 +36,10 @@ const Span = styled.div`
 `;
 
 const HoverDiv = styled.div`
+  transition: all 0.2s ease-in;
   &:hover {
     color: ${red};
-    > img {
+    > svg {
       transform: scale(1.05);
       transform: translateY(-3px);
       box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
@@ -53,7 +54,7 @@ export default ({ click }) => (
       <NavItemFlexHeading>
         <StyledLink to="/events/cultural" onClick={click}>
           <HoverDiv>
-            <Image src={culturalImage} alt="cultural" />
+            <CulturalIcon />
             <Span> Cultural Events </Span>
           </HoverDiv>
         </StyledLink>
@@ -61,7 +62,7 @@ export default ({ click }) => (
       <NavItemFlexHeading>
         <StyledLink to="/events/sports" onClick={click}>
           <HoverDiv>
-            <Image src={sportsImage} alt="sports" />
+            <SportsIcon />
             <Span> Sports Events </Span>
           </HoverDiv>
         </StyledLink>

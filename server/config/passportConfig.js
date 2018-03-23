@@ -49,6 +49,10 @@ const callbackFunction = (req, accessToken, refreshToken, profile, done) => {
     '_json.publicProfileUrl',
   ]);
 
+  if (!body._json) {
+    body._json = {};
+  }
+
   const payload = _.pick(profile, ['provider', 'id']);
 
   const token = jwt.sign(payload, process.env.JWT_SECRET_2).toString();

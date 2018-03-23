@@ -42,27 +42,6 @@ const Input = styled.input`
   }
 `;
 
-// const Select = styled.select`
-//   width: 24%;
-//   padding: 7px;
-//   margin-left: 20px;
-//   ${media.phone`
-//       padding: 5px 0px;
-//       width: 99%;
-//       margin-left: 0px;
-//       margin-top: 16px
-//     `};
-//   font-family: 'Open Sans', sans-serif;
-//   border-radius: 3px;
-//   border: solid 1px rgba(0, 0, 0, 0.27);
-//   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-//   line-height: 1.5;
-//   &:focus {
-//     border: solid 1px red;
-//     box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
-//   }
-// `;
-
 const padding = '16px auto -6px auto';
 
 const FlexMod = Flex.extend`
@@ -92,35 +71,6 @@ const Span = styled.div`
 const TextFilterComponent = ({ changeHandler }) => (
   <Input type="text" onChange={(e) => changeHandler(e)} placeholder="search" />
 );
-
-/* const SelectFilterComponent = ({ changeHandler }) => (
-  <Select
-    name="filter"
-    id="filter"
-    placeholder="Filter"
-    onChange={(e) => changeHandler(e)}
-  >
-    <option value="" hidden>
-      Filter
-    </option>
-    <option value="">None</option>
-    <option value="it">I.T.</option>
-    <option value="civil">Civil</option>
-    <option value="env">Environment</option>
-    <hr />
-    <option value="iyear">1st Year</option>
-    <option value="iiyear">2nd Year</option>
-    <option value="iiiyear">3rd Year</option>
-    <option value="ivyear">4th Year</option>
-    <hr />
-    <option value="teacher">Teachers</option>
-    <option value="student">Students</option>
-    <hr />
-    <option value="pdf">PDFs</option>
-    <option value="googleForm">Google Form</option>
-    <option value="external">External Link</option>
-  </Select>
-); */
 
 const latestSort = (array) =>
   array.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
@@ -203,26 +153,38 @@ class Notification extends Component {
                   (n, i) =>
                     (this.state.home && i < 3) || this.state.notification
                 )
-                .map(({ title, createdAt, tags, link, _id, file, read }) => (
-                  <FlexItemModded
-                    notification={this.state.notification}
-                    key={_id}
-                  >
-                    {this.state.notification && (
-                      <NotificationItem2
-                        key={_id}
-                        title={title}
-                        createdAt={createdAt}
-                        tags={tags}
-                        link={link}
-                        file={file}
-                        _id={_id}
-                        read={read}
-                        markAsRead={this.state.markAsRead}
-                      />
-                    )}
-                  </FlexItemModded>
-                ))
+                .map(
+                  ({
+                    title,
+                    createdAt,
+                    tags,
+                    link,
+                    _id,
+                    file,
+                    read,
+                    _creator,
+                  }) => (
+                    <FlexItemModded
+                      notification={this.state.notification}
+                      key={_id}
+                    >
+                      {this.state.notification && (
+                        <NotificationItem2
+                          key={_id}
+                          title={title}
+                          createdAt={createdAt}
+                          tags={tags}
+                          link={link}
+                          file={file}
+                          _id={_id}
+                          read={read}
+                          creator={_creator}
+                          markAsRead={this.state.markAsRead}
+                        />
+                      )}
+                    </FlexItemModded>
+                  )
+                )
             ) : (
               <p> Loading... </p>
             )}
@@ -234,7 +196,14 @@ class Notification extends Component {
 }
 
 const mapNotifications = (notifications = []) =>
-  notifications.map(({ _id, _ref, read }) => ({ ..._ref, _id, read }));
+  notifications.map(
+    ({ _id = '', _ref = { _creator: {} }, read = '' } = {}) => ({
+      ..._ref,
+      _id,
+      read,
+      creator: _ref._creator,
+    })
+  );
 
 const mapStateToProps = (state) => ({
   notifications: latestSort(

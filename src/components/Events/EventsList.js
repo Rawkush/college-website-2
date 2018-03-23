@@ -1,13 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Flex } from 'theme/Components';
 
-import EventsListItem from './EventsListItem';
+//  Components
+import EventListItem from './EventListItem';
 
-export default ({ auth, events, type }) => (
-  <div>
-    {events
-      .filter((event) => event.type === type)
-      .map((event) => (
-        <EventsListItem auth={auth} key={event._id} {...event} />
-      ))}
-  </div>
-);
+const FlexMod = Flex.extend`
+  justify-content: space-evenly;
+`;
+
+class EventsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      events: this.props.events || [],
+      auth: this.props.auth,
+    };
+  }
+
+  componentWillReceiveProps({ events, auth }) {
+    this.setState(() => ({ events, auth }));
+  }
+
+  render() {
+    return (
+      <FlexMod wrap>
+        {this.state.events &&
+          this.state.events.map((event) => (
+            <EventListItem {...event} key={event._id} auth={this.state.auth} />
+          ))}
+      </FlexMod>
+    );
+  }
+}
+
+const mapStateToProps = ({ events, auth: { admin: auth } }) => ({
+  events,
+  auth,
+});
+
+export default connect(mapStateToProps)(EventsList);

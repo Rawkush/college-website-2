@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Styled-Components
-import { Page, Container, FlexCenter, H2Res } from 'theme/Components';
+import { Page, Container, FlexCenter, H2ResAuto } from 'theme/Components';
 import media from 'theme/media';
 
 // Defined components import
 import Notification from './../../components/notifications/Notification';
-// import Event from './../../components/Events/EventsListItem';
+// import Events from './../../components/Events/EventsListHome';
 import GetToKnow from './../../components/Body/GetToKnow';
 // import Map from './../../components/Body/map';
 
@@ -31,6 +31,10 @@ const NotificationLink = styled(Link)`
     border: solid 2.4px rgba(43, 42, 42, 0.7);
     transform: translateY(-3px);
     box-shadow: 0 10px 11px rgba(0, 0, 0, 0.3);
+    > i {
+      transform: rotate(-45deg) scale(1.4);
+      border-color: white;
+    }
   }
   ${media.phone`
     margin: 10px auto 20px auto;
@@ -40,23 +44,13 @@ const NotificationLink = styled(Link)`
 `;
 
 const I = styled.i`
-  border: solid black;
+  border: solid rgba(0, 0, 0, 0.6);
   border-width: 0 1px 1px 0;
   display: inline-block;
   padding: 3px;
   margin-left: 3px;
   margin-bottom: 2px;
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-`;
-
-const Contained = Container.extend`
-width: 100%;
-`
-
-const Div = styled.div`
-  margin-top: 50px;
-  text-align: center;
+  transform: rotate(-45deg) scale(1.3);
 `;
 
 const NotificationBg = styled.div`
@@ -65,9 +59,7 @@ const NotificationBg = styled.div`
 const HomePage = () => (
   <Page>
     <Container>
-      <H2Res center margin="115px 0px 50px 0px" marginRes="100px 0px 20px 0px">
-        Notifications
-      </H2Res>
+      <H2ResAuto>Notifications</H2ResAuto>
     </Container>
     <NotificationBg>
       <Container>
@@ -80,11 +72,7 @@ const HomePage = () => (
         </FlexCenter>
       </Container>
     </NotificationBg>
-    <Div />
-    <Contained>
-      <GetToKnow />
-      {/* <Map /> */}
-    </Contained>
+    <GetToKnow />
   </Page>
 );
 

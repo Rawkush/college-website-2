@@ -276,6 +276,9 @@ const addNotification = async (req, res) => {
         { _creator },
         {
           $push: { notifications: { _ref: notification._id } },
+        },
+        {
+          upsert: true,
         }
       );
     });

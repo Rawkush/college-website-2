@@ -1,16 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Page, H2ResAuto, Container } from 'theme/Components';
 
 import EventsList from './../../components/Events/EventsList';
 
-// eslint-disable-next-line
-import { Page } from 'theme/Components';
+const Capitilize = (str = 'Events') => {
+  if (str === 'cultural') {
+    return 'Cultural Events';
+  }
+  if (str === 'sports') {
+    return 'Sports Events';
+  }
+  return str;
+};
 
 const EventsPage = ({ match, events, auth }) => (
   <div>
     <Page>
-      <h2>{match.params.type}</h2>
-      <EventsList events={events} auth={auth} type={match.params.type} />
+      <H2ResAuto>{Capitilize(match.params.type)}</H2ResAuto>
+      <Container>
+        <EventsList events={events} auth={auth} type={match.params.type} />
+      </Container>
     </Page>
   </div>
 );

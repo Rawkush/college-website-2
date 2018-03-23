@@ -109,15 +109,12 @@ const SelectFilterComponent = ({ changeHandler }) => (
     <option value="it">I.T.</option>
     <option value="civil">Civil</option>
     <option value="env">Environment</option>
-    <hr />
     <option value="iyear">1st Year</option>
     <option value="iiyear">2nd Year</option>
     <option value="iiiyear">3rd Year</option>
     <option value="ivyear">4th Year</option>
-    <hr />
     <option value="teacher">Teachers</option>
     <option value="student">Students</option>
-    <hr />
     <option value="pdf">PDFs</option>
     <option value="googleForm">Google Form</option>
     <option value="external">External Link</option>
@@ -243,9 +240,6 @@ class Notification extends Component {
     );
   }
 }
-
-const notificationsComp = (notifications) =>
-  notifications.map(({ read, _id, _ref }) => ({ read, ..._ref, _id }));
 
 const mapStateToProps = (state) => ({
   notifications: latestSort(state.notifications),

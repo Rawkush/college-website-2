@@ -4,7 +4,6 @@
 }
 
 .fade-enter.fade-enter-active {
-  margin-top: 93px;
   opacity: 1;
-  transition: opacity 250ms ease-in;
+  transition: all 200ms ease-in;
 }

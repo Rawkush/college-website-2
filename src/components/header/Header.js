@@ -26,6 +26,7 @@ const FixedHeader = styled.header`
   top: -0.6px;
   background: #fff;
   z-index: 100;
+  backface-visibility: hidden;
   ${media.phone`
     box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
     height: 70px;
@@ -75,15 +76,9 @@ const StyledLink = styled(Link)`
 const RoundDiv = styled.div`
   border-radius: 50%;
 `;
-const Span = styled.span`
-color: black;
-text-decoration: none;
-font-size: 1.2rem;
-font-family: 'Alegreya Sans', serif;
-&:hover{
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  font-size: 1.3rem;
-}
+
+const Text = styled.p`
+  font-family: 'Noto Serif', sans-serif;
 `;
 
 const DisplayAvatar = ({ SVG }) => (
@@ -131,7 +126,7 @@ class Header extends Component {
       };
     }
     if (admin) {
-      return { link: '/admin/dashboard', text: <Span> DashBoard </Span> };
+      return { link: '/admin/dashboard', text: 'Dashboard' };
     }
     return null;
   };
@@ -157,12 +152,16 @@ class Header extends Component {
                 {authentication ? (
                   <Link to={authentication.link}>
                     {(authentication.photo && (
-                      <Image src={authentication.photo} />
+                      <Image
+                        src={authentication.photo.replace(/sz=50/, 'sz=500')}
+                      />
                     )) ||
                       (authentication.SVG && (
                         <DisplayAvatar SVG={authentication.SVG} />
                       )) ||
-                      (authentication.text && <p>{authentication.text}</p>)}
+                      (authentication.text && (
+                        <Text>{authentication.text}</Text>
+                      ))}
                   </Link>
                 ) : (
                   <NavLink to="/login">

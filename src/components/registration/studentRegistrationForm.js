@@ -280,6 +280,18 @@ const StudentRegistration = ({
     <label htmlFor="bio">Bio:</label>
     {touched.bio && errors.bio && <ErrorAlert>{errors.bio}</ErrorAlert>}
     <Field type="textarea" name="bio" placeholder="Enter your Bio" id="bio" />
+    {!values.edit && <label htmlFor="otp">Registeration Key:</label>}
+    {!values.edit &&
+      touched.branch &&
+      errors.branch && <ErrorAlert>{errors.branch}</ErrorAlert>}
+    {!values.edit && (
+      <Field
+        type="otp"
+        name="otp"
+        placeholder="Enter your registeration key"
+        id="otp"
+      />
+    )}
     {values.edit && (
       <FeildWrapper>
         <p>Links:</p>
@@ -427,6 +439,7 @@ const FormikStudentRegistration = withFormik({
       onRemove: onRemove || '',
       history,
       logout,
+      otp: '',
       setSecondary,
     };
   },
@@ -470,8 +483,8 @@ const FormikStudentRegistration = withFormik({
         setSubmitting(false);
         return props.history.push('/student/myprofile');
       })
-      .catch((err) => {
-        setErrors({ error: `Something Went wrong ${err}` });
+      .catch((error) => {
+        setErrors({ error });
         setSubmitting(false);
       });
   },

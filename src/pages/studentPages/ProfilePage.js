@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 //  Styled default components
-import { Page, Container, ButtonLink, FlexEnd } from 'theme/Components';
+import { Page, Container, ButtonLink, FlexEnd, Loader } from 'theme/Components';
 import media from 'theme/media';
 import { red } from 'theme/variable';
 
@@ -73,8 +73,8 @@ const Button = styled.button`
 `;
 
 const FlexBell = FlexEnd.extend`
-  height: 50vh;
-  width: 92vh;
+  height: 284px;
+  width: 29vw;
   padding: 20px 0px 0px 0px;
   ${media.phone`
     order: -1;
@@ -146,7 +146,7 @@ const StudentProfilePage = ({ student, secondary, logout, history }) => (
       </Container>
     </Background>
     <Container>
-      {student ? (
+      {secondary ? (
         <div>
           <SpecialisationList {...secondary} edit />
           <AccomplishmentsList {...secondary} edit />
@@ -162,7 +162,7 @@ const StudentProfilePage = ({ student, secondary, logout, history }) => (
           </Wrapper2>
         </div>
       ) : (
-        <p>Loading ...</p>
+        <Loader>Loading ...</Loader>
       )}
     </Container>
   </Page>

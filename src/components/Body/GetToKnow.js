@@ -1,90 +1,127 @@
 import React from 'react';
 import styled from 'styled-components';
-import { H3 } from 'theme/Components';
-import Map from './map';
-import alliedImage from 'images/college-main.jpg';
+import { Container } from 'theme/Components';
+import media from 'theme/media';
 
+//  Components
+import Map from './Map';
+import FaceBook from './FaceBook';
+import CollegeImage from './CollegeImage';
 
-const GTK = styled.div`
-  background: #F0F0F0;
-  width: 100%;
-  margin: 25px 0px 25px 0px;
-  text-align: center;
+const Background = styled.div`
+  background: #efefef;
+  padding: 1px 10px;
 `;
 
-const Head = H3.extend`
-  padding: 30px;
-  text-align: center;
-  font-family: 'Noto Serif',serif;
-  font-size: 1.6rem;
-  font-weight: 400;
+const Wrapper = styled.div`
+  margin: 50px 0px;
+`;
+
+const Location = styled.div`
+  margin: 50px 0px;
+  display: flex;
+  ${media.phone`
+    flex-direction: column;
+  `};
+`;
+
+const Social = styled.div`
+  margin: 100px 0px;
+  display: flex;
+  ${media.phone`
+    flex-direction: column;
+    margin: 50px 0px;
+  `};
 `;
 
 const About = styled.div`
-  //  background: white;
+  margin: 50px 0px 100px 0px;
   display: flex;
+  ${media.phone`
+    flex-direction: column;
+    margin: 50px 0px;
+  `};
+`;
+
+const Wrapper1 = styled.div`
   flex: 1;
-  width: 75%;
-  margin: 0 auto;
-  margin-bottom: 80px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  &: hover{
-    box-shadow: none;
-  }
-  `;
-const Img = styled.img`
-  width: 380px;
-  height: 250px;
-  margin: 20px;
-  &: hover{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  ${media.phone`
+    order: -1;
+  `};
 `;
-const Text = styled.div`
-  // background: blue;
-  font-weight: 300;
-  font-size: 1.3rem;
-  font-family: 'Alegreya Sans', serif;
-  width: 250px;
-  margin-left: 25px;
+
+const Wrapper2 = styled.div`
+  flex: 2;
+  display: flex;
+  justify-content: center;
+`;
+
+const P = styled.p`
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 22px;
+  max-width: ${({ big }) => big || '70%'};
   text-align: center;
-  padding: 10px;
-  margin-top: 70px;
 `;
 
-const Text1 = Text.extend`
-  margin-right: 67px;
-  margin-left: 41px;
+const H2 = styled.h2`
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: bold;
+  font-size: 30px;
 `;
 
-const Locate = styled.h3`
+const H2Head = styled.h2`
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+  text-align: center;
 `;
 
-const GetToKnow = () => (
-  <GTK>
-    <Head> Get To Know </Head>
-    <About>
-      <Img src={alliedImage} alt="about us" />
-      <div>
-        <Text>
-          fgdfyh gfdh gfhdgf hjf dgdf sgdfsgdf sgdf gdsfgdsfg hvh hdf hhf
-          fdvgjdf hfd  fd fdu  fd f fdvghdg ghdfgh  hfdu hd hdfhh <br />
-          ...see more
-        </Text>
-      </div>
-    </About>
-    <About>
-      <div>
-        <Locate> Locate Us </Locate>
-        <Text1>
-          fgdfyh gfdh gfhdgf hjf dgdf sgdfsgdf sgdf gdsfgdsfg hvh hdf hhf
-          fdvgjdf hfd  fd fdu  fd  f  fdvghdg ghdfgh  hfdu hd hdf hh <br />
-          ...see more
-        </Text1>
-      </div>
-      <Img src="/" alt="location" />
-    </About>
-  </GTK>
+const text =
+  'Only a short walk from Rawta Mor. Dwarka mor is the nearest metro station.';
+
+const text2 =
+  'Follow us on the social media to get to all the updates about the college.';
+
+const text3 =
+  'The Department of Training and Technical Education, Govt. of Delhi, in its mission to promote and establish centre of excellence in form of Institutes has added Ch.B.P.Government Engineering College at Jaffarpur, Delhi, from academic session 2007-08.';
+
+export default () => (
+  <Wrapper>
+    <Background>
+      <Container>
+        <H2Head>Get To Know</H2Head>
+        <About>
+          <Wrapper2>
+            <CollegeImage />
+          </Wrapper2>
+          <Wrapper1>
+            <H2>About {''} Us</H2>
+            <P big="90%">{text3}</P>
+          </Wrapper1>
+        </About>
+        <Location>
+          <Wrapper1>
+            <H2>LOCATE {''} US</H2>
+            <P>{text}</P>
+          </Wrapper1>
+          <Wrapper2>
+            <Map />
+          </Wrapper2>
+        </Location>
+        <Social>
+          <Wrapper2>
+            <FaceBook />
+          </Wrapper2>
+          <Wrapper1>
+            <H2>SOCIAL</H2>
+            <P>{text2}</P>
+          </Wrapper1>
+        </Social>
+      </Container>
+    </Background>
+  </Wrapper>
 );
-
-export default GetToKnow;

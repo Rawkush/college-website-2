@@ -1,24 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { NavCardFlex, NavItemFlex, StyledLink } from './../Shared.styles';
-
-import ssImage from 'images/ss.png';
-import placementImage from 'images/placements.jpg';
-import media from 'theme/media';
 import { red } from 'theme/variable';
+import StarIcon from './Icons/Star';
+import PlacementIcon from './Icons/Placement';
 
-const Image = styled.img`
-  display: block;
-  height: 80px;
-  margin: 0 auto;
-  border-radius: 50%;
-  transition: all 0.1s ease;
-  ${media.phone`
-    height: 70px;
-  `};
-`;
+import { NavCardFlex, NavItemFlex, StyledLink } from './../Shared.styles';
 
 const Span = styled.div`
   padding: 10px 0px;
@@ -26,10 +13,10 @@ const Span = styled.div`
 `;
 
 const HoverDiv = styled.div`
+  transition: all 0.2s ease-in-out;
   &:hover {
     color: ${red};
-    > img {
-      transform: scale(1.05);
+    > svg {
       transform: translateY(-3px);
       box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
     }
@@ -41,7 +28,7 @@ export default ({ click }) => (
     <NavItemFlex>
       <StyledLink to="/shinigsstars" onClick={click}>
         <HoverDiv>
-          <Image src={ssImage} />
+          <StarIcon />
           <Span>Shining Stars</Span>
         </HoverDiv>
       </StyledLink>
@@ -49,7 +36,7 @@ export default ({ click }) => (
     <NavItemFlex>
       <StyledLink to="/placements" onClick={click}>
         <HoverDiv>
-          <Image src={placementImage} />
+          <PlacementIcon />
           <Span>Placements</Span>
         </HoverDiv>
       </StyledLink>

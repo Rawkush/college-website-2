@@ -34,7 +34,7 @@ const H2ResAuto = styled.h2`
   font-size: 1.6rem;
   font-weight: 400;
   text-align: ${({ left }) => (left ? 'left' : 'center')};
-  margin: ${({ margin }) => margin || '115px 0px 20px 0px'};
+  margin: ${({ margin }) => margin || '115px 0px 25px 0px'};
   ${media.phone`
     margin: ${({ marginRes }) => marginRes || '94px 0px 20px 0px'};
   `};
@@ -94,6 +94,7 @@ const Button = styled.button`
 const Flex = styled.div`
   display: flex;
   justify-content: ${({ end }) => (end ? 'flex-end' : 'flex-start')};
+  flex-wrap: ${({ wrap }) => (wrap ? 'wrap' : 'none')};
 `;
 
 const FlexCenter = styled.div`
@@ -223,7 +224,6 @@ const StyledForm = styled(Form)`
     padding: 10px 50px;
     color: rgba(0, 0, 0, 0.6);
     margin: 30px 0px;
-    margin-left: ${({ left }) => left || '0'};
     border-radius: 3px;
     transition: all 0.15s ease-in-out;
     border: solid 1px rgba(179, 0, 0, 0.7);
@@ -235,6 +235,9 @@ const StyledForm = styled(Form)`
     &:disabled {
       opacity: 0.5;
     }
+  }
+  > button[type='button'] {
+    margin-left: 20px;
   }
 `;
 
@@ -314,6 +317,44 @@ const FlexEnd = Flex.extend`
   width: 100%;
 `;
 
+const Loader = styled.div`
+  height: 100%;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.7);
+`;
+
+const Warn = styled.div`
+  height: 100%;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.7);
+  padding: ${({ padding }) => padding || 'auto'};
+`;
+
+const StyledInput = styled.input`
+  width: 100%;
+  padding: 7px;
+  ${media.phone`
+    padding: 5px 0px 5px 5px;
+    width: 97%;
+  `};
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+  border: solid 1px rgba(0, 0, 0, 0.27);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  line-height: 1.5;
+  margin-top: ${({ mtop }) => mtop || '0px'};
+  &:focus {
+    border: solid 1px red;
+    box-shadow: 0 0 0 0.2rem rgba(179, 0, 0, 0.3);
+  }
+`;
+
 export {
   H1,
   H2,
@@ -340,4 +381,7 @@ export {
   BorderWrapper,
   SVG,
   H2ResAuto,
+  Loader,
+  Warn,
+  StyledInput,
 };

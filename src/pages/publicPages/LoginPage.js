@@ -20,13 +20,14 @@ import {
 import { startSetTeacherSecondary } from './../../actions/teacherSecondary';
 
 import TeacherLoginForm from './../../components/adminDashboard/TeacherRegistrationForm';
+import RegisterEmail from './../../components/login/RegisterEmail';
 import LoginButtonLinks from './../../components/login/LoginButtonLinks';
 import GoogleSVG from './../../components/login/GoogleButtonSVG';
 import GithubSVG from './../../components/login/GithubSVG';
 import LinkedInSVG from './../../components/login/LinkedInSVG';
 
 const FlexExtended = FlexResponsiveStack.extend`
-  min-height: 65vh;
+  min-height: 90vh;
   align-items: center;
 `;
 
@@ -37,8 +38,8 @@ const LoginPage = ({ login, setProfile, setSecondary, history }) => (
         <FlexItem>
           <FlexCenter>
             <Wrapper>
-              <H3 center>Student&apos;s Login or Register.</H3>
-              <Wrapper w="250px" m="50px auto">
+              <H3 center>Student&apos;s Login.</H3>
+              <Wrapper w="250px" m="35px auto">
                 <LoginButtonLinks
                   link="/s/student/auth/google"
                   name="Login using Google"
@@ -57,6 +58,8 @@ const LoginPage = ({ login, setProfile, setSecondary, history }) => (
                   SVG={LinkedInSVG}
                 />
               </Wrapper>
+              <H3 center>Student&apos;s Register.</H3>
+              <RegisterEmail />
             </Wrapper>
           </FlexCenter>
         </FlexItem>

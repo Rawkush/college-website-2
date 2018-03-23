@@ -20,7 +20,7 @@ const NavContainer = styled.div`
   z-index: 100;
   ${media.phone`
     width: 100%;
-    height: 8vh;
+    height: 60px;
     padding-bottom: 0px;
   `};
 `;
@@ -71,20 +71,28 @@ const Div = styled.div`
   width: 100%;
   position: fixed;
   background: #fff;
-  top: ${(props) => (props.active ? '92px' : '-250px')};
-  transition: all cubic-bezier(0.46, 0.22, 0.5, 0.93) 0.3s;
+  transform: ${(props) =>
+    props.active ? 'translateY(340px)' : 'translateY(0px)'};
+  top: -250px;
+  transition: all ease 0.3s;
   z-index: 90;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.09);
   ${media.phone`
-    top: ${(props) => (props.active ? '67px' : '20vh')};    
-    opacity: ${(props) => (props.active ? '100' : '0')};
-    height: calc(100vh - 116px);
+    top: 67px;
+    transform: ${(props) =>
+      (props.active ? 'translateY(0px)' : 'translateY(40px)')};    
+    opacity: ${(props) => (props.active ? '1' : '0')};
+    height: calc(100% - 116px);
     overflow-y: auto;
     pointer-events: ${(props) => (props.active ? 'auto' : 'none')};
     width: 101%;
     overflow-x: hidden;
     left: -1px;
   `};
+`;
+
+const Wrapper = styled.div`
+  backface-visibility: hidden;
 `;
 
 class NavBar extends Component {
@@ -115,7 +123,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <FixedCover>
           <Container>
             <NavContainer>
@@ -144,7 +152,7 @@ class NavBar extends Component {
         <Div active={this.state.active2}>
           <StudentsNav click={this.navClick} />
         </Div>
-      </div>
+      </Wrapper>
     );
   }
 }

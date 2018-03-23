@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ButtonLink } from 'theme/Components';
+import { ButtonLink, Warn, Loader } from 'theme/Components';
 import { Title, HR, WrapperEnd } from './Shared.styles';
 
 const Wrapper = styled.div`
@@ -12,11 +12,23 @@ const Wrapper = styled.div`
 export default ({ specialisation, edit } = {}) => (
   <div>
     <Wrapper>
-      <Title>Specialisation</Title>
       {specialisation ? (
-        specialisation.map((elem) => <p key={elem}>{elem}</p>)
+        <div>
+          {!specialisation.length ? (
+            edit && (
+              <Warn padding="50px 0px 0px 0px">
+                There are no specialisation you added yet.
+              </Warn>
+            )
+          ) : (
+            <div>
+              <Title>Specialisation</Title>
+              {specialisation.map((elem) => <p key={elem}>{elem}</p>)}
+            </div>
+          )}
+        </div>
       ) : (
-        <p>Loading...</p>
+        <Loader>Loading...</Loader>
       )}
     </Wrapper>
     {edit && (
@@ -26,6 +38,6 @@ export default ({ specialisation, edit } = {}) => (
         </ButtonLink>
       </WrapperEnd>
     )}
-    <HR />
+    {specialisation && !!specialisation.length && <HR />}
   </div>
 );

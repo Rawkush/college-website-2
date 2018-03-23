@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import media from 'theme/media';
 
 import { ButtonLink } from 'theme/Components';
 
@@ -12,9 +13,12 @@ const Title = styled.h5`
 const Image = styled.img`
   display: block;
   width: auto;
-  max-width: 100%;
+  max-width: 50vw;
   height: auto;
   margin: 0 auto;
+  ${media.phone`
+    max-width: 100%;
+  `};
 `;
 
 const Description = styled.p`
