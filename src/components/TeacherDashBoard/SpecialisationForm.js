@@ -44,8 +44,10 @@ const FormikSpecialisationForm = withFormik({
         setSubmitting(false);
         props.history.push('/teacher/myprofile');
       })
-      .catch(() => {
+      .catch((error) => {
         setErrors({ error: 'Something Went Wrong!' });
+        alert(error);
+        window.scrollTo(0, 0);
         setSubmitting(false);
       });
   },

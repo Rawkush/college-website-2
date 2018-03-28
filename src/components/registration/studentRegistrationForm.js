@@ -199,18 +199,31 @@ const StudentRegistration = ({
       name="name"
       id="name"
       placeholder="Enter your name here..."
+      required
     />
     <label htmlFor="rollNo">Roll Number:</label>
     {touched.rollNo &&
       errors.rollNo && <ErrorAlert>{errors.rollNo}</ErrorAlert>}
-    <Field type="text" name="rollNo" placeholder="Roll Number" id="rollNo" />
+    <Field
+      type="text"
+      name="rollNo"
+      placeholder="Roll Number"
+      id="rollNo"
+      required
+    />
     <label htmlFor="email">Email:</label>
     {touched.email && errors.email && <ErrorAlert>{errors.email}</ErrorAlert>}
-    <Field type="email" name="email" placeholder="Email" id="email" />
+    <Field type="email" name="email" placeholder="Email" id="email" required />
     <label htmlFor="location">Location:</label>
     {touched.location &&
       errors.location && <ErrorAlert>{errors.location}</ErrorAlert>}
-    <Field type="text" name="location" placeholder="Location" id="location" />
+    <Field
+      type="text"
+      name="location"
+      placeholder="Location"
+      id="location"
+      required
+    />
     <label htmlFor="dateOfBirth">Date of Birth:</label>
     {touched.dateOfBirth &&
       errors.dateOfBirth && <ErrorAlert>{errors.dateOfBirth}</ErrorAlert>}
@@ -219,6 +232,7 @@ const StudentRegistration = ({
       name="dateOfBirth"
       placeholder="Date of Birth"
       id="dateOfBirth"
+      required
     />
     <label htmlFor="admittedIn">Admitted in:</label>
     {touched.admittedIn &&
@@ -229,6 +243,7 @@ const StudentRegistration = ({
       onChange={handleChange}
       onBlur={handleBlur}
       value={values.admittedIn}
+      required
     >
       <option value={new Date(admissionYearStart.firYear)}>
         {moment(admissionYearStart.firYear).format('YYYY')}
@@ -252,6 +267,7 @@ const StudentRegistration = ({
       onChange={handleChange}
       onBlur={handleBlur}
       value={values.branch}
+      required
     >
       <option value="" disabled>
         Select the branch.
@@ -269,6 +285,7 @@ const StudentRegistration = ({
       onChange={handleChange}
       onBlur={handleBlur}
       value={values.gender}
+      required
     >
       <option value="" disabled>
         Select your gender.
@@ -279,7 +296,13 @@ const StudentRegistration = ({
     </select>
     <label htmlFor="bio">Bio:</label>
     {touched.bio && errors.bio && <ErrorAlert>{errors.bio}</ErrorAlert>}
-    <Field type="textarea" name="bio" placeholder="Enter your Bio" id="bio" />
+    <Field
+      type="textarea"
+      name="bio"
+      placeholder="Enter your Bio"
+      id="bio"
+      required
+    />
     {!values.edit && <label htmlFor="otp">Registeration Key:</label>}
     {!values.edit &&
       touched.branch &&
@@ -290,6 +313,7 @@ const StudentRegistration = ({
         name="otp"
         placeholder="Enter your registeration key"
         id="otp"
+        required
       />
     )}
     {values.edit && (
@@ -450,15 +474,17 @@ const FormikStudentRegistration = withFormik({
       .required('Email is required for registration.'),
     rollNo: Yup.number('Roll number should be a number.')
       .positive('Roll number cannot be a negative number.')
-      .required('Roll number is required for registration.'),
+      .required('Roll number is required for registration.')
+      .min(16, 'The length of roll no. not correct')
+      .max(16, 'The length of roll no. not correct'),
     location: Yup.string(),
     dateOfBirth: Yup.date().required('Date of birth is required.'),
     admittedIn: Yup.date().required('Your Admission year is required.'),
     branch: Yup.string().required('Branch is required.'),
     gender: Yup.string().required('Gender is required.'),
     bio: Yup.string()
-      .min(50)
-      .required('Bio is required (Min 50 charachters).'),
+      .min(30)
+      .required('Bio is required (Min 30 charachters).'),
   }),
   handleSubmit(val, { props, setErrors, setSubmitting }) {
     const data = {
@@ -485,6 +511,8 @@ const FormikStudentRegistration = withFormik({
       })
       .catch((error) => {
         setErrors({ error });
+        alert(error);
+        window.scrollTo(0, 0);
         setSubmitting(false);
       });
   },

@@ -23,11 +23,21 @@ const NotificationForm = ({
     )}
     <label htmlFor="name">Name: </label>
     {touched.name && errors.name && <FormError>{errors.name}</FormError>}
-    <Field type="text" name="name" placeholder="Enter the name of the event." />
+    <Field
+      type="text"
+      name="name"
+      placeholder="Enter the name of the event."
+      required
+    />
 
     <label htmlFor="date">Date: </label>
     {touched.date && errors.date && <FormError>{errors.date}</FormError>}
-    <Field type="date" name="date" placeholder="When this event took place." />
+    <Field
+      type="date"
+      name="date"
+      placeholder="When this event took place."
+      required
+    />
 
     <label htmlFor="place">Place: </label>
     {touched.place && errors.place && <FormError>{errors.place}</FormError>}
@@ -35,11 +45,12 @@ const NotificationForm = ({
       type="text"
       name="place"
       placeholder="Where this event took place."
+      required
     />
     <label htmlFor="description">Description:</label>
     {touched.description &&
       errors.description && <FormError>{errors.description}</FormError>}
-    <Field type="text" name="description" placeholder="Description" />
+    <Field type="text" name="description" placeholder="Description" required />
     <label htmlFor="type">Type: </label>
     <select
       name="type"
@@ -47,6 +58,7 @@ const NotificationForm = ({
       value={values.type}
       onChange={handleChange}
       onBlur={handleBlur}
+      required
     >
       <option value="" disabled>
         Select the type of the Event
@@ -66,6 +78,7 @@ const NotificationForm = ({
           onChange={(e) => {
             setFieldValue('mainPhoto', e.currentTarget.files[0]);
           }}
+          required
         />
 
         <label htmlFor="photo1">Photo 1:</label>
@@ -76,6 +89,7 @@ const NotificationForm = ({
           onChange={(e) => {
             setFieldValue('photo1', e.currentTarget.files[0]);
           }}
+          required
         />
         <label htmlFor="photo2">Photo 2:</label>
         <input
@@ -158,6 +172,8 @@ const FormikNotificationForm = withFormik({
     date: Yup.date().required('Date of the Event is required.'),
     place: Yup.string().required('Place of the Event is required.'),
     type: Yup.string().required('Type of the Event is required.'),
+    mainPhoto: Yup.mixed().required('Main photo is required.'),
+    photo1: Yup.mixed().required('At least one photo is required.'),
   }),
   handleSubmit(val, { props, resetForm, setErrors, setSubmitting }) {
     if (!val.mainPhoto) {
@@ -171,8 +187,11 @@ const FormikNotificationForm = withFormik({
         setSubmitting(false);
         props.history.push('/admin/events');
       })
-      .catch(() => {
+      .catch((error) => {
         setErrors({ error: 'Something Went Wrong!' });
+        alert(error);
+        window.scrollTo(0, 0);
+        setSubmitting(false);
       });
   },
 })(NotificationForm);

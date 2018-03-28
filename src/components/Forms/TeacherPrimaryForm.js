@@ -36,6 +36,7 @@ const TeacherRegistration = ({
       id="name"
       name="name"
       placeholder="Enter your name here..."
+      required
     />
     <label htmlFor="dateOfBirth">Date of Birth:</label>
     {touched.dateOfBirth &&
@@ -45,6 +46,7 @@ const TeacherRegistration = ({
       id="dateOfBirth"
       name="dateOfBirth"
       placeholder="Date of Birth"
+      required
     />
     <label htmlFor="gender">Gender:</label>
     {touched.gender && errors.gender && <FormError>{errors.gender}</FormError>}
@@ -54,6 +56,7 @@ const TeacherRegistration = ({
       onChange={handleChange}
       onBlur={handleBlur}
       value={values.gender}
+      required
     >
       <option disabled value="">
         Select Your Gender
@@ -76,7 +79,7 @@ const TeacherRegistration = ({
     )}
     <label htmlFor="email">Email:</label>
     {touched.email && errors.email && <FormError>{errors.email}</FormError>}
-    <Field type="email" name="email" placeholder="Email" />
+    <Field type="email" name="email" placeholder="Email" required />
 
     <label htmlFor="password">Password:</label>
     {touched.Password &&
@@ -154,6 +157,8 @@ const FormikTeacherRegistration = withFormik({
         })
         .catch((err) => {
           setErrors({ error: `Something Went wrong ${err}` });
+          alert(err);
+          window.scrollTo(0, 0);
           setSubmitting(false);
         });
     }

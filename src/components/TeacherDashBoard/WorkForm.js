@@ -13,6 +13,7 @@ const WorkForm = ({ values, errors, touched, isSubmitting }) => (
       id="title"
       name="title"
       placeholder="what is your work."
+      required
     />
     <label htmlFor="description">Description</label>
     {touched.description &&
@@ -22,7 +23,11 @@ const WorkForm = ({ values, errors, touched, isSubmitting }) => (
       id="description"
       name="description"
       placeholder="Describe your work."
+      required
     />
+    <button disabled={!!isSubmitting} type="submit">
+      Submit
+    </button>
     {values.edit && (
       <button
         type="button"
@@ -35,9 +40,6 @@ const WorkForm = ({ values, errors, touched, isSubmitting }) => (
         Remove
       </button>
     )}
-    <button disabled={!!isSubmitting} type="submit">
-      Submit
-    </button>
   </StyledForm>
 );
 
@@ -60,7 +62,8 @@ const FormikWorkForm = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    skill: Yup.string('insert alphabet only'),
+    title: Yup.string('Title of work is required.'),
+    description: Yup.string('Description of the work is required'),
   }),
   handleSubmit(val, { props, resetForm, setErrors, setSubmitting }) {
     props
@@ -70,8 +73,10 @@ const FormikWorkForm = withFormik({
         setSubmitting(false);
         props.history.push('/teacher/myprofile');
       })
-      .catch(() => {
+      .catch((error) => {
         setErrors({ error: 'Something Went Wrong!' });
+        alert(error);
+        window.scrollTo(0, 0);
         setSubmitting(false);
       });
   },
