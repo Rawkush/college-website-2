@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "webpack",
-    "build:prod": "webpack -p --env production --config webpack.prod.config.js",
+    "build:prod": "webpack --env production --config webpack.prod.config.js",
     "dev-server": "webpack-dev-server",
     "client-test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "start": "node server/server.js",
     "server-watch": "nodemon server/server.js",
-    "server-test": "export NODE_ENV=test || SET \"NODE_ENV=test\" &&mocha server/**/*.test.js",
-    "test-server-watch": "nodemon --exec \"npm test\"",
+    "server-test":
+      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
+    "test-server-watch": "nodemon --exec \"npm server-test\"",
     "heroku-postbuild": "npm run build:prod"
   },
   "author": "",
@@ -78,6 +79,7 @@
     "slugify": "^1.2.9",
     "style-loader": "^0.20.1",
     "styled-components": "^3.1.6",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "^0.6.2",
     "uuid": "^3.2.1",
     "validator": "^9.2.0",
@@ -107,8 +109,8 @@
     "prettier": "^1.10.2",
     "prettier-eslint": "^8.7.3",
     "react-test-renderer": "^16.2.0",
-    "rewire": "^3.0.2",
     "sinon": "^4.1.6",
+    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-dev-server": "^2.11.1"
   }
 }

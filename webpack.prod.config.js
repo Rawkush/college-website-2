@@ -1,7 +1,10 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const dontenv = require('dotenv');
+const { IgnorePlugin, DefinePlugin } = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -14,11 +17,19 @@ if (process.env.NODE_ENV === 'test') {
 module.exports = (env) => {
   const isProduction = env === 'production';
   const CSSExtract = new ExtractTextPlugin('styles.css');
+  const JSONString = new DefinePlugin({
+    // <-- key to reducing React's size
+    'process.env': {
+      NODE_ENV: JSON.stringify('production'),
+    },
+  });
+  const Uglify = new UglifyJsPlugin(); // minify everything
+  // const Merge = new webpack.optimize.AggressiveMergingPlugin(); // Merge chunks
   const Compress = new CompressionPlugin({
     asset: '[path].gz[query]',
     algorithm: 'gzip',
     test: /\.js$|\.css$|\.html$/,
-    threshold: 10240,
+    threshold: 10,
     minRatio: 0.8,
   });
 
@@ -61,7 +72,14 @@ module.exports = (env) => {
         },
       ],
     },
-    plugins: [CSSExtract, Compress],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
+    plugins: [
+      JSONString,
+      CSSExtract,
+      new IgnorePlugin(/^\.\/locale$/, /moment$/),
+      // new BundleAnalyzerPlugin(),
+      Uglify,
+      Compress,
+    ],
   };
 };
