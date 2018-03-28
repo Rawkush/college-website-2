@@ -10,7 +10,6 @@ import media from 'theme/media';
 import Notification from './../../components/notifications/Notification';
 // import Events from './../../components/Events/EventsListHome';
 import GetToKnow from './../../components/Body/GetToKnow';
-// import Map from './../../components/Body/map';
 
 const NotificationLink = styled(Link)`
   background: none;
