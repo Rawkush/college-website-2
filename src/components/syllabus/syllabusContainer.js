@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Wrapper, H3 } from 'theme/Components';
+import { Wrapper, H2ResAuto } from 'theme/Components';
 // Components
 import SyllabusListItem from './syllabusListItem';
 import { filterSyllabus, periodFilter } from './Utils';
@@ -100,9 +100,7 @@ class Syllabus extends Component {
     const syllSem8 = filterSyllabus(syllabusFiltered, 8, this.state.params);
     return (
       <Wrapper w="700px" m="150px auto 0px auto">
-        <H3 center margin="140px 0px 20px 0px">
-          {this.returnTitle(this.state.params.sub)}
-        </H3>
+        <H2ResAuto>{this.returnTitle(this.state.params.sub)}</H2ResAuto>
         <H4 onClick={this.clickHandler1}> Semester I</H4>
         <SyllabusListItem
           active={this.state.active1}
