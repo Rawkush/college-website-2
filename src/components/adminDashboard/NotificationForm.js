@@ -2,7 +2,7 @@ import React from 'react';
 import { withFormik, Field } from 'formik';
 import Yup from 'yup';
 
-import { StyledForm } from 'theme/Components';
+import { StyledForm, FormError } from 'theme/Components';
 
 const NotificationForm = ({
   values,
@@ -12,10 +12,10 @@ const NotificationForm = ({
   setFieldValue,
 }) => (
   <StyledForm>
-    {errors.error && <p>{errors.error}</p>}
+    {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="title">Title</label>
     {touched.title && errors.title && <p>{errors.title}</p>}
-    <Field type="text" name="title" placeholder="Title" />
+    <Field type="text" name="title" placeholder="Title" required />
     <label htmlFor="description">Description</label>
     {touched.description && errors.description && <p>{errors.description}</p>}
     <Field type="text" name="description" placeholder="Description" />
@@ -132,7 +132,7 @@ const FormikNotificationForm = withFormik({
   },
   validationSchema: Yup.object().shape({
     title: Yup.string().required('Title is required.'),
-    description: Yup.string().min(50),
+    description: Yup.string().min(10),
     student: Yup.boolean(),
     teacher: Yup.boolean(),
     iyear: Yup.boolean(),
@@ -154,8 +154,11 @@ const FormikNotificationForm = withFormik({
         setSubmitting(false);
         props.history.push('/admin/dashboard');
       })
-      .catch(() => {
+      .catch((error) => {
         setErrors({ error: 'Something Went Wrong!' });
+        window.scrollTo(0, 0);
+        alert(error);
+        setSubmitting(false);
       });
   },
 })(NotificationForm);

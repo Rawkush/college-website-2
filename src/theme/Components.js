@@ -133,7 +133,7 @@ const A = styled.a`
   text-decoration: none;
   font-family: 'Alegreya Sans', sans-serif;
   padding: ${({ padding }) => padding || '1px 1px 3px 1px'};
-  margin: 5px 0px 0px 7px;
+  margin: ${({ noMar }) => (noMar ? '0px' : '5px 0px 0px 7px')};
   display: inline-block;
   transition: color 0.02s cubic-bezier(0.4, 0.18, 0.76, 0.34);
   position: relative;

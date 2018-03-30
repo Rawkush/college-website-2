@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { A } from 'theme/Components';
+import media from 'theme/media';
 
 const TD = styled.td`
   background-color: white;
@@ -9,6 +10,9 @@ const TD = styled.td`
   padding: 14px 7px;
   text-decoration: none;
   font-weight: 400;
+  ${media.phone`
+    font-size: 14px;
+  `};
 `;
 
 const TR = styled.tr`
@@ -29,7 +33,7 @@ const SyllabusItemTableItem = ({
   <TR>
     <TD>{codeNo}</TD>
     <TD>
-      <A padding="0px 1px 0px 1px" href={`/${file}`} target="_blank">
+      <A padding="0px" href={`/${file}`} target="_blank" noMar>
         {subject}
       </A>
     </TD>

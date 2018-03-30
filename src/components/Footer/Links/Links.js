@@ -65,6 +65,36 @@ const A = styled.a`
   }
 `;
 
+const StyledLink = styled(Link)`
+  color: #a9a9a9;
+  text-decoration: none;
+  font-family: 'Alegreya Sans', sans-serif;
+  padding: 1px 1px 3px 1px;
+  margin: 10px 0px 0px 15px;
+  display: inline-block;
+  transition: color 0.02s cubic-bezier(0.4, 0.18, 0.76, 0.34);
+  position: relative;
+  z-index: 10;
+  &:after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 5%;
+    width: 100%;
+    background: rgba(239, 239, 239, 0.56);
+    z-index: -1;
+    transition: height 0.1s;
+  }
+  &:hover {
+    color: black;
+    &:after {
+      height: 100%;
+      background: #efefef;
+    }
+  }
+`;
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -87,43 +117,54 @@ const ButtonLink = styled(Link)`
   }
 `;
 
+const link = {
+  ip: 'http://ipu.ac.in',
+  nptel: 'https://onlinecourses.nptel.ac.in/',
+  scholarships: 'https://scholarships.gov.in/',
+  gn: '/public/assets/delhi_gazette',
+  dtte:
+    'http://www.delhi.gov.in/wps/wcm/connect/DOIT_TT/training+and+technical+education/home',
+  gh: 'https://github.com/',
+  hr: 'https://hackerrank.com',
+  loan: 'https://www.vidyalakshmi.co.in/Students/',
+};
+
 const RelatedLinks = () => (
   <Card>
     <H3>Related Links</H3>
     <InnerCard1>
       <InnerCard2>
-        <A href="http://ipu.ac.in" target="_blank">
+        <A href={link.ip} target="_blank">
           University
         </A>
         <br />
-        <A href="https://onlinecourses.nptel.ac.in/" target="_blank">
+        <A href={link.nptel} target="_blank">
           NPTEL
         </A>
         <br />
-        <A href="">Gazzette Notifications</A>
+        <A href={link.gn} target="_blank">
+          Gazzette Notifications
+        </A>
         <br />
-        <A href="https://scholarships.gov.in/" target="_blank">
+        <A href={link.scholarships} target="_blank">
           National Scholarships Portal
         </A>
         <br />
-        <A
-          href="http://www.delhi.gov.in/wps/wcm/connect/DOIT_TT/training+and+technical+education/home"
-          target="_blank"
-        >
+        <A href={link.dtte} target="_blank">
           DTTE
         </A>
         <br />
       </InnerCard2>
       <InnerCard2>
-        <A href="https://github.com/" target="_blank">
+        <A href={link.gh} target="_blank">
           Github
         </A>
         <br />
-        <A href="https://www.hackerrank.com/" target="_blank">
+        <A href={link.hr} target="_blank">
           Hackerrank
         </A>
         <br />
-        <A href="https://www.vidyalakshmi.co.in/Students/" target="_blank">
+        <A href={link.loan} target="_blank">
           Education Loans
         </A>
       </InnerCard2>
@@ -136,28 +177,30 @@ const HelpfullLinks = () => (
     <H3>Helpfull Links</H3>
     <InnerCard1>
       <InnerCard2>
-        <A href="/regulationOnRagging">Regulations On Ragging</A>
+        <StyledLink to="/regulationOnRagging">
+          Regulations On Ragging
+        </StyledLink>
         <br />
-        <A href="/mandatoryDisclosure">Mandatory Disclosure</A>
+        <StyledLink to="/mandatoryDisclosure">Mandatory Disclosure</StyledLink>
         <br />
-        <A href="/formsAndPerforma">Forms & Performa</A>
+        <StyledLink to="/formsAndPerforma">Forms & Performa</StyledLink>
         <br />
-        <A href="budgetReport">Budget Report</A>
+        <StyledLink to="budgetReport">Budget Report</StyledLink>
         <br />
-        <A href="/disclaimer">Disclaimer</A>
+        <StyledLink to="/disclaimer">Disclaimer</StyledLink>
         <br />
-        <A href="/tender">Tenders</A>
+        <StyledLink to="/tender">Tenders</StyledLink>
       </InnerCard2>
       <InnerCard2>
-        <A href="">Location</A>
+        <StyledLink to="/location">Location</StyledLink>
         <br />
-        <A href="/credits">Credits</A>
+        <StyledLink to="/credits">Credits</StyledLink>
         <br />
-        <A href="/committee">Committee</A>
+        <StyledLink to="/committee">Committee</StyledLink>
         <br />
-        <A href="/contactUs">Contact Us</A>
+        <StyledLink to="/contactUs">Contact Us</StyledLink>
         <br />
-        <A href="/rti">RTI</A>
+        <StyledLink to="/rti">RTI</StyledLink>
       </InnerCard2>
     </InnerCard1>
   </Card>

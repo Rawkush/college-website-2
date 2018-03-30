@@ -17,13 +17,19 @@ const SyllabusForm = ({
     <label htmlFor="subject"> Subject:</label>
     {touched.subject &&
       errors.subject && <FormError>{errors.subject}</FormError>}
-    <Field type="text" name="subject" placeholder="Enter the subject." />
+    <Field
+      type="text"
+      name="subject"
+      placeholder="Enter the subject."
+      required
+    />
     <label htmlFor="codeNo"> Code No: </label>
     {touched.codeNo && errors.codeNo && <FormError>{errors.codeNo}</FormError>}
     <Field
       type="text"
       name="codeNo"
       placeholder="Enter the code number here."
+      required
     />
     <HR w="25vw" m="30px auto 0px auto" />
     <label htmlFor="l"> L: </label>
@@ -88,6 +94,7 @@ const SyllabusForm = ({
       onChange={handleChange}
       onBlur={handleBlur}
       value={values.type}
+      required
     >
       <option value="" disabled>
         Select the type of syllabus.
@@ -104,6 +111,7 @@ const SyllabusForm = ({
       onChange={handleChange}
       onBlur={handleBlur}
       value={values.period}
+      required
     >
       <option value="" disabled>
         Select the Period of syllabus.
@@ -126,6 +134,7 @@ const SyllabusForm = ({
       onChange={(e) => {
         setFieldValue('file', e.currentTarget.files[0]);
       }}
+      required
     />
 
     <button disabled={!!isSubmitting} type="submit">
@@ -207,8 +216,11 @@ const FormikSyllabusForm = withFormik({
           setSubmitting(false);
           props.history.push('/admin/dashboard');
         })
-        .catch(() => {
+        .catch((err) => {
           setErrors({ error: 'Something Went Wrong!' });
+          setSubmitting(false);
+          alert(err);
+          window.scrollTo(0, 0);
         });
     }
   },

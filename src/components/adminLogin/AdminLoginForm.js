@@ -15,6 +15,7 @@ const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
       placeholder="Enter the username name here..."
       autoFocus
       id="username"
+      required
     />
 
     <label htmlFor="password">Password: </label>
@@ -25,6 +26,7 @@ const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
       name="password"
       placeholder="password"
       id="password"
+      required
     />
 
     <button disabled={!!isSubmitting}> Login </button>
@@ -49,10 +51,12 @@ export default withFormik({
         setSubmitting(false);
         props.history.push('/admin/dashboard');
       })
-      .catch(() => {
+      .catch((error) => {
         resetForm();
         setErrors({ error: 'Credential were wrong or the server is down' });
         setSubmitting(false);
+        alert(error);
+        window.scrollTo(0, 0);
       });
   },
 })(AdminLoginForm);

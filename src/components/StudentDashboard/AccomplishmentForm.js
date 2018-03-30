@@ -28,6 +28,7 @@ const AccomplishmentForm = ({
       name="title"
       id="title"
       placeholder="80% in DS Course of NPTEL."
+      required
     />
     <label htmlFor="description">Description: </label>
     {touched.description &&
@@ -37,6 +38,7 @@ const AccomplishmentForm = ({
       name="description"
       placeholder="This exam is about Data Structures on of the core field etc..."
       id="description"
+      required
     />
     <label htmlFor="photo">Photo: </label>
     {touched.photo && errors.photo && <FormError>{errors.photo}</FormError>}
@@ -47,6 +49,7 @@ const AccomplishmentForm = ({
       onChange={(e) => {
         setFieldValue('photo', e.currentTarget.files[0]);
       }}
+      required
     />
     {values.edit &&
       values.photo &&
@@ -107,8 +110,10 @@ const FormikAccomplishmentForm = withFormik({
         setSubmitting(false);
         props.history.push('/student/myprofile');
       })
-      .catch(() => {
+      .catch((error) => {
         setErrors({ error: 'Something Went Wrong!' });
+        alert(error);
+        window.scrollTo(0, 0);
         setSubmitting(false);
       });
   },

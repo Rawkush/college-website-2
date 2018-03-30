@@ -87,6 +87,11 @@ module.exports = (env) => {
           secure: 'false',
           changeOrigin: true,
         },
+        '/public/': {
+          target: 'http://localhost:3000/',
+          secure: 'false',
+          changeOrigin: true,
+        },
       },
     },
   };

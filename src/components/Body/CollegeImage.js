@@ -13,10 +13,15 @@ const Image = styled.div`
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
   position: relative;
   perspective: 250px;
+  transition: all 0.2s ease-out;
   ${media.phone`
     height: 255px;    
     width: 100%;
   `};
+  &:hover {
+    box-shadow: 0px 12px 27px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+  }
 `;
 
 const Title = styled.h3`

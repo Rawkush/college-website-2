@@ -11,7 +11,7 @@ const TH = styled.th`
   font-family: 'Open Sans', sans-serif;
   border-bottom: 1px solid #ddd;
   background: #f3f3f3;
-  padding: 15px 12px;
+  padding: 15px 5px;
   text-align: left;
   font-size: 13px;
 `;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { withFormik, Field } from 'formik';
-import media from 'theme/media';
 
 import { StyledForm, FormError } from 'theme/Components';
 
@@ -44,8 +43,10 @@ const FormikEducationForm = withFormik({
         setSubmitting(false);
         props.history.push('/teacher/myprofile');
       })
-      .catch(() => {
+      .catch((error) => {
         setErrors({ error: 'Something Went Wrong!' });
+        alert(error);
+        window.scrollTo(0, 0);
         setSubmitting(false);
       });
   },

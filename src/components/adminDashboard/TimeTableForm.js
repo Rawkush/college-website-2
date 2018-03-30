@@ -22,7 +22,7 @@ const SyllabusForm = ({
       name="title"
       id="title"
       placeholder="Enter the title."
-      id="title"
+      required
     />
 
     <label htmlFor="wef">With Effective from: </label>
@@ -38,6 +38,7 @@ const SyllabusForm = ({
       onChange={handleChange}
       onBlur={handleBlur}
       value={values.semester}
+      required
     >
       <option value="" disabled>
         Select the semester.
@@ -59,6 +60,7 @@ const SyllabusForm = ({
       onChange={(e) => {
         setFieldValue('file', e.currentTarget.files[0]);
       }}
+      required
     />
 
     <button disabled={!!isSubmitting} type="submit">
@@ -119,8 +121,10 @@ const FormikSyllabusForm = withFormik({
           setSubmitting(false);
           props.history.push('/admin/timetable');
         })
-        .catch(() => {
+        .catch((error) => {
           setErrors({ error: 'Something Went Wrong!' });
+          alert(error);
+          window.scrollTo(0, 0);
           setSubmitting(false);
         });
     }
