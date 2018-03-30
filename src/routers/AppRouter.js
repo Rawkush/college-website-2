@@ -36,6 +36,7 @@ import EventsOptionPage from 'pages/publicPages/EventsOptionPage';
 import EventsPage from 'pages/publicPages/EventsPage';
 import TeacherRegistrationPage from 'pages/adminPages/AddTeacherPage';
 import TeacherListPage from 'pages/adminPages/TeachersListPage';
+import DepartmentsPage from 'pages/publicPages/DepartmentsPage';
 
 // Route restrictions
 import AdminRoute from './AdminRoute';
@@ -106,6 +107,10 @@ const AppRouter = () => (
                     <Route
                       path="/timetable/:semester"
                       component={TimeTablePage}
+                    />
+                    <Route
+                      path="/department/:branch"
+                      component={DepartmentsPage}
                     />
                     <Route path="/events" component={EventsOptionPage} exact />
                     <Route path="/events/:type" component={EventsPage} exact />

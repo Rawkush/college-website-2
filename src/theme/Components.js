@@ -123,7 +123,7 @@ const Page = styled.div`
   padding-bottom: ${(props) => (props.pb ? props.pb : 0)};
   padding: ${(props) => (props.p ? props.p : 0)};
   ${media.phone`
-    margin-top: ${(props) => (props.mt ? props.mt : '90px')};    
+    margin-top: ${({ mt, mtp }) => mtp || (mt || '90px')};    
   `};
   min-height: calc(100vh - 93px);
 `;

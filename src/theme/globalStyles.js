@@ -2,7 +2,7 @@ import { injectGlobal } from 'styled-components';
 
 /* eslint-disable */
 injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif|Open+Sans|Roboto');
+  @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans|Noto+Serif|Open+Sans|Roboto|Satisfy');
   body: {
     margin: 0;
     padding: 0;
