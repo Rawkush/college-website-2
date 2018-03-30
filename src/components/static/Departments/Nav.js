@@ -6,7 +6,7 @@ import media from 'theme/media';
 const Wrapper = styled.div`
   position: fixed;
   right: 30px;
-  top: 142px;
+  top: 114px;
   background: white;
   border-radius: 50%;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
     width: 50px;
     font-size: 13px;
     right: 8px;
-    top: 124px;
+    top: 84px;
   `};
   &:hover {
     transform: translateY(-3px);
@@ -35,7 +35,7 @@ const Wrapper = styled.div`
 const Wrapper2 = styled.div`
   position: fixed;
   right: 30px;
-  top: 142px;
+  top: 114px;
   padding: 10px;
   border-radius: 50px;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
@@ -45,24 +45,27 @@ const Wrapper2 = styled.div`
   transition: all ease-out;
   transition-duration: ${({ animate }) => `${0.15 * animate}s`};
   opacity: ${({ open }) => (open ? 1 : 0)};
-  transform: ${({ open, animate }) =>
-    open ? `translateY(${30 + 50 * animate}px)` : 'translateY(0)'};
+  transform: translateX(-25px)
+    ${({ open, animate }) =>
+      open ? `translateY(${30 + 50 * animate}px)` : 'translateY(0)'};
   ${media.phone`
     right: 8px;
-    top: 116px;
+    top: 90px;
     font-size: 13px;
     padding: 7px;
-    transform: ${({ open, animate }) =>
-    open ? `translateY(${15 + 50 * animate}px)` : 'translateY(0)'};
-    &:hover {
-    transform: ${({ open, animate }) =>
-    open ? `translateY(${15 + 50 * animate}px)` : 'translateY(0)'};
-    }
+    transform: translateX(-25px) ${({ open, animate }) =>
+      open ? `translateY(${15 + 50 * animate}px)` : 'translateY(0)'};
   `};
+
   &:hover {
     transform: ${({ open, animate }) =>
-    (open ? `translateY(${30 + 50 * animate}px)` : 'translateY(0)')}
-      translateX(-5px);
+        open ? `translateY(${30 + 50 * animate}px)` : 'translateY(0)'}
+      translateX(-30px);
+    ${media.phone`
+            transform: ${({ open, animate }) =>
+              (open ? `translateY(${15 + 50 * animate}px)` : 'translateY(0)')}
+      translateX(-30px);
+      `};
   }
 `;
 

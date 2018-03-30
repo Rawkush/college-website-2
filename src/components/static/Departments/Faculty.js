@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex, Container } from 'theme/Components';
+import media from 'theme/media';
 import photo from './photo.jpeg';
 
 const Background = styled.div`
@@ -68,6 +69,9 @@ const FacultyListItem = ({ photo: pic, name, position } = {}) => (
 
 const FlexMod = Flex.extend`
   justify-content: space-around;
+  ${media.phone`
+    flex-direction: column;
+  `};
 `;
 
 export default ({ teachers = [] } = {}) => (
