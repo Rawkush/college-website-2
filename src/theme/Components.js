@@ -306,6 +306,7 @@ const SVG = styled.svg`
   box-shadow: ${({ bs }) => bs || 'none'};
   fill: ${({ fill }) => fill || 'auto'};
   transition: all 0.3s ease;
+  backface-visibility: hidden;
   &:hover {
     box-shadow: ${({ hovBs }) => hovBs || 'auto'};
     transform: ${({ hovTransform }) => hovTransform || 'auto'};
