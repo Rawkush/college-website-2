@@ -75,7 +75,7 @@ const VerticalLine = styled.div`
 
 const SVG = styled.svg`
   background: ${({ bg }) => bg || 'auto'};
-  border-radius: ${({ round }) => round || '50%'};
+  border-radius: 50%;
   padding: ${({ padding }) => padding || '0px'};
   height: ${({ height }) => height || '42px'};
   width: auto;
