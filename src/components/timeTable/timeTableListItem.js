@@ -34,7 +34,7 @@ export default ({ _id, title, wef, file, auth }) => (
   <Wrapper>
     <Flex>
       <P>
-        <A target="_blank" href={file}>
+        <A target="_blank" href={`/${file}`}>
           {title}
         </A>
       </P>

@@ -356,6 +356,11 @@ const StyledInput = styled.input`
   }
 `;
 
+const ViewLink = styled.a`
+  margin: 10px 0px 0px 0px;
+  display: block;
+`;
+
 export {
   H1,
   H2,
@@ -385,4 +390,5 @@ export {
   Loader,
   Warn,
   StyledInput,
+  ViewLink,
 };
