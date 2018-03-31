@@ -4,6 +4,10 @@ import { Container } from 'theme/Components';
 import media from 'theme/media';
 import photo from './../../../assets/images/college-image-sample.jpeg';
 import ITIcon from './../../header/NavBar/Academics/Icons/IT';
+import CivilIcon from './../../header/NavBar/Academics/Icons/Civil';
+import AppliedIcon from './../../header/NavBar/Academics/Icons/Applied';
+import EnvIcon from './../../header/NavBar/Academics/Icons/Environment';
+import AlliedIcon from './../../header/NavBar/Academics/Icons/Allied';
 
 const Background = styled.div`
   width: 100%;
@@ -83,24 +87,55 @@ const Author = styled.div`
 const quote = {
   it: {
     quote: 'Intelligence is the ability to adapt to change.',
-    author: 'Stephen Hawking',
+    author: 'Stephen Hawking (I.I)',
+  },
+  civil: {
+    quote: 'Intelligence is the ability to adapt to change.',
+    author: 'Stephen Hawking (Civil)',
+  },
+  env: {
+    quote: 'Intelligence is the ability to adapt to change.',
+    author: 'Stephen Hawking (env)',
+  },
+  applied: {
+    quote: 'Intelligence is the ability to adapt to change.',
+    author: 'Stephen Hawking (applied)',
+  },
+  allied: {
+    quote: 'Intelligence is the ability to adapt to change.',
+    author: 'Stephen Hawking (allied)',
   },
 };
 
-export default ({ name }) => (
+const returnIcon = (branch) => {
+  switch (branch) {
+    case 'it':
+      return <ITIcon square />;
+    case 'civil':
+      return <CivilIcon square />;
+    case 'env':
+      return <EnvIcon square />;
+    case 'applied':
+      return <AppliedIcon square />;
+    case 'allied':
+      return <AlliedIcon square />;
+    default:
+      return '';
+  }
+};
+
+export default ({ name, branch }) => (
   <Background>
     <Background2>
       <Container>
         <Wrapper>
-          <Wrapper1>
-            <ITIcon square />
-          </Wrapper1>
+          <Wrapper1>{returnIcon(branch)}</Wrapper1>
           <Wrapper2>
             <Heading>{name}</Heading>
             <Quote>
-              <em>{quote.it.quote}</em>
+              <em>{quote[branch].quote}</em>
             </Quote>
-            <Author> - {quote.it.author}</Author>
+            <Author> - {quote[branch].author}</Author>
           </Wrapper2>
         </Wrapper>
       </Container>
