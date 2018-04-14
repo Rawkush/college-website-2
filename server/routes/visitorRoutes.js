@@ -14,6 +14,7 @@ const {
   searchStudentsByName,
   searchStudentsByRollNo,
   verifyEmail,
+  getAllQuesetionPaper,
 } = require('./../controllers/visitorControllers');
 
 // Initializing the Router
@@ -23,6 +24,7 @@ const visitorRoutes = express.Router();
 visitorRoutes.get('/getnotifications', getLatestNotifications);
 
 visitorRoutes.get('/getallnotifications', getAllNotifications);
+visitorRoutes.get('/getallQuestionPaper', getAllQuesetionPaper);
 
 visitorRoutes.get('/getevents', getLatestEvents);
 

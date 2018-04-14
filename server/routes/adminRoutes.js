@@ -8,10 +8,12 @@ const uploadTimeTable = multerConfig('uploads/timeTable', /pdf/);
 const uploadSyllabus = multerConfig('uploads/timeTable', /pdf/);
 const uploadEvents = multerConfig('uploads/events', /jpg|jpeg|png/);
 const uploadNotifications = multerConfig('uploads/notifications', /pdf/);
+const uploadQuestinoPaper = multerConfig('uploads/questionbank', /pdf/);
 
 // Defined Modules import
 const {
   addNotifications,
+  addQuestionPaper,
   deleteNotifications,
   addEvents,
   deleteEvents,
@@ -21,6 +23,8 @@ const {
   deleteTimeTable,
   deleteTeacher,
   editNotifications,
+  editQuestinoPaper,
+  deleteQuestionPaper,
   editTimeTable,
   editSyllabus,
   editEvent,
@@ -46,11 +50,25 @@ adminRoutes.post(
   addNotifications
 );
 
+adminRoutes.post(
+  '/addquestionpaper',
+  uploadQuestinoPaper.single('file'),
+  tokenAuthenticate,
+  addQuestionPaper
+);
+
 adminRoutes.patch(
   '/editnotification',
   uploadNotifications.single('file'),
   tokenAuthenticate,
   editNotifications
+);
+
+adminRoutes.post(
+  '/editquestionpaper',
+  uploadQuestinoPaper.single('file'),
+  tokenAuthenticate,
+  editQuestinoPaper
 );
 
 adminRoutes.delete(
@@ -59,6 +77,11 @@ adminRoutes.delete(
   deleteNotifications
 );
 
+adminRoutes.delete(
+  '/deletequestionpaper',
+  tokenAuthenticate,
+  deleteQuestionPaper
+);
 adminRoutes.post(
   '/addevent',
   uploadEvents.array('photo', 5),
