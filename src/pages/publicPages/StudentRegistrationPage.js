@@ -53,6 +53,7 @@ const StudentRegistrationPage = ({
   const token = getCookieValue('token');
   document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   const data = jwt.decode(token);
+  console.log(data);
   return token ? (
     <Page>
       <Container>
