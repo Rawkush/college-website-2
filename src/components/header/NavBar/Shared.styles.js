@@ -58,6 +58,14 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledA = styled.a`
+  color: ${lightBlack};
+  text-decoration: none;
+  &:hover {
+    color: ${red};
+  }
+`;
+
 const VerticalLine = styled.div`
   display: inline-block;
   height: 235px;
@@ -107,4 +115,5 @@ export {
   VerticalLine,
   SVG,
   SVG2,
+  StyledA,
 };

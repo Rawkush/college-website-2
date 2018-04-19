@@ -475,16 +475,15 @@ const FormikStudentRegistration = withFormik({
     rollNo: Yup.number('Roll number should be a number.')
       .positive('Roll number cannot be a negative number.')
       .required('Roll number is required for registration.')
-      .min(16, 'The length of roll no. not correct')
-      .max(16, 'The length of roll no. not correct'),
+      .min(15, 'Roll number length is not correct.'),
     location: Yup.string(),
     dateOfBirth: Yup.date().required('Date of birth is required.'),
     admittedIn: Yup.date().required('Your Admission year is required.'),
     branch: Yup.string().required('Branch is required.'),
     gender: Yup.string().required('Gender is required.'),
     bio: Yup.string()
-      .min(30)
-      .required('Bio is required (Min 30 charachters).'),
+      .min(25)
+      .required('Bio is required (Min 25 charachters).'),
   }),
   handleSubmit(val, { props, setErrors, setSubmitting }) {
     const data = {
