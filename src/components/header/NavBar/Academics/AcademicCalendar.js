@@ -7,7 +7,7 @@ import {
   NavCardFlex,
   NavItemFlex,
   NavItemFlexHeading,
-  StyledA,
+  StyledLink,
 } from './../Shared.styles';
 
 import CalendarIcon from './Icons/Calendar';
@@ -24,18 +24,14 @@ const HoverDiv = styled.div`
   }
 `;
 
-const StyledLink2 = StyledA.extend`
+const StyledLink2 = StyledLink.extend`
   flex: 3;
 `;
 
 export default ({ click }) => (
   <NavCardFlex>
     <NavItemFlexHeading>Academic Calendar</NavItemFlexHeading>
-    <StyledLink2
-      href="http://gecdelhi.ac.in/pdf_files/academic%20calender%202017-18.pdf"
-      target="_blank"
-      onClick={click}
-    >
+    <StyledLink2 to="/somestaticthing" onClick={click}>
       <HoverDiv>
         <FlexCenter>
           <CalendarIcon />
