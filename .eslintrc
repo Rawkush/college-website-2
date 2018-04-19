@@ -10,6 +10,11 @@
     "es6": true
   },
   "plugins": ["prettier", "mocha"],
+  "globals": {
+    "test": false,
+    "expect": false,
+    "describe": false
+  },
   "rules": {
     "strict": 0,
     "comma-dangle": [
