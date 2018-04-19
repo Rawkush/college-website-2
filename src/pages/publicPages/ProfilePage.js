@@ -79,6 +79,7 @@ class StudentProfilePage extends Component {
                 ]}
                 isOpen={this.state.lightboxIsOpen}
                 onClose={this.closeImage}
+                preventScroll={false}
               />
             )}
             <Background>

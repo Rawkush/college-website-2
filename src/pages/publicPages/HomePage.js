@@ -8,7 +8,7 @@ import media from 'theme/media';
 
 // Defined components import
 import Notification from './../../components/notifications/Notification';
-// import Events from './../../components/Events/EventsListHome';
+import Events from './../../components/Events/EventsListHome';
 import GetToKnow from './../../components/Body/GetToKnow';
 
 const NotificationLink = styled(Link)`
@@ -71,6 +71,7 @@ const HomePage = () => (
         </FlexCenter>
       </Container>
     </NotificationBg>
+    <Events />
     <GetToKnow />
   </Page>
 );

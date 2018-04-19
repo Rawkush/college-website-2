@@ -10,16 +10,27 @@ const Background = Wrapper.extend`
   background-size: cover;
   display: flex;
   align-items: center;
+  height: 500px;
+  overflow: hidden;
+  margin-top: 50px;
 `;
 
-const WrapperMod = Wrapper.extend`
-  transition: all 0.3s ease;
-`;
-
-const WrapperMod2 = Wrapper.extend`
-  display: inline-flex;
+const Background2 = Wrapper.extend`
   width: 100vw;
-  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  height: 500px;
+  overflow: hidden;
+`;
+
+const Wrapper2 = styled.div`
+  flex: 4;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 450px;
 `;
 
 const SVG = styled.svg`
@@ -27,6 +38,27 @@ const SVG = styled.svg`
   ${({ rotate }) => (rotate ? 'transform: rotateY(180deg)' : 'none')};
   fill: ${({ fill }) => fill || 'auto'};
   transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    transform: translateX(${({ rotate }) => (rotate ? '-10px' : '10px')})
+      ${({ rotate }) => (rotate ? 'rotateY(180deg)' : 'rotateY(0)')};
+  }
+`;
+
+const Wrapper3 = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const H3 = styled.h3`
+  font-family: 'Alegreya Sans', sans-serif;
+  text-align: center;
+  color: white;
+  margin: 0 0 40px 0;
+  font-size: 40px;
+  letter-spacing: 4px;
 `;
 
 const PrevButton = () => (
@@ -61,6 +93,7 @@ class EventsListHome extends Component {
     super(props);
     this.state = {
       events: this.props.events || [],
+      active: 0,
       active1: true,
       active2: false,
       active3: false,
@@ -72,6 +105,18 @@ class EventsListHome extends Component {
   }
 
   returnUrl = (string) => `/${string.replace(/\\/g, '/')}`;
+
+  clickPrev = () => {
+    if (this.state.active) {
+      this.setState(({ active: prevActive }) => ({ active: prevActive - 1 }));
+    }
+  };
+
+  clickNext = () => {
+    if (this.state.active !== 3) {
+      this.setState(({ active: prevActive }) => ({ active: prevActive + 1 }));
+    }
+  };
 
   returnBG = () => {
     const self = this;
@@ -89,20 +134,25 @@ class EventsListHome extends Component {
 
   render() {
     return (
-      <Background w="100%" bg={this.returnBG()}>
-        <PrevButton />
-        <WrapperMod w="100%">
-          {this.state.events.map((event) => (
-            <EventListItem
-              {...event}
-              key={event._id}
-              active1={this.state.active1}
-              active2={this.state.active2}
-              active3={this.state.active3}
-            />
-          ))}
-        </WrapperMod>
-        <NextButton />
+      <Background
+        w="100%"
+        bg={
+          this.state.events[this.state.active] &&
+          this.returnUrl(this.state.events[this.state.active].photos[0])
+        }
+      >
+        <Background2 w="100%">
+          <Wrapper3 onClick={this.clickPrev}>
+            <PrevButton />
+          </Wrapper3>
+          <Wrapper2>
+            <H3>Events</H3>
+            <EventListItem {...this.state.events[this.state.active]} />
+          </Wrapper2>
+          <Wrapper3 onClick={this.clickNext}>
+            <NextButton />
+          </Wrapper3>
+        </Background2>
       </Background>
     );
   }

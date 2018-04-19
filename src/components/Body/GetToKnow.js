@@ -93,7 +93,7 @@ export default () => (
   <Wrapper>
     <Background>
       <Container>
-        <H2Head>Get To Know</H2Head>
+        <H2Head>About Us</H2Head>
         <About>
           <Wrapper2>
             <CollegeImage />
@@ -105,7 +105,7 @@ export default () => (
         </About>
         <Location>
           <Wrapper1>
-            <H2>LOCATE {''} US</H2>
+            <H2>LOCATION</H2>
             <P>{text}</P>
           </Wrapper1>
           <Wrapper2>
@@ -117,7 +117,7 @@ export default () => (
             <FaceBook />
           </Wrapper2>
           <Wrapper1>
-            <H2>SOCIAL</H2>
+            <H2>FACEBOOK</H2>
             <P>{text2}</P>
           </Wrapper1>
         </Social>
