@@ -34,6 +34,7 @@ export default ({ click }) => (
       <Link
         to="https://www.onlinesbi.com/prelogin/icollecthome.htm"
         onClick={click}
+        target="_blank"
       >
         <FlexCenterNav>
           <Span>SBI Collect</Span>
