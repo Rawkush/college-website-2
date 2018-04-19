@@ -127,6 +127,7 @@ const link = {
   gh: 'https://github.com/',
   hr: 'https://hackerrank.com',
   loan: 'https://www.vidyalakshmi.co.in/Students/',
+  md: 'http://gecdelhi.ac.in/pdf_files/Mandatory%20Disclosure%202014-15.pdf',
 };
 
 const RelatedLinks = () => (
@@ -181,7 +182,9 @@ const HelpfullLinks = () => (
           Regulations On Ragging
         </StyledLink>
         <br />
-        <StyledLink to="/mandatoryDisclosure">Mandatory Disclosure</StyledLink>
+        <A href={link.md} target="_blank">
+          Mandatory Disclosure
+        </A>
         <br />
         <StyledLink to="/formsAndPerforma">Forms & Performa</StyledLink>
         <br />
