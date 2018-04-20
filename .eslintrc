@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb", "prettier"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 7
@@ -35,7 +35,17 @@
         "allow": ["_id", "_creator", "_ref", "_json"]
       }
     ],
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "trailingComma": "es5",
+        "bracketSpacing": true,
+        "arrowParens": "always",
+        "tabWidth": 2,
+        "singleQuote": true
+      }
+    ],
     "arrow-parens": ["error", "always"],
     "mocha/no-exclusive-tests": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
