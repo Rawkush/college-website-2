@@ -70,6 +70,10 @@ import EventsOptionPage from './../pages/publicPages/EventsOptionPage';
 import EventsPage from './../pages/publicPages/EventsPage';
 import DepartmentsPage from './../pages/publicPages/DepartmentsPage';
 import LoginPage from './../pages/publicPages/LoginPage';
+import ScholarShipsPage from './../pages/publicPages/Scholarships';
+import FinancePage from './../pages/publicPages/FinancePage';
+import DisclaimerPage from './../pages/publicPages/DisclaimerPage';
+import ContactPage from './../pages/publicPages/ContactUsPage';
 
 export const history = createHistory();
 
@@ -278,6 +282,10 @@ const AppRouter = () => (
                 <Route path="/search" component={SearchPage} />
                 <Route path="/shinigsstars" component={ShiningStarPage} />
                 <Route path="/student/:slugg" component={ProfilePage} />
+                <Route path="/scholarships" component={ScholarShipsPage} />
+                <Route path="/budgetreport" component={FinancePage} />
+                <Route path="/disclaimer" component={DisclaimerPage} />
+                <Route path="/contactus" component={ContactPage} />
                 <Route component={NotFound} />
               </Switch>
             </CSSTransition>
