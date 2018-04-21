@@ -9,6 +9,7 @@ const { EmailOtp } = require('./../models/email&otp');
 // const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { Syllabus } = require('./../models/syllabus');
 const { TimeTable } = require('./../models/timeTable');
+const { questionBank } = require('./../models/questionBank');
 
 const {
   giveLatestThreeItem,
@@ -22,6 +23,7 @@ const {
 
 // Initializing the Instances of Model
 const giveLatestThreeNotifications = giveLatestThreeItem(Notifications);
+const giveAllQuestionPaper = giveAll(questionBank);
 const giveAllNotifications = giveAll(Notifications);
 const giveLatestThreeEvents = giveLatestThreeItem(Event);
 const findStudentByName = findUser(StudentPrimary, 'name');
@@ -49,6 +51,15 @@ const getAllNotifications = async (req, res) => {
     res.send(notifications);
   } catch (error) {
     res.send(404).send(`Something Went Wrong: ${error}`);
+  }
+};
+
+const getAllQuesetionPaper = async (req, res) => {
+  try {
+    const questionPapers = await giveAllQuestionPaper();
+    res.send(questionPapers);
+  } catch (err) {
+    res.send(404).send(`Something Went Wrong: ${err}`);
   }
 };
 
@@ -174,4 +185,5 @@ module.exports = {
   searchStudentsByName,
   searchStudentsByRollNo,
   verifyEmail,
+  getAllQuesetionPaper,
 };

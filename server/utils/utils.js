@@ -45,6 +45,16 @@ const pickNotifications = (req) => {
   return newBody;
 };
 
+const pickQuestionPaper = (req) => {
+  const body = _.pick(req.body, ['subject', 'year', 'branch', 'semester']);
+  const file = req.file ? req.file.path : null;
+  const newBody = {
+    ...body,
+    file,
+  };
+  return newBody;
+};
+
 const pickTeacherNotifications = (req) => {
   const body1 = _.pick(req.body, [
     'title',
@@ -440,4 +450,5 @@ module.exports = {
   giveUserByName,
   findUser,
   findEmail,
+  pickQuestionPaper,
 };
