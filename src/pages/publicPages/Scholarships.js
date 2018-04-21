@@ -2,10 +2,10 @@ import React from 'react';
 import { Page } from 'theme/Components';
 
 //  Components
-import ShiningStar from './../../components/static/ShiningStar/ShiningStar';
+import ScholarShips from './../../components/static/Scholarships/Scholarships';
 
 export default () => (
   <Page>
-    <ShiningStar />
+    <ScholarShips />
   </Page>
 );

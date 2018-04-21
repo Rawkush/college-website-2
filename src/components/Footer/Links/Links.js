@@ -188,7 +188,7 @@ const HelpfullLinks = () => (
         <br />
         <StyledLink to="/formsAndPerforma">Forms & Performa</StyledLink>
         <br />
-        <StyledLink to="budgetReport">Budget Report</StyledLink>
+        <StyledLink to="budgetreport">Budget Report</StyledLink>
         <br />
         <StyledLink to="/disclaimer">Disclaimer</StyledLink>
         <br />
@@ -201,7 +201,7 @@ const HelpfullLinks = () => (
         <br />
         <StyledLink to="/committee">Committee</StyledLink>
         <br />
-        <StyledLink to="/contactUs">Contact Us</StyledLink>
+        <StyledLink to="/contactus">Contact Us</StyledLink>
         <br />
         <StyledLink to="/rti">RTI</StyledLink>
       </InnerCard2>
