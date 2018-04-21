@@ -2,6 +2,8 @@
 
 This is the website of the Ch. Bramh Prakash Govt. Engineering College.
 
+:boom: :boom: [Visit the site Here.](https://cbpgec.ga) :boom: :boom:
+
 > More Data Will be added as things get built.
 
 **For team members and people working on this.**

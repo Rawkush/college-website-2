@@ -17,7 +17,7 @@ const TeacherNotificationForm = ({
     {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="title">Title:</label>
     {touched.title && errors.title && <FormError>{errors.title}</FormError>}
-    <Field type="text" id="title" name="title" placeholder="Title" />
+    <Field type="text" id="title" name="title" placeholder="Title" required />
     <label htmlFor="description">Description:</label>
     {touched.description &&
       errors.description && <FormError>{errors.description}</FormError>}
@@ -38,6 +38,7 @@ const TeacherNotificationForm = ({
       value={values.branch}
       onChange={handleChange}
       onBlur={handleBlur}
+      required
     >
       <option value="" disabled>
         Select the Branch
@@ -57,6 +58,7 @@ const TeacherNotificationForm = ({
       value={values.year}
       onChange={handleChange}
       onBlur={handleBlur}
+      required
     >
       <option value="" disabled>
         Select the year
@@ -67,16 +69,20 @@ const TeacherNotificationForm = ({
       <option value="ivyear">Fourth Year</option>
       <option value="">All years</option>
     </select>
-    <label htmlFor="rollNo">
-      {touched.rollNo &&
-        errors.rollNo && <FormError>{errors.rollNo}</FormError>}
-      Roll Number:
-    </label>
-    <Field
-      type="text"
-      name="rollNo"
-      placeholder="Enter the students roll number"
-    />
+    {false && (
+      <label htmlFor="rollNo">
+        {touched.rollNo &&
+          errors.rollNo && <FormError>{errors.rollNo}</FormError>}
+        Roll Number:
+      </label>
+    )}
+    {false && (
+      <Field
+        type="text"
+        name="rollNo"
+        placeholder="Enter the students roll number."
+      />
+    )}
 
     {!values.edit && <label htmlFor="file">File:</label>}
     {!values.edit && (
@@ -138,8 +144,8 @@ const FormikTeacherNotificationForm = withFormik({
   validationSchema: Yup.object().shape({
     title: Yup.string().required('Title is required.'),
     description: Yup.string(),
-    branch: Yup.string(),
-    year: Yup.string(),
+    branch: Yup.string().required('Branch is required.'),
+    year: Yup.string().required('Year is required'),
     rollNo: Yup.number(),
   }),
   handleSubmit(val, { props, resetForm, setErrors, setSubmitting }) {
@@ -150,8 +156,11 @@ const FormikTeacherNotificationForm = withFormik({
         setSubmitting(false);
         props.history.push('/teacher/myprofile');
       })
-      .catch(() => {
+      .catch((error) => {
         setErrors({ error: 'Something Went Wrong!' });
+        alert(error);
+        window.scrollTo(0, 0);
+        setSubmitting(false);
       });
   },
 })(TeacherNotificationForm);

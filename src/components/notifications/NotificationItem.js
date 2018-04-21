@@ -108,8 +108,7 @@ const NotificationItem = ({
         <br />
         <Span2>{moment(createdAt).format('YYYY')}</Span2>
       </DateDiv>
-    </div>{' '}
-    -{' '}
+    </div>
     <TitleDiv>
       <Title href={link}>{title}</Title>
     </TitleDiv>

@@ -12,9 +12,10 @@ const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
     <Field
       autoFocus
       type="text"
-      id="Name"
+      id="name"
       name="name"
-      placeholder="enter the committe name like:cultural"
+      placeholder="Enter the committe name like: Cultural"
+      required
     />
     <label htmlFor="designation">Designation:</label>
     {touched.designation &&
@@ -24,6 +25,7 @@ const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
       id="designation"
       name="designation"
       placeholder="enter the designation"
+      required
     />
     <label htmlFor="status">Status:</label>
     {touched.status && errors.status && <FormError>{errors.status}</FormError>}
@@ -31,8 +33,12 @@ const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
       type="text"
       id="status"
       name="status"
-      placeholder="enter the status"
+      placeholder="Enter your status in committee."
+      required
     />
+    <button disabled={!!isSubmitting} type="submit">
+      Submit
+    </button>
     {values.edit && (
       <button
         type="button"
@@ -45,9 +51,6 @@ const CommitteForm = ({ values, errors, touched, isSubmitting }) => (
         Remove
       </button>
     )}
-    <button disabled={!!isSubmitting} type="submit">
-      Submit
-    </button>
   </StyledForm>
 );
 
@@ -84,8 +87,10 @@ const FormikCommitteForm = withFormik({
         setSubmitting(false);
         props.history.push('/teacher/myprofile');
       })
-      .catch(() => {
+      .catch((error) => {
         setErrors({ error: 'Something Went Wrong.' });
+        alert(error);
+        window.scrollTo(0, 0);
         setSubmitting(false);
       });
   },

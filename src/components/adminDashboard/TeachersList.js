@@ -58,7 +58,11 @@ class TeachersList extends Component {
           <p>Loading ...</p>
         ) : (
           this.state.teachersList.map((teacher) => (
-            <TeachersListItem {...teacher} removeHandler={this.removeTeacher} />
+            <TeachersListItem
+              {...teacher}
+              removeHandler={this.removeTeacher}
+              key={teacher._id}
+            />
           ))
         )}
       </BorderWrapper>

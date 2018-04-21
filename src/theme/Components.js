@@ -123,7 +123,7 @@ const Page = styled.div`
   padding-bottom: ${(props) => (props.pb ? props.pb : 0)};
   padding: ${(props) => (props.p ? props.p : 0)};
   ${media.phone`
-    margin-top: ${(props) => (props.mt ? props.mt : '90px')};    
+    margin-top: ${({ mt, mtp }) => mtp || (mt || '90px')};    
   `};
   min-height: calc(100vh - 93px);
 `;
@@ -133,7 +133,7 @@ const A = styled.a`
   text-decoration: none;
   font-family: 'Alegreya Sans', sans-serif;
   padding: ${({ padding }) => padding || '1px 1px 3px 1px'};
-  margin: 5px 0px 0px 7px;
+  margin: ${({ noMar }) => (noMar ? '0px' : '5px 0px 0px 7px')};
   display: inline-block;
   transition: color 0.02s cubic-bezier(0.4, 0.18, 0.76, 0.34);
   position: relative;
@@ -306,6 +306,7 @@ const SVG = styled.svg`
   box-shadow: ${({ bs }) => bs || 'none'};
   fill: ${({ fill }) => fill || 'auto'};
   transition: all 0.3s ease;
+  backface-visibility: hidden;
   &:hover {
     box-shadow: ${({ hovBs }) => hovBs || 'auto'};
     transform: ${({ hovTransform }) => hovTransform || 'auto'};
@@ -355,6 +356,11 @@ const StyledInput = styled.input`
   }
 `;
 
+const ViewLink = styled.a`
+  margin: 10px 0px 0px 0px;
+  display: block;
+`;
+
 export {
   H1,
   H2,
@@ -384,4 +390,5 @@ export {
   Loader,
   Warn,
   StyledInput,
+  ViewLink,
 };

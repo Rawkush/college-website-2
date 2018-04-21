@@ -24,8 +24,9 @@ const ProjectForm = ({
     <Field
       type="text"
       name="title"
-      placeholder="made/working over some project like:making website"
+      placeholder="Made a project on XYZ thing."
       id="title"
+      required
     />
 
     <label htmlFor="description">Description: </label>
@@ -34,8 +35,9 @@ const ProjectForm = ({
     <Field
       type="text"
       name="description"
-      placeholder="made the website with react and node"
+      placeholder="Made this project using ABC and DEF things..."
       id="description"
+      required
     />
 
     <label htmlFor="link">Link: </label>
@@ -43,6 +45,7 @@ const ProjectForm = ({
     <Field type="text" name="link" placeholder="www.myproject.com" id="link" />
 
     <label htmlFor="photo">Photo: </label>
+    <p>Will accept only 5 files max and not more that 1 MB.</p>
     {touched.photo && errors.photo && <FormError>{errors.photo}</FormError>}
     <input
       type="file"
@@ -53,7 +56,11 @@ const ProjectForm = ({
       }}
       multiple
       accept="image/*"
+      required
     />
+    <button disabled={!!isSubmitting} type="submit">
+      Submit
+    </button>
     {values.edit && (
       <button
         type="button"
@@ -66,9 +73,6 @@ const ProjectForm = ({
         Remove
       </button>
     )}
-    <button disabled={!!isSubmitting} type="submit">
-      Submit
-    </button>
   </StyledForm>
 );
 
@@ -109,8 +113,10 @@ const FormikProjectForm = withFormik({
         setSubmitting(false);
         props.history.push('/student/myprofile');
       })
-      .catch(() => {
+      .catch((error) => {
         setErrors({ error: 'Something Went Wrong!' });
+        alert(error);
+        window.scrollTo(0, 0);
         setSubmitting(false);
       });
   },

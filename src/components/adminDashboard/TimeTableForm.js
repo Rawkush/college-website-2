@@ -2,7 +2,7 @@ import React from 'react';
 import { withFormik, Field } from 'formik';
 import Yup from 'yup';
 import moment from 'moment';
-import { StyledForm, FormError } from 'theme/Components';
+import { StyledForm, FormError, ViewLink } from 'theme/Components';
 
 const SyllabusForm = ({
   values,
@@ -22,7 +22,7 @@ const SyllabusForm = ({
       name="title"
       id="title"
       placeholder="Enter the title."
-      id="title"
+      required
     />
 
     <label htmlFor="wef">With Effective from: </label>
@@ -38,6 +38,7 @@ const SyllabusForm = ({
       onChange={handleChange}
       onBlur={handleBlur}
       value={values.semester}
+      required
     >
       <option value="" disabled>
         Select the semester.
@@ -47,9 +48,9 @@ const SyllabusForm = ({
     </select>
     {values.file &&
       values.edit && (
-        <a href={values.file} target="_blank">
+        <ViewLink href={`/${values.file}`} target="_blank">
           Preview already uploaded file.
-        </a>
+        </ViewLink>
       )}
     <label htmlFor="file">File: </label>
     <input
@@ -59,6 +60,7 @@ const SyllabusForm = ({
       onChange={(e) => {
         setFieldValue('file', e.currentTarget.files[0]);
       }}
+      required={!values.edit}
     />
 
     <button disabled={!!isSubmitting} type="submit">
@@ -71,7 +73,7 @@ const SyllabusForm = ({
           onClick={() => {
             values
               .deleteTimeTable(values._id)
-              .then(() => values.history.push('/admin/timetable'));
+              .then(() => values.history.push('/admin/dashboard'));
           }}
         >
           Remove
@@ -117,10 +119,12 @@ const FormikSyllabusForm = withFormik({
         .then(() => {
           resetForm();
           setSubmitting(false);
-          props.history.push('/admin/timetable');
+          props.history.push('/admin/dashboard');
         })
-        .catch(() => {
+        .catch((error) => {
           setErrors({ error: 'Something Went Wrong!' });
+          alert(error);
+          window.scrollTo(0, 0);
           setSubmitting(false);
         });
     }

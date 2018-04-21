@@ -13,6 +13,7 @@ const TeacherRegistrationForm = ({ isSubmitting, errors, touched }) => (
       name="email"
       placeholder="Email of the teacher."
       id="email"
+      required
     />
     <label htmlFor="password">Password:</label>
     {touched.password &&
@@ -22,6 +23,7 @@ const TeacherRegistrationForm = ({ isSubmitting, errors, touched }) => (
       name="password"
       placeholder="Password"
       id="password"
+      required
     />
     <button disabled={!!isSubmitting} type="submit">
       Submit
@@ -65,6 +67,8 @@ const FormikSpecialisationForm = withFormik({
         .catch((err) => {
           setErrors({ error: `Something Went Wrong: ${err}` });
           setSubmitting(false);
+          alert(err);
+          window.scrollTo(0, 0);
         });
     }
   },
