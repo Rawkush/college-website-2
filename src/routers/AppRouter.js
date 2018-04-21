@@ -17,6 +17,9 @@ import SearchPage from 'pages/publicPages/SearchPage';
 import ProfilePage from 'pages/publicPages/ProfilePage';
 import EventPage from 'pages/publicPages/EventPage';
 
+// static pages
+import DeanPage from 'pages/staticPages/DeanPage';
+import Placement from 'pages/staticPages/Placement';
 // Pages
 import AddSyllabusPage from 'pages/adminPages/AddSyllabusPage';
 import StudentRegistrationPage from 'pages/publicPages/StudentRegistrationPage';
@@ -103,6 +106,8 @@ const AppRouter = () => (
                       component={StudentLoginPage}
                       exact
                     />
+                    <Route path="/dean" component={DeanPage} />
+                    <Route path="/placement" component={Placement} />
                     <Route
                       path="/timetable/:semester"
                       component={TimeTablePage}
