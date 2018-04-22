@@ -41,11 +41,11 @@ describe('Utility Functions - ', () => {
   describe('pickBody -', () => {
     test('should run correctly.', () => {
       const result = pickBody(studentData[0]);
-      expect(result).to.deep.equal(studentData[0].body.userData);
+      expect(result).toEqual(studentData[0].body.userData);
     });
     test('should exclude unnecessary data.', () => {
       const result = pickBody(studentData[1]);
-      expect(result).to.deep.equal(studentData[0].body.userData);
+      expect(result).toEqual(studentData[0].body.userData);
     });
     test('should not add unnecessary data.', () => {
       const result = pickBody(studentData[2]);
@@ -55,33 +55,33 @@ describe('Utility Functions - ', () => {
   describe('pickTeacher -', () => {
     test('should run correctly.', () => {
       const result = pickTeacher(teacherData[0]);
-      expect(result).to.deep.equal(teacherData[0].body);
+      expect(result).toEqual(teacherData[0].body);
     });
     test('should exclude unnecessary data.', () => {
       const result = pickTeacher(teacherData[1]);
-      expect(result).to.deep.equal(teacherData[0].body);
+      expect(result).toEqual(teacherData[0].body);
     });
     test('should not add unnecessary data.', () => {
       const result = pickTeacher(teacherData[2]);
-      expect(result).to.deep.equal(teacherData[2].body);
+      expect(result).toEqual(teacherData[2].body);
     });
   });
   describe('pickAccomplishments - ', () => {
     test('should run correctly.', () => {
       const result = pickAccomplishments(accomplishments[0]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         accomplishments: accomplishments[0].body,
       });
     });
     test('should exclude unnecessary data.', () => {
       const result = pickAccomplishments(accomplishments[1]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         accomplishments: accomplishments[0].body,
       });
     });
     test('should not add any unnecessary data.', () => {
       const result = pickAccomplishments(accomplishments[2]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         accomplishments: accomplishments[2].body,
       });
     });
@@ -89,19 +89,19 @@ describe('Utility Functions - ', () => {
   describe('pickProjects - ', () => {
     test('should run correctly.', () => {
       const result = pickProjects(projects[0]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         projects: projects[0].body,
       });
     });
     test('should exclude unnecessary data.', () => {
       const result = pickProjects(projects[1]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         projects: projects[0].body,
       });
     });
     test('should not add any unnecessary data.', () => {
       const result = pickProjects(projects[2]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         projects: projects[2].body,
       });
     });
@@ -109,19 +109,19 @@ describe('Utility Functions - ', () => {
   describe('pickSpecialisations - ', () => {
     test('should run correctly.', () => {
       const result = pickSpecialisations(specialisations[0]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         ...specialisations[0].body,
       });
     });
     test('should exclude unnecessary data.', () => {
       const result = pickSpecialisations(specialisations[1]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         ...specialisations[0].body,
       });
     });
     test('should not add any unnecessary data.', () => {
       const result = pickProjects(projects[2]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         projects: projects[2].body,
       });
     });
@@ -129,19 +129,19 @@ describe('Utility Functions - ', () => {
   describe('pickWork - ', () => {
     test('should run correctly.', () => {
       const result = pickWork(teacherWork[0]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         work: { ...teacherWork[0].body },
       });
     });
     test('should exclude unnecessary data.', () => {
       const result = pickWork(teacherWork[1]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         work: { ...teacherWork[0].body },
       });
     });
     test('should not add any unnecessary data.', () => {
       const result = pickWork(teacherWork[2]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         work: { ...teacherWork[2].body },
       });
     });
@@ -149,13 +149,13 @@ describe('Utility Functions - ', () => {
   describe('pickEducation - ', () => {
     test('should run correctly.', () => {
       const result = pickEducation(teacherEducation[0]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         ...teacherEducation[0].body,
       });
     });
     test('should exclude unnecessary data.', () => {
       const result = pickEducation(teacherEducation[1]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         ...teacherEducation[0].body,
       });
     });
@@ -163,13 +163,13 @@ describe('Utility Functions - ', () => {
   describe('pickTechnicalSkills - ', () => {
     test('should run correctly.', () => {
       const result = pickTechnicalSkills(technicalSkills[0]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         ...technicalSkills[0].body,
       });
     });
     test('should exclude unnecessary data.', () => {
       const result = pickTechnicalSkills(technicalSkills[1]);
-      expect(result).to.deep.equal({
+      expect(result).toEqual({
         ...technicalSkills[0].body,
       });
     });
@@ -184,20 +184,20 @@ describe('Utility Functions - ', () => {
     const saveUserMinimal = saveMinimal(Model);
     const res = saveUserMinimal(body);
     test('should call the Model with new keyword.', () => {
-      expect(Model.calledWithNew()).to.be.true;
+      expect(Model.calledWithNew()).toBeTruthy();
     });
     test('should call the Model w/ correct args.', () => {
-      expect(Model.calledWithExactly(body)).to.be.true;
+      expect(Model.calledWithExactly(body)).toBeTruthy();
     });
     test('should call the save Method on the Model.', () => {
-      expect(Model.prototype.save.called).to.be.true;
+      expect(Model.prototype.save.called).toBeTruthy();
     });
     test('should call the generateAuthToken Method on the Model.', () => {
-      expect(Model.prototype.generateAuthToken.called).to.be.true;
+      expect(Model.prototype.generateAuthToken.called).toBeTruthy();
     });
     test('should return the correct value.', (done) => {
       res.then((data) => {
-        expect(data).to.deep.equal({ user: body, token: 'token' });
+        expect(data).toEqual({ user: body, token: 'token' });
         done();
       });
     });
@@ -209,17 +209,17 @@ describe('Utility Functions - ', () => {
     const saveUserMinimal2 = saveMinimal2(Model);
     const res = saveUserMinimal2(body);
     test('should call the Model with new keyword.', () => {
-      expect(Model.calledWithNew()).to.be.true;
+      expect(Model.calledWithNew()).toBeTruthy();
     });
     test('should call the Model w/ correct args.', () => {
-      expect(Model.calledWithExactly(body)).to.be.true;
+      expect(Model.calledWithExactly(body)).toBeTruthy();
     });
     test('should call the save Method on the Model.', () => {
-      expect(Model.prototype.save.called).to.be.true;
+      expect(Model.prototype.save.called).toBeTruthy();
     });
     test('should return the correct value.', (done) => {
       res.then((data) => {
-        expect(data).to.deep.equal(body);
+        expect(data).toEqual(body);
         done();
       });
     });
@@ -234,7 +234,7 @@ describe('Utility Functions - ', () => {
     const body = { name: 'Aman' };
     const res = updateModelMinimal(condition, body);
     test('should call the findOndAndUpdate method on Model.', () => {
-      expect(Model.findOneAndUpdate.called).to.be.true;
+      expect(Model.findOneAndUpdate.called).toBeTruthy();
     });
     test('should call the findOneAndUpdate method w/ correct args.', () => {
       expect(
@@ -243,7 +243,7 @@ describe('Utility Functions - ', () => {
           runValidators,
           upsert,
         })
-      ).to.be.true; // eslint-disable-line
+      ).toBeTruthy(); // eslint-disable-line
     });
     test('should return the correct data.', (done) => {
       res.then((data) => {
@@ -257,7 +257,7 @@ describe('Utility Functions - ', () => {
     user.generateAuthToken = sinon.stub().returns('token');
     const res = generateAuthToken(user);
     test('should call the generateAuthToken method on User.', () => {
-      expect(user.generateAuthToken.called).to.be.true;
+      expect(user.generateAuthToken.called).toBeTruthy();
     });
     test('should return the correct data.', (done) => {
       res.then((data) => {
@@ -271,7 +271,7 @@ describe('Utility Functions - ', () => {
     user.generateAuthToken = sinon.stub().returns('token');
     const res = generateAuthToken(user);
     test('should call the generateAuthToken method on User.', () => {
-      expect(user.generateAuthToken.called).to.be.true;
+      expect(user.generateAuthToken.called).toBeTruthy();
     });
     test('should return the correct data.', (done) => {
       res.then((data) => {
@@ -286,7 +286,7 @@ describe('Utility Functions - ', () => {
     const decodeAuthToken = decodeAuthTokenMinimal(Model);
     const res = decodeAuthToken('abcd');
     test('should call the generateAuthToken method on User.', () => {
-      expect(Model.decodeProviderAndId.called).to.be.true;
+      expect(Model.decodeProviderAndId.called).toBeTruthy();
     });
     test('should return the correct data.', (done) => {
       res.then((data) => {
@@ -295,7 +295,7 @@ describe('Utility Functions - ', () => {
       });
     });
     test('should call the decodeProviderAndId w/ correct args.', () => {
-      expect(Model.decodeProviderAndId.calledWithExactly('abcd')).to.be.true;
+      expect(Model.decodeProviderAndId.calledWithExactly('abcd')).toBeTruthy();
     });
   });
   describe('deleteMinimal -', () => {
@@ -306,10 +306,10 @@ describe('Utility Functions - ', () => {
     const deleteUser = deleteMinimal(Model);
     const res = deleteUser(id);
     test('should call the findOneAndRemove method on User.', () => {
-      expect(Model.findByIdAndRemove.called).to.be.true;
+      expect(Model.findByIdAndRemove.called).toBeTruthy();
     });
     test('should call the findByIdAndRemove w/ correct args.', () => {
-      expect(Model.findByIdAndRemove.calledWithExactly(id)).to.be.true;
+      expect(Model.findByIdAndRemove.calledWithExactly(id)).toBeTruthy();
     });
     test('should return the correct data.', (done) => {
       res.then((data) => {
@@ -326,10 +326,10 @@ describe('Utility Functions - ', () => {
     const checkUser = checkUserMinimal(Model);
     const res = checkUser(token);
     test('should call the findByProviderAndId method on User.', () => {
-      expect(Model.findByProviderAndId.called).to.be.true;
+      expect(Model.findByProviderAndId.called).toBeTruthy();
     });
     test('should call the findByProviderAndId w/ correct args.', () => {
-      expect(Model.findByProviderAndId.calledWithExactly(token)).to.be.true;
+      expect(Model.findByProviderAndId.calledWithExactly(token)).toBeTruthy();
     });
     test('should return the correct data.', (done) => {
       res.then((data) => {
@@ -345,10 +345,10 @@ describe('Utility Functions - ', () => {
     user.removeToken = sinon.stub().returns(body);
     removeTokenMinimal(user, token);
     test('should call the removeToken method on User.', () => {
-      expect(user.removeToken.called).to.be.true;
+      expect(user.removeToken.called).toBeTruthy();
     });
     test('should call the removeToken w/ correct args.', () => {
-      expect(user.removeToken.calledWithExactly(token)).to.be.true;
+      expect(user.removeToken.calledWithExactly(token)).toBeTruthy();
     });
   });
   describe('deleteSecondaryMinimal -', () => {
@@ -359,10 +359,10 @@ describe('Utility Functions - ', () => {
     const deleteSecondary = deleteSecondaryMinimal(Model);
     deleteSecondary(_id);
     test('should call the findOneAndRemove method on User.', () => {
-      expect(Model.findOneAndRemove.called).to.be.true;
+      expect(Model.findOneAndRemove.called).toBeTruthy();
     });
     test('should call the removeToken w/ correct args.', () => {
-      expect(Model.findOneAndRemove.calledWithExactly(body)).to.be.true;
+      expect(Model.findOneAndRemove.calledWithExactly(body)).toBeTruthy();
     });
   });
   describe('loginLocal -', () => {
@@ -376,18 +376,19 @@ describe('Utility Functions - ', () => {
     const loginLocalMinimal = loginLocal(Model);
     const res = loginLocalMinimal(email, password);
     test('should call the method findByCredential on Model w/ correct args.', () => {
-      expect(Model.findByCredentials.calledWithExactly(email, password)).to.be
-        .true;
+      expect(
+        Model.findByCredentials.calledWithExactly(email, password)
+      ).toBeTruthy();
     });
     test('should call the generateAuthToken on returned user.', () => {
-      expect(user.generateAuthToken.called).to.be.true;
+      expect(user.generateAuthToken.called).toBeTruthy();
     });
     test('should call the toJSON method on return user.', () => {
-      expect(user.toJSON.called).to.be.true;
+      expect(user.toJSON.called).toBeTruthy();
     });
     test('should return the correct value.', (done) => {
       res.then((data) => {
-        expect(data).to.deep.equal({
+        expect(data).toEqual({
           user: { name: 'sample', age: 20 },
           token: 'token',
         });
