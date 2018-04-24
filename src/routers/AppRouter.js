@@ -22,6 +22,7 @@ import DeanPage from 'pages/staticPages/DeanPage';
 import Tpo from 'pages/staticPages/Tpo';
 import Facility from 'pages/staticPages/Facility';
 import Rti from 'pages/staticPages/RtiPage';
+import Committee from 'pages/staticPages/Committee';
 // Pages
 import AddSyllabusPage from 'pages/adminPages/AddSyllabusPage';
 import StudentRegistrationPage from 'pages/publicPages/StudentRegistrationPage';
@@ -112,6 +113,7 @@ const AppRouter = () => (
                     <Route path="/tpo" component={Tpo} />
                     <Route path="/faculty" component={Facility} />
                     <Route path="/rti" component={Rti} />
+                    <Route path="/committees" component={Committee} />
                     <Route
                       path="/timetable/:semester"
                       component={TimeTablePage}
