@@ -80,7 +80,7 @@ const Div = styled.div`
   ${media.phone`
     top: 67px;
     transform: ${(props) =>
-      (props.active ? 'translateY(0px)' : 'translateY(40px)')};    
+      props.active ? 'translateY(0px)' : 'translateY(40px)'};
     opacity: ${(props) => (props.active ? '1' : '0')};
     height: calc(100% - 116px);
     overflow-y: auto;
@@ -133,13 +133,10 @@ class NavBar extends Component {
                 </Link>
               </NavItem>
               <NavItem red={this.state.active1}>
-                <a onClick={this.click1}>ACADEMICS</a>
+                <a onClick={this.click1}>ACADEMICS</a>  {/* eslint-disable-line */}
               </NavItem>
               <NavItem red={this.state.active2}>
-                <a onClick={this.click2}>STUDENTS</a>
-              </NavItem>
-              <NavItem red={this.state.active2}>
-                <a onClick={this.click2}>ADMINISTRATION</a>
+                <a onClick={this.click2}>STUDENTS</a>  {/* eslint-disable-line */}
               </NavItem>
               <NavItem>
                 <Link to="/about" onClick={this.navClick}>
