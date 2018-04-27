@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import FacilityMap from './facilityMap';
 import { A } from 'theme/Components';
 import media from 'theme/media';
 
