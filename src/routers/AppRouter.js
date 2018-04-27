@@ -18,7 +18,7 @@ import ProfilePage from 'pages/publicPages/ProfilePage';
 import EventPage from 'pages/publicPages/EventPage';
 
 // static pages
-import DeanPage from 'pages/staticPages/DeanPage';
+import PrincipalPage from 'pages/staticPages/PrincipalPage';
 import Tpo from 'pages/staticPages/Tpo';
 import Facility from 'pages/staticPages/Facility';
 import Rti from 'pages/staticPages/RtiPage';
@@ -109,7 +109,7 @@ const AppRouter = () => (
                       component={StudentLoginPage}
                       exact
                     />
-                    <Route path="/dean" component={DeanPage} />
+                    <Route path="/principal" component={PrincipalPage} />
                     <Route path="/tpo" component={Tpo} />
                     <Route path="/faculty" component={Facility} />
                     <Route path="/rti" component={Rti} />
