@@ -74,6 +74,7 @@ import ScholarShipsPage from './../pages/publicPages/Scholarships';
 import FinancePage from './../pages/publicPages/FinancePage';
 import DisclaimerPage from './../pages/publicPages/DisclaimerPage';
 import ContactPage from './../pages/publicPages/ContactUsPage';
+import RaggingPage from './../pages/publicPages/RaggingPage';
 
 export const history = createHistory();
 
@@ -286,6 +287,7 @@ const AppRouter = () => (
                 <Route path="/budgetreport" component={FinancePage} />
                 <Route path="/disclaimer" component={DisclaimerPage} />
                 <Route path="/contactus" component={ContactPage} />
+                <Route path="/regulationOnRagging" component={RaggingPage} />
                 <Route component={NotFound} />
               </Switch>
             </CSSTransition>
