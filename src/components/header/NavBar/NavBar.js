@@ -10,7 +10,6 @@ import media from 'theme/media';
 //  Component Imports
 import AcademicsNav from './Academics/Academics';
 import StudentsNav from './Students/Students';
-import AdministrationNav from './Adminstration/Administration';
 
 const NavContainer = styled.div`
   display: flex;
@@ -100,35 +99,26 @@ class NavBar extends Component {
   state = {
     active1: false,
     active2: false,
-    active3: false,
   };
 
   click1 = () => {
     if (this.state.active1) {
-      this.setState(() => ({ active1: false, active2: false, active3: false }));
+      this.setState(() => ({ active1: false, active2: false }));
     } else {
-      this.setState(() => ({ active1: true, active2: false, active3: false }));
+      this.setState(() => ({ active1: true, active2: false }));
     }
   };
 
   click2 = () => {
     if (this.state.active2) {
-      this.setState(() => ({ active1: false, active2: false, active3: false }));
+      this.setState(() => ({ active1: false, active2: false }));
     } else {
-      this.setState(() => ({ active1: false, active2: true, active3: false }));
-    }
-  };
-
-  click3 = () => {
-    if (this.state.active3) {
-      this.setState(() => ({ active1: false, active2: false, active3: false }));
-    } else {
-      this.setState(() => ({ active1: false, active2: false, active3: true }));
+      this.setState(() => ({ active1: false, active2: true }));
     }
   };
 
   navClick = () => {
-    this.setState(() => ({ active1: false, active2: false, active3: false }));
+    this.setState(() => ({ active1: false, active2: false }));
   };
 
   render() {
@@ -148,9 +138,6 @@ class NavBar extends Component {
               <NavItem red={this.state.active2}>
                 <a onClick={this.click2}>STUDENTS</a>
               </NavItem>
-              <NavItem red={this.state.active3}>
-                <a onClick={this.click3}>ADMINISTRATION</a>
-              </NavItem>
               <NavItem>
                 <Link to="/about" onClick={this.navClick}>
                   ABOUT US
@@ -164,9 +151,6 @@ class NavBar extends Component {
         </Div>
         <Div active={this.state.active2}>
           <StudentsNav click={this.navClick} />
-        </Div>
-        <Div active={this.state.active3}>
-          <AdministrationNav click={this.navClick} />
         </Div>
       </Wrapper>
     );
