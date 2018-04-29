@@ -75,6 +75,7 @@ import FinancePage from './../pages/publicPages/FinancePage';
 import DisclaimerPage from './../pages/publicPages/DisclaimerPage';
 import ContactPage from './../pages/publicPages/ContactUsPage';
 import RaggingPage from './../pages/publicPages/RaggingPage';
+import FormsAndPerformaPage from './../pages/publicPages/FormAndPerformaPage';
 
 export const history = createHistory();
 
@@ -288,6 +289,10 @@ const AppRouter = () => (
                 <Route path="/disclaimer" component={DisclaimerPage} />
                 <Route path="/contactus" component={ContactPage} />
                 <Route path="/regulationOnRagging" component={RaggingPage} />
+                <Route
+                  path="/formsandperforma"
+                  component={FormsAndPerformaPage}
+                />
                 <Route component={NotFound} />
               </Switch>
             </CSSTransition>
