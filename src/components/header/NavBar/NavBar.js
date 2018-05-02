@@ -138,9 +138,6 @@ class NavBar extends Component {
               <NavItem red={this.state.active2}>
                 <a onClick={this.click2}>STUDENTS</a>
               </NavItem>
-              <NavItem red={this.state.active2}>
-                <a onClick={this.click2}>ADMINISTRATION</a>
-              </NavItem>
               <NavItem>
                 <Link to="/about" onClick={this.navClick}>
                   ABOUT US
