@@ -11,6 +11,7 @@ import studentPrimaryReducer from './../reducers/studentPrimary';
 import studentSecondaryReducer from './../reducers/studentSecondary';
 import teacherPrimaryReducer from './../reducers/teacherPrimary';
 import teacherSecondaryReducer from './../reducers/teacherSecondary';
+import tendersReducer from './../reducers/tenders';
 
 // eslint-disable-next-line
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -27,6 +28,7 @@ export default () => {
       studentSecondary: studentSecondaryReducer,
       teacherPrimary: teacherPrimaryReducer,
       teacherSecondary: teacherSecondaryReducer,
+      tenders: tendersReducer,
     }),
     composeEnhancers(applyMiddleware(thunk))
   );
