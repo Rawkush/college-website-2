@@ -76,6 +76,8 @@ import DisclaimerPage from './../pages/publicPages/DisclaimerPage';
 import ContactPage from './../pages/publicPages/ContactUsPage';
 import RaggingPage from './../pages/publicPages/RaggingPage';
 import FormsAndPerformaPage from './../pages/publicPages/FormAndPerformaPage';
+import TenderPage from './../pages/publicPages/TenderPage';
+import LocationPage from './../pages/publicPages/LocationPage';
 
 export const history = createHistory();
 
@@ -293,6 +295,8 @@ const AppRouter = () => (
                   path="/formsandperforma"
                   component={FormsAndPerformaPage}
                 />
+                <Route path="/tender" component={TenderPage} />
+                <Route path="/location" component={LocationPage} />
                 <Route component={NotFound} />
               </Switch>
             </CSSTransition>
