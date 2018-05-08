@@ -55,4 +55,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-app.listen(port, host, () => console.log(`Server is up on the ${port}`)); // eslint-disable-line
+app.server = app.listen(port, host, () => console.log(`Server is up on the ${port}`)); // eslint-disable-line
+
+module.exports = { app };
