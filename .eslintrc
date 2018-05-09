@@ -46,7 +46,9 @@
       }
     ],
     "arrow-parens": ["error", "always"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, {
+      "extensions": [".js", ".jsx"]
+    }],
     "react/prop-types": 0,
     "object-curly-newline": 0,
     "function-paren-newline": 0,
@@ -67,7 +69,8 @@
         },
         "allowChildren": false
       }
-    ]
+    ],
+    "linebreak-style": ["error", "windows"]
   },
   "settings": {
     "import/resolver": {
