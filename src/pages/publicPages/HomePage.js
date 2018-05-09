@@ -7,8 +7,8 @@ import { Page, Container, FlexCenter, H2ResAuto } from 'theme/Components';
 import media from 'theme/media';
 
 // Defined components import
+import Carousel from './../../components/Body/Carousel';
 import Notification from './../../components/notifications/Notification';
-import Events from './../../components/Events/EventsListHome';
 import GetToKnow from './../../components/Body/GetToKnow';
 
 const NotificationLink = styled(Link)`
@@ -57,6 +57,7 @@ const NotificationBg = styled.div`
 `;
 const HomePage = () => (
   <Page>
+    <Carousel />
     <Container>
       <H2ResAuto>Notifications</H2ResAuto>
     </Container>
@@ -71,7 +72,6 @@ const HomePage = () => (
         </FlexCenter>
       </Container>
     </NotificationBg>
-    <Events />
     <GetToKnow />
   </Page>
 );
