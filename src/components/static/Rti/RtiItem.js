@@ -19,9 +19,9 @@ const TR = styled.tr`
   border-bottom: 1px solid #ddd;
 `;
 
-export default ({name , infoOfficer}) =>(
-<TR>
-<TD  title> {name} </TD>
-<TD> {infoOfficer} </TD>
-    </TR>
+export default ({ name, infoOfficer }) => (
+  <TR>
+    <TD title> {name} </TD>
+    <TD> {infoOfficer} </TD>
+  </TR>
 );

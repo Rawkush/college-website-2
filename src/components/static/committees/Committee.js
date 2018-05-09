@@ -19,19 +19,15 @@ import {
   proctorial,
 } from './CommitteesData';
 
-import {
-ExaminationBody,
-}  from'./CommitteesTabel';
-
+import { ExaminationBody } from './CommitteesTabel';
 
 const CName = styled.p`
-font-size: 15px;
-font-family: 'Open Sans', sans-serif;
-text-align: center;
-padding: 10px;
-font-weight: 600;
-`
-
+  font-size: 15px;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+`;
 
 const Examination = () => (
   <Container>
@@ -47,7 +43,7 @@ const Tpo = () => (
   <Container>
     <Wrapper>
       <CName>
-        Training, Placement and Students' Personality Development Committee*
+        Training, Placement and Students Personality Development Committee
       </CName>
       <ExaminationBody info={tpo} />
     </Wrapper>
@@ -92,7 +88,7 @@ const Cultural = () => (
 const Sports = () => (
   <Container>
     <Wrapper>
-      <CName>Sports Committee  </CName>
+      <CName>Sports Committee </CName>
       <ExaminationBody info={sports} />
     </Wrapper>
   </Container>
@@ -122,7 +118,8 @@ const InstuteSupport = () => (
   <Container>
     <Wrapper>
       <CName>
-        Committee for Institutional Support for Faculty Development & End Term Evaluation
+        Committee for Institutional Support for Faculty Development & End Term
+        Evaluation
       </CName>
       <ExaminationBody info={instuteSupport} />
     </Wrapper>
@@ -132,7 +129,9 @@ const InstuteSupport = () => (
 const Cocurricular = () => (
   <Container>
     <Wrapper>
-      <CName> Committee for Co-curricular Activities and Institutional Publication </CName>
+      <CName>
+        Committee for Co-curricular Activities and Institutional Publication
+      </CName>
       <ExaminationBody info={cocurricular} />
     </Wrapper>
   </Container>
@@ -141,7 +140,7 @@ const Cocurricular = () => (
 const Management = () => (
   <Container>
     <Wrapper>
-      <CName>  Commitee for Facility Management & FeedbackAssessment </CName>
+      <CName> Commitee for Facility Management & FeedbackAssessment </CName>
       <ExaminationBody info={management} />
     </Wrapper>
   </Container>
@@ -151,7 +150,8 @@ const StudentWellfare = () => (
   <Container>
     <Wrapper>
       <CName>
-        Students Welfare Committee (including Scholarship & Excellence in Academic Performance)
+        Students Welfare Committee (including Scholarship & Excellence in
+        Academic Performance)
       </CName>
       <ExaminationBody info={studentWellfare} />
     </Wrapper>

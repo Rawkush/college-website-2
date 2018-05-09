@@ -1,6 +1,7 @@
-import React from  'react';
-import RtiItem from './RtiItem'
+import React from 'react';
 import styled from 'styled-components';
+
+import RtiItem from './RTIItem';
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -16,20 +17,14 @@ const TH = styled.th`
   font-size: 13px;
 `;
 
-export default ({info}) =>(
-<StyledTable>
-   <tbody>
-       <tr>
-       <TH> Name </TH>
-       <TH> Information Officer  </TH>
-           </tr>
-       </tbody>
-       <tbody>
-           {
-               info.map((item)=>(
-                   <RtiItem  key={item.name} {...item} />
-               ))
-           }
-           </tbody>
-    </StyledTable>
+export default ({ info }) => (
+  <StyledTable>
+    <tbody>
+      <tr>
+        <TH> Name </TH>
+        <TH> Information Officer </TH>
+      </tr>
+    </tbody>
+    <tbody>{info.map((item) => <RtiItem key={item.name} {...item} />)}</tbody>
+  </StyledTable>
 );

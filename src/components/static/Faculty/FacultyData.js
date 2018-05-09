@@ -1,7 +1,3 @@
-import React from 'react';
-import { H2ResAuto, Container, Wrapper } from 'theme/Components';
-import { Upper, Lower } from './FacilitySheet';
-
 const upper = [
   {
     post: 'Principal',
@@ -95,21 +91,7 @@ const lower = [
   },
 ];
 
-const UpperData = () => (
-  <Container>
-    <H2ResAuto>FACULTY</H2ResAuto>
-    <Wrapper>
-      <Upper upperInfo={upper} />
-    </Wrapper>
-  </Container>
-);
-
-const LowerData = () => (
-  <Container>
-    <Wrapper>
-      <Lower lowerInfo={lower} />
-    </Wrapper>
-  </Container>
-);
-
-module.exports = { UpperData, LowerData };
+module.exports = {
+  upper,
+  lower,
+};

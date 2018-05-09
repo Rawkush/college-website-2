@@ -3,7 +3,7 @@ import { Page } from 'theme/Components';
 import {
   UpperData,
   LowerData,
-} from './../../components/static/facility/FacilityData';
+} from './../../components/static/Faculty/Faculty';
 
 export default () => (
   <Page>

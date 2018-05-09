@@ -52,10 +52,10 @@ const Lowerlines = ({ departName, post, name, link, facility }) => (
     <A padding="0px" href={link} target="_blank">
       View
     </A>
-    <p>
+    <div>
       <Head> Faculty </Head>
-      {facility.map((item, i=0) => ( <Name key={i++}> {item} </Name> ))}
-    </p>
+      {facility.map((item, i = 0) => <Name key={i++}> {item} </Name>)}
+    </div>
   </Department>
 );
 

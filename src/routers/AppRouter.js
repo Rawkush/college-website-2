@@ -20,9 +20,11 @@ import EventPage from 'pages/publicPages/EventPage';
 // static pages
 import PrincipalPage from 'pages/staticPages/PrincipalPage';
 import Tpo from 'pages/staticPages/Tpo';
-import Facility from 'pages/staticPages/Facility';
+import Faculty from 'pages/staticPages/Faculty';
 import Rti from 'pages/staticPages/RtiPage';
 import Committee from 'pages/staticPages/Committee';
+import Learn from 'pages/staticPages/learn';
+
 // Pages
 import AddSyllabusPage from 'pages/adminPages/AddSyllabusPage';
 import StudentRegistrationPage from 'pages/publicPages/StudentRegistrationPage';
@@ -111,9 +113,10 @@ const AppRouter = () => (
                     />
                     <Route path="/principal" component={PrincipalPage} />
                     <Route path="/tpo" component={Tpo} />
-                    <Route path="/faculty" component={Facility} />
+                    <Route path="/faculty" component={Faculty} />
                     <Route path="/rti" component={Rti} />
                     <Route path="/committees" component={Committee} />
+                    <Route path="/learn" component={Learn} />
                     <Route
                       path="/timetable/:semester"
                       component={TimeTablePage}
