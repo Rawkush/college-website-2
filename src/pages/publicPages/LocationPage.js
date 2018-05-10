@@ -19,8 +19,9 @@ export default () => (
     <Wrapper w="800px">
       <Map />
       <P>
-        The Nearest Metro station is Dwarka Mor and various private busses and
-        DTC route number 835, 827 go to College.
+        The Nearest Metro station is <strong>Dwarka Mor</strong> and various
+        private busses and DTC route number <strong>835</strong>,
+        <strong>827</strong> go to College.
       </P>
     </Wrapper>
   </Page>
