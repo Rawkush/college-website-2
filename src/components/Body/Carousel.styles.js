@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 //  Styled Components
-import { Container, Wrapper, Flex } from 'theme/Components';
+import { Container, Wrapper, Flex, SVG, SimpleLink } from 'theme/Components';
+import media from 'theme/media';
 
 const WrapperMod = Wrapper.extend`
   height: 500px;
@@ -8,9 +9,6 @@ const WrapperMod = Wrapper.extend`
   background-size: cover;
   position: relative;
   transition: all 0.2s ease-out;
-  &:hover {
-    transform: ${({ index }) => (index === 0 ? 'scale(1.0)' : 'scale(1.05)')};
-  }
 `;
 const WrapperMod2 = Wrapper.extend`
   overflow: hidden;
@@ -21,7 +19,10 @@ const Headline = styled.h2`
   font-size: 35px;
   color: white;
   position: absolute;
-  bottom: 80px;
+  bottom: 100px;
+  ${media.phone`
+    font-size: 27px;
+  `};
 `;
 
 const PreHeadline = styled.h2`
@@ -29,7 +30,11 @@ const PreHeadline = styled.h2`
   font-size: 30px;
   color: rgba(255, 255, 255, 0.3);
   position: absolute;
-  bottom: 144px;
+  bottom: 150px;
+  ${media.phone`
+    font-size: 25px;
+    bottom: 200px;
+  `};
 `;
 
 const Gradient = styled.div`
@@ -39,10 +44,14 @@ const Gradient = styled.div`
 
 const DateAndPlace = styled.div`
   position: absolute;
-  bottom: 40px;
+  bottom: 75px;
   right: 10px;
   color: #fff;
   font-size: 20px;
+  ${media.phone`
+    font-size: 18px;
+    font-weight: 400;
+  `};
 `;
 
 const ContainerMod = Container.extend`
@@ -51,13 +60,13 @@ const ContainerMod = Container.extend`
 `;
 
 const Line = styled.div`
-  height: 3px;
+  height: 1px;
   width: 24%;
   background: rgba(255, 255, 255, 0.3);
 `;
 
 const LineProgress = styled.div`
-  height: 3px;
+  height: 1px;
   width: ${({ width = 0, count, currentCount }) =>
     count === currentCount ? `${width}%` : '0'};
   background: rgba(255, 255, 255, 1);
@@ -66,8 +75,26 @@ const LineProgress = styled.div`
 const FlexMod = Flex.extend`
   width: 100%;
   position: absolute;
-  bottom: 30px;
+  bottom: 55px;
   justify-content: space-around;
+`;
+
+const FlexCenter = Flex.extend`
+  width: 100%;
+  position: absolute;
+  bottom: 55px;
+  justify-content: center;
+`;
+
+const SVGMod = SVG.extend`
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  transform: rotate(90deg);
+  cursor: pointer;
+  height: 30px;
+  width: 100%;
+  display: block;
 `;
 
 export {
@@ -81,4 +108,8 @@ export {
   Line,
   LineProgress,
   FlexMod,
+  FlexCenter,
+  SVG,
+  SimpleLink,
+  SVGMod,
 };
