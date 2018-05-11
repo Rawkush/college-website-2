@@ -56,7 +56,7 @@ const NotificationBg = styled.div`
   background: rgba(221, 221, 221, 0.3);
 `;
 const HomePage = () => (
-  <Page>
+  <Page mtp="69px">
     <Carousel />
     <Container>
       <H2ResAuto>Notifications</H2ResAuto>
