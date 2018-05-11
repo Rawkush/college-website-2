@@ -13,6 +13,8 @@ const {
   getTimeTable,
   searchStudentsByName,
   searchStudentsByRollNo,
+  searchTeacherByName,
+
   verifyEmail,
 } = require('./../controllers/visitorControllers');
 
@@ -39,6 +41,8 @@ visitorRoutes.post('/getstudent', getStudent);
 visitorRoutes.post('/searchstudentbyname', searchStudentsByName);
 
 visitorRoutes.post('/searchstudentbyrollno', searchStudentsByRollNo);
+
+visitorRoutes.post('/searchteacherbyname', searchTeacherByName);
 
 visitorRoutes.post('/verifyemail', verifyEmail);
 

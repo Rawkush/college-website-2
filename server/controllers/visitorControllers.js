@@ -4,9 +4,9 @@ const { Event } = require('./../models//events');
 const { Notifications } = require('./../models/notification');
 const { StudentPrimary } = require('./../models/studentPrimary');
 const { StudentSecondry } = require('./../models/studentsSecondry');
+const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { Email } = require('./../models/email');
 const { EmailOtp } = require('./../models/email&otp');
-// const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { Syllabus } = require('./../models/syllabus');
 const { TimeTable } = require('./../models/timeTable');
 
@@ -26,6 +26,7 @@ const giveAllNotifications = giveAll(Notifications);
 const giveLatestThreeEvents = giveLatestThreeItem(Event);
 const findStudentByName = findUser(StudentPrimary, 'name');
 const findStudentByRollNo = findUser(StudentPrimary, 'rollNo');
+const findTeacherByName = findUser(TeacherPrimary, 'name');
 const giveStudent = giveUser(StudentPrimary);
 const giveAllSyllabus = giveAll(Syllabus);
 const giveAllTimeTable = giveAll(TimeTable);
@@ -140,6 +141,16 @@ const searchStudentsByRollNo = async (req, res) => {
   }
 };
 
+const searchTeacherByName = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const searchResults = await findTeacherByName(name);
+    res.send(searchResults);
+  } catch (error) {
+    res.status(400).send(`some error happened: ${error}`);
+  }
+};
+
 const verifyEmail = async (req, res) => {
   const { email } = req.body;
   try {
@@ -173,5 +184,6 @@ module.exports = {
   getAllEvents,
   searchStudentsByName,
   searchStudentsByRollNo,
+  searchTeacherByName,
   verifyEmail,
 };

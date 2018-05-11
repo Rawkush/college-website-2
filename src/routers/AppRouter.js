@@ -23,7 +23,6 @@ import Tpo from 'pages/staticPages/Tpo';
 import Faculty from 'pages/staticPages/Faculty';
 import Rti from 'pages/staticPages/RtiPage';
 import Committee from 'pages/staticPages/Committee';
-import Learn from 'pages/staticPages/learn';
 
 // Pages
 import AddSyllabusPage from 'pages/adminPages/AddSyllabusPage';
@@ -116,7 +115,6 @@ const AppRouter = () => (
                     <Route path="/faculty" component={Faculty} />
                     <Route path="/rti" component={Rti} />
                     <Route path="/committees" component={Committee} />
-                    <Route path="/learn" component={Learn} />
                     <Route
                       path="/timetable/:semester"
                       component={TimeTablePage}
