@@ -1,0 +1,67 @@
+[
+    [
+        {
+            "name": "Dr. Srinivasa K.G",
+            "contactNumber": "011-25318158",
+            "email": "tpo.gecdelhi@gmail.com, tpo@gecdelhi.ac.in"
+        }
+    ],
+    [
+        {
+            "name": "Dr. Srinivasa K.G , Associate Professor",
+            "Status": "Chairperson"
+        },
+        {
+            "name": "Mr. Aneyatullah Niyaji, Asst. Professor",
+            "Status": "Convener"
+          },
+          {
+            "name": "Mr. Harjeet Singh Chadha, Asst. Professor",
+            "Status": "Member"
+          },
+          {
+            "name": "Mr. Aditya Tandon, Asst. Professor",
+            "Status": "Member"
+          },
+          {
+            "name": "Ms. Mimansa Gulati, Asst. Professor",
+            "Status": "Member"
+          },
+          {
+            "name": "Dr. Jayati Ghosal, Asst. Professor",
+            "Status": "Member"
+          }
+    ],
+    [
+        {
+            "name": "Saurabh Mishra",
+            "year": "IT, 4th Year "
+        },
+        {
+            "name": "Roopali Garg",
+            "year": "IT, 4th Year"
+          },
+          {
+            "name": "Pankaj Kumar",
+            "year": "IT, 4th Year"
+          },
+          {
+            "name": "Jyoti Rani",
+            "year": "IT, 4th Year"
+          },
+          {
+            "name": "Vivek Kumar Singh",
+            "year": "IT, 4th Year"
+          }
+    ],
+    [
+        {
+            "year": "Placement 2010-11",
+            "link": "/placement_2010-11"
+          },
+          {
+            "year": "Placement 2011-12",
+            "link": "/placement_2011_12"
+          }
+    ]
+]

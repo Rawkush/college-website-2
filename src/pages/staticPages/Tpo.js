@@ -6,7 +6,7 @@ import {
   TopData,
   CodinaterData,
   Placement,
-} from './../../components/static/Tpo/TpoData';
+} from './../../components/static/Tpo/Tpo';
 
 export default () => (
   <Page>
