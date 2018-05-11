@@ -14,12 +14,27 @@ import {
   Line,
   LineProgress,
   FlexMod,
+  SVGMod,
+  SimpleLink,
 } from './Carousel.styles';
 
 //  assets
 import CollegeImage from './../../assets/images/college-image-sample.jpeg';
 
 // let intervalId;
+
+const DownButton = ({ onclick }) => (
+  <SVGMod
+    id="Capa_1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 477.175 477.175"
+    fill="white"
+    hovTransform="rotate(90deg) translateX(5px)"
+    onclick={onclick}
+  >
+    <path d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5 c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z" />
+  </SVGMod>
+);
 
 class Carousel extends Component {
   constructor(props) {
@@ -71,6 +86,10 @@ class Carousel extends Component {
     }));
   };
 
+  scrollToTop = () => {
+    window.scroll({ top: 570, left: 0, behavior: 'smooth' });
+  };
+
   // pauseSlide = () => {
   //   this.setState(() => ({ haltTime: Date.now() }));
   //   clearInterval(intervalId);
@@ -97,6 +116,14 @@ class Carousel extends Component {
                   {`${moment(data[count].date).format('DD MMM, YYYY')} | ${
                     data[count].place
                   }`}
+                  {' | '}
+                  {count ? (
+                    <SimpleLink to={`event/${data[count]._id}`}>
+                      See Event
+                    </SimpleLink>
+                  ) : (
+                    ''
+                  )}
                 </DateAndPlace>
               ) : (
                 ''
@@ -106,31 +133,35 @@ class Carousel extends Component {
                   <LineProgress
                     count={0}
                     currentCount={count}
-                    width={time / 3000 * 100}
+                    width={count === 0 ? time / 3000 * 100 : 0}
                   />
                 </Line>
                 <Line>
                   <LineProgress
                     count={1}
                     currentCount={count}
-                    width={time / 3000 * 100}
+                    width={count === 1 ? time / 3000 * 100 : 0}
                   />
                 </Line>
                 <Line>
                   <LineProgress
                     count={2}
                     currentCount={count}
-                    width={time / 3000 * 100}
+                    width={count === 2 ? time / 3000 * 100 : 0}
                   />
                 </Line>
                 <Line>
                   <LineProgress
                     count={3}
                     currentCount={count}
-                    width={time / 3000 * 100}
+                    width={count === 3 ? time / 3000 * 100 : 0}
                   />
                 </Line>
               </FlexMod>
+              {/* eslint-disable-next-line */}
+              <a onClick={this.scrollToTop}>
+                <DownButton />
+              </a>
             </ContainerMod>
           </Gradient>
         </WrapperMod>
@@ -140,13 +171,16 @@ class Carousel extends Component {
 }
 
 const mapStateToProps = ({ events }) => ({
-  events: events.map(({ name: headline, photos: [photo], place, date }) => ({
-    headline,
-    photo,
-    preHeadline: 'Event',
-    place,
-    date,
-  })),
+  events: events.map(
+    ({ name: headline, photos: [photo], place, date, _id }) => ({
+      headline,
+      photo,
+      preHeadline: 'Event',
+      place,
+      date,
+      _id,
+    })
+  ),
 });
 
 export default connect(mapStateToProps)(Carousel);
