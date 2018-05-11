@@ -361,6 +361,17 @@ const ViewLink = styled.a`
   display: block;
 `;
 
+const SimpleLink = styled(Link)`
+  color: ${({ color = 'white' }) => color};
+  font-size: ${({ fs = '20px' }) => fs};
+  text-decoration: ${({ td = 'underline' }) => td};
+  font-family: ${({ ff = '"Open Sans", sans-serif' }) => ff};
+  ${media.phone`
+    font-size: 18px;
+    font-weight: 400;
+  `};
+`;
+
 export {
   H1,
   H2,
@@ -391,4 +402,5 @@ export {
   Warn,
   StyledInput,
   ViewLink,
+  SimpleLink,
 };
