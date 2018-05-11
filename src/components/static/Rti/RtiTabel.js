@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import RtiItem from './RTIItem';
+import RtiItem from './RtiItem';
 
 const StyledTable = styled.table`
   border-collapse: collapse;

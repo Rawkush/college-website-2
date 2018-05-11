@@ -1,11 +1,10 @@
 import React from 'react';
-import  Rti from './../../components/static/Rti/RtiData';
-
 import { Page } from 'theme/Components';
 
+import Rti from './../../components/static/Rti/Rti';
 
-export default ()=>(
-    <Page>
-        <Rti />
-        </Page>
+export default () => (
+  <Page>
+    <Rti />
+  </Page>
 );

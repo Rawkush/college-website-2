@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { H2ResAuto, Container, Wrapper, A } from 'theme/Components';
-
-import RtiTabel from './RTITabel';
+import rtiData from './RtiData.json';
+import RtiTabel from './RtiTabel';
 
 const Div = styled.div`
   text-align: center;
@@ -12,21 +12,6 @@ const P = styled.p`
   font-weight: 600;
   font-family: 'Open Sans', sans-serif;
 `;
-
-const rtiData = [
-  {
-    name: 'Mr.S.K.Tiwari, Dean (Academic)',
-    infoOfficer: 'First Appellate Authority',
-  },
-  {
-    name: 'Mr. S.N.Sinha, (Accounts Officer)',
-    infoOfficer: 'Public Information Officer',
-  },
-  {
-    name: 'Ms. Seema Rani (Asstt. Programmer)',
-    infoOfficer: 'Nodal Officer',
-  },
-];
 
 export default () => (
   <Container>
