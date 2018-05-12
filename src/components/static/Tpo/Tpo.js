@@ -2,7 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { H2ResAuto, Container, Wrapper, A } from 'theme/Components';
 
-import data from './TpoData.json';
+import {
+  tpoHead,
+  tpoTeacherCodinater,
+  tpoStudentCodinater,
+  placementData
+} from './TpoData.json';
 
 import { Teachers, Tops, Codinaters } from './TpoTabel';
 
@@ -26,7 +31,7 @@ const P1 = styled.p`
 const TeacherData = () => (
   <Container>
     <Wrap>
-      <Teachers teacherInfo={data[1]} />
+      <Teachers teacherInfo={tpoTeacherCodinater} />
     </Wrap>
   </Container>
 );
@@ -35,7 +40,7 @@ const TopData = () => (
   <Container>
     <H2ResAuto> TRAINING AND PLACEMENT CELL </H2ResAuto>
     <Wrap>
-      <Tops topInfo={data[0]} />
+      <Tops topInfo={tpoHead} />
     </Wrap>
   </Container>
 );
@@ -44,7 +49,7 @@ const CodinaterData = () => (
   <Container>
     <P1> Placement Co-ordinator </P1>
     <Wrap>
-      <Codinaters codinaterInfo={data[2]} />
+      <Codinaters codinaterInfo={tpoStudentCodinater} />
     </Wrap>
   </Container>
 );
@@ -56,7 +61,7 @@ const Placement = () => (
       India Pvt Ltd. with salary package of 3.25 lac.
     </P1>
     <Wraped>
-      {data[3].map((item) => (<A href={item.link}> {item.year}</A>))}
+      {placementData.map((item) => <A href={item.link}> {item.year}</A>)}
     </Wraped>
     <br />
     <br />
