@@ -18,11 +18,11 @@ import ProfilePage from 'pages/publicPages/ProfilePage';
 import EventPage from 'pages/publicPages/EventPage';
 
 // static pages
-import PrincipalPage from 'pages/staticPages/PrincipalPage';
-import Tpo from 'pages/staticPages/Tpo';
-import Faculty from 'pages/staticPages/Faculty';
-import Rti from 'pages/staticPages/RtiPage';
-import Committee from 'pages/staticPages/Committee';
+import PrincipalPage from 'pages/publicPages/PrincipalPage';
+import Tpo from 'pages/publicPages/Tpo';
+import Faculty from 'pages/publicPages/Faculty';
+import Rti from 'pages/publicPages/RtiPage';
+import Committee from 'pages/publicPages/Committee';
 
 // Pages
 import AddSyllabusPage from 'pages/adminPages/AddSyllabusPage';
