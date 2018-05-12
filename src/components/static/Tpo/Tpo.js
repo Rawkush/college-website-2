@@ -6,7 +6,7 @@ import {
   tpoHead,
   tpoTeacherCodinater,
   tpoStudentCodinater,
-  placementData
+  placementData,
 } from './TpoData.json';
 
 import { Teachers, Tops, Codinaters } from './TpoTabel';
