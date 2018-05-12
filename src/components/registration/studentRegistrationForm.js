@@ -472,10 +472,10 @@ const FormikStudentRegistration = withFormik({
     email: Yup.string()
       .email('Email is not a valid email.')
       .required('Email is required for registration.'),
-    rollNo: Yup.number('Roll number should be a number.')
-      .positive('Roll number cannot be a negative number.')
+    rollNo: Yup.string()
       .required('Roll number is required for registration.')
-      .min(15, 'Roll number length is not correct.'),
+      .min(16, 'Roll number length is not correct.')
+      .max(16, 'Roll number length is not correct'),
     location: Yup.string(),
     dateOfBirth: Yup.date().required('Date of birth is required.'),
     admittedIn: Yup.date().required('Your Admission year is required.'),
