@@ -302,8 +302,16 @@ const addSpecialisations = async (req, res) => {
 const checkStudent = async (req, res, next) => {
   const { token } = req.user ? req.user : req.body;
   try {
-    const exists = await checkStudentMinimal(token);
-    if (exists) {
+    const student = await checkStudentMinimal(token);
+    if (student) {
+      if (req.user) {
+        await updateStudentMinimal(
+          { _id: req.student._id },
+          {
+            $set: { photo: req.user.photo },
+          }
+        );
+      }
       res.cookie('token', token, {
         expires: new Date(Date.now() + 30000),
         httpOnly: false,
