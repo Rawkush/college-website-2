@@ -1,7 +1,7 @@
 import React from 'react';
 import { H2ResAuto, Container, Wrapper } from 'theme/Components';
 import { Upper, Lower } from './FacultySheet';
-import { upper, lower } from './FacultyData';
+import { upper, lower } from './FacultyData.json';
 
 const UpperData = () => (
   <Container>
