@@ -17,7 +17,7 @@ import {
   management,
   studentWellfare,
   proctorial,
-} from './CommitteesData';
+} from './CommitteesData.json';
 
 import { ExaminationBody } from './CommitteesTabel';
 
