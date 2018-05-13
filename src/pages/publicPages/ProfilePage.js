@@ -74,7 +74,9 @@ class StudentProfilePage extends Component {
               <Lightbox
                 images={[
                   {
-                    src: this.state.data.photo.replace(/sz=50/, 'sz=500'),
+                    src: this.state.data.photo
+                      ? this.state.data.photo.replace(/sz=50/, 'sz=500')
+                      : '',
                   },
                 ]}
                 isOpen={this.state.lightboxIsOpen}
