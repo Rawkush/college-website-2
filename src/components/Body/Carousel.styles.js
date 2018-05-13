@@ -65,10 +65,12 @@ const Line = styled.div`
   background: rgba(255, 255, 255, 0.3);
 `;
 
-const LineProgress = styled.div`
+const LineProgress = styled.div.attrs({
+  style: ({ width = 0, count, currentCount }) => ({
+    width: count === currentCount ? `${width}%` : '0',
+  }),
+})`
   height: 1px;
-  width: ${({ width = 0, count, currentCount }) =>
-    count === currentCount ? `${width}%` : '0'};
   background: rgba(255, 255, 255, 1);
 `;
 
