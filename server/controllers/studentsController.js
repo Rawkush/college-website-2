@@ -306,9 +306,9 @@ const checkStudent = async (req, res, next) => {
     if (student) {
       if (req.user) {
         await updateStudentMinimal(
-          { _id: req.student._id },
+          { _id: student._id },
           {
-            $set: { photo: req.user.photo },
+            $set: { photo: req.user.userData.photo },
           }
         );
       }
