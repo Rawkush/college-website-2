@@ -31,7 +31,7 @@ const CName = styled.p`
 
 const Examination = () => (
   <Container>
-    <H2ResAuto> Examination Committee</H2ResAuto>
+    <H2ResAuto>  Committees</H2ResAuto>
     <Wrapper>
       <CName> Examination Committee </CName>
       <ExaminationBody info={examination} />
