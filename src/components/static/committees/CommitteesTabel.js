@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ExaminationItem } from './CommitteesItem';
+import TableItem from './CommitteesTableItem';
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -17,7 +17,7 @@ const TH = styled.th`
   font-size: 13px;
 `;
 
-const ExaminationBody = ({ info }) => (
+export default ({ data = [] } = {}) => (
   <StyledTable>
     <tbody>
       <tr>
@@ -25,12 +25,6 @@ const ExaminationBody = ({ info }) => (
         <TH> Status in the committee</TH>
       </tr>
     </tbody>
-    <tbody>
-      {info.map((item, i = 0) => <ExaminationItem key={i++} {...item} />)}
-    </tbody>
+    <tbody>{data.map((item) => <TableItem key={item.name} {...item} />)}</tbody>
   </StyledTable>
 );
-
-module.exports = {
-  ExaminationBody,
-};

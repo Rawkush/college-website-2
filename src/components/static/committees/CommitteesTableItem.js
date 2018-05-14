@@ -18,13 +18,9 @@ const TD = styled.td`
 const TR = styled.tr`
   border-bottom: 1px solid #ddd;
 `;
-const ExaminationItem = ({ name, status }) => (
+export default ({ name, status }) => (
   <TR>
     <TD title>{name} </TD>
     <TD> {status} </TD>
   </TR>
 );
-
-module.exports = {
-  ExaminationItem,
-};
