@@ -1,7 +1,5 @@
 import React from 'react';
-import { H2ResAuto, Container, Wrapper } from 'theme/Components';
-import styled from 'styled-components';
-
+import Show from './CommitteeObject';
 import {
   examination,
   tpo,
@@ -19,153 +17,33 @@ import {
   proctorial,
 } from './CommitteesData.json';
 
-import { ExaminationBody } from './CommitteesTabel';
+const Examination = () => <Show data={examination} />;
 
-const CName = styled.p`
-  font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
-  text-align: center;
-  padding: 10px;
-  font-weight: 600;
-`;
+const Tpo = () => <Show data={tpo} />;
 
-const Examination = () => (
-  <Container>
-    <H2ResAuto>  Committees</H2ResAuto>
-    <Wrapper>
-      <CName> Examination Committee </CName>
-      <ExaminationBody info={examination} />
-    </Wrapper>
-  </Container>
-);
+const Women = () => <Show data={women} />;
 
-const Tpo = () => (
-  <Container>
-    <Wrapper>
-      <CName>
-        Training, Placement and Students Personality Development Committee
-      </CName>
-      <ExaminationBody info={tpo} />
-    </Wrapper>
-  </Container>
-);
+const Canteen = () => <Show data={canteen} />;
 
-const Women = () => (
-  <Container>
-    <Wrapper>
-      <CName> Women Grivance Cell ( Internal Complaints Committee) </CName>
-      <ExaminationBody info={women} />
-    </Wrapper>
-  </Container>
-);
+const Library = () => <Show data={library} />;
 
-const Canteen = () => (
-  <Container>
-    <Wrapper>
-      <CName> Canteen Development, Security & Transport Committee </CName>
-      <ExaminationBody info={canteen} />
-    </Wrapper>
-  </Container>
-);
+const Cultural = () => <Show data={cultural} />;
 
-const Library = () => (
-  <Container>
-    <Wrapper>
-      <CName>Library Committee</CName>
-      <ExaminationBody info={library} />
-    </Wrapper>
-  </Container>
-);
+const Sports = () => <Show data={sports} />;
 
-const Cultural = () => (
-  <Container>
-    <Wrapper>
-      <CName> Cultural Committee </CName>
-      <ExaminationBody info={cultural} />
-    </Wrapper>
-  </Container>
-);
-const Sports = () => (
-  <Container>
-    <Wrapper>
-      <CName>Sports Committee </CName>
-      <ExaminationBody info={sports} />
-    </Wrapper>
-  </Container>
-);
+const Ragging = () => <Show data={ragging} />;
 
-const Ragging = () => (
-  <Container>
-    <Wrapper>
-      <CName>Anti Ragging Committee </CName>
-      <ExaminationBody info={ragging} />
-    </Wrapper>
-  </Container>
-);
+const Labs = () => <Show data={labs} />;
 
-const Labs = () => (
-  <Container>
-    <Wrapper>
-      <CName>
-        Committee for Ímprovement in Labs, Workshops & Computer Centre
-      </CName>
-      <ExaminationBody info={labs} />
-    </Wrapper>
-  </Container>
-);
+const InstuteSupport = () => <Show data={instuteSupport} />;
 
-const InstuteSupport = () => (
-  <Container>
-    <Wrapper>
-      <CName>
-        Committee for Institutional Support for Faculty Development & End Term
-        Evaluation
-      </CName>
-      <ExaminationBody info={instuteSupport} />
-    </Wrapper>
-  </Container>
-);
+const Cocurricular = () => <Show data={cocurricular} />;
 
-const Cocurricular = () => (
-  <Container>
-    <Wrapper>
-      <CName>
-        Committee for Co-curricular Activities and Institutional Publication
-      </CName>
-      <ExaminationBody info={cocurricular} />
-    </Wrapper>
-  </Container>
-);
+const Management = () => <Show data={management} />;
 
-const Management = () => (
-  <Container>
-    <Wrapper>
-      <CName> Commitee for Facility Management & FeedbackAssessment </CName>
-      <ExaminationBody info={management} />
-    </Wrapper>
-  </Container>
-);
+const StudentWellfare = () => <Show data={studentWellfare} />;
 
-const StudentWellfare = () => (
-  <Container>
-    <Wrapper>
-      <CName>
-        Students Welfare Committee (including Scholarship & Excellence in
-        Academic Performance)
-      </CName>
-      <ExaminationBody info={studentWellfare} />
-    </Wrapper>
-  </Container>
-);
-
-const Proctorial = () => (
-  <Container>
-    <Wrapper>
-      <CName>Proctorial Committee </CName>
-      <ExaminationBody info={proctorial} />
-    </Wrapper>
-  </Container>
-);
+const Proctorial = () => <Show data={proctorial} />;
 
 module.exports = {
   Examination,

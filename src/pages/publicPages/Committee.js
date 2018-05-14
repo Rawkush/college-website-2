@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page } from 'theme/Components';
+import { Page, H2ResAuto } from 'theme/Components';
 import {
   Examination,
   Tpo,
@@ -19,6 +19,7 @@ import {
 
 export default () => (
   <Page>
+    <H2ResAuto> Committees</H2ResAuto>
     <Examination />
     <Tpo />
     <Women />
