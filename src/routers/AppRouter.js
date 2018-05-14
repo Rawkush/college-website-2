@@ -114,7 +114,7 @@ const AppRouter = () => (
                     <Route path="/tpo" component={Tpo} />
                     <Route path="/faculty" component={Faculty} />
                     <Route path="/rti" component={Rti} />
-                    <Route path="/committees" component={Committee} />
+                    <Route path="/committee" component={Committee} />
                     <Route
                       path="/timetable/:semester"
                       component={TimeTablePage}
