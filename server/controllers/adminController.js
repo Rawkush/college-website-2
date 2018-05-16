@@ -1,3 +1,5 @@
+const { webPush } = require('./../config/webPush');
+
 // Defined Module Import
 const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { Event } = require('./../models/events');
@@ -6,6 +8,7 @@ const { Syllabus } = require('./../models/syllabus');
 const { TimeTable } = require('./../models/timeTable');
 const { Admin } = require('./../models/admin');
 const { questionBank } = require('./../models/questionBank');
+const { subscription } = require('./../models/subscription');
 
 const {
   saveMinimal2,
@@ -48,6 +51,7 @@ const deleteSyllabusMinimal = deleteMinimal(Syllabus);
 const deleteTimeTableMinimal = deleteMinimal(TimeTable);
 
 const giveAllTeachers = giveAll(TeacherPrimary);
+const giveAllSubs = giveAll(subscription);
 
 // Controllers
 
@@ -75,6 +79,18 @@ const addNotifications = async (req, res) => {
   const body = pickNotifications(req);
   try {
     const notification = await saveNotificaitonsMinimal(body);
+    const subs = await giveAllSubs();
+    subs.map((pushConfig) =>
+      webPush
+        .sendNotification(
+          pushConfig,
+          JSON.stringify({
+            title: notification.title,
+            openUrl: notification.file || notification.link || '/',
+          })
+        )
+        .catch(() => {})
+    );
     res.send(notification);
   } catch (error) {
     res.status(400).send(`Some error happened: ${error}`);
