@@ -6,6 +6,7 @@ const { StudentPrimary } = require('./../models/studentPrimary');
 const { StudentSecondry } = require('./../models/studentsSecondry');
 const { Email } = require('./../models/email');
 const { EmailOtp } = require('./../models/email&otp');
+const { subscription } = require('./../models/subscription');
 // const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { Syllabus } = require('./../models/syllabus');
 const { TimeTable } = require('./../models/timeTable');
@@ -19,6 +20,7 @@ const {
   giveUserSecondary,
   findEmail,
   updateMinimal,
+  saveMinimal2,
 } = require('./../utils/utils');
 
 // Initializing the Instances of Model
@@ -35,6 +37,7 @@ const giveAllEvents = giveAll(Event);
 const giveStudentSecondary = giveUserSecondary(StudentSecondry);
 const SaveEmailOtp = updateMinimal(EmailOtp, true, true);
 const findEmailExist = findEmail(Email);
+const saveSubscription = saveMinimal2(subscription);
 
 const getLatestNotifications = async (req, res) => {
   try {
@@ -173,6 +176,16 @@ const verifyEmail = async (req, res) => {
   }
 };
 
+const subscribe = async (req, res) => {
+  const { body: { endpoint, keys } } = req;
+  try {
+    await saveSubscription({ endpoint, keys });
+    res.send(200);
+  } catch (error) {
+    res.send(400);
+  }
+};
+
 module.exports = {
   getLatestNotifications,
   getAllNotifications,
@@ -186,4 +199,5 @@ module.exports = {
   searchStudentsByRollNo,
   verifyEmail,
   getAllQuesetionPaper,
+  subscribe,
 };
