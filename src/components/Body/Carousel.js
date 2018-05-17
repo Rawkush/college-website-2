@@ -128,7 +128,7 @@ class Carousel extends Component {
                   {' | '}
                   {count ? (
                     <SimpleLink
-                      to={`event/${data[count] ? data[count].headline : ''}`}
+                      to={`event/${data[count] ? data[count]._id : ''}`}
                     >
                       See Event
                     </SimpleLink>
