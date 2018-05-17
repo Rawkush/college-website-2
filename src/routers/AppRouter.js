@@ -74,6 +74,11 @@ import ScholarShipsPage from './../pages/publicPages/Scholarships';
 import FinancePage from './../pages/publicPages/FinancePage';
 import DisclaimerPage from './../pages/publicPages/DisclaimerPage';
 import ContactPage from './../pages/publicPages/ContactUsPage';
+import RaggingPage from './../pages/publicPages/RaggingPage';
+import FormsAndPerformaPage from './../pages/publicPages/FormAndPerformaPage';
+import TenderPage from './../pages/publicPages/TenderPage';
+import LocationPage from './../pages/publicPages/LocationPage';
+import AboutUsPage from './../pages/publicPages/static/AboutUs';
 
 export const history = createHistory();
 
@@ -262,6 +267,11 @@ const AppRouter = () => (
                   component={NotificationPage}
                   exact
                 />
+                <Route
+                  path="/notification/general"
+                  render={() => <NotificationPage general />}
+                  exact
+                />
                 <Route path="/syllabus/:period/:sub" component={Syllabus} />
                 <Route
                   path="/student/register"
@@ -286,6 +296,14 @@ const AppRouter = () => (
                 <Route path="/budgetreport" component={FinancePage} />
                 <Route path="/disclaimer" component={DisclaimerPage} />
                 <Route path="/contactus" component={ContactPage} />
+                <Route path="/regulationOnRagging" component={RaggingPage} />
+                <Route
+                  path="/formsandperforma"
+                  component={FormsAndPerformaPage}
+                />
+                <Route path="/tender" component={TenderPage} />
+                <Route path="/location" component={LocationPage} />
+                <Route path="/about" component={AboutUsPage} />
                 <Route component={NotFound} />
               </Switch>
             </CSSTransition>

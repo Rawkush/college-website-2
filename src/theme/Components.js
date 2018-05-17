@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form } from 'formik';
 import media from './media';
 import { red } from './variable';
+import { TD, TR, StyledTable, TH } from './Components2';
 
 const H1 = styled.h1`
   font-family: 'Noto Serif', serif;
@@ -44,7 +45,7 @@ const H3 = styled.h3`
   font-family: 'Alegreya Sans', serif;
   font-size: 1.4rem;
   font-weight: 400;
-  margin: ${({ margin }) => margin || '0px'};
+  margin: ${({ margin = 0 }) => margin};
   text-align: ${({ center }) => (center ? 'center' : 'left')};
 `;
 
@@ -134,7 +135,7 @@ const A = styled.a`
   text-decoration: none;
   font-family: 'Alegreya Sans', sans-serif;
   padding: ${({ padding }) => padding || '1px 1px 3px 1px'};
-  margin: ${({ noMar }) => (noMar ? '0px' : '5px 0px 0px 7px')};
+  margin: ${({ noMar, mar }) => (noMar ? '0px' : mar || '5px 0px 0px 7px')};
   display: inline-block;
   transition: color 0.02s cubic-bezier(0.4, 0.18, 0.76, 0.34);
   position: relative;
@@ -404,4 +405,8 @@ export {
   StyledInput,
   ViewLink,
   SimpleLink,
+  TD,
+  TR,
+  StyledTable,
+  TH,
 };
