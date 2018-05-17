@@ -23,6 +23,7 @@ const FlexItemModded = FlexItem.extend`
   flex: ${({ notification }) => (notification ? '0' : '1')};
   display: ${({ home }) => (home ? 'flex' : 'auto')};
   align-items: ${({ home }) => (home ? 'center' : 'auto')};
+  justify-content: ${({ home }) => (home ? 'center' : 'auto')};
 `;
 
 const Input = styled.input`
@@ -205,7 +206,7 @@ class Notification extends Component {
               this.state.notifications
                 .filter(
                   (n, i) =>
-                    (this.state.home && i < 3) || this.state.notification
+                    (this.state.home && i < 1) || this.state.notification
                 )
                 .map(({ title, createdAt, tags, link, _id, file }) => (
                   <FlexItemModded
@@ -220,6 +221,7 @@ class Notification extends Component {
                         tags={tags}
                         link={link}
                         file={file}
+                        teacher={this.state.general}
                       />
                     )}
                     {this.state.notification && (
