@@ -6,7 +6,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const cors = require('cors');
-
+const helmet = require('helmet');
 //  Generated Imports
 const { adminRoutes } = require('./routes/adminRoutes');
 const { teacherRoutes } = require('./routes/teachersRoutes');
@@ -20,7 +20,34 @@ const host = '0.0.0.0';
 const publicPath = path.join(__dirname, '..', 'public');
 
 //  Adding middlewares
+app.use(helmet());
+app.use(helmet.noCache());
+app.use(helmet.referrerPolicy({ policy: 'no-referrer' }));
+app.use(helmet.expectCt({ maxAge: 123 }));
+
 app.use(bodyParser.json());
+
+const allowedOrigins = [
+  // 'http://someorigin.com',
+  // 'http://anotherorigin.com',
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg =
+          'The CORS policy for this site does not ' +
+          'allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  })
+);
+
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use('/uploads/', express.static('uploads'));
@@ -47,14 +74,31 @@ app.use(cors());
 
 //  Routing
 // app.get('/', (req, res) => res.render('index'));
+app.use('/s/visitor/', visitorRoutes);
 app.use('/s/admin/', adminRoutes);
 app.use('/s/teacher/', teacherRoutes);
+// app.use('/s/student/', studentRoutes);
 app.use('/s/student/', studentRoutes);
-app.use('/s/visitor/', visitorRoutes);
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
+app.use((req, res, next) => {
+  const error = new Error('Oops! something went wrong');
+  error.status = 404;
+  next(error);
+});
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message,
+    },
+  });
+  next();
+});
 app.server = app.listen(port, host, () => console.log(`Server is up on the ${port}`)); // eslint-disable-line
 
 module.exports = { app };
