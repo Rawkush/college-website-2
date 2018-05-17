@@ -24,7 +24,7 @@ const FixedHeader = styled.header`
   position: fixed;
   width: 100%;
   top: -0.6px;
-  background: #fff;
+  background: #6b2b2b;
   z-index: 100;
   backface-visibility: hidden;
   ${media.phone`
@@ -42,6 +42,8 @@ const ContainerMod = Container.extend`
 `;
 
 const Title = H1.extend`
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
   ${media.phone`
     font-size: 5vw;
   `};
@@ -165,7 +167,7 @@ class Header extends Component {
                   </Link>
                 ) : (
                   <NavLink to="/login">
-                    <Button>Login</Button>
+                    <Button home>Login</Button>
                   </NavLink>
                 )}
               </FlexCenter>
