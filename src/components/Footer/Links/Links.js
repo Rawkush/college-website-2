@@ -183,7 +183,7 @@ const HelpfullLinks = () => (
         </StyledLink>
         <br />
         <A href={link.md} target="_blank">
-          Mandatory Disclosure
+          Mandatory Disclosure (File)
         </A>
         <br />
         <StyledLink to="/formsAndPerforma">Forms & Performa</StyledLink>
@@ -209,6 +209,19 @@ const HelpfullLinks = () => (
   </Card>
 );
 
+// const Files = () => (
+//   <Card>
+//     <H3>Files</H3>
+//     <InnerCard1>
+//       <InnerCard2>
+//         <A href={link.md} target="_blank">
+//           Mandatory Disclosure
+//         </A>
+//       </InnerCard2>
+//     </InnerCard1>
+//   </Card>
+// );
+
 const FlexWrapper = Flex.extend`
   ${media.phone`
     flex-direction: column;
@@ -221,6 +234,7 @@ export default ({ admin }) => (
       <FlexWrapper>
         <RelatedLinks />
         <HelpfullLinks />
+        {/* <Files /> */}
       </FlexWrapper>
       <Wrapper>
         {!admin && <ButtonLink to="/admin/login">Admin Login</ButtonLink>}
