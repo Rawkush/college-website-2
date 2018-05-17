@@ -38,7 +38,7 @@ const updateSecondaryMinimal = updateMinimal(StudentSecondry, false, true);
 const updateSecondaryMinimalNoNew = updateMinimal(
   StudentSecondry,
   false,
-  false
+  false,
 );
 const deleteSecondary = deleteSecondaryMinimal(StudentSecondry);
 
@@ -101,16 +101,12 @@ const studentRegistration = async (req, res) => {
 //  Authenticatin the Student with the current given token
 const tokenAuthenticate = async (req, res, next) => {
   const { token } = req.body;
-  try {
     const student = await authStudentMinimal(token);
     if (student) {
       req.student = student;
       req.token = token;
       next();
     }
-  } catch (error) {
-    res.status(401).send(`Access Denied! ${error}`);
-  }
 };
 
 // eslint-disable-next-line
@@ -121,7 +117,6 @@ const getAllNotifications = (req, res) => {
 //  Update the students data.
 const updateStudent = async (req, res) => {
   const body = pickBody(req);
-  try {
     const updatedStudent = await updateStudentMinimal(
       { _id: req.student._id },
       {
@@ -129,26 +124,18 @@ const updateStudent = async (req, res) => {
       }
     );
     res.header('x-auth', req.header('x-auth')).send(updatedStudent);
-  } catch (error) {
-    res.status(400).send(`Some error happened: ${error}`);
-  }
 };
 
 // Delelte Account
 const deleteStudent = async (req, res) => {
-  try {
     const deletedStudent = await deleteStudentMinimal(req.student._id);
     await deleteSecondary(req.student._id);
     res.send(`student has been deleted, ${deletedStudent}`);
-  } catch (error) {
-    res.status(400).send(`Some error happened: ${error}`);
-  }
 };
 
 // Add Secondary Data
 const addAccomplishment = async (req, res) => {
   const body = pickAccomplishments(req);
-  try {
     const updatedSecondary = await updateSecondaryMinimal(
       { _creator: req.student._id },
       {
@@ -156,9 +143,6 @@ const addAccomplishment = async (req, res) => {
       }
     );
     return res.send(updatedSecondary);
-  } catch (error) {
-    return res.status(400).send(`Something went wrong: ${error}`);
-  }
 };
 
 const updateAccomplishment = async (req, res) => {
@@ -200,7 +184,6 @@ const updateAccomplishment = async (req, res) => {
 
 const removeAccomplishment = async (req, res) => {
   const { _id } = req.body;
-  try {
     const updatedSecondary = await updateSecondaryMinimal(
       { _creator: req.student._id },
       {
@@ -208,15 +191,11 @@ const removeAccomplishment = async (req, res) => {
       }
     );
     return res.header('x-auth', req.header('x-auth')).send(updatedSecondary);
-  } catch (error) {
-    return res.status(400).send(`Something went wrong: ${error}`);
-  }
 };
 
 const addProjects = async (req, res) => {
   const body = pickProjects(req);
 
-  try {
     const updatedSecondary = await updateSecondaryMinimal(
       { _creator: req.student._id },
       {
@@ -224,9 +203,6 @@ const addProjects = async (req, res) => {
       }
     );
     return res.send(updatedSecondary);
-  } catch (error) {
-    return res.status(400).send(`Something went wrong: ${error}`);
-  }
 };
 
 const updateProject = async (req, res) => {
@@ -252,7 +228,6 @@ const updateProject = async (req, res) => {
     };
   }
 
-  try {
     const updatedSecondary = await updateSecondaryMinimal(
       {
         _creator,
@@ -263,15 +238,11 @@ const updateProject = async (req, res) => {
       }
     );
     res.send(updatedSecondary);
-  } catch (error) {
-    res.status(401).send(`Some error happened: ${error}`);
-  }
 };
 
 const removeProject = async (req, res) => {
   const { _id } = req.body;
 
-  try {
     const updatedSecondary = await updateSecondaryMinimal(
       { _creator: req.student._id },
       {
@@ -279,14 +250,10 @@ const removeProject = async (req, res) => {
       }
     );
     return res.header('x-auth', req.header('x-auth')).send(updatedSecondary);
-  } catch (error) {
-    return res.sendStatus(400).send('Something went wrong');
-  }
 };
 
 const addSpecialisations = async (req, res) => {
   const body = pickSpecialisations(req);
-  try {
     const updatedSecondary = await updateSecondaryMinimal(
       { _creator: req.student._id },
       {
@@ -294,14 +261,10 @@ const addSpecialisations = async (req, res) => {
       }
     );
     return res.send(updatedSecondary);
-  } catch (error) {
-    return res.status(400).send(`Something went wrong: ${error}`);
-  }
 };
 
 const checkStudent = async (req, res, next) => {
   const { token } = req.user ? req.user : req.body;
-  try {
     const exists = await checkStudentMinimal(token);
     if (exists) {
       res.cookie('token', token, {
@@ -311,9 +274,6 @@ const checkStudent = async (req, res, next) => {
       res.redirect('/student/login');
       return;
     }
-  } catch (error) {
-    res.status(400).send(`Something went wrong: ${error}`);
-  }
   next();
 };
 
@@ -330,12 +290,8 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
   const { student, token } = req;
-  try {
     await removeTokenMinimal(student, token);
     res.sendStatus(200).send();
-  } catch (error) {
-    throw new Error(error);
-  }
 };
 
 const fillRegistration = (req, res) => {
@@ -353,18 +309,13 @@ const getStudent = (req, res) => {
 
 const getAllStudentSecondary = async (req, res) => {
   const _creator = req.student._id; // eslint-disable-line
-  try {
     const secondaryData = await giveAllStudentSecondary(_creator);
     res.send(secondaryData);
-  } catch (error) {
-    res.status(401).send(`Something went wrong : ${error}`);
-  }
 };
 
 const markAsRead = async (req, res) => {
   const _creator = req.student._id;
   const { _id } = req.body;
-  try {
     await updateSecondaryMinimalNoNew(
       {
         _creator,
@@ -377,9 +328,6 @@ const markAsRead = async (req, res) => {
       }
     );
     res.status(200).send({ _id });
-  } catch (error) {
-    res.send(`Something went wrong: ${error}`);
-  }
 };
 
 module.exports = {
