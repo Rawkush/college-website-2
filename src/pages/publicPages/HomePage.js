@@ -22,7 +22,7 @@ const NotificationLink = styled(Link)`
   text-decoration: none;
   padding: 10px 50px;
   color: ${({ teacher }) => (teacher ? 'rgba(0, 0, 0, 0.6)' : 'rgb(97, 0, 0)')};
-  margin: 55px auto 55px;
+  margin: 55px auto;
   font-size: 20px;
   border-radius: 3px;
   border: solid 2.4px
@@ -46,7 +46,7 @@ const NotificationLink = styled(Link)`
     }
   }
   ${media.phone`
-    margin: 30px auto 20px auto;
+    margin: 30px auto 55px auto;
     font-size: 19px;
     padding: 10px 44px;
   `};
@@ -102,7 +102,7 @@ const Title = styled.h3`
   font-family: 'Alegreya Sans', sans-serif;
   color: ${({ teacher }) => (teacher ? '#525151' : '#7d0000')};
   ${media.phone`
-    margin: 77px 0px 0px 0px;
+    margin: 77px 0px 30px 0px;
   `};
 `;
 
