@@ -15,6 +15,7 @@ const {
   searchStudentsByRollNo,
   verifyEmail,
   getAllQuesetionPaper,
+  searchTeacherByName,
 } = require('./../controllers/visitorControllers');
 
 // Initializing the Router
@@ -39,6 +40,8 @@ visitorRoutes.post('/getteacher', getTeacher);
 visitorRoutes.post('/getstudent', getStudent);
 
 visitorRoutes.post('/searchstudentbyname', searchStudentsByName);
+
+visitorRoutes.post('/searchteacherbyname', searchTeacherByName)
 
 visitorRoutes.post('/searchstudentbyrollno', searchStudentsByRollNo);
 
