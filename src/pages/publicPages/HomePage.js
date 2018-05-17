@@ -68,6 +68,10 @@ const HomePage = () => (
             See More
             <I />
           </NotificationLink>
+          <NotificationLink to="/notification/general">
+            See More
+            <I />
+          </NotificationLink>
         </FlexCenter>
       </Container>
     </NotificationBg>

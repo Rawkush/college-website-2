@@ -113,8 +113,8 @@ const SelectFilterComponent = ({ changeHandler }) => (
     <option value="iiyear">2nd Year</option>
     <option value="iiiyear">3rd Year</option>
     <option value="ivyear">4th Year</option>
-    <option value="teacher">Teachers</option>
-    <option value="student">Students</option>
+    {/* <option value="teacher">Teachers</option>
+    <option value="student">Students</option> */}
     <option value="pdf">PDFs</option>
     <option value="googleForm">Google Form</option>
     <option value="external">External Link</option>
@@ -131,6 +131,7 @@ class Notification extends Component {
       notifications: this.props.notifications,
       auth: this.props.auth,
       home: this.props.home,
+      general: this.props.general,
       notification: this.props.notification,
     };
   }
@@ -145,6 +146,7 @@ class Notification extends Component {
     this.setState(() => ({
       notifications: nextProps.notifications,
       home: nextProps.home,
+      general: this.props.general,
       notification: nextProps.notification,
       auth: nextProps.auth,
     }));
@@ -191,9 +193,11 @@ class Notification extends Component {
           {this.state.notification && (
             <Wrapper w="700px">
               <TextFilterComponent changeHandler={this.filterChangeHandler} />
-              <SelectFilterComponent
-                changeHandler={this.filterSelectChangeHandler}
-              />
+              {!this.state.general && (
+                <SelectFilterComponent
+                  changeHandler={this.filterSelectChangeHandler}
+                />
+              )}
             </Wrapper>
           )}
           <FlexMod notification={this.state.notification}>
@@ -241,8 +245,13 @@ class Notification extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  notifications: latestSort(state.notifications),
+const mapStateToProps = (state, { general }) => ({
+  notifications: latestSort(
+    state.notifications.filter(
+      ({ tags }) =>
+        general ? tags.includes('teacher') : !tags.includes('teacher')
+    )
+  ),
   auth: state.auth.admin,
 });
 

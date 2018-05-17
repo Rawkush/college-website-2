@@ -266,6 +266,11 @@ const AppRouter = () => (
                   component={NotificationPage}
                   exact
                 />
+                <Route
+                  path="/notification/general"
+                  render={() => <NotificationPage general />}
+                  exact
+                />
                 <Route path="/syllabus/:period/:sub" component={Syllabus} />
                 <Route
                   path="/student/register"
