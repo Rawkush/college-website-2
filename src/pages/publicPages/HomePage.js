@@ -101,6 +101,9 @@ const Title = styled.h3`
   margin: 40px 0px 20px 0px;
   font-family: 'Alegreya Sans', sans-serif;
   color: ${({ teacher }) => (teacher ? '#525151' : '#7d0000')};
+  ${media.phone`
+    margin: 77px 0px 0px 0px;
+  `};
 `;
 
 const HomePage = () => (
