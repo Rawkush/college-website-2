@@ -78,6 +78,7 @@ import RaggingPage from './../pages/publicPages/RaggingPage';
 import FormsAndPerformaPage from './../pages/publicPages/FormAndPerformaPage';
 import TenderPage from './../pages/publicPages/TenderPage';
 import LocationPage from './../pages/publicPages/LocationPage';
+import AboutUsPage from './../pages/publicPages/static/AboutUs';
 
 export const history = createHistory();
 
@@ -302,6 +303,7 @@ const AppRouter = () => (
                 />
                 <Route path="/tender" component={TenderPage} />
                 <Route path="/location" component={LocationPage} />
+                <Route path="/about" component={AboutUsPage} />
                 <Route component={NotFound} />
               </Switch>
             </CSSTransition>
