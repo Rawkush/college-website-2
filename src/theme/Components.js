@@ -67,23 +67,24 @@ const Container = styled.div`
 `;
 
 const Button = styled.button`
-  color: rgba(0, 0, 0, 0.5);
-  background: white;
+  color: ${({ home }) => (home ? '#dc8a8a' : 'rgba(0, 0, 0, 0.5)')};
+  background: ${({ home }) => (home ? '#6b2b2b' : '#fff')};
   padding: 4px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 1rem;
   border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.22);
+  border: 1px solid ${({ home }) => (home ? '#ab6464' : 'rgba(0, 0, 0, 0.22)')};
   flex-grow: 1;
   transition: all 0.1s;
   width: ${({ w }) => w || 'auto'};
   &:hover {
-    background: #fff;
+    background: ${({ home }) => (home ? '#6b2b2b' : '#fff')};
     cursor: pointer;
-    color: #c14545;
-    border: 1px solid #c14545;
+    color: ${({ home }) => (home ? '#dec2c2' : 'rgba(0, 0, 0, 0.5)')};
+    border: 1px solid
+      ${({ home }) => (home ? '#e2aeae' : 'rgba(0, 0, 0, 0.22)')};
   }
 
   ${media.phone`
@@ -114,7 +115,7 @@ const FlexItem = styled.div`
 
 const Page = styled.div`
   font-family: 'roboto', sans-serif;
-  margin-top: ${(props) => (props.mt ? props.mt : '93px')};
+  margin-top: ${(props) => (props.mt ? props.mt : '92px')};
   margin-bottom: ${(props) => (props.mb ? props.b : 0)};
   margin-right: ${(props) => (props.mr ? props.mr : 0)};
   margin-left: ${(props) => (props.ml ? props.ml : 0)};
@@ -124,7 +125,7 @@ const Page = styled.div`
   padding-bottom: ${(props) => (props.pb ? props.pb : 0)};
   padding: ${(props) => (props.p ? props.p : 0)};
   ${media.phone`
-    margin-top: ${({ mt, mtp }) => mtp || (mt || '90px')};    
+    margin-top: ${({ mt, mtp }) => mtp || (mt || '90px')}
   `};
   min-height: calc(100vh - 93px);
 `;
@@ -362,6 +363,17 @@ const ViewLink = styled.a`
   display: block;
 `;
 
+const SimpleLink = styled(Link)`
+  color: ${({ color = 'white' }) => color};
+  font-size: ${({ fs = '20px' }) => fs};
+  text-decoration: ${({ td = 'underline' }) => td};
+  font-family: ${({ ff = '"Open Sans", sans-serif' }) => ff};
+  ${media.phone`
+    font-size: 18px;
+    font-weight: 400;
+  `};
+`;
+
 export {
   H1,
   H2,
@@ -392,6 +404,7 @@ export {
   Warn,
   StyledInput,
   ViewLink,
+  SimpleLink,
   TD,
   TR,
   StyledTable,

@@ -34,16 +34,25 @@ const NavItem = styled.div`
   z-index: 100;
   > a {
     text-decoration: none;
-    color: ${(props) => (props.red ? '#c14545' : 'rgba(0, 0, 0, 0.68)')};
+    color: ${(props) =>
+      props.red ? 'rgba(256, 256, 256, 1)' : 'rgba(256, 256, 256, 0.68)'};
     &:hover {
       cursor: pointer;
-      color: #c14545;
+      color: rgba(256, 256, 256, 1);
     }
   }
   ${media.phone`
     display: flex;
     justify-content: center;
     align-items: center;
+    > a {
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.68);
+      &:hover {
+      cursor: pointer;
+      color: #963c3c;
+      }
+    }
   `};
 `;
 
@@ -51,7 +60,7 @@ const FixedCover = styled.div`
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.09);
   z-index: 100;
   width: 100%;
-  background: #fff;
+  background: #6b2b2b;
   @media (min-width: 700px) {
     position: fixed;
     top: 62px;
@@ -63,6 +72,7 @@ const FixedCover = styled.div`
   ${media.phone`
     box-shadow: 0px -1px rgba(0,0,0,0.2196078431372549);
     height: 57px;
+    background: #fff;
   `};
 `;
 
@@ -133,10 +143,12 @@ class NavBar extends Component {
                 </Link>
               </NavItem>
               <NavItem red={this.state.active1}>
-                <a onClick={this.click1}>ACADEMICS</a>  {/* eslint-disable-line */}
+                <a onClick={this.click1}>ACADEMICS</a>{' '}
+                {/* eslint-disable-line */}
               </NavItem>
               <NavItem red={this.state.active2}>
-                <a onClick={this.click2}>STUDENTS</a>  {/* eslint-disable-line */}
+                <a onClick={this.click2}>STUDENTS</a>{' '}
+                {/* eslint-disable-line */}
               </NavItem>
               <NavItem>
                 <Link to="/about" onClick={this.navClick}>
