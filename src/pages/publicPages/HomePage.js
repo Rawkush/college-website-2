@@ -22,7 +22,7 @@ const NotificationLink = styled(Link)`
   text-decoration: none;
   padding: 10px 50px;
   color: ${({ teacher }) => (teacher ? 'rgba(0, 0, 0, 0.6)' : 'rgb(97, 0, 0)')};
-  margin: 55px auto;
+  margin: 55px auto 55px;
   font-size: 20px;
   border-radius: 3px;
   border: solid 2.4px
@@ -46,7 +46,7 @@ const NotificationLink = styled(Link)`
     }
   }
   ${media.phone`
-    margin: 10px auto 20px auto;
+    margin: 30px auto 20px auto;
     font-size: 19px;
     padding: 10px 44px;
   `};
@@ -65,16 +65,16 @@ const I = styled.i`
 const NotificationBg = styled.div`
   background: linear-gradient(
     to right,
-    #fff 0%,
-    #f6f6f6 50%,
+    #fbf9f9 0%,
+    #e6e3e3 50%,
     #fc3c3c 50%,
     #c14545 100%
   );
   ${media.phone`
     background: linear-gradient(
       to bottom,
-      #fff 0%,
-      #f6f6f6 50%,
+      #fbf9f9 0%,
+      #e6e3e3 50%,
       #fc3c3c 50%,
       #c14545 100%
     );

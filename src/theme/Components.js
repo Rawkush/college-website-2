@@ -67,20 +67,20 @@ const Container = styled.div`
 `;
 
 const Button = styled.button`
-  color: ${({ home }) => (home ? '#dc8a8a' : 'rgba(0, 0, 0, 0.5)')};
-  background: ${({ home }) => (home ? '#6b2b2b' : '#fff')};
+  color: ${({ home }) => (home ? '#e4a7a7' : 'rgba(0, 0, 0, 0.5)')};
+  background: ${({ home }) => (home ? '#9c3a3a' : '#fff')};
   padding: 4px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 1rem;
   border-radius: 3px;
-  border: 1px solid ${({ home }) => (home ? '#ab6464' : 'rgba(0, 0, 0, 0.22)')};
+  border: 1px solid ${({ home }) => (home ? '#e48585' : 'rgba(0, 0, 0, 0.22)')};
   flex-grow: 1;
   transition: all 0.1s;
   width: ${({ w }) => w || 'auto'};
   &:hover {
-    background: ${({ home }) => (home ? '#6b2b2b' : '#fff')};
+    background: ${({ home }) => (home ? '#9c3a3a' : '#fff')};
     cursor: pointer;
     color: ${({ home }) => (home ? '#dec2c2' : 'rgba(0, 0, 0, 0.5)')};
     border: 1px solid

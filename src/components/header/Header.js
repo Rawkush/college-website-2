@@ -24,7 +24,7 @@ const FixedHeader = styled.header`
   position: fixed;
   width: 100%;
   top: -0.6px;
-  background: #6b2b2b;
+  background: #9c3a3a;
   z-index: 100;
   backface-visibility: hidden;
   ${media.phone`

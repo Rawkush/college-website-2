@@ -60,7 +60,7 @@ const FixedCover = styled.div`
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.09);
   z-index: 100;
   width: 100%;
-  background: #6b2b2b;
+  background: #9c3a3a;
   @media (min-width: 700px) {
     position: fixed;
     top: 62px;
