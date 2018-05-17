@@ -45,7 +45,7 @@ const H3 = styled.h3`
   font-family: 'Alegreya Sans', serif;
   font-size: 1.4rem;
   font-weight: 400;
-  margin: ${({ margin }) => margin || '0px'};
+  margin: ${({ margin = 0 }) => margin};
   text-align: ${({ center }) => (center ? 'center' : 'left')};
 `;
 
