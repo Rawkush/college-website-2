@@ -58,6 +58,8 @@ class Carousel extends Component {
   componentDidMount() {
     setInterval(this.updateItem, 3000);
     setInterval(this.updateProgressBar, 10);
+    // eslint-disable-next-line
+    this.setState(() => ({ startTime: Date.now() }));
   }
 
   componentWillReceiveProps({ events }) {
@@ -75,6 +77,7 @@ class Carousel extends Component {
         return { selectedItemCount: 0, startTime: Date.now() };
       });
     }
+    this.setState(() => ({ startTime: Date.now() }));
   };
 
   updateProgressBar = () => {
@@ -106,19 +109,27 @@ class Carousel extends Component {
     const { selectedItemCount: count, data, time } = this.state;
     return (
       <WrapperMod2 w="100%">
-        <WrapperMod w="100%" bg={data[count].photo} index={count}>
+        <WrapperMod
+          w="100%"
+          bg={data[count] ? data[count].photo : ''}
+          index={count}
+        >
           <Gradient>
             <ContainerMod>
-              <PreHeadline>{data[count].preHeadline}</PreHeadline>
-              <Headline>{data[count].headline}</Headline>
+              <PreHeadline>
+                {data[count] ? data[count].preHeadline : ''}
+              </PreHeadline>
+              <Headline>{data[count] ? data[count].headline : ''}</Headline>
               {count !== 0 ? (
                 <DateAndPlace>
-                  {`${moment(data[count].date).format('DD MMM, YYYY')} | ${
-                    data[count].place
-                  }`}
+                  {`${moment(data[count] ? data[count].date : '').format(
+                    'DD MMM, YYYY'
+                  )} | ${data[count] ? data[count].place : ''}`}
                   {' | '}
                   {count ? (
-                    <SimpleLink to={`event/${data[count]._id}`}>
+                    <SimpleLink
+                      to={`event/${data[count] ? data[count]._id : ''}`}
+                    >
                       See Event
                     </SimpleLink>
                   ) : (

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form } from 'formik';
 import media from './media';
 import { red } from './variable';
+import { TD, TR, StyledTable, TH } from './Components2';
 
 const H1 = styled.h1`
   font-family: 'Noto Serif', serif;
@@ -44,7 +45,7 @@ const H3 = styled.h3`
   font-family: 'Alegreya Sans', serif;
   font-size: 1.4rem;
   font-weight: 400;
-  margin: ${({ margin }) => margin || '0px'};
+  margin: ${({ margin = 0 }) => margin};
   text-align: ${({ center }) => (center ? 'center' : 'left')};
 `;
 
@@ -66,23 +67,24 @@ const Container = styled.div`
 `;
 
 const Button = styled.button`
-  color: rgba(0, 0, 0, 0.5);
-  background: white;
+  color: ${({ home }) => (home ? '#e4a7a7' : 'rgba(0, 0, 0, 0.5)')};
+  background: ${({ home }) => (home ? '#9c3a3a' : '#fff')};
   padding: 4px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 1rem;
   border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.22);
+  border: 1px solid ${({ home }) => (home ? '#e48585' : 'rgba(0, 0, 0, 0.22)')};
   flex-grow: 1;
   transition: all 0.1s;
   width: ${({ w }) => w || 'auto'};
   &:hover {
-    background: #fff;
+    background: ${({ home }) => (home ? '#9c3a3a' : '#fff')};
     cursor: pointer;
-    color: #c14545;
-    border: 1px solid #c14545;
+    color: ${({ home }) => (home ? '#dec2c2' : 'rgba(0, 0, 0, 0.5)')};
+    border: 1px solid
+      ${({ home }) => (home ? '#e2aeae' : 'rgba(0, 0, 0, 0.22)')};
   }
 
   ${media.phone`
@@ -113,7 +115,7 @@ const FlexItem = styled.div`
 
 const Page = styled.div`
   font-family: 'roboto', sans-serif;
-  margin-top: ${(props) => (props.mt ? props.mt : '93px')};
+  margin-top: ${(props) => (props.mt ? props.mt : '92px')};
   margin-bottom: ${(props) => (props.mb ? props.b : 0)};
   margin-right: ${(props) => (props.mr ? props.mr : 0)};
   margin-left: ${(props) => (props.ml ? props.ml : 0)};
@@ -123,7 +125,7 @@ const Page = styled.div`
   padding-bottom: ${(props) => (props.pb ? props.pb : 0)};
   padding: ${(props) => (props.p ? props.p : 0)};
   ${media.phone`
-    margin-top: ${({ mt, mtp }) => mtp || (mt || '90px')};    
+    margin-top: ${({ mt, mtp }) => mtp || (mt || '90px')}
   `};
   min-height: calc(100vh - 93px);
 `;
@@ -133,7 +135,7 @@ const A = styled.a`
   text-decoration: none;
   font-family: 'Alegreya Sans', sans-serif;
   padding: ${({ padding }) => padding || '1px 1px 3px 1px'};
-  margin: ${({ noMar }) => (noMar ? '0px' : '5px 0px 0px 7px')};
+  margin: ${({ noMar, mar }) => (noMar ? '0px' : mar || '5px 0px 0px 7px')};
   display: inline-block;
   transition: color 0.02s cubic-bezier(0.4, 0.18, 0.76, 0.34);
   position: relative;
@@ -403,4 +405,8 @@ export {
   StyledInput,
   ViewLink,
   SimpleLink,
+  TD,
+  TR,
+  StyledTable,
+  TH,
 };

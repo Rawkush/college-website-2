@@ -15,6 +15,7 @@ const {
   searchStudentsByRollNo,
   verifyEmail,
   getAllQuesetionPaper,
+  subscribe,
 } = require('./../controllers/visitorControllers');
 
 // Initializing the Router
@@ -43,5 +44,7 @@ visitorRoutes.post('/searchstudentbyname', searchStudentsByName);
 visitorRoutes.post('/searchstudentbyrollno', searchStudentsByRollNo);
 
 visitorRoutes.post('/verifyemail', verifyEmail);
+
+visitorRoutes.post('/subscribetonotifications', subscribe);
 
 module.exports = { visitorRoutes };
