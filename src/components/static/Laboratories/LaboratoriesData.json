@@ -1,0 +1,107 @@
+[
+    {
+        "name":"COMMON LABS FOR ALL DISCIPLINES OF ENGINEERING",
+        "data":[{
+            "name":"Chemistry Lab",
+            "link":"/chemistrylab"
+        },{
+            "name": "Physics Lab",
+            "link": "/physicslab"
+        },{
+            "name": "Applied Mechanics Lab",
+            "link": "/appliedmechanicslab"
+        },
+        {
+            "name":"Electrical Science Lab",
+            "link": "/electricasciencelab"
+        },
+        {
+          "name": "Engineering Graphics Lab",
+          "link": "/engineeringgraphicslab"
+        }
+        ]
+    },
+    {
+        "name":"CIVIL & ENVIRONMENT ENGINEERING LABS",
+        "data":[{
+            "name":"Structure Analysis Lab",
+            "link":"/structureanalysislab"
+        },{
+            "name": "Engineering Geology Lab",
+            "link": "/geolab"
+        },{
+            "name": "Environmental Engineering Lab",
+            "link": "/environmentengeeringlab"
+        },
+        {
+            "name": "Fluid Mechanics & Hydraulics Mechanics Lab",
+            "link": "/fluidmecandhydraulicslab"
+        },
+        {
+            "name": "Geoinformatics and Surveying Lab",
+            "link": "geoinformationandsurveyinglab"
+        },
+        {
+            "name": "Material Testing Lab",
+            "link": "/materialtestinglab"
+        },
+        {
+            "name": "Soil Mechanics Lab",
+            "link": "/soilmechanicslab"
+        },
+        {
+            "name": "Transportation Engineering Lab",
+            "link": "/transportionenglab"
+        }
+        ]
+    },
+    {
+        "name":"INFORMATION TECNOLOGY LAB",
+        "data":[{
+            "name": "Computer Lab Complex-I",
+            "link": "/computerlabcomplex1"
+        },
+        {
+            "name": "Computer Lab Complex-II",
+            "link": "/computerlabcomplex2"
+        },
+        {
+            "name": "Computer Center",
+            "link": "/computercenter"
+        },
+        {
+            "name": "Advance Computer Network Lab",
+            "link": "/advancecomputernetworklab"
+        },
+        {
+            "name": "Embedded System Lab",
+            "link": "/embeddedsystemlab"
+        },
+        {
+            "name": "Analog Electronics Lab",
+            "link": "/analogelectronislab"
+        },
+        {
+            "name": "Circuit And System Lab",
+            "link": "/circuitandsystemlab"
+        },
+        {
+            "name": "Digital Circuit and System Lab-I"  ,
+            "link": "digitalcircuitandsystemlab1"
+        },
+        {
+            "name": "Digital Communication Lab",
+            "link": "/digitalcommunictionlab"
+        },
+        {
+            "name": "Micro Processor Lab",
+            "link": "/microprocessorlab"
+        },
+        {
+            "name": "Mobile Computing Lab",
+            "link": "/mobilecomputinglab"
+        }
+    ]
+    }
+
+]

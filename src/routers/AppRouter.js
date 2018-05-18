@@ -76,6 +76,7 @@ import DisclaimerPage from './../pages/publicPages/DisclaimerPage';
 import ContactPage from './../pages/publicPages/ContactUsPage';
 import Library from './../pages/publicPages/Library';
 import Acadmics from './../pages/publicPages/AcademicsPage';
+import Laboratories from './../pages/publicPages/Laboratories';
 
 export const history = createHistory();
 
@@ -290,6 +291,7 @@ const AppRouter = () => (
                 <Route path="/contactus" component={ContactPage} />
                 <Route path="/library" component={Library} />
                 <Route path="/acadmics" component={Acadmics} />
+                <Route path="/laboratories" component={Laboratories} />
                 <Route component={NotFound} />
               </Switch>
             </CSSTransition>
