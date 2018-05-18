@@ -4,6 +4,17 @@
         "head":"bajrang Bali",
         "staff":["Sunil Kr Yadav", "Ms. sunita chikra"],
         "contact": 25318172,
-        "email": "cbpgecj@gmail.com"
+        "email": ["cbpgecj@gmail.com"]
     }]
+},
+{
+"name":"Dean Office/Academic Branch",
+"data":[{
+    "dean":"Mr. Sunil Kumar Tiwari",
+    "contact": 25318159,
+    "email":[
+        "acd.cbpgecj@gmail.com",
+        "deangec.delhi@gov.in"
+    ]
+}]
 }]
