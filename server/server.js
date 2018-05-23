@@ -6,6 +6,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const cors = require('cors');
+const { errors } = require('celebrate');
 
 //  Generated Imports
 const { adminRoutes } = require('./routes/adminRoutes');
@@ -54,7 +55,7 @@ app.use('/s/visitor/', visitorRoutes);
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
-
+app.use(errors());
 app.server = app.listen(port, host, () => console.log(`Server is up on the ${port}`)); // eslint-disable-line
 
 module.exports = { app };
