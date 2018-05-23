@@ -17,6 +17,12 @@ const {
   getAllQuesetionPaper,
 } = require('./../controllers/visitorControllers');
 
+const {
+  getStudentValidate,
+  searchByNameValidate,
+  searchByRollValidate,
+  verifyEmailValidate,
+} = require('./../utils/schemas/visitorSchema');
 // Initializing the Router
 const visitorRoutes = express.Router();
 
@@ -36,12 +42,20 @@ visitorRoutes.get('/gettt', getTimeTable);
 
 visitorRoutes.post('/getteacher', getTeacher);
 
-visitorRoutes.post('/getstudent', getStudent);
+visitorRoutes.post('/getstudent', getStudentValidate, getStudent);
 
-visitorRoutes.post('/searchstudentbyname', searchStudentsByName);
+visitorRoutes.post(
+  '/searchstudentbyname',
+  searchByNameValidate,
+  searchStudentsByName
+);
 
-visitorRoutes.post('/searchstudentbyrollno', searchStudentsByRollNo);
+visitorRoutes.post(
+  '/searchstudentbyrollno',
+  searchByRollValidate,
+  searchStudentsByRollNo
+);
 
-visitorRoutes.post('/verifyemail', verifyEmail);
+visitorRoutes.post('/verifyemail', verifyEmailValidate, verifyEmail);
 
 module.exports = { visitorRoutes };

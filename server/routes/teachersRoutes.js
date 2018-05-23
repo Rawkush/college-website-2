@@ -36,18 +36,36 @@ const {
   removeCommittee,
   getTeacher,
 } = require('./../controllers/teacherController');
+const {
+  LoginValidate,
+  registerValidate,
+  authTokenValidate,
+  addWorkValidate,
+  removeWorkValidate,
+  addSpecialisationsValidate,
+  addTechnicalSkillsValidate,
+  addEducationValidate,
+  addCommitteeValidate,
+  removeCommitteeValidate,
+} = require('./../utils/schemas/teacherSchema');
 
-teacherRoutes.post('/register', teacherRegister);
+teacherRoutes.post('/register', registerValidate, teacherRegister);
 
 teacherRoutes.post(
   '/getteachersecondary',
+  authTokenValidate,
   tokenTeacherAuthenticate,
   getTeacherSecondary
 );
 
-teacherRoutes.post('/login', teacherLogin);
+teacherRoutes.post('/login', LoginValidate, teacherLogin);
 
-teacherRoutes.post('/logout', tokenTeacherAuthenticate, teacherLogout);
+teacherRoutes.post(
+  '/logout',
+  authTokenValidate,
+  tokenTeacherAuthenticate,
+  teacherLogout
+);
 
 teacherRoutes.patch(
   '/updateprofile',
@@ -56,27 +74,49 @@ teacherRoutes.patch(
   teacherUpdate
 );
 
-teacherRoutes.patch('/addwork', tokenTeacherAuthenticate, addWork);
+teacherRoutes.patch(
+  '/addwork',
+  addWorkValidate,
+  tokenTeacherAuthenticate,
+  addWork
+);
 
 teacherRoutes.patch('/updatework', tokenTeacherAuthenticate, updateWork);
 
-teacherRoutes.patch('/removework', tokenTeacherAuthenticate, removeWork);
+teacherRoutes.patch(
+  '/removework',
+  removeWorkValidate,
+  tokenTeacherAuthenticate,
+  removeWork
+);
 
-teacherRoutes.patch('/updateeducation', tokenTeacherAuthenticate, addEducation);
+teacherRoutes.patch(
+  '/updateeducation',
+  addEducationValidate,
+  tokenTeacherAuthenticate,
+  addEducation
+);
 
 teacherRoutes.patch(
   '/updatetechnicalskill',
+  addTechnicalSkillsValidate,
   tokenTeacherAuthenticate,
   addTechnicalSkills
 );
 
 teacherRoutes.patch(
   '/updatespecialisation',
+  addSpecialisationsValidate,
   tokenTeacherAuthenticate,
   addTeacherSpecialications
 );
 
-teacherRoutes.delete('/deleteTeacher', tokenTeacherAuthenticate, deleteTeacher);
+teacherRoutes.delete(
+  '/deleteTeacher',
+  authTokenValidate,
+  tokenTeacherAuthenticate,
+  deleteTeacher
+);
 
 teacherRoutes.post(
   '/addnotification',
@@ -94,12 +134,14 @@ teacherRoutes.post(
 
 teacherRoutes.delete(
   '/removenotification',
+  authTokenValidate,
   tokenTeacherAuthenticate,
   deleteNotification
 );
 
 teacherRoutes.post(
   '/addcommittee',
+  addCommitteeValidate,
   tokenTeacherAuthenticate,
   addTeacherCommittee
 );
@@ -112,10 +154,16 @@ teacherRoutes.patch(
 
 teacherRoutes.delete(
   '/removecommittee',
+  removeCommitteeValidate,
   tokenTeacherAuthenticate,
   removeCommittee
 );
 
-teacherRoutes.post('/getteacher', tokenTeacherAuthenticate, getTeacher);
+teacherRoutes.post(
+  '/getteacher',
+  authTokenValidate,
+  tokenTeacherAuthenticate,
+  getTeacher
+);
 
 module.exports = { teacherRoutes };
