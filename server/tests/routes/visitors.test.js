@@ -1,7 +1,7 @@
 const request = require('supertest');
 const { app } = require('./../../server');
 
-// ---  Importing Models---
+
 
 const { Notifications } = require('./../../models/notification');
 const { questionBank } = require('./../../models/questionBank');
@@ -12,8 +12,7 @@ const { StudentPrimary } = require('./../../models/studentPrimary');
 // -- importing the utils functions ---
 const { saveMinimal2, saveMinimal } = require('./../../utils/utils');
 
-// const { giveLatestThreeItem } = require('./../../utils/utils');
-// ------ importing urls ----
+
 const {
   notification,
   questionPaper,
