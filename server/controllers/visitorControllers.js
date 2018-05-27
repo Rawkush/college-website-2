@@ -180,9 +180,9 @@ const subscribe = async (req, res) => {
   const { body: { endpoint, keys } } = req;
   try {
     await saveSubscription({ endpoint, keys });
-    res.send(200);
+    res.sendStatus(200);
   } catch (error) {
-    res.send(400);
+    res.sendStatus(400);
   }
 };
 
