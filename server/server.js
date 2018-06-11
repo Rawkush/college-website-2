@@ -1,5 +1,5 @@
 // Global Modules Import
-const mongoose = require('./db/mongoose'); // eslint-disable-line
+require('./db/mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
