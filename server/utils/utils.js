@@ -413,6 +413,8 @@ const findEmail = (Model) => async (email) => {
   }
 };
 
+const populateDB = (Model) => (body) => Model.insertMany(body);
+
 module.exports = {
   pickBody,
   pickTeacher,
@@ -451,4 +453,5 @@ module.exports = {
   findUser,
   findEmail,
   pickQuestionPaper,
+  populateDB,
 };
