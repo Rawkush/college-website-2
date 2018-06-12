@@ -110,7 +110,9 @@ const HomePage = () => (
   <Page mtp="69px">
     <Carousel />
     <Container>
-      <H2ResAuto>Notifications</H2ResAuto>
+      <H2ResAuto margin="40px 0px 25px 0px" marginRes="40px 0px 25px 0px">
+        Notifications
+      </H2ResAuto>
     </Container>
     <NotificationBg>
       <Container>
