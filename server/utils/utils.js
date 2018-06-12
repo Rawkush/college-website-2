@@ -392,24 +392,6 @@ const findUser = (Model, field) => async (searchField) => {
   }
 };
 
-const findUse = (Model, field) => async (searchField) => {
-  try {
-  //  const a = searchField.toString();
-    // const b = parseInt(searchField);
-    // const results = await Model.find({ [field]: { $regex: searchField } }).count();
-    // const results = await Model.findOne({rollNo: searchField});
-    // const results = await Model.count();
-    const results = await Model.find({
-      [field]: /[0-9]/,
-    });
-    // const results = await Model.find();
-    
-   return  results
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
 const giveUser = (Model) => async (slugg) => {
   try {
     const student = await Model.findOne({ slugg });
@@ -469,5 +451,4 @@ module.exports = {
   findUser,
   findEmail,
   pickQuestionPaper,
-  findUse,
 };
