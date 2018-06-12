@@ -90,7 +90,7 @@ class Carousel extends Component {
   };
 
   scrollToTop = () => {
-    window.scroll({ top: 570, left: 0, behavior: 'smooth' });
+    window.scroll({ top: 510, left: 0, behavior: 'smooth' });
   };
 
   // pauseSlide = () => {
