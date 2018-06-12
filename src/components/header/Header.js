@@ -81,6 +81,8 @@ const RoundDiv = styled.div`
 
 const Text = styled.p`
   font-family: 'Noto Serif', sans-serif;
+  color: white;
+  text-decoration: none;
 `;
 
 const DisplayAvatar = ({ SVG }) => (
