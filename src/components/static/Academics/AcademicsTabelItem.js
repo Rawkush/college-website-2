@@ -13,7 +13,7 @@ const H4 = styled.h4`
   font-weight: 600;
 `;
 
-const F = styled.div`
+const Heading = styled.div`
   font-family: 'Noto Serif', serif;
   font-weight: 400;
 `;
@@ -22,25 +22,25 @@ export default ({ dean, head, staff, contact, email }) => (
   <div>
     <br />
     {head ? (
-      <F>
+      <Heading>
         <H3> Head:</H3> {head}
-      </F>
+      </Heading>
     ) : (
-      <F>
+      <Heading>
         <H3>Dean:</H3> {dean}
-      </F>
+      </Heading>
     )}
     {staff ? (
       <div>
-        <H4> Staff:</H4> {staff.map((item) => <F key={item}> {item}</F>)}
+        <H4> Staff:</H4>{staff.map((item) => <Heading key={item}> {item}</Heading>)}
       </div>
     ) : (
       ''
     )}
-    <F>
+    <Heading>
       <H4> contact: </H4> {contact}
-    </F>
-    <H4>Email: </H4> {email.map((item) => <F key={item}> {item} </F>)}
+    </Heading>
+    <H4>Email: </H4>{email.map((item) => <Heading key={item}> {item} </Heading>)}
     <br />
   </div>
 );
