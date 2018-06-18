@@ -143,7 +143,7 @@ class Syllabus extends Component {
           syllabus={syllSem7}
           auth={this.state.auth}
         />
-        <H4 onClick={this.clickHandle8}> Semester VIII</H4>
+        <H4 onClick={this.clickHandler8}> Semester VIII</H4>
         <SyllabusListItem
           active={this.state.active8}
           syllabus={syllSem8}
