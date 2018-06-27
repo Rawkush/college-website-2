@@ -84,14 +84,16 @@ const pickTeacherNotifications = (req) => {
 
 const pickAccomplishments = (req) => {
   const accomplishments = _.pick(req.body, ['title', 'description']);
-  const photo = req.file ? req.file.path : null;
-  return { ...accomplishments, photo };
+  return req.file
+    ? { ...accomplishments, photo: req.file.path }
+    : accomplishments;
 };
 
 const pickProjects = (req) => {
   const projects = _.pick(req.body, ['title', 'description', 'link']);
-  const photos = req.files ? req.files.map((file) => file.path) : null;
-  return { ...projects, photos };
+  return req.files
+    ? { ...projects, photos: req.files.map((file) => file.path) }
+    : projects;
 };
 
 const pickSpecialisations = (req) => {
