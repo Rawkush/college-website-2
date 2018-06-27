@@ -9,15 +9,17 @@
     "dev-server": "webpack-dev-server",
     "start": "node server/server.js",
     "server-watch": "nodemon server/server.js",
-    "server-test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && jest server/tests/",
-    "server-test-watch": "export NODE_ENV=test || SET \"NODE_ENV=test\" && jest --watch server/tests/",
+    "server-test":
+      "export NODE_ENV=test || SET \"NODE_ENV=test\" && jest server/tests/",
+    "server-test-watch":
+      "export NODE_ENV=test || SET \"NODE_ENV=test\" && jest --watch server/tests/",
     "client-test": "jest --config=jest.config.json /src/tests/",
     "client-test-watch": "jest --watch --config=jest.config.json /src/tests/",
     "test": "jest --config=jest.config.json",
     "test-watch": "jest --watch --config=jest.config.json",
     "heroku-postbuild": "npm run build:prod",
     "web-push": "web-push",
-    "pre-commit": "pretty-quick --staged"
+    "precommit": "pretty-quick --staged"
   },
   "author": "",
   "license": "ISC",
