@@ -13,7 +13,7 @@ const events = [
       faker.system.fileName(),
       faker.system.fileName(),
     ],
-    description: faker.lorem.paragraph(),
+    description: faker.lorem.paragraphs(),
   },
   {
     name: faker.name.title(),
@@ -27,7 +27,7 @@ const events = [
       faker.system.fileName(),
       faker.system.fileName(),
     ],
-    description: faker.lorem.paragraph(),
+    description: faker.lorem.paragraphs(),
   },
   {
     name: faker.name.title(),
@@ -41,7 +41,7 @@ const events = [
       faker.system.fileName(),
       faker.system.fileName(),
     ],
-    description: faker.lorem.paragraph(),
+    description: faker.lorem.paragraphs(),
   },
   {
     name: faker.name.title(),
@@ -55,7 +55,7 @@ const events = [
       faker.system.fileName(),
       faker.system.fileName(),
     ],
-    description: faker.lorem.paragraph(),
+    description: faker.lorem.paragraphs(),
   },
   {
     name: faker.name.title(),
@@ -69,7 +69,7 @@ const events = [
       faker.system.fileName(),
       faker.system.fileName(),
     ],
-    description: faker.lorem.paragraph(),
+    description: faker.lorem.paragraphs(),
   },
 ];
 
