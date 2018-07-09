@@ -11,6 +11,8 @@ const SEARCH_STUDENT_BY_NAME = '/s/visitor/searchstudentbyname';
 const SEARCH_STUDENT_BY_ROLLNO = '/s/visitor/searchstudentbyrollno';
 const VERIFY_EMAIL = '/s/visitor/verifyemail';
 
+const ADD_NOTIFICATION = '/s/admin/addnotification';
+
 module.exports = {
   GET_NOTIFICATIONS,
   GET_ALL_NOTIFICATIONS,
@@ -24,4 +26,5 @@ module.exports = {
   SEARCH_STUDENT_BY_NAME,
   SEARCH_STUDENT_BY_ROLLNO,
   VERIFY_EMAIL,
+  ADD_NOTIFICATION,
 };
