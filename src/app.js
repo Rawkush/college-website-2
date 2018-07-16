@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import 'normalize.css/normalize.css';
 import './theme/globalStyles';
 import './styles/transition.css';
-import './utils/registerServiceWorker';
-import './utils/notifications';
+// import './utils/registerServiceWorker';
+// import './utils/notifications';
 
 // Configuring the store
 import configureStore from './store/configureStore';
