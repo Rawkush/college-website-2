@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Wrapper, ToasterDiv, DismissButton, Text } from './InfoToaster.styles';
+import { Wrapper, ToasterDiv, ActionButton, Text } from './InfoToaster.styles';
 
 export default class Toaster extends Component {
   constructor(props) {
@@ -8,6 +8,15 @@ export default class Toaster extends Component {
     this.state = {
       toaster: false,
     };
+  }
+
+  componentDidMount() {
+    this.toggleToaster();
+    setTimeout(() => {
+      if (this.state.toaster) {
+        this.toggleToaster();
+      }
+    }, 5000);
   }
 
   toggleToaster = () => {
@@ -25,9 +34,11 @@ export default class Toaster extends Component {
   render() {
     return (
       <Wrapper toaster={this.state.toaster}>
-        <ToasterDiv>
-          <DismissButton onClick={this.dismissToaster}>Dismiss</DismissButton>
-          <Text>Hey! I am your info! Have a great day!</Text>
+        <ToasterDiv theme={this.props.theme}>
+          <ActionButton theme={this.props.theme} onClick={this.dismissToaster}>
+            Dismiss
+          </ActionButton>
+          <Text theme={this.props.theme}>{this.props.message.toString()}</Text>
         </ToasterDiv>
       </Wrapper>
     );

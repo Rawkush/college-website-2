@@ -2,6 +2,19 @@ import styled from 'styled-components';
 
 import media from 'theme/media';
 
+const themeFunction = ({ theme }) => {
+  if (theme === 'danger') {
+    return '#cc0000';
+  } else if (theme === 'info') {
+    return '#0a00cc';
+  } else if (theme === 'success') {
+    return '#1b9441';
+  } else if (theme === 'warning') {
+    return '#b7aa00';
+  }
+  return '#000';
+};
+
 const Wrapper = styled.div`
   position: fixed;
   display: flex;
@@ -10,10 +23,11 @@ const Wrapper = styled.div`
   width: 100%;
   bottom: 10px;
   z-index: 100;
+  left: 0;
   transform: translateY(${({ toaster }) => (toaster ? 0 : '100px')});
-  transition: transform 0.3s ease-in;
+  transition: transform 0.15s ease-in;
   ${media.phone`
-    bottom: 75px;
+    bottom: 40px;
   `};
 `;
 
@@ -22,34 +36,42 @@ const ToasterDiv = styled.div`
   background: white;
   padding: 0px;
   font-size: 20px;
-  border: solid 1px #cc0000;
+  border: solid 1px ${themeFunction};
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
   display: flex;
+  width: 40%;
+  ${media.phone`
+    width: 90%;
+  `};
 `;
 
 const Text = styled.p`
   font-family: 'Alegreya Sans', sans-serif;
-  color: #cc0000;
+  color: ${themeFunction};
   padding: 5px 10px;
   margin: 0;
 `;
 
-const DismissButton = styled.button`
+const ActionButton = styled.button`
   text-align: center;
   border-radius: 2px;
-  background: #cc0000;
+  background: ${themeFunction};
   border: none;
   padding: 2px 5px;
   width: 10px;
   overflow-x: hidden;
-  color: #cc0000;
+  color: ${themeFunction};
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  transition: all 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28);
   &:hover {
     width: 70px;
     color: white;
   }
+  ${media.phone`
+    width: 90px;
+    color: white;
+  `};
 `;
 
-export { Wrapper, ToasterDiv, Text, DismissButton };
+export { Wrapper, ToasterDiv, Text, ActionButton };

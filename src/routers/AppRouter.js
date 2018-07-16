@@ -8,7 +8,6 @@ import Header from 'components/header/Header';
 import Footer from 'components/Footer/Footer';
 import NotFound from 'components/notFound/NotFound';
 import ScrollTop from 'components/ScrollTop';
-import InfoToaster from 'components/Toaster/InfoToaster';
 
 //  Protected Routes
 import TeacherRoute from './TeacherRoute';
@@ -87,7 +86,6 @@ const AppRouter = () => (
   <BrowserRouter>
     <ScrollTop>
       <Header />
-      <InfoToaster />
       <Route
         render={({ location }) => (
           <TransitionGroup>
