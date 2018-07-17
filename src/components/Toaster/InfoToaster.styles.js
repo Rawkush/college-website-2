@@ -27,7 +27,8 @@ const Wrapper = styled.div`
   transform: translateY(${({ toaster }) => (toaster ? 0 : '100px')});
   transition: transform 0.15s ease-in;
   ${media.phone`
-    bottom: 40px;
+    bottom: 66px;
+    transform: translateY(${({ toaster }) => (toaster ? 0 : '130px')});
   `};
 `;
 

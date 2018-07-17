@@ -6,12 +6,11 @@ export default class Toaster extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toaster: false,
+      toaster: true,
     };
   }
 
   componentDidMount() {
-    this.toggleToaster();
     setTimeout(() => {
       if (this.state.toaster) {
         this.toggleToaster();
