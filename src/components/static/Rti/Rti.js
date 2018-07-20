@@ -12,10 +12,13 @@ const P = styled.p`
   font-weight: 600;
   font-family: 'Open Sans', sans-serif;
 `;
+const BR = styled.div`
+  height: 40px;
+`;
 
 export default () => (
   <Container>
-    <H2ResAuto>RTI(RIGHT TO INFORMATION ACT) </H2ResAuto>
+    <H2ResAuto>RTI(Right To Information Act) </H2ResAuto>
     <Wrapper>
       <RtiTabel info={rtiData} />
     </Wrapper>
@@ -31,16 +34,11 @@ export default () => (
         <A href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=pplgec@gmail.com">
           pplgec@gmail.com
         </A>
-        <br />
-        <br />
-        <br />
+        <BR />
         <A> Supply of information under RTI act 2005 </A>
         <br />
         <A>Rules </A>
-        <br />
-        <br />
-        <br />
-        <br />
+        <BR />
       </Div>
     </Wrapper>
   </Container>
