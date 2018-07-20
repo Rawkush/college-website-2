@@ -1,18 +1,14 @@
 import React from 'react';
-import { Page } from 'theme/Components';
-
-import {
-  TeacherData,
-  TopData,
-  CodinaterData,
-  Placement,
-} from './../../components/static/Tpo/Tpo';
+import { Page, H2ResAuto } from 'theme/Components';
+import { Tpo, TpoHead } from './../../components/static/Tpo/Tpo';
 
 export default () => (
   <Page>
-    <TopData />
-    <TeacherData />
-    <CodinaterData />
-    <Placement />
+    <H2ResAuto> Training And Placement Cell</H2ResAuto>
+    <TpoHead />
+    <br />
+    <Tpo />
+    <br />
+    <br />
   </Page>
 );

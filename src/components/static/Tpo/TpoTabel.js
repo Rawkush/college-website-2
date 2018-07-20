@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// import  from './TpoTabelItem';
-import { Teacher, Top, Cod } from './TpoTabelItem';
+import TableItem from './TpoTabelItem';
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -18,40 +17,14 @@ const TH = styled.th`
   font-size: 13px;
 `;
 
-const Tops = ({ topInfo }) => (
-  <div>{topInfo.map((item) => ( <Top key={item.name} {...item} />))}</div>
-);
-
-const Teachers = ({ teacherInfo }) => (
+export default ({ data = [] } = {}) => (
   <StyledTable>
     <tbody>
       <tr>
-        <TH>Name & Designation</TH>
-        <TH>Status in the committee</TH>
+        <TH>Name & Designation </TH>
+        <TH> Status in the committee</TH>
       </tr>
     </tbody>
-    <tbody>
-      {teacherInfo.map((item) => ( <Teacher key={item.name} {...item} />))}
-    </tbody>
+    <tbody>{data.map((item) => <TableItem key={item.name} {...item} />)}</tbody>
   </StyledTable>
 );
-
-const Codinaters = ({ codinaterInfo }) => (
-  <StyledTable>
-    <tbody>
-      <tr>
-        <TH>Name</TH>
-        <TH>Semester/Year</TH>
-      </tr>
-    </tbody>
-    <tbody>
-      {codinaterInfo.map((item) => (<Cod key={item.name} {...item} />))}
-    </tbody>
-  </StyledTable>
-);
-
-module.exports = {
-  Teachers,
-  Tops,
-  Codinaters,
-};
