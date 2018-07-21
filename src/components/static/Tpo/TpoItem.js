@@ -17,7 +17,6 @@ const P = styled.p`
   text-align: 'center';
 `;
 
-
 const Item = ({ name = '', data = [] } = {}) => (
   <Container>
     <Wrapper>
@@ -38,7 +37,4 @@ const ItemHead = ({ name = ' ', data = [] } = {}) => (
   </Container>
 );
 
-module.exports = {
-  Item,
-  ItemHead,
-};
+export { Item, ItemHead };

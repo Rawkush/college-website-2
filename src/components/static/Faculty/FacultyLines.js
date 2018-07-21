@@ -59,7 +59,4 @@ const Lowerlines = ({ departName, post, name, link, facility }) => (
   </Department>
 );
 
-module.exports = {
-  Upperlines,
-  Lowerlines,
-};
+export { Upperlines, Lowerlines };

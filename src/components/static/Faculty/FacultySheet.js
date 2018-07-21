@@ -18,7 +18,4 @@ const Lower = ({ lowerInfo }) => (
   </DivUL>
 );
 
-module.exports = {
-  Upper,
-  Lower,
-};
+export { Upper, Lower };
