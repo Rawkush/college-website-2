@@ -3,10 +3,6 @@ import { Item, ItemHead } from './TpoItem';
 import data from './TpoData.json';
 import dataHead from './TpoHeadData.json';
 
-const TpoHead = () =>
+export const TpoHead = () =>
   dataHead.map((info) => <ItemHead key={info.name} {...info} />);
-const Tpo = () => data.map((info) => <Item key={info.name} {...info} />);
-module.exports = {
-  Tpo,
-  TpoHead,
-};
+export const Tpo = () => data.map((info) => <Item key={info.name} {...info} />);

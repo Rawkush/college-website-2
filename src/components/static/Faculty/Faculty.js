@@ -3,7 +3,7 @@ import { H2ResAuto, Container, Wrapper } from 'theme/Components';
 import { Upper, Lower } from './FacultySheet';
 import { upper, lower } from './FacultyData.json';
 
-const UpperData = () => (
+export const UpperData = () => (
   <Container>
     <H2ResAuto>FACULTY</H2ResAuto>
     <Wrapper>
@@ -12,7 +12,7 @@ const UpperData = () => (
   </Container>
 );
 
-const LowerData = () => (
+export const LowerData = () => (
   <Container>
     <Wrapper>
       <Lower lowerInfo={lower} />
@@ -20,4 +20,3 @@ const LowerData = () => (
   </Container>
 );
 
-module.exports = { UpperData, LowerData };
