@@ -1,5 +1,4 @@
 const otpGenerator = require('otp-generator');
-const { E500 } = require('../middleware/async');
 const { doEmail } = require('./../config/nodemailerConfig');
 const { Event } = require('./../models//events');
 const { Notifications } = require('./../models/notification');
@@ -37,11 +36,10 @@ const giveStudentSecondary = giveUserSecondary(StudentSecondry);
 const SaveEmailOtp = updateMinimal(EmailOtp, true, true);
 const findEmailExist = findEmail(Email);
 
-const getLatestNotifications = E500(async (req, res) => {
+const getLatestNotifications = async (req, res) => {
   const notifications = await giveLatestThreeNotifications();
   res.send(notifications);
-});
-
+};
 const getAllNotifications = async (req, res) => {
   const notifications = await giveAllNotifications();
   res.send(notifications);
