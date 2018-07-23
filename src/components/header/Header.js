@@ -24,7 +24,7 @@ const FixedHeader = styled.header`
   position: fixed;
   width: 100%;
   top: -0.6px;
-  background: #fff;
+  background: #9c3a3a;
   z-index: 100;
   backface-visibility: hidden;
   ${media.phone`
@@ -42,6 +42,8 @@ const ContainerMod = Container.extend`
 `;
 
 const Title = H1.extend`
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
   ${media.phone`
     font-size: 5vw;
   `};
@@ -79,6 +81,8 @@ const RoundDiv = styled.div`
 
 const Text = styled.p`
   font-family: 'Noto Serif', sans-serif;
+  color: white;
+  text-decoration: none;
 `;
 
 const DisplayAvatar = ({ SVG }) => (
@@ -165,7 +169,7 @@ class Header extends Component {
                   </Link>
                 ) : (
                   <NavLink to="/login">
-                    <Button>Login</Button>
+                    <Button home>Login</Button>
                   </NavLink>
                 )}
               </FlexCenter>

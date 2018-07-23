@@ -1,5 +1,5 @@
 // Global Modules Import
-const mongoose = require('./db/mongoose'); // eslint-disable-line
+require('./db/mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -29,7 +29,7 @@ app.use('/assets/', express.static('public/assets'));
 app.use('/manifest.json/', (req, res) => {
   res.sendFile(path.join(publicPath, 'manifest.json'));
 });
-app.use('*.js', (req, res, next) => {
+app.use('bundle.js', (req, res, next) => {
   req.url += '.gz';
   res.set('Content-Encoding', 'gzip');
   res.set('Content-Type', 'application/javascript');
@@ -55,4 +55,9 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-app.listen(port, host, () => console.log(`Server is up on the ${port}`)); // eslint-disable-line
+if (process.env.NODE_ENV !== 'test') {
+  // eslint-disable-next-line
+  app.listen(port, host, () => console.log(`Server is up on the ${port}`));
+}
+
+module.exports = { app };

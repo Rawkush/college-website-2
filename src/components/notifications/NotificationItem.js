@@ -10,7 +10,8 @@ import DownloadIconSVG from './DownloadIconSVG';
 import TagMapper from './Utils';
 
 const NotificationDiv = styled.div`
-  background-color: rgb(208, 208, 208);
+  background-color: ${({ teacher }) =>
+    teacher ? 'rgb(208, 208, 208)' : 'rgb(255, 164, 164)'};
   padding: 10px;
   width: 250px;
   margin: 50px auto 26px auto;
@@ -28,7 +29,7 @@ const NotificationDiv = styled.div`
 `;
 
 const DateDiv = styled.div`
-  background: ${darkGrey};
+  background: ${({ teacher }) => (teacher ? darkGrey : '#ab3f3f')};
   display: inline-block;
   padding: 27px 6px 10px 6px;
   color: white;
@@ -100,22 +101,22 @@ const NotificationItem = ({
   _id,
   location,
   auth,
+  teacher,
 }) => (
-  <NotificationDiv>
+  <NotificationDiv teacher={teacher}>
     <div>
-      <DateDiv>
+      <DateDiv teacher={teacher}>
         <Span1>{moment(createdAt).format('DD-MMM')}</Span1>
         <br />
         <Span2>{moment(createdAt).format('YYYY')}</Span2>
       </DateDiv>
-    </div>{' '}
-    -{' '}
+    </div>
     <TitleDiv>
       <Title href={link}>{title}</Title>
     </TitleDiv>
     <FlexCenter>
       <Download href={file} target="_blank">
-        <DownloadIconSVG file={file} />
+        <DownloadIconSVG teacher={teacher} file={file} />
       </Download>
       <Tags>
         {TagMapper(tags).map((tag) => (

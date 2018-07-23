@@ -12,8 +12,10 @@ const {
   getSyllabus,
   getTimeTable,
   searchStudentsByName,
-
+  searchStudentsByRollNo,
   verifyEmail,
+  getAllQuesetionPaper,
+  subscribe,
 } = require('./../controllers/visitorControllers');
 
 // Initializing the Router
@@ -23,6 +25,8 @@ const visitorRoutes = express.Router();
 visitorRoutes.get('/getnotifications', getLatestNotifications);
 
 visitorRoutes.get('/getallnotifications', getAllNotifications);
+
+visitorRoutes.get('/getallQuestionPaper', getAllQuesetionPaper);
 
 visitorRoutes.get('/getevents', getLatestEvents);
 
@@ -38,6 +42,10 @@ visitorRoutes.post('/getstudent', getStudent);
 
 visitorRoutes.post('/searchstudentbyname', searchStudentsByName);
 
+visitorRoutes.post('/searchstudentbyrollno', searchStudentsByRollNo);
+
 visitorRoutes.post('/verifyemail', verifyEmail);
+
+visitorRoutes.post('/subscribetonotifications', subscribe);
 
 module.exports = { visitorRoutes };

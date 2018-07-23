@@ -45,6 +45,16 @@ const pickNotifications = (req) => {
   return newBody;
 };
 
+const pickQuestionPaper = (req) => {
+  const body = _.pick(req.body, ['subject', 'year', 'branch', 'semester']);
+  const file = req.file ? req.file.path : null;
+  const newBody = {
+    ...body,
+    file,
+  };
+  return newBody;
+};
+
 const pickTeacherNotifications = (req) => {
   const body1 = _.pick(req.body, [
     'title',
@@ -74,14 +84,16 @@ const pickTeacherNotifications = (req) => {
 
 const pickAccomplishments = (req) => {
   const accomplishments = _.pick(req.body, ['title', 'description']);
-  const photo = req.file ? req.file.path : null;
-  return { ...accomplishments, photo };
+  return req.file
+    ? { ...accomplishments, photo: req.file.path }
+    : accomplishments;
 };
 
 const pickProjects = (req) => {
   const projects = _.pick(req.body, ['title', 'description', 'link']);
-  const photos = req.files ? req.files.map((file) => file.path) : null;
-  return { ...projects, photos };
+  return req.files
+    ? { ...projects, photos: req.files.map((file) => file.path) }
+    : projects;
 };
 
 const pickSpecialisations = (req) => {
@@ -403,6 +415,8 @@ const findEmail = (Model) => async (email) => {
   }
 };
 
+const populateDB = (Model) => (body) => Model.insertMany(body);
+
 module.exports = {
   pickBody,
   pickTeacher,
@@ -440,4 +454,6 @@ module.exports = {
   giveUserByName,
   findUser,
   findEmail,
+  pickQuestionPaper,
+  populateDB,
 };

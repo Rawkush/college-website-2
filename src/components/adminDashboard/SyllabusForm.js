@@ -147,7 +147,7 @@ const SyllabusForm = ({
           onClick={() => {
             values
               .deleteSyllabus(values._id)
-              .then(() => values.history.push('/admin/syllabus'));
+              .then(() => values.history.push('/admin/dashboard'));
           }}
         >
           Remove

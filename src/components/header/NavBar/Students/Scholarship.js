@@ -1,23 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import media from 'theme/media';
 import { red } from 'theme/variable';
-import EducationLoanIcon from './Icons/EducationLoan';
+import QuestionBankIcon from './Icons/QuestionBankIcon';
 import ScholarshipIcon from './Icons/Scholarship';
 
-import { NavCardFlex, NavItemFlex, StyledLink } from './../Shared.styles';
-
-const Image = styled.img`
-  display: block;
-  height: 80px;
-  margin: 0 auto;
-  border-radius: 50%;
-  transition: all 0.1s ease;
-  ${media.phone`
-    height: 70px;
-  `};
-`;
+import {
+  NavCardFlex,
+  NavItemFlex,
+  StyledLink,
+  StyledA,
+} from './../Shared.styles';
 
 const Span = styled.div`
   padding: 10px 0px;
@@ -47,12 +40,16 @@ export default ({ click }) => (
       </StyledLink>
     </NavItemFlex>
     <NavItemFlex>
-      <StyledLink to="/educationloan" onClick={click}>
+      <StyledA
+        href="https://www.vidyalakshmi.co.in/Students/"
+        onClick={click}
+        target="_blank"
+      >
         <HoverDiv>
-          <EducationLoanIcon />
-          <Span>Education Loan</Span>
+          <QuestionBankIcon />
+          <Span>Question Bank</Span>
         </HoverDiv>
-      </StyledLink>
+      </StyledA>
     </NavItemFlex>
   </NavCardFlex>
 );

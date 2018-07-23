@@ -1,11 +1,11 @@
 import React from 'react';
 import { withFormik, Field } from 'formik';
-import Yup from 'yup';
 import { StyledForm, FormError } from 'theme/Components';
+import Yup from 'yup';
+import Toaster from './../Toaster/InfoToaster';
 
 const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
   <StyledForm>
-    {errors.error && <FormError>{errors.error}</FormError>}
     <label htmlFor="username">Username: </label>
     {touched.username &&
       errors.username && <FormError>{errors.username}</FormError>}
@@ -30,6 +30,7 @@ const AdminLoginForm = ({ errors, touched, isSubmitting }) => (
     />
 
     <button disabled={!!isSubmitting}> Login </button>
+    {errors.error && <Toaster message={errors.error} theme="danger" />}
   </StyledForm>
 );
 
@@ -51,12 +52,10 @@ export default withFormik({
         setSubmitting(false);
         props.history.push('/admin/dashboard');
       })
-      .catch((error) => {
+      .catch(() => {
         resetForm();
         setErrors({ error: 'Credential were wrong or the server is down' });
         setSubmitting(false);
-        alert(error);
-        window.scrollTo(0, 0);
       });
   },
 })(AdminLoginForm);
