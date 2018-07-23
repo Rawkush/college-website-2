@@ -127,7 +127,6 @@ const link = {
   gh: 'https://github.com/',
   hr: 'https://hackerrank.com',
   loan: 'https://www.vidyalakshmi.co.in/Students/',
-  md: 'http://gecdelhi.ac.in/pdf_files/Mandatory%20Disclosure%202014-15.pdf',
 };
 
 const RelatedLinks = () => (
@@ -182,13 +181,11 @@ const HelpfullLinks = () => (
           Regulations On Ragging
         </StyledLink>
         <br />
-        <A href={link.md} target="_blank">
-          Mandatory Disclosure (File)
-        </A>
+        <StyledLink to="/mandatoryDisclosure">Mandatory Disclosure</StyledLink>
         <br />
         <StyledLink to="/formsAndPerforma">Forms & Performa</StyledLink>
         <br />
-        <StyledLink to="budgetreport">Budget Report</StyledLink>
+        <StyledLink to="budgetReport">Budget Report</StyledLink>
         <br />
         <StyledLink to="/disclaimer">Disclaimer</StyledLink>
         <br />
@@ -201,26 +198,13 @@ const HelpfullLinks = () => (
         <br />
         <StyledLink to="/committee">Committee</StyledLink>
         <br />
-        <StyledLink to="/contactus">Contact Us</StyledLink>
+        <StyledLink to="/contactUs">Contact Us</StyledLink>
         <br />
         <StyledLink to="/rti">RTI</StyledLink>
       </InnerCard2>
     </InnerCard1>
   </Card>
 );
-
-// const Files = () => (
-//   <Card>
-//     <H3>Files</H3>
-//     <InnerCard1>
-//       <InnerCard2>
-//         <A href={link.md} target="_blank">
-//           Mandatory Disclosure
-//         </A>
-//       </InnerCard2>
-//     </InnerCard1>
-//   </Card>
-// );
 
 const FlexWrapper = Flex.extend`
   ${media.phone`
@@ -234,7 +218,6 @@ export default ({ admin }) => (
       <FlexWrapper>
         <RelatedLinks />
         <HelpfullLinks />
-        {/* <Files /> */}
       </FlexWrapper>
       <Wrapper>
         {!admin && <ButtonLink to="/admin/login">Admin Login</ButtonLink>}

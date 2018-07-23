@@ -1,16 +1,12 @@
 import React from 'react';
 import { SVG } from './../../Shared.styles';
 
-export default ({ square } = {}) => (
+export default () => (
   <SVG
     bg="#f1f1f1"
     id="Layer_1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
-    round={square ? '0%' : '50%'}
-    height={square ? '200px' : '42px'}
-    height2={square ? '125px' : '40px'}
-    padding={square ? '10px' : '0px'}
   >
     <g fill="#415a6b">
       <path d="M256,212.267c-5.333,0-9.6-4.267-9.6-9.6V48c0-5.333,4.267-9.6,9.6-9.6c5.333,0,9.6,4.267,9.6,9.6 v154.667C265.6,208,261.333,212.267,256,212.267z" />

@@ -65,7 +65,7 @@ export default ({ click }) => (
         <NavFlexCenter>Allied</NavFlexCenter>
       </NavItemFlexResponsive>
     </StyledLink>
-    <StyledLink to="/department/applied" onClick={click}>
+    <StyledLink to="/department/apploed" onClick={click}>
       <NavItemFlexResponsive>
         <AppliedIcon />
         <NavFlexCenter>Applied Science and Humanities</NavFlexCenter>

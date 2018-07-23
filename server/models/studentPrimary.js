@@ -26,8 +26,8 @@ const StudentPrimarySchema = new mongoose.Schema(
       type: Number,
       required: true,
       trim: true,
-      minlength: 15,
-      maxlength: 16,
+      minlength: 11,
+      maxlength: 11,
       unique: true,
     },
     location: {
@@ -108,8 +108,7 @@ const StudentPrimarySchema = new mongoose.Schema(
     bio: {
       type: String,
       trim: true,
-      minlength: 25,
-      required: 'Bio is required for registration.',
+      minlength: 35,
     },
     auth: {
       provider: {

@@ -3,17 +3,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Styled-Components
-import {
-  Page,
-  Container,
-  FlexCenter as Flex,
-  H2ResAuto,
-} from 'theme/Components';
+import { Page, Container, FlexCenter, H2ResAuto } from 'theme/Components';
 import media from 'theme/media';
 
 // Defined components import
-import Carousel from './../../components/Body/Carousel';
 import Notification from './../../components/notifications/Notification';
+// import Events from './../../components/Events/EventsListHome';
 import GetToKnow from './../../components/Body/GetToKnow';
 
 const NotificationLink = styled(Link)`
@@ -21,34 +16,29 @@ const NotificationLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   padding: 10px 50px;
-  color: ${({ teacher }) => (teacher ? 'rgba(0, 0, 0, 0.6)' : 'rgb(97, 0, 0)')};
+  color: rgba(0, 0, 0, 0.6);
   margin: 55px auto;
   font-size: 20px;
   border-radius: 3px;
-  border: solid 2.4px
-    ${({ teacher }) =>
-      teacher ? 'rgba(0, 0, 0, 0.5)' : 'rgba(84, 0, 0, 0.58)'};
+  border: solid 2.4px rgba(0, 0, 0, 0.5);
   font-weight: 400;
   box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
   &:hover {
     color: white;
-    background: ${({ teacher }) =>
-      teacher ? 'rgba(43, 42, 42, 0.7)' : 'rgb(97, 0, 0)'};
-    border: solid 2.4px
-      ${({ teacher }) =>
-        teacher ? 'rgba(43, 42, 42, 0.7)' : 'rgba(84, 0, 0, 0.58))'};
+    background: rgba(43, 42, 42, 0.7);
+    border: solid 2.4px rgba(43, 42, 42, 0.7);
     transform: translateY(-3px);
     box-shadow: 0 10px 11px rgba(0, 0, 0, 0.3);
     > i {
       transform: rotate(-45deg) scale(1.4);
-      border-color: solid rgb(256, 256, 256);
+      border-color: white;
     }
   }
   ${media.phone`
-    margin: 30px auto 55px auto;
+    margin: 10px auto 20px auto;
     font-size: 19px;
-    padding: 10px 44px;
+    padding: 10px 44px;   
   `};
 `;
 
@@ -63,76 +53,21 @@ const I = styled.i`
 `;
 
 const NotificationBg = styled.div`
-  background: linear-gradient(
-    to right,
-    #fbf9f9 0%,
-    #e6e3e3 50%,
-    #fc3c3c 50%,
-    #c14545 100%
-  );
-  ${media.phone`
-    background: linear-gradient(
-      to bottom,
-      #fbf9f9 0%,
-      #e6e3e3 50%,
-      #fc3c3c 50%,
-      #c14545 100%
-    );
-  `};
+  background: rgba(221, 221, 221, 0.3);
 `;
-
-const FlexCenter = Flex.extend`
-  ${media.phone`
-    flex-direction: column;
-  `};
-`;
-
-const FlexItem = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Title = styled.h3`
-  text-align: center;
-  font-size: 25px;
-  margin: 40px 0px 20px 0px;
-  font-family: 'Alegreya Sans', sans-serif;
-  color: ${({ teacher }) => (teacher ? '#525151' : '#7d0000')};
-  ${media.phone`
-    margin: 77px 0px 30px 0px;
-  `};
-`;
-
 const HomePage = () => (
-  <Page mtp="69px">
-    <Carousel />
+  <Page>
     <Container>
-      <H2ResAuto margin="40px 0px 25px 0px" marginRes="40px 0px 25px 0px">
-        Notifications
-      </H2ResAuto>
+      <H2ResAuto>Notifications</H2ResAuto>
     </Container>
     <NotificationBg>
       <Container>
+        <Notification home />
         <FlexCenter>
-          <FlexItem>
-            <Title teacher>General Notification</Title>
-            <Notification home general />
-            <NotificationLink teacher to="/notification/general">
-              See More
-              <I />
-            </NotificationLink>
-          </FlexItem>
-          <FlexItem>
-            <Title>Student&apos; Notification</Title>
-            <Notification home />
-            <NotificationLink to="/notification">
-              See More
-              <I />
-            </NotificationLink>
-          </FlexItem>
+          <NotificationLink to="/notification">
+            See More
+            <I />
+          </NotificationLink>
         </FlexCenter>
       </Container>
     </NotificationBg>

@@ -25,7 +25,7 @@ export const startAddNotification = ({
 }) => (dispatch) => {
   const formdata = new FormData();
   const tagsUnfiltered = [
-    student ? 'student' : '',
+    student ? 'student' : null,
     teacher ? 'teacher' : '',
     iyear ? 'iyear' : '',
     iiyear ? 'iiyear' : '',

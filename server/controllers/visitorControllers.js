@@ -6,11 +6,8 @@ const { StudentPrimary } = require('./../models/studentPrimary');
 const { StudentSecondry } = require('./../models/studentsSecondry');
 const { Email } = require('./../models/email');
 const { EmailOtp } = require('./../models/email&otp');
-const { subscription } = require('./../models/subscription');
-// const { TeacherPrimary } = require('./../models/teacherPrimary');
 const { Syllabus } = require('./../models/syllabus');
 const { TimeTable } = require('./../models/timeTable');
-const { questionBank } = require('./../models/questionBank');
 
 const {
   giveLatestThreeItem,
@@ -20,16 +17,13 @@ const {
   giveUserSecondary,
   findEmail,
   updateMinimal,
-  saveMinimal2,
 } = require('./../utils/utils');
 
 // Initializing the Instances of Model
 const giveLatestThreeNotifications = giveLatestThreeItem(Notifications);
-const giveAllQuestionPaper = giveAll(questionBank);
 const giveAllNotifications = giveAll(Notifications);
 const giveLatestThreeEvents = giveLatestThreeItem(Event);
 const findStudentByName = findUser(StudentPrimary, 'name');
-const findStudentByRollNo = findUser(StudentPrimary, 'rollNo');
 const giveStudent = giveUser(StudentPrimary);
 const giveAllSyllabus = giveAll(Syllabus);
 const giveAllTimeTable = giveAll(TimeTable);
@@ -37,7 +31,6 @@ const giveAllEvents = giveAll(Event);
 const giveStudentSecondary = giveUserSecondary(StudentSecondry);
 const SaveEmailOtp = updateMinimal(EmailOtp, true, true);
 const findEmailExist = findEmail(Email);
-const saveSubscription = saveMinimal2(subscription);
 
 const getLatestNotifications = async (req, res) => {
   try {
@@ -54,15 +47,6 @@ const getAllNotifications = async (req, res) => {
     res.send(notifications);
   } catch (error) {
     res.send(404).send(`Something Went Wrong: ${error}`);
-  }
-};
-
-const getAllQuesetionPaper = async (req, res) => {
-  try {
-    const questionPapers = await giveAllQuestionPaper();
-    res.send(questionPapers);
-  } catch (err) {
-    res.send(404).send(`Something Went Wrong: ${err}`);
   }
 };
 
@@ -144,16 +128,6 @@ const searchStudentsByName = async (req, res) => {
   }
 };
 
-const searchStudentsByRollNo = async (req, res) => {
-  const { rollNo } = req.body;
-  try {
-    const searchResults = await findStudentByRollNo(rollNo);
-    res.send(searchResults);
-  } catch (error) {
-    res.status(400).send(`Some error happened: ${error}`);
-  }
-};
-
 const verifyEmail = async (req, res) => {
   const { email } = req.body;
   try {
@@ -176,16 +150,6 @@ const verifyEmail = async (req, res) => {
   }
 };
 
-const subscribe = async (req, res) => {
-  const { body: { endpoint, keys } } = req;
-  try {
-    await saveSubscription({ endpoint, keys });
-    res.sendStatus(200);
-  } catch (error) {
-    res.sendStatus(400);
-  }
-};
-
 module.exports = {
   getLatestNotifications,
   getAllNotifications,
@@ -196,8 +160,5 @@ module.exports = {
   getTimeTable,
   getAllEvents,
   searchStudentsByName,
-  searchStudentsByRollNo,
   verifyEmail,
-  getAllQuesetionPaper,
-  subscribe,
 };

@@ -4,17 +4,12 @@ import { Provider } from 'react-redux';
 import 'normalize.css/normalize.css';
 import './theme/globalStyles';
 import './styles/transition.css';
-// import './utils/registerServiceWorker';
-// import './utils/notifications';
 
 // Configuring the store
 import configureStore from './store/configureStore';
 
 // Actions
-import {
-  startSetNotification,
-  startSetAllNotification,
-} from './actions/notifications';
+import { startSetNotification } from './actions/notifications';
 import { startSetSyllabus } from './actions/syllabus';
 import { startSetTimeTable } from './actions/timeTable';
 import { startSetEvent } from './actions/events';
@@ -30,7 +25,6 @@ const store = configureStore();
 
 // Actions
 store.dispatch(startSetNotification());
-store.dispatch(startSetAllNotification());
 store.dispatch(startSetSyllabus());
 store.dispatch(startSetTimeTable());
 store.dispatch(startSetEvent());

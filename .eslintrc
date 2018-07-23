@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "airbnb",
-    "plugin:prettier/recommended",
-    "plugin:jest/recommended"
-  ],
+  "extends": "airbnb",
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 7
@@ -13,13 +9,7 @@
     "browser": true,
     "es6": true
   },
-  "plugins": ["prettier"],
-  "globals": {
-    "test": false,
-    "expect": false,
-    "describe": false,
-    "beforeEach": false
-  },
+  "plugins": ["prettier", "mocha"],
   "rules": {
     "strict": 0,
     "comma-dangle": [
@@ -45,10 +35,10 @@
         "allow": ["_id", "_creator", "_ref", "_json"]
       }
     ],
+    "prettier/prettier": "error",
     "arrow-parens": ["error", "always"],
-    "react/jsx-filename-extension": [1, {
-      "extensions": [".js", ".jsx"]
-    }],
+    "mocha/no-exclusive-tests": "error",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": 0,
     "object-curly-newline": 0,
     "function-paren-newline": 0,
@@ -69,8 +59,7 @@
         },
         "allowChildren": false
       }
-    ],
-    "linebreak-style": ["error", "windows"]
+    ]
   },
   "settings": {
     "import/resolver": {

@@ -4,7 +4,7 @@ const authDefaultState = {
   teacher: false,
 };
 
-export default (state = authDefaultState, action = {}) => {
+export default (state = authDefaultState, action) => {
   switch (action.type) {
     case 'ADMIN_LOGIN':
       return {

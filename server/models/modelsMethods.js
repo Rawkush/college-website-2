@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const slug = require('slug');
 
 function toJSON() {
-  
   const user = this;
   const userObject = user.toObject();
   return _.pick(userObject, [

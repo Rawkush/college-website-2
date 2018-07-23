@@ -4,28 +4,18 @@ export const adminlogin = () => ({
   type: 'ADMIN_LOGIN',
 });
 
-export const startAdminLoginMin = ({
-  axiosDep,
-  localStorageDep,
-  dispatcher,
-}) => ({ username, password }) => (dispatch) =>
-  axiosDep
+export const startAdminLogin = ({ username, password }) => (dispatch) =>
+  axios
     .post('/s/admin/login', {
       username,
       password,
     })
     .then((res) => {
-      localStorageDep.setItem('adminToken', res.data.token);
-      dispatch(dispatcher());
+      localStorage.setItem('adminToken', res.data.token);
+      dispatch(adminlogin());
       return Promise.resolve('success');
     })
     .catch((err) => Promise.reject(err));
-
-export const startAdminLogin = startAdminLoginMin({
-  axiosDep: axios,
-  localStorageDep: window.localStorage,
-  dispatcher: adminlogin,
-});
 
 export const adminLogout = () => ({
   type: 'ADMIN_LOGOUT',

@@ -2,12 +2,13 @@
   "name": "CBPGEC",
   "short_name": "CBPGEC Lite",
   "theme_color": "#9d1818",
-  "background_color": "#9d1818",
+  "background_color": "#dddddd4d",
   "display": "standalone",
   "orientation": "portrait-primary",
   "Scope": ".",
   "start_url": "/",
-  "icons": [{
+  "icons": [
+    {
       "src": "/images/icons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png"
@@ -47,5 +48,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "splash_pages": null
 }

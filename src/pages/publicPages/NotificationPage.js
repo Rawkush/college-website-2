@@ -6,11 +6,11 @@ import { Page, Container, H2ResAuto } from './../../theme/Components';
 // Defined components import
 import Notification from './../../components/notifications/Notification';
 
-const NotificationPage = ({ general = false } = {}) => (
+const NotificationPage = () => (
   <Page>
     <Container>
-      <H2ResAuto>{general ? `General${' '}` : ''}Notifications</H2ResAuto>
-      <Notification notification general={general} />
+      <H2ResAuto>Notifications</H2ResAuto>
+      <Notification notification />
     </Container>
   </Page>
 );

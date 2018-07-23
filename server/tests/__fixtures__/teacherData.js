@@ -9,7 +9,6 @@ const teacherData = [
       currentPosition: 'Head',
       photo: 'http://myawesomepic.com',
     },
-    file: { path: 'http://myawesomepic.com' },
   },
   {
     body: {
@@ -33,7 +32,6 @@ const teacherData = [
         token: 'blafsjdkjfkdsjkfjksjfkhsdkjfhkdsjk',
       },
     },
-    file: { path: 'http://myawesomepic.com' },
   },
   {
     body: {
@@ -41,6 +39,7 @@ const teacherData = [
       dateOfBirth: 87898437787,
       gender: 'male',
       currentPosition: 'Head',
+      photo: 'http://myawesomepic.com',
     },
   },
 ];

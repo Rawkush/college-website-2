@@ -58,14 +58,6 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const StyledA = styled.a`
-  color: ${lightBlack};
-  text-decoration: none;
-  &:hover {
-    color: ${red};
-  }
-`;
-
 const VerticalLine = styled.div`
   display: inline-block;
   height: 235px;
@@ -84,12 +76,11 @@ const VerticalLine = styled.div`
 const SVG = styled.svg`
   background: ${({ bg }) => bg || 'auto'};
   border-radius: 50%;
-  padding: ${({ padding }) => padding || '0px'};
-  height: ${({ height }) => height || '42px'};
+  height: 42px;
   width: auto;
   transition: all 0.1s ease;
   ${media.phone`
-    height: ${({ height2 }) => height2 || '40px'};
+    height: 40px;
   `};
 `;
 
@@ -115,5 +106,4 @@ export {
   VerticalLine,
   SVG,
   SVG2,
-  StyledA,
 };

@@ -129,7 +129,7 @@ const NotificationForm = ({
         onClick={() => {
           values
             .deleteEvent(values._id)
-            .then(() => values.history.push('/admin/dashboard'));
+            .then(() => values.history.push('/admin/events'));
         }}
       >
         Remove
@@ -185,7 +185,7 @@ const FormikNotificationForm = withFormik({
       .then(() => {
         resetForm();
         setSubmitting(false);
-        props.history.push('/admin/dashboard');
+        props.history.push('/admin/events');
       })
       .catch((error) => {
         setErrors({ error: 'Something Went Wrong!' });

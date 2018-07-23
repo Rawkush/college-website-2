@@ -95,7 +95,7 @@ const NotificationForm = ({
           onClick={() => {
             values
               .deleteNotification(values._id)
-              .then(() => values.history.push('/admin/dashboard'));
+              .then(() => values.history.push('/admin/notifications'));
           }}
         >
           Remove

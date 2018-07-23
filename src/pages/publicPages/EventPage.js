@@ -163,7 +163,6 @@ class EventPage extends Component {
             showThumbnails
             onClickThumbnail={this.onClickThumbnail}
             theme={theme}
-            preventScroll={false}
           />
           <Page>
             <Container>
