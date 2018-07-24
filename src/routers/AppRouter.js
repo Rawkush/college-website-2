@@ -80,6 +80,12 @@ import TenderPage from './../pages/publicPages/TenderPage';
 import LocationPage from './../pages/publicPages/LocationPage';
 import AboutUsPage from './../pages/publicPages/static/AboutUs';
 
+import PrincipalPage from './../pages/publicPages/PrincipalPage';
+import Tpo from './../pages/publicPages/Tpo';
+import Faculty from './../pages/publicPages/Faculty';
+import Rti from './../pages/publicPages/Rti';
+import Committee from './../pages/publicPages/Committee';
+
 export const history = createHistory();
 
 const AppRouter = () => (
@@ -301,6 +307,11 @@ const AppRouter = () => (
                   path="/formsandperforma"
                   component={FormsAndPerformaPage}
                 />
+                <Route path="/principal" component={PrincipalPage} />
+                <Route path="/tpo" component={Tpo} />
+                <Route path="/faculty" component={Faculty} />
+                <Route path="/rti" component={Rti} />
+                <Route path="/committee" component={Committee} />
                 <Route path="/tender" component={TenderPage} />
                 <Route path="/location" component={LocationPage} />
                 <Route path="/about" component={AboutUsPage} />
