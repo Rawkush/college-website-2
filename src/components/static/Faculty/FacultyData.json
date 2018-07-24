@@ -1,0 +1,97 @@
+{
+  "upper": [
+    {
+      "post": "Principal",
+      "name": "Prof. K.C.Tiwari, Professor (Civil & Environment Engg.)"
+    },
+
+    {
+      "post": "Dean(Academic)",
+      "name": "Sh. S.K.Tiwari, Associate Professor"
+    },
+
+    {
+      "post":
+        "Dean(Student Welfare), Project Officer, Chairman Cultural & Sports Committee",
+      "name": "Dr. Athar Hussain , Associate Professor"
+    },
+
+    {
+      "post": "Training & Placement Officer",
+      "name": "Dr. Srinivasa KG, Associate Professor"
+    }
+  ],
+
+  "lower": [
+    {
+      "departName": "Department of Civil Engineering",
+      "post": "Head of the Department",
+      "name": "Dr. Athar Hussain",
+      "link":
+        "http://www.gecdelhi.ac.in/pdf_files/Faculty1/Athar%20Hussain%20resume%2001-02-2018.pdf",
+      "facility": ["Prof. K.R.Harne , Professor"]
+    },
+    {
+      "departName": "Department of Information Technology",
+      "post": "Head of the Department",
+      "name": "Dr. Srinivasa K.G",
+      "link": "http://www.gecdelhi.ac.in/pdf_files/KGSWebProfile.pdf",
+      "facility": [
+        "Dr. Pankaj Lathar, Assistant Professor",
+        "Mr. Harjeet Singh Chadha, Asstt. Professor",
+        "Mr. Mahesh Kumar Saini, Asstt. Professor",
+        "Mr. Shashank Saroop, Asstt. Professor",
+        "Mr. Mohit Wadhwa, Asstt. Professor",
+        "Mr. Aditya Tandon, Asst. Professor",
+        "Mr. Gulzar Ahmed, Asst. Professor",
+        "Ms. Ruchi, Asst. Professor"
+      ]
+    },
+    {
+      "departName":
+        "Department of Applied Science and Humanities & Applied Science",
+      "post": "Head of the Department ",
+      "name": "Dr. Manju Nath K. , Associate Professor",
+      "link":
+        "http://www.gecdelhi.ac.in/pdf_files/Faculty1/Dr.%20Manjunath%20K.pdf",
+      "facility": [
+        "Dr. Jayati Ghoshal, Asst. Professor(Communication Skill)",
+        "Mr. Pankaj Sharma, Asst. Professor(Physics)",
+        "Mr. Rakesh Kumar , Asst.Professor (Maths)",
+        "Ms. Richa Kaushik, Asst. Professor (Chemistry)",
+        "Mr. Aneyatullah Niyaji, Asst. Professor"
+      ]
+    },
+    {
+      "departName": "Department of Environmental Engg.",
+      "post": "Head of the Department ",
+      "name": "Dr. Athar Hussain, Associate Professor",
+      "link":
+        "http://www.gecdelhi.ac.in/pdf_files/Faculty1/Athar%20Hussain%20resume%2001-02-2018.pdf",
+      "facility": ["Ms. Mimansa Gulati, Assistant Professor"]
+    },
+    {
+      "departName": "Department of Allied Engineering ",
+      "post": "Head of the Department ",
+      "name": "Dr. Manju Nath K. , Associate Professor",
+      "link":
+        "http://www.gecdelhi.ac.in/pdf_files/Faculty1/Dr.%20Manjunath%20K.pdf",
+      "facility": [
+        "Ms. Vedvanti Singhmar, Sr. Mechanic(IT)",
+        "Mr. Sunil Kumar, Asst.Librarian ",
+        "Mr. Shiv Shankar, Sr Mechanic(IT)",
+        "Mr. Vikarant Kumar, Sr Mechanic(IT)",
+        "Mr. Devender, Jr. Mechanic(IT)",
+        "Mr. Pawan, Jr. Mechanic(IT)",
+        "Mr. Rohit Kumar, W.S. Asst.(Civil)",
+        "Mr. Abhishek Kumar, W.S.A(Civil)",
+        "Mr. Nand Kishor, Jr. Mechanic(Mech. Engg.)",
+        "Mr. Nitin Kharb, Jr. Mechanic (Civil Engg.)",
+        "Mr.Jitender Gahlot (Store Keeper)",
+        "Mr. kuldip (Care taker)",
+        "Mr. Murari Rai (W.S.I.)",
+        "Mr. Devender Gupta (W.S.I.)"
+      ]
+    }
+  ]
+}
