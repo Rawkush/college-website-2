@@ -18,7 +18,7 @@ const error = require('./middleware/error');
 const app = express();
 
 winston.handleExceptions(
-  new winston.transports.Console({ colorise: true, prettyPrint: true }),
+  // new winston.transports.Console({ colorise: true, prettyPrint: true }),
   new winston.transports.File({ filename: 'uncaughtException.log' })
 );
 
@@ -66,6 +66,28 @@ app.use('/s/student/', studentRoutes);
 app.use('/s/visitor/', visitorRoutes);
 
 app.use(error);
+if (app.get('env' === 'development')) {
+  app.use((err, req, res, next) => {
+    err.stack = err.stack || '';
+    const errorDetails = {
+      message: err.message,
+      status: err.status,
+      stackHighlighted: err.stack.replace(
+        /[a-z_-\d]+.js:\d+:\d+/gi,
+        '<mark>$&</mark>'
+      ),
+    };
+    res.status(err.status || 500);
+    res.format({
+      // Based on the `Accept` http header
+      'text/html': () => {
+        res.render('error', errorDetails);
+      }, // Form Submit, Reload the page
+      'application/json': () => res.json(errorDetails), // Ajax call, send JSON back
+    });
+  });
+}
+
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
