@@ -1,16 +1,29 @@
 # CBPGEC Website
 
-This is the website of the Ch. Bramh Prakash Govt. Engineering College.
+This is the website of the Ch. Bramh Prakash Govt. Engineering College 🏫.
 
 :boom: :boom: [Visit the site Here.](https://cbpgec.ga) :boom: :boom:
 
 > More Data Will be added as things get built.
 
-**For team members and people working on this.**
+**Contributions are welcome 🙏. To contribute -**
 
 Run the following command opening terminal in the directory root directory of this project.
 
 `npm install`
+
+Then -
+
+* to start server `npm start`
+* to start server in watch-mode `npm run server-watch`
+* to build app `npm run build:prod` or `npm run build:dev`
+* to serve app in watch mode `npm run dev-server`
+* to run server test `npm run server-test`
+* to run server tests in watch mode `npm run server-test-watch`
+* to run client tests `client-test`
+* to run client tests in watch mode `client-test-watch`
+* to run all tests `npm test`
+* to run all tests in watch mode `npm run test-watch`
 
 ## Follow the code style by using these tools -
 
@@ -26,16 +39,17 @@ Set Up -
    * [Download Prettier for Visual Studio code.](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) (optional).
 2. Change some settings to these.(I will teach only for VSCode. You have to go in settings and search for the following things.) -
 
-       ```json
-       "prettier.singleQuote": true,
-       "editor.formatOnSave": true,
-       "[javascript]": { "editor.formatOnSave": false },
-       "javascript.format.enable": false,
-       "prettier.eslintIntegration": true,
-       "eslint.autoFixOnSave": true ,
-       "eslint.alwaysShowStatus": true,
+   ```json
+   "prettier.singleQuote": true,
+   "editor.formatOnSave": true,
+   "[javascript]": { "editor.formatOnSave": false },
+   "javascript.format.enable": false,
+   "prettier.eslintIntegration": true,
+   "eslint.autoFixOnSave": true ,
+   "eslint.alwaysShowStatus": true,
+   ```
 
-> If you run into any problem while setting up or in the function of the app, open the issue in this repository. I will try to get back to issue ASAP.
+> If you run into any problem while setting up or in the function of the app, open the issue in this repository. We will try to get back to issue ASAP.
 
 ## Set up the environment variables -
 
@@ -56,5 +70,6 @@ You need to set up the environment variables for the OAuth and Mongo DB to work.
       LINKEDIN_CLIENT_SECRET=linkedinclientsecret
       JWT_SECRET=jwtsecret
       JWT_SECRET_2=anotherjwtsecret
+    ```
 
 2. Make another file in root directory and name it `.env.test` . And and put the same variables and make it test related.
