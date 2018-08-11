@@ -90,13 +90,13 @@ export const history = createHistory();
 
 const AppRouter = () => (
   <BrowserRouter>
-    <div>
-      <ScrollTop>
-        <Header />
-        <Route
-          render={({ location }) => (
-            <TransitionGroup>
-              <CSSTransition timeout={300} classNames="fade" key={location.key}>
+    <ScrollTop>
+      <Header />
+      <Route
+        render={({ location }) => (
+          <TransitionGroup>
+            <CSSTransition timeout={300} classNames="fade" key={location.key}>
+              <div>
                 <Switch location={location}>
                   <AdminRoute
                     path="/admin/dashboard"
@@ -324,13 +324,13 @@ const AppRouter = () => (
                   <Route path="/about" component={AboutUsPage} />
                   <Route component={NotFound} />
                 </Switch>
-              </CSSTransition>
-            </TransitionGroup>
-          )}
-        />
-        <Footer />
-      </ScrollTop>
-    </div>
+              </div>
+            </CSSTransition>
+          </TransitionGroup>
+        )}
+      />
+      <Footer />
+    </ScrollTop>
   </BrowserRouter>
 );
 
