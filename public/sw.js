@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 const sw = '[Service Worker]';
-const STATIC_CACHE_NAME = 'static-v2';
-const DYNAMIC_CACHE_NAME = 'dynamic-v2';
+const STATIC_CACHE_NAME = 'static-v1.1';
+const DYNAMIC_CACHE_NAME = 'dynamic-v1.1';
 
 self.addEventListener('install', (e) => {
   console.log(sw, 'Installing Service worker ...', e);
