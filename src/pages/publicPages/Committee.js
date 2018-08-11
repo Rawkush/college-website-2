@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page, H2ResAuto } from 'theme/Components';
-import Committee from './../../components/static/committees/Committee';
+import Committee from './../../components/static/Committees/Committee';
 
 export default () => (
   <Page>

@@ -1,6 +1,8 @@
+/* eslint-disable */
+
 const sw = '[Service Worker]';
-const STATIC_CACHE_NAME = 'static-v1';
-const DYNAMIC_CACHE_NAME = 'dynamic-v1';
+const STATIC_CACHE_NAME = 'static-v2';
+const DYNAMIC_CACHE_NAME = 'dynamic-v2';
 
 self.addEventListener('install', (e) => {
   console.log(sw, 'Installing Service worker ...', e);
@@ -31,21 +33,21 @@ self.addEventListener('activate', (e) => {
   return self.clients.claim();
 });
 
-self.addEventListener('fetch', (e) => {
-  e.respondWith(
-    caches.match(e.request).then((res) => {
-      if (res) {
-        return res;
-      }
-      return fetch(e.request).then((response) =>
-        caches.open(DYNAMIC_CACHE_NAME).then((cache) => {
-          cache.put(e.request.url, response.clone());
-          return response;
-        })
-      );
-    })
-  );
-});
+// self.addEventListener('fetch', (e) => {
+//   e.respondWith(
+//     caches.match(e.request).then((res) => {
+//       if (res) {
+//         return res;
+//       }
+//       return fetch(e.request).then((response) =>
+//         caches.open(DYNAMIC_CACHE_NAME).then((cache) => {
+//           cache.put(e.request.url, response.clone());
+//           return response;
+//         })
+//       );
+//     })
+//   );
+// });
 
 self.addEventListener('push', (e) => {
   let data = {
