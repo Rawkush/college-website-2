@@ -1,658 +1,449 @@
+[
+  {
+
+  "name":"Examination",
+ "data": [
+
+      {
+          "name": "Mr. Aditya Tandon",
+          "status": "Incharge"
+        },
+
+        {
+          "name": "Mr. Shashank",
+          "status": "Link Officer"
+        },
+
+        {
+          "name": "Mr. Shiv Shankar",
+          "status": "Member"
+        },
+
+        {
+          "name": "Mr. Abhishek",
+          "status": "Member"
+        },
+
+        {
+          "name": "Mr. Pawan",
+          "status": "Member"
+        },
+
+        {
+          "name": "Mr. Pawan, LDC",
+          "status": "Member"
+        }
+  ]
+},
 {
-    "examination":[
+  "name":"tpo",
+  "data":[
 
+      {
+        "name": "Dr. Manjunath K, Associate Professor",
+        "status": "Chairperson"
+      },
+      
+      {
+        "name": "Mr. Aneyatullah Niyaji, Asst. Professor",
+        "status": "Member"
+      },
+    
+      {
+        "name": "Mr. Harjeet Singh Chadha, Asst. Professor",
+        "status": "Assistant T&PO"
+      }     
+    ]
+  },
+  {
+    "name":"women",
+    "data":[
+
+      {
+        "name": "Ms. Seema Rani, Asst. Programmer",
+        "status": "Chairperson"
+      },
+      
+      {
+        "name": "MS. Ruchi, Asst. Professor",
+        "status": "Member"
+      },
+    
+      {
+        "name": "Mr. Bajrang Bali, Accounts Officer",
+        "status": "Member"
+      },
+    
+      {
+        "name": "Ms. Vedwanti, Sr. Mechanic",
+        "status": "Member"
+      },
+      
+      {
+        "name": "Mr. Raj Kumar, President aveen Lakesh Social Welfare Association, NGO",
+        "status": "Member"
+      }
+    ]
+},
+{
+  "name": "canteen",
+"data":[
+  
+
+    {
+      "name": "Mr. Sunder Bora",
+      "status": "Chairman"
+    },
+    
+    {
+      "name": "Mr. Ramniwas Sharma, AAO",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Ms. Seema Rani, Asst. Programmer",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Mr. H.S. Chadha, Asst. Professor (IT)",
+      "status": "Member"
+    },
+    
+    {
+      "name": "Ms. Madhu Bhardwaj, Head Clerk",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Mr. Kuldip, Caretaker",
+      "status": "Member"
+    },
+    
+    {
+      "name": "Two students (one male and one female of each branch) preferably class representatives of each class as under i.e. (1) IT Branch:- Ahrar Alam(Ist Year,IT) and Anjali Kumari/Monika(Ist Year, IT) (2) Civil Engg.:- Mayank Gupta, Ist Year, (Civil) and Sonam Dolkn/Renu(Ist Year Civil)",
+      "status": "Members"
+    }
+  ]
+
+},
+{
+  "name":"library",
+  "data": [
+    {
+      "name": "Dr. Pankal Lathar, Asst. Professor (IT)",
+      "status": "Chairman"
+    },
+    
+    {
+      "name": "Mr. Mahesh Saini, Asst. Professor (IT)",
+      "status": "Convenor"
+    },
+  
+    {
+      "name": "Dr. Pankaj Sharma, Asst. Professor",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Ms. Seema Rani, Asst. Programmer",
+      "status": "Member"
+    },
+    
+    {
+      "name": "Mr. Nand Kishore",
+      "status": "Member"
+    },
+  
+    {
+      "name": "04 Students (one each from I, II,III & IV year representing all branches as nominated by Chairman)",
+      "status": "Members"
+    }
+  ]
+},
+{
+  "name":"cultural",
+  "data":[
+    {
+      "name": "Dr. Pankaj Lathar, Asst. Professor",
+      "status": "Chairperson"
+    },
+    
+    {
+      "name": "Ms. Ruchi",
+      "status": "Incharge"
+    },
+  
+    {
+      "name": "Mr. Harjeet Singh Chadha",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Mr. Shashank Saroop (For Tech. Fest)",
+      "status": "Member"
+    },
+    
+    {
+      "name": "Mr. Rohit",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Mr. Shiv Shankar",
+      "status": "Member"
+    },
+    
+    {
+      "name": "Ms. Vedwanti (For MP hall arrangement)",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Mr. Devender (For MP hall arrangement)",
+      "status": ""
+    }
+  ]
+},
+{
+  "name":"sports",
+  "data":[
+    {
+      "name": "Dr. Pankaj Lathar, Asst. Professor",
+      "status": "Chairperson"
+    },
+    
+    {
+      "name": "Mr. Rakesh Kumar",
+      "status": "Incharge"
+    },
+  
+    {
+      "name": "Mr. Devender Gupta",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Mr. Devender",
+      "status": "Member"
+    },
+    
+    {
+      "name": "Mr. Vikrant",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Mr. Nitin",
+      "status": "Member"
+    },
+    
+    {
+      "name": "Mr. Murari (For Gym)",
+      "status": "Member"
+    }
+  ]
+},
+    {
+      "name":"ragging",
+      "data":[
         {
-            "name": "Mr. Aditya Tandon",
-            "status": "Incharge"
-          },
-
-          {
-            "name": "Mr. Shashank",
-            "status": "Link Officer"
-          },
-
-          {
-            "name": "Mr. Shiv Shankar",
-            "status": "Member"
-          },
-
-          {
-            "name": "Mr. Abhishek",
-            "status": "Member"
-          },
-
-          {
-            "name": "Mr. Pawan",
-            "status": "Member"
-          },
-
-          {
-            "name": "Mr. Pawan, LDC",
-            "status": "Member"
-          }
-    ],
-
-    "tpo":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
+          "name": "Mr. Sunder Bora",
+          "status": "Convenor"
         },
       
         {
-          "name": "",
-          "status": ""
+          "name": "SDM (Najafgarh)",
+          "status": "Member (Representative of Civil Administration)"
         },
       
         {
-          "name": "",
-          "status": ""
+          "name": "SHO (Jaffarpur)",
+          "status": "Member"
         },
         
         {
-          "name": "",
-          "status": ""
+          "name": "Dr. Athar Hussain, Head (Env.)",
+          "status": "Member"
         },
       
         {
-          "name": "",
-          "status": ""
+          "name": "MS. Jayati Ghosal, Asst. Professor",
+          "status": "Member"
         },
         
         {
-          "name": "",
-          "status": ""
+          "name": "Ms. Seema Rani, Asst. Programmer",
+          "status": "Member"
         },
       
         {
-          "name": "",
-          "status": ""
+          "name": "Parents of students of 1st Year : (1) Mr. Rajender Singh Ahlawat Add.:- RZ-48A, Dinpur Extn. Gali No. 2, Najafgarh, M.No. 8800639890",
+          "status": "Member"
         },
         
         {
-          "name": "",
-          "status": ""
+          "name": "Ist year Students:- (1) Jyoti Singh, IT 1st Year, Enrol No.:- 2320703116  M.No.:- 9953717257  (2) Rashid Sharma, Civil 1st Year, Enrl. No.:- 3220703416  M.No.:- 9654152907",
+          "status": "Members"
+        },
+        {
+          "name": "3rd Year Students:- (1) Tushar Prince, 3rd Year Civil, Enrol. No.:- 042220705614  M.No.:- 9873645191   (2) Shulbha Singh, 3rd Year, Env., Enrol No.:- 04220705614  M.No. 9717569912",
+          "status": "Members"
         }
-      ],
-
-      "women":[
-
+  
+      ]
+    },
+    {
+      "name":"labs",
+      "data":[
         {
-          "name": "",
-          "status": ""
+          "name": "Ms. Richa Kaushik, Asst. Professor",
+          "status": "Convenor"
         },
         
         {
-          "name": "",
-          "status": ""
+          "name": "Mr. Aditya Tandon, Asst. Professor",
+          "status": "Member"
         },
       
         {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-
-      "canteen":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-
-      "library":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-
-      "cultural":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-
-      "sports":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-
-      "ragging":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-
-      "labs":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-
-      "instuteSupport":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-
-      "cocurricular":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-
-      "management":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-
-      "studentWellfare":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        }
-      ],
-      
-      "proctorial":[
-
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
-        },
-      
-        {
-          "name": "",
-          "status": ""
-        },
-        
-        {
-          "name": "",
-          "status": ""
+          "name": "Mr. Devender Gupta, WSI",
+          "status": "Member"
         }
       ]
+    },
+    {
+     "name":"instuteSupport",
+     "data":[
+      {
+        "name": "Dr. Pankaj Lathar,Asst. Prof.(IT)",
+        "status": "Chairperson"
+      },
+      
+      {
+        "name": "Ms. Ruchi Antil, Asst. Professor (IT)",
+        "status": "Convenor"
+      },
+    
+      {
+        "name": "Ms. Madhu, Head Clerk",
+        "status": "Member"
+      }
+     ]
+    },
+
+{
+  "name":"cocurricular",
+  "data":[
+    {
+      "name": "Mr. S.K.Tiwari",
+      "status": "Chairperson"
+    },
+    
+    {
+      "name": "Mr. Anayatulla Nayazi, Asst. Professor (Literary & Photography Film Club)",
+      "status": "Member (Literary & Photography Film Club) (Publication /Blogging/Magazine Club)"
+    },
+  
+    {
+      "name": "Dr. Jayati Ghosal, Asst. Professor",
+      "status": "Incharge (Literary & Photography Film Club), Member (Publication /Blogging/Magazine Club)"
+    },
+  
+    {
+      "name": "Mr. Shashank Saroop, Asst. Professor",
+      "status": "Member (Publication /Blogging/Magazine Club) (online content)"
+    },
+    
+    {
+      "name": "Mr. Harish, Headclerk",
+      "status": "Member (Publication /Blogging/Magazine Club)"
+    },
+  
+    {
+      "name": "Ms. Richa Kaushik, Asst. Professor",
+      "status": "Incharge (Dramatic, Music & Dance Club), Member (Science & Nature Club)"
+    },
+    
+    {
+      "name": "Mr. Gulzar Ahmad, Asst. Professor",
+      "status": "Incharge (Science & Nature Club), Member ( Dramatic, Music & Dance Club)"
+    },
+  
+    {
+      "name": "Ms. Mimansa, Asst. Professor",
+      "status": "Fine Arts Club"
+    }
+  ]
+},
+
+{
+  "name":"management",
+  "data":[
+    {
+      "name": "Mr. Kuldeep, Caretaker",
+      "status": "Member"
+    },
+    
+    {
+      "name": "Mr. Jitender Gahlot, Store Keeper",
+      "status": "Member"
+    }
+  ]
+},
+
+{
+  "name":"studentWellfare",
+  "data":[
+    {
+      "name": "Dr. Athar Hussain, Associate Professor",
+      "status": "Chairperson"
+    },
+    
+    {
+      "name": "Mr. Harjeet Singh Chadha, Asst. Professor",
+      "status": "Convenor"
+    },
+  
+    {
+      "name": "Mr. Shashank Swaroop, Asst. Professor (IT)",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Mr. Gulzar Ahmad, Asst. Professor (IT)",
+      "status": "Member"
+    },
+    
+    {
+      "name": "Ms. Madhu , Head Clerk",
+      "status": "Member"
+    }
+  ]
+},
+{
+  "name":"proctorial",
+  "data":[
+    {
+      "name": "Dr. Athar Hussain",
+      "status": "Proctor"
+    },
+    
+    {
+      "name": "All Academic Heads",
+      "status": "Members"
+    },
+  
+    {
+      "name": "Mr. Mahesh Saini, Asst. Professor (IT)",
+      "status": "Member"
+    },
+  
+    {
+      "name": "Mr. A.Niyaji",
+      "status": "Member"
+    }
+  ]
 }
+
+]
